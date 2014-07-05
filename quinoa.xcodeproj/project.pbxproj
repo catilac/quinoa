@@ -21,7 +21,6 @@
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
-		46FF80121968AB450091A7B2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF80111968AB450091A7B2 /* User.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +54,6 @@
 		46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertBrowserViewController.h; sourceTree = "<group>"; };
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
-		46FF80101968AB450091A7B2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		46FF80111968AB450091A7B2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8324901ABB3473E80D5808B /* Pods-quinoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quinoa.xcconfig"; path = "Pods/Pods-quinoa.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,8 +170,6 @@
 		46FF800F1968AB240091A7B2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				46FF80101968AB450091A7B2 /* User.h */,
-				46FF80111968AB450091A7B2 /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -310,7 +305,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46FF80121968AB450091A7B2 /* User.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,

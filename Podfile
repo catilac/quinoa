@@ -4,6 +4,7 @@
 target "quinoa" do
   pod 'AFNetworking'
   pod 'Parse'
+  pod 'Facebook-iOS-SDK', :inhibit_warnings => true
 end
 
 target "quinoaTests" do

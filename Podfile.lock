@@ -28,6 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - Facebook-iOS-SDK
   - Parse
 
 SPEC CHECKSUMS:

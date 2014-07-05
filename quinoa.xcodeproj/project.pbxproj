@@ -118,8 +118,9 @@
 		460447A81964ECC600DDE6C6 /* quinoa */ = {
 			isa = PBXGroup;
 			children = (
+				4611A6041968B1B100202318 /* Views */,
 				46FF800F1968AB240091A7B2 /* Models */,
-				46FF80091968A8F00091A7B2 /* ViewControllers */,
+				46FF80091968A8F00091A7B2 /* View Controllers */,
 				460447B11964ECC600DDE6C6 /* AppDelegate.h */,
 				460447B21964ECC600DDE6C6 /* AppDelegate.m */,
 				460447B41964ECC600DDE6C6 /* Images.xcassets */,
@@ -157,14 +158,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		46FF80091968A8F00091A7B2 /* ViewControllers */ = {
+		4611A6031968AD9B00202318 /* Experts Browser */ = {
 			isa = PBXGroup;
 			children = (
 				46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */,
 				46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */,
 				46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */,
 			);
-			name = ViewControllers;
+			name = "Experts Browser";
+			sourceTree = "<group>";
+		};
+		4611A6041968B1B100202318 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		46FF80091968A8F00091A7B2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4611A6031968AD9B00202318 /* Experts Browser */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		46FF800F1968AB240091A7B2 /* Models */ = {

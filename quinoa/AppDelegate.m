@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "ExpertBrowserViewController.h"
 
 @implementation AppDelegate
 
@@ -24,6 +25,8 @@
     PFACL *defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    self.window.rootViewController = [[ExpertBrowserViewController alloc] init];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

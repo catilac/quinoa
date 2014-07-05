@@ -9,6 +9,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-quinoa-Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-quinoa-Facebook-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-quinoa-Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-quinoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -16,6 +31,32 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>1781FFE1F7894AA8A8003900</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>17D355A93B1748169CCD7C1B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A773DF071F341D99AA70B00</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C491F6AA9F7F40DFA42BDF1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E890ABE4E8484DC0B07A2C38</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

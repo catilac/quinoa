@@ -8,14 +8,16 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     
+    // Override point for customization after application launch.
+    [User registerSubclass];
     [Parse setApplicationId:@"Fp5eIufAJJDLCrvaC7ZPBqJmYj5lIQsS2xjLHWQm"
                   clientKey:@"4wviUoVH6lZQWG3n2yGyyncMtKYbuz0RCGG1qen3"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

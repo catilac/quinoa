@@ -3,6 +3,7 @@
 
 target "quinoa" do
   pod 'AFNetworking'
+  pod 'Parse'
 end
 
 target "quinoaTests" do

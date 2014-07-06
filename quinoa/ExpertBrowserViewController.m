@@ -26,7 +26,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"My Trainer";
     }
     return self;
 }

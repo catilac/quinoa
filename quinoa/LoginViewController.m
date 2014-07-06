@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 
+#import "ExpertBrowserViewController.h"
+#import "MyPlanViewController.h"
+
 @interface LoginViewController ()
 
 - (IBAction)onLogOutClick:(id)sender;
@@ -37,6 +40,8 @@
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
         [self showLoginAndRegistration];
+    } else {
+        [self setupNavigation];
     }
     
 }
@@ -75,7 +80,9 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    // [self dismissViewControllerAnimated:YES completion:NULL];
+
+    [self setupNavigation];
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -91,11 +98,23 @@
 }
 
 
-
 - (IBAction)onLogOutClick:(id)sender {
     
     [PFUser logOut];
     [self.navigationController popViewControllerAnimated:YES];
     [self showLoginAndRegistration];
+}
+
+- (void)setupNavigation {
+    ExpertBrowserViewController *expertViewController = [[ExpertBrowserViewController alloc] init];
+    UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
+
+    MyPlanViewController *myPlanViewController = [[MyPlanViewController alloc] init];
+    UINavigationController *myPlanNavController = [[UINavigationController alloc] initWithRootViewController:myPlanViewController];
+
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[expertNavController, myPlanNavController];
+
+    [self presentViewController:tabBarController animated:NO completion:nil];
 }
 @end

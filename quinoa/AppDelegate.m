@@ -10,13 +10,21 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "ExpertBrowserViewController.h"
+#import "Plan.h"
+#import "PlanAttribute.h"
+#import "PlanActivity.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+
+    // Register sub classes
+    [Plan registerSubclass];
+    [PlanAttribute registerSubclass];
+    [PlanActivity registerSubclass];
+
     // Override point for customization after application launch.
     
     //Parse App Keys
@@ -32,12 +40,8 @@
     // FaceBook
     [PFFacebookUtils initializeFacebook];
     
-//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-//    self.window.rootViewController = loginViewController;
-    
-    ExpertBrowserViewController *expertBrowser = [[ExpertBrowserViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:expertBrowser];
-    self.window.rootViewController = nvc;
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    self.window.rootViewController = loginViewController;
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

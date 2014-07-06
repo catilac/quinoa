@@ -22,6 +22,8 @@
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
+		9FFD15931968CA0B0097F6FD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD15911968CA0B0097F6FD /* LoginViewController.m */; };
+		9FFD15941968CA0B0097F6FD /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD15921968CA0B0097F6FD /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,9 @@
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FFD15901968CA0B0097F6FD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9FFD15911968CA0B0097F6FD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9FFD15921968CA0B0097F6FD /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		B8324901ABB3473E80D5808B /* Pods-quinoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quinoa.xcconfig"; path = "Pods/Pods-quinoa.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +165,9 @@
 		46FF80091968A8F00091A7B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9FFD15901968CA0B0097F6FD /* LoginViewController.h */,
+				9FFD15911968CA0B0097F6FD /* LoginViewController.m */,
+				9FFD15921968CA0B0097F6FD /* LoginViewController.xib */,
 				46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */,
 				46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */,
 				46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */,
@@ -251,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FFD15941968CA0B0097F6FD /* LoginViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
@@ -305,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FFD15931968CA0B0097F6FD /* LoginViewController.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,

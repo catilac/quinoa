@@ -13,9 +13,21 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *chatView;
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
 
+@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) PFUser *expert;
+
 @end
 
 @implementation ChatViewController
+
+- (id)initWithUser:(PFUser *)user expert:(PFUser *)expert {
+    self = [super init];
+    if (self) {
+        self.user = user;
+        self.expert = expert;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -15,10 +15,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
 
 @property (strong, nonatomic) PFUser *recipient;
+@property (strong, nonatomic) NSArray *messages;
+@property (strong, nonatomic) NSTimer *queryTimer;
 
 @end
 
 @implementation ChatViewController
+
+static NSString *CellIdentifier = @"chatCellIdent";
 
 - (id)initWithUser:(PFUser *)recipient {
     self = [super init];
@@ -41,6 +45,24 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.chatView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
+    self.chatView.dataSource = self;
+    
+    
+    self.queryTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                     target:self
+                                   selector:@selector(fetchMessages)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.queryTimer) {
+        [self.queryTimer invalidate];
+        self.queryTimer = nil;
+    }
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,9 +72,36 @@
 }
 
 - (IBAction)onSend:(id)sender {
-    NSLog(@"CHAT: %@", self.chatInput.text);
-    [Message sendMessageToUser:self.recipient fromUser:[PFUser currentUser] message:self.chatInput.text];
+    [Message sendMessageToUser:self.recipient
+                      fromUser:[PFUser currentUser]
+                       message:self.chatInput.text];
     self.chatInput.text = @"";
 }
+
+- (void)fetchMessages {
+    NSString *threadId = [Message calcThreadIdWithSender:[PFUser currentUser] recipient:self.recipient];
+    [Message getMessagesByThreadId:threadId success:^(NSArray *messages) {
+        NSLog(@"messages: %@", messages);
+        self.messages = messages;
+        [self.chatView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"ERROR");
+    }];
+}
+
+#pragma mark - UICollectionViewDataSource methods
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
+    return [self.messages count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
+                                                                           forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor orangeColor];
+    return cell;
+}
+
 
 @end

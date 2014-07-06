@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : UIViewController <UICollectionViewDataSource>
 
 - initWithUser:(PFUser *)recipient;
 

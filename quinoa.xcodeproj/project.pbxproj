@@ -19,6 +19,8 @@
 		460447BE1964ECC600DDE6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460447A61964ECC600DDE6C6 /* UIKit.framework */; };
 		460447C61964ECC600DDE6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460447C41964ECC600DDE6C6 /* InfoPlist.strings */; };
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
+		465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C1FF51969540F008BFD30 /* ChatViewController.m */; };
+		465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465C1FF61969540F008BFD30 /* ChatViewController.xib */; };
 		465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DFE41196947C800817222 /* ExpertDetailViewController.m */; };
 		465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465DFE42196947C800817222 /* ExpertDetailViewController.xib */; };
 		466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466C3CDE196950C0007FF30D /* LoginViewController.m */; };
@@ -63,6 +65,9 @@
 		460447C31964ECC600DDE6C6 /* quinoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "quinoaTests-Info.plist"; sourceTree = "<group>"; };
 		460447C51964ECC600DDE6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		460447C71964ECC600DDE6C6 /* quinoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quinoaTests.m; sourceTree = "<group>"; };
+		465C1FF41969540F008BFD30 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		465C1FF51969540F008BFD30 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		465C1FF61969540F008BFD30 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		465DFE40196947C800817222 /* ExpertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertDetailViewController.h; sourceTree = "<group>"; };
 		465DFE41196947C800817222 /* ExpertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertDetailViewController.m; sourceTree = "<group>"; };
 		465DFE42196947C800817222 /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				465C1FF3196953D2008BFD30 /* Chat Screen */,
 				465DFE3F196947AA00817222 /* Expert Detail */,
 				5348EC271968FCF300E99C4A /* Experts Browser */,
 				5348EC261968FCEB00E99C4A /* Login */,
@@ -208,6 +214,16 @@
 				4695108519691CB700315FDC /* Expert Cell */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		465C1FF3196953D2008BFD30 /* Chat Screen */ = {
+			isa = PBXGroup;
+			children = (
+				465C1FF41969540F008BFD30 /* ChatViewController.h */,
+				465C1FF51969540F008BFD30 /* ChatViewController.m */,
+				465C1FF61969540F008BFD30 /* ChatViewController.xib */,
+			);
+			name = "Chat Screen";
 			sourceTree = "<group>";
 		};
 		465DFE3F196947AA00817222 /* Expert Detail */ = {
@@ -365,6 +381,7 @@
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
 				466C3CE1196950C0007FF30D /* LoginViewController.xib in Resources */,
+				465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +436,7 @@
 			files = (
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
+				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */,

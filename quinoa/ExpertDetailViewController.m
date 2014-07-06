@@ -7,6 +7,7 @@
 //
 
 #import "ExpertDetailViewController.h"
+#import "ChatViewController.h"
 
 @interface ExpertDetailViewController ()
 
@@ -51,7 +52,8 @@
 }
 
 - (IBAction)onChat:(id)sender {
-    NSLog(@"Chat it up");
+    ChatViewController *chatView = [[ChatViewController alloc] init];
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 @end

@@ -9,13 +9,21 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
+#import "Plan.h"
+#import "PlanAttribute.h"
+#import "PlanActivity.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+
+    // Register sub classes
+    [Plan registerSubclass];
+    [PlanAttribute registerSubclass];
+    [PlanActivity registerSubclass];
+
     // Override point for customization after application launch.
     
     //Parse App Keys

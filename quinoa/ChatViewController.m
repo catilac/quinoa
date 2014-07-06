@@ -7,24 +7,23 @@
 //
 
 #import "ChatViewController.h"
+#import "Message.h"
 
 @interface ChatViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *chatView;
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
 
-@property (strong, nonatomic) PFUser *user;
-@property (strong, nonatomic) PFUser *expert;
+@property (strong, nonatomic) PFUser *recipient;
 
 @end
 
 @implementation ChatViewController
 
-- (id)initWithUser:(PFUser *)user expert:(PFUser *)expert {
+- (id)initWithUser:(PFUser *)recipient {
     self = [super init];
     if (self) {
-        self.user = user;
-        self.expert = expert;
+        self.recipient = recipient;
     }
     return self;
 }
@@ -52,6 +51,8 @@
 
 - (IBAction)onSend:(id)sender {
     NSLog(@"CHAT: %@", self.chatInput.text);
+    [Message sendMessageToUser:self.recipient fromUser:[PFUser currentUser] message:self.chatInput.text];
+    self.chatInput.text = @"";
 }
 
 @end

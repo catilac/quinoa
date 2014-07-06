@@ -52,7 +52,7 @@
 }
 
 - (IBAction)onChat:(id)sender {
-    ChatViewController *chatView = [[ChatViewController alloc] init];
+    ChatViewController *chatView = [[ChatViewController alloc] initWithUser:self.expert];
     [self.navigationController pushViewController:chatView animated:YES];
 }
 

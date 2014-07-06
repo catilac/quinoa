@@ -11,6 +11,11 @@
 
 @interface Message : PFObject<PFSubclassing>
 
+@property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) PFUser *sender;
+@property (strong, nonatomic) PFUser *recipient;
+
 + (NSString *)parseClassName;
++ (Message *)sendMessageToUser:(PFUser *)recipient fromUser:(PFUser *)sender message:(NSString *)message;
 
 @end

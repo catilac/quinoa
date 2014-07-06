@@ -11,6 +11,6 @@
 
 @interface ChatViewController : UIViewController
 
-- initWithUser:(PFUser *)user expert:(PFUser *)expert;
+- initWithUser:(PFUser *)recipient;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "LoginViewController.h"
 #import "ExpertBrowserViewController.h"
 
 @implementation AppDelegate
@@ -17,6 +18,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
+    
+    //Parse App Keys
     [Parse setApplicationId:@"Fp5eIufAJJDLCrvaC7ZPBqJmYj5lIQsS2xjLHWQm"
                   clientKey:@"4wviUoVH6lZQWG3n2yGyyncMtKYbuz0RCGG1qen3"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
@@ -26,11 +29,36 @@
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
+    // FaceBook
+    [PFFacebookUtils initializeFacebook];
+    
+//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//    self.window.rootViewController = loginViewController;
+    
     self.window.rootViewController = [[ExpertBrowserViewController alloc] init];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+// Facebook Handlers
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+}
+
+// Facebook oauth callback
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -50,10 +78,7 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {

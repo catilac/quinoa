@@ -7,6 +7,7 @@
 //
 
 #import "ExpertBrowserViewController.h"
+#import "ExpertCell.h"
 #import <Parse/Parse.h>
 
 @interface ExpertBrowserViewController ()
@@ -35,15 +36,16 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.expertCollection registerClass:[UICollectionViewCell class]
-              forCellWithReuseIdentifier:CellIdentifier];
-    
+    [self.expertCollection registerNib:[UINib nibWithNibName:@"ExpertCell" bundle:nil]
+            forCellWithReuseIdentifier:CellIdentifier];
+
     self.expertCollection.delegate = self;
     self.expertCollection.dataSource = self;
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:self.expertCollection.frame];
-    [backgroundView setBackgroundColor:[UIColor redColor]];
-    self.expertCollection.backgroundView = backgroundView;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(300, 400)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    [self.expertCollection setCollectionViewLayout:flowLayout];
     
     [self fetchExperts];
 }
@@ -53,7 +55,6 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     [query whereKey:@"role" containsString:@"expert"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Success: %@", objects);
             self.experts = objects;
             [self.expertCollection reloadData];
         } else {
@@ -77,9 +78,8 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
-                                                                           forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    ExpertCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
+                                                                 forIndexPath:indexPath];
     return cell;
     
 }

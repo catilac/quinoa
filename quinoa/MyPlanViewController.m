@@ -7,6 +7,7 @@
 //
 
 #import "MyPlanViewController.h"
+#import "MyPlanOverviewViewController.h"
 #import "Plan.h"
 #import "PlanAttribute.h"
 #import "PlanActivity.h"
@@ -41,8 +42,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-
+    [self setupUI];
     [self fetchData];
 }
 
@@ -159,5 +159,21 @@
 - (void)nextDay:(id)sender {
     self.displayDate = [self.displayDate dateByAddingTimeInterval:1*24*60*60];
     [self fetchActivities];
+}
+
+- (void)setupUI {
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Overview"
+                                     style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(showOverview)];
+
+    self.navigationItem.rightBarButtonItem = overviewButton;
+}
+
+- (void)showOverview {
+    MyPlanOverviewViewController *overviewViewController = [[MyPlanOverviewViewController alloc] init];
+    [self.navigationController pushViewController:overviewViewController animated:YES];
 }
 @end

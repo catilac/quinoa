@@ -10,6 +10,7 @@
 
 @implementation ExpertCell
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -17,6 +18,15 @@
         // Initialization code        
     }
     return self;
+}
+
+- (IBAction)onSelect:(id)sender {
+    NSLog(@"Trainer Selected");
+}
+
+-(void)setValuesWithExpert:(PFUser *)expert {
+    self.expert = expert;
+    self.nameLabel.text = expert.email;
 }
 
 /*

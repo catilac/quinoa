@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ExpertCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
+@property (weak, nonatomic) IBOutlet UITableView *reviewsTableView;
+
+@property (strong, nonatomic) PFUser *expert;
+
+- (void)setValuesWithExpert:(PFUser *)expert;
 
 @end

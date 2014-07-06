@@ -34,14 +34,16 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    [self.expertCollection registerNib:[UINib nibWithNibName:@"ExpertCell" bundle:nil]
+    UINib *expertCellNib = [UINib nibWithNibName:@"ExpertCell" bundle:nil];
+    [UINib nibWithNibName:@"ExpertCell" bundle:nil];
+    [self.expertCollection registerNib:expertCellNib
             forCellWithReuseIdentifier:CellIdentifier];
 
     self.expertCollection.delegate = self;
     self.expertCollection.dataSource = self;
     
+    // Setup Layout for UICollectionView
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(300, 400)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -72,7 +74,8 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 #pragma mark - UICollectionViewDelegate methods
 
 #pragma mark - UICollectionViewDataSource methods
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
     return [self.experts count];
 }
 
@@ -80,6 +83,8 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ExpertCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
+    [cell setValuesWithExpert:self.experts[indexPath.row]];
+    
     return cell;
     
 }

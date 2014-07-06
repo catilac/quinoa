@@ -35,7 +35,9 @@
 //    LoginViewController *loginViewController = [[LoginViewController alloc] init];
 //    self.window.rootViewController = loginViewController;
     
-    self.window.rootViewController = [[ExpertBrowserViewController alloc] init];
+    ExpertBrowserViewController *expertBrowser = [[ExpertBrowserViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:expertBrowser];
+    self.window.rootViewController = nvc;
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

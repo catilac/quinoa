@@ -19,6 +19,8 @@
 		460447BE1964ECC600DDE6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460447A61964ECC600DDE6C6 /* UIKit.framework */; };
 		460447C61964ECC600DDE6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460447C41964ECC600DDE6C6 /* InfoPlist.strings */; };
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
+		465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DFE41196947C800817222 /* ExpertDetailViewController.m */; };
+		465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465DFE42196947C800817222 /* ExpertDetailViewController.xib */; };
 		4695108219691C0E00315FDC /* ExpertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4695108119691C0E00315FDC /* ExpertCell.m */; };
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
@@ -55,6 +57,9 @@
 		460447C31964ECC600DDE6C6 /* quinoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "quinoaTests-Info.plist"; sourceTree = "<group>"; };
 		460447C51964ECC600DDE6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		460447C71964ECC600DDE6C6 /* quinoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quinoaTests.m; sourceTree = "<group>"; };
+		465DFE40196947C800817222 /* ExpertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertDetailViewController.h; sourceTree = "<group>"; };
+		465DFE41196947C800817222 /* ExpertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertDetailViewController.m; sourceTree = "<group>"; };
+		465DFE42196947C800817222 /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
 		4695108019691C0E00315FDC /* ExpertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertCell.h; sourceTree = "<group>"; };
 		4695108119691C0E00315FDC /* ExpertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertCell.m; sourceTree = "<group>"; };
 		4695108319691C5E00315FDC /* ExpertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertCell.xib; sourceTree = "<group>"; };
@@ -186,6 +191,16 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		465DFE3F196947AA00817222 /* Expert Detail */ = {
+			isa = PBXGroup;
+			children = (
+				465DFE40196947C800817222 /* ExpertDetailViewController.h */,
+				465DFE41196947C800817222 /* ExpertDetailViewController.m */,
+				465DFE42196947C800817222 /* ExpertDetailViewController.xib */,
+			);
+			name = "Expert Detail";
+			sourceTree = "<group>";
+		};
 		4695107F1968E0EB00315FDC /* Login View */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +224,7 @@
 		46FF80091968A8F00091A7B2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				465DFE3F196947AA00817222 /* Expert Detail */,
 				4695107F1968E0EB00315FDC /* Login View */,
 				4611A6031968AD9B00202318 /* Experts Browser */,
 			);
@@ -304,6 +320,7 @@
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
+				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +377,7 @@
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
+				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

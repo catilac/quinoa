@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExpertCell.h"
 
-@interface ExpertBrowserViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExpertBrowserViewController : UIViewController <UICollectionViewDataSource, ExpertCellDelegate>
 
 @end

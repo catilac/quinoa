@@ -21,7 +21,7 @@
 }
 
 - (IBAction)onSelect:(id)sender {
-    NSLog(@"Trainer Selected");
+    [self.delegate showExpertDetail:self.expert];
 }
 
 -(void)setValuesWithExpert:(PFUser *)expert {

@@ -7,8 +7,8 @@
 //
 
 #import "ExpertBrowserViewController.h"
-#import "ExpertCell.h"
 #import <Parse/Parse.h>
+#import "ExpertDetailViewController.h"
 
 @interface ExpertBrowserViewController ()
 
@@ -40,7 +40,6 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     [self.expertCollection registerNib:expertCellNib
             forCellWithReuseIdentifier:CellIdentifier];
 
-    self.expertCollection.delegate = self;
     self.expertCollection.dataSource = self;
     
     // Setup Layout for UICollectionView
@@ -71,9 +70,8 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UICollectionViewDelegate methods
-
 #pragma mark - UICollectionViewDataSource methods
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
     return [self.experts count];
@@ -84,9 +82,17 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     ExpertCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
     [cell setValuesWithExpert:self.experts[indexPath.row]];
+    cell.delegate = self;
     
     return cell;
     
+}
+
+# pragma mark - ExpertCellDelegate methods
+
+- (void)showExpertDetail:(PFUser *)expert {
+    ExpertDetailViewController *expertView = [[ExpertDetailViewController alloc] initWithExpert:expert];
+    [self.navigationController pushViewController:expertView animated:YES];
 }
 
 

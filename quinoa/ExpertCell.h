@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+@protocol ExpertCellDelegate <NSObject>
+
+- (void)showExpertDetail:(PFUser *)expert;
+
+@end
+
 @interface ExpertCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -17,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *reviewsTableView;
 
 @property (strong, nonatomic) PFUser *expert;
+
+@property (weak, nonatomic) UIViewController<ExpertCellDelegate> *delegate;
 
 - (void)setValuesWithExpert:(PFUser *)expert;
 

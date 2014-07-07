@@ -7,10 +7,12 @@
 //
 
 #import "MyPlanViewController.h"
+#import "MyPlanOverviewViewController.h"
 #import "Plan.h"
 #import "PlanAttribute.h"
 #import "PlanActivity.h"
 #import "NSDate+dateWith.h"
+#import "Utils.h"
 
 @interface MyPlanViewController ()
 
@@ -41,8 +43,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-
+    [self setupUI];
     [self fetchData];
 }
 
@@ -104,10 +105,7 @@
     [cell addSubview:leftButton];
 
     NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
-    if (![[dateFormatter stringFromDate:today] isEqualToString:[dateFormatter stringFromDate:self.displayDate]]) {
+    if (![[Utils getSimpleStringFromDate:today] isEqualToString:[Utils getSimpleStringFromDate:self.displayDate]]) {
         UIButton *rightButton = [[UIButton alloc] init];
         [rightButton setTitle:@">" forState:UIControlStateNormal];
         rightButton.frame = CGRectMake(self.view.frame.size.width - 50, 0, 50, 50);
@@ -159,5 +157,21 @@
 - (void)nextDay:(id)sender {
     self.displayDate = [self.displayDate dateByAddingTimeInterval:1*24*60*60];
     [self fetchActivities];
+}
+
+- (void)setupUI {
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Overview"
+                                     style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(showOverview)];
+
+    self.navigationItem.rightBarButtonItem = overviewButton;
+}
+
+- (void)showOverview {
+    MyPlanOverviewViewController *overviewViewController = [[MyPlanOverviewViewController alloc] init];
+    [self.navigationController pushViewController:overviewViewController animated:YES];
 }
 @end

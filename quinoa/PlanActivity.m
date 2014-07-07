@@ -48,4 +48,21 @@
         }
     }];
 }
+
++ (void)getActivitiesByDateRangeFrom:(NSDate *)startDate
+                         to:(NSDate *)endDate
+                    success:(void (^) (NSArray *objects))success
+                      error:(void (^) (NSError *error))error {
+    PFQuery *query = [PFQuery queryWithClassName:@"PlanActivity"];
+    [query whereKey:@"date" greaterThanOrEqualTo:startDate];
+    [query whereKey:@"date" lessThanOrEqualTo:endDate];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *activities, NSError *errorFromParse) {
+        if (success) {
+            success(activities);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
 @end

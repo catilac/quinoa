@@ -27,7 +27,6 @@
 		465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DFE41196947C800817222 /* ExpertDetailViewController.m */; };
 		465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465DFE42196947C800817222 /* ExpertDetailViewController.xib */; };
 		466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466C3CDE196950C0007FF30D /* LoginViewController.m */; };
-		466C3CE1196950C0007FF30D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466C3CDF196950C0007FF30D /* LoginViewController.xib */; };
 		4695108219691C0E00315FDC /* ExpertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4695108119691C0E00315FDC /* ExpertCell.m */; };
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
@@ -38,7 +37,13 @@
 		5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5348EC201968FBEA00E99C4A /* MyPlanViewController.xib */; };
 		5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC2919692E2C00E99C4A /* PlanActivity.m */; };
 		5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC30196940D800E99C4A /* NSDate+dateWith.m */; };
+		5348EC37196945EC00E99C4A /* MyPlanOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5348EC35196945EC00E99C4A /* MyPlanOverviewViewController.xib */; };
+		5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC381969479600E99C4A /* MyPlanOverviewViewController.m */; };
+		5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5348EC3D19694B6200E99C4A /* ExpandCell.xib */; };
+		5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC4019694C1500E99C4A /* ExpandCell.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
+		A3B4A88B196A5FB400135230 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A88A196A5FB400135230 /* Utils.m */; };
+		A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4A88C196A6EEB00135230 /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +86,6 @@
 		465DFE42196947C800817222 /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
 		466C3CDD196950C0007FF30D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		466C3CDE196950C0007FF30D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		466C3CDF196950C0007FF30D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4695108019691C0E00315FDC /* ExpertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertCell.h; sourceTree = "<group>"; };
 		4695108119691C0E00315FDC /* ExpertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertCell.m; sourceTree = "<group>"; };
 		4695108319691C5E00315FDC /* ExpertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertCell.xib; sourceTree = "<group>"; };
@@ -99,7 +103,16 @@
 		5348EC2919692E2C00E99C4A /* PlanActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanActivity.m; sourceTree = "<group>"; };
 		5348EC2F196940D800E99C4A /* NSDate+dateWith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+dateWith.h"; sourceTree = "<group>"; };
 		5348EC30196940D800E99C4A /* NSDate+dateWith.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+dateWith.m"; sourceTree = "<group>"; };
+		5348EC33196945EC00E99C4A /* MyPlanOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlanOverviewViewController.h; sourceTree = "<group>"; };
+		5348EC35196945EC00E99C4A /* MyPlanOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPlanOverviewViewController.xib; sourceTree = "<group>"; };
+		5348EC381969479600E99C4A /* MyPlanOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPlanOverviewViewController.m; sourceTree = "<group>"; };
+		5348EC3B19694B6200E99C4A /* ExpandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandCell.h; sourceTree = "<group>"; };
+		5348EC3D19694B6200E99C4A /* ExpandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandCell.xib; sourceTree = "<group>"; };
+		5348EC4019694C1500E99C4A /* ExpandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandCell.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B4A889196A5FB400135230 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A3B4A88A196A5FB400135230 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		A3B4A88C196A6EEB00135230 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		B8324901ABB3473E80D5808B /* Pods-quinoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quinoa.xcconfig"; path = "Pods/Pods-quinoa.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +225,7 @@
 				5348EC271968FCF300E99C4A /* Experts Browser */,
 				5348EC261968FCEB00E99C4A /* Login */,
 				5348EC241968FCD600E99C4A /* My Plan */,
+				5348EC32196945C800E99C4A /* My Plan Overview */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +233,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3B4A88E196A708500135230 /* Expand Cell */,
 				461E5AB4196A0DFC000D120F /* Chat Cell */,
 				4695108519691CB700315FDC /* Expert Cell */,
 			);
@@ -274,6 +289,8 @@
 				5348EC1B1968FBE200E99C4A /* PlanAttribute.m */,
 				5348EC2819692E2C00E99C4A /* PlanActivity.h */,
 				5348EC2919692E2C00E99C4A /* PlanActivity.m */,
+				A3B4A889196A5FB400135230 /* Utils.h */,
+				A3B4A88A196A5FB400135230 /* Utils.m */,
 				4653DB951969CEEE00E4114F /* Message.h */,
 				4653DB961969CEEE00E4114F /* Message.m */,
 			);
@@ -293,9 +310,9 @@
 		5348EC261968FCEB00E99C4A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				A3B4A88C196A6EEB00135230 /* LoginViewController.xib */,
 				466C3CDD196950C0007FF30D /* LoginViewController.h */,
 				466C3CDE196950C0007FF30D /* LoginViewController.m */,
-				466C3CDF196950C0007FF30D /* LoginViewController.xib */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -317,6 +334,26 @@
 				5348EC30196940D800E99C4A /* NSDate+dateWith.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		5348EC32196945C800E99C4A /* My Plan Overview */ = {
+			isa = PBXGroup;
+			children = (
+				5348EC33196945EC00E99C4A /* MyPlanOverviewViewController.h */,
+				5348EC381969479600E99C4A /* MyPlanOverviewViewController.m */,
+				5348EC35196945EC00E99C4A /* MyPlanOverviewViewController.xib */,
+			);
+			name = "My Plan Overview";
+			sourceTree = "<group>";
+		};
+		A3B4A88E196A708500135230 /* Expand Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5348EC3B19694B6200E99C4A /* ExpandCell.h */,
+				5348EC4019694C1500E99C4A /* ExpandCell.m */,
+				5348EC3D19694B6200E99C4A /* ExpandCell.xib */,
+			);
+			name = "Expand Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,15 +433,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5348EC37196945EC00E99C4A /* MyPlanOverviewViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
-				466C3CE1196950C0007FF30D /* LoginViewController.xib in Resources */,
 				465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */,
+				A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */,
 				461E5AB9196A1037000D120F /* ChatCell.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
+				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,9 +500,12 @@
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,
+				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */,
+				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,
+				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,

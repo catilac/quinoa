@@ -115,6 +115,6 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[expertNavController, myPlanNavController];
 
-    [self presentViewController:tabBarController animated:NO completion:nil];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
 @end

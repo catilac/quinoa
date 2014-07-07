@@ -9,9 +9,11 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
+#import "ExpertBrowserViewController.h"
 #import "Plan.h"
 #import "PlanAttribute.h"
 #import "PlanActivity.h"
+#import "Message.h"
 
 @implementation AppDelegate
 
@@ -23,6 +25,7 @@
     [Plan registerSubclass];
     [PlanAttribute registerSubclass];
     [PlanActivity registerSubclass];
+    [Message registerSubclass];
 
     // Override point for customization after application launch.
     
@@ -41,7 +44,6 @@
     
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     self.window.rootViewController = loginViewController;
-
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

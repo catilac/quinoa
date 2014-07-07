@@ -12,6 +12,7 @@
 #import "ExpertBrowserViewController.h"
 #import "ExpertDetailViewController.h"
 #import "MyPlanViewController.h"
+#import "MoreViewController.h"
 
 @interface LoginViewController ()
 
@@ -125,8 +126,13 @@
     myPlanNavController.tabBarItem.title = @"My Plan";
     myPlanNavController.tabBarItem.image = [UIImage imageNamed:@"CheckIcon"];
 
+    MoreViewController *moreViewController = [[MoreViewController alloc] init];
+    UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
+    moreNavController.tabBarItem.title = @"More";
+    moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
+
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[expertNavController, myPlanNavController];
+    tabBarController.viewControllers = @[expertNavController, myPlanNavController, moreNavController];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

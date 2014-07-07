@@ -44,6 +44,8 @@
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		A3B4A88B196A5FB400135230 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A88A196A5FB400135230 /* Utils.m */; };
 		A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4A88C196A6EEB00135230 /* LoginViewController.xib */; };
+		A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A891196A7F7900135230 /* MoreViewController.m */; };
+		A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4A892196A7F7900135230 /* MoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,9 @@
 		A3B4A889196A5FB400135230 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		A3B4A88A196A5FB400135230 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A3B4A88C196A6EEB00135230 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A3B4A890196A7F7900135230 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		A3B4A891196A7F7900135230 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		A3B4A892196A7F7900135230 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
 		B8324901ABB3473E80D5808B /* Pods-quinoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quinoa.xcconfig"; path = "Pods/Pods-quinoa.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,6 +229,7 @@
 				465DFE3F196947AA00817222 /* Expert Detail */,
 				5348EC271968FCF300E99C4A /* Experts Browser */,
 				5348EC261968FCEB00E99C4A /* Login */,
+				A3B4A88F196A7F5800135230 /* More */,
 				5348EC241968FCD600E99C4A /* My Plan */,
 				5348EC32196945C800E99C4A /* My Plan Overview */,
 			);
@@ -356,6 +362,16 @@
 			name = "Expand Cell";
 			sourceTree = "<group>";
 		};
+		A3B4A88F196A7F5800135230 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				A3B4A890196A7F7900135230 /* MoreViewController.h */,
+				A3B4A891196A7F7900135230 /* MoreViewController.m */,
+				A3B4A892196A7F7900135230 /* MoreViewController.xib */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -434,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5348EC37196945EC00E99C4A /* MyPlanOverviewViewController.xib in Resources */,
+				A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
@@ -508,6 +525,7 @@
 				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
+				A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,

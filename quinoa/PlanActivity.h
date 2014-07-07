@@ -21,4 +21,9 @@
 + (void)getActivitiesByDate:(NSDate *)date
                     success:(void (^) (NSArray *objects))success
                       error:(void (^) (NSError *error))error;
+
++ (void)getActivitiesByDateRangeFrom:(NSDate *)startDate
+                                  to:(NSDate *)endDate
+                             success:(void (^) (NSArray *objects))success
+                               error:(void (^) (NSError *error))error;
 @end

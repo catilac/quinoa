@@ -34,6 +34,7 @@
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FFD15931968CA0B0097F6FD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFD15911968CA0B0097F6FD /* LoginViewController.m */; };
 		9FFD15941968CA0B0097F6FD /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFD15921968CA0B0097F6FD /* LoginViewController.xib */; };
+		A3B4A88B196A5FB400135230 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A88A196A5FB400135230 /* Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		9FFD15901968CA0B0097F6FD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9FFD15911968CA0B0097F6FD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FFD15921968CA0B0097F6FD /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A3B4A889196A5FB400135230 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A3B4A88A196A5FB400135230 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		B8324901ABB3473E80D5808B /* Pods-quinoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quinoa.xcconfig"; path = "Pods/Pods-quinoa.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +214,8 @@
 				5348EC1B1968FBE200E99C4A /* PlanAttribute.m */,
 				5348EC2819692E2C00E99C4A /* PlanActivity.h */,
 				5348EC2919692E2C00E99C4A /* PlanActivity.m */,
+				A3B4A889196A5FB400135230 /* Utils.h */,
+				A3B4A88A196A5FB400135230 /* Utils.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,
 				9FFD15931968CA0B0097F6FD /* LoginViewController.m in Sources */,
+				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */,
 				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,

@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSArray *planAttributes;
+@property (nonatomic) BOOL isCompleted;
 
 - (void)hideTableView:(BOOL)hide;
-
 @end

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableDictionary *checked;
+@property (weak, nonatomic) IBOutlet UILabel *checkLabel;
 @end
 
 @implementation ExpandCell
@@ -24,6 +25,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.checked = [[NSMutableDictionary alloc] init];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -39,6 +41,11 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMM dd yyyy"];
     self.dateLabel.text = [dateFormatter stringFromDate:self.date];
+}
+
+- (void)setIsCompleted:(BOOL)isCompleted {
+    _isCompleted = isCompleted;
+    self.checkLabel.hidden = !_isCompleted;
 }
 
 - (void)hideTableView:(BOOL)hide {

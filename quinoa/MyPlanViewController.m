@@ -12,6 +12,7 @@
 #import "PlanAttribute.h"
 #import "PlanActivity.h"
 #import "NSDate+dateWith.h"
+#import "Utils.h"
 
 @interface MyPlanViewController ()
 
@@ -104,10 +105,7 @@
     [cell addSubview:leftButton];
 
     NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
-    if (![[dateFormatter stringFromDate:today] isEqualToString:[dateFormatter stringFromDate:self.displayDate]]) {
+    if (![[Utils getSimpleStringFromDate:today] isEqualToString:[Utils getSimpleStringFromDate:self.displayDate]]) {
         UIButton *rightButton = [[UIButton alloc] init];
         [rightButton setTitle:@">" forState:UIControlStateNormal];
         rightButton.frame = CGRectMake(self.view.frame.size.width - 50, 0, 50, 50);

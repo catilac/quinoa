@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 
 #import "ExpertBrowserViewController.h"
+#import "ExpertDetailViewController.h"
 #import "MyPlanViewController.h"
 
 @interface LoginViewController ()
@@ -106,7 +107,15 @@
 }
 
 - (void)setupNavigation {
-    ExpertBrowserViewController *expertViewController = [[ExpertBrowserViewController alloc] init];
+    PFUser *trainer = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+    UIViewController *expertViewController;
+    if (trainer) {
+        [trainer fetch];
+        expertViewController = [[ExpertDetailViewController alloc] initWithExpert:trainer];
+    } else {
+        expertViewController = [[ExpertBrowserViewController alloc] init];        
+    }
+    
     UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
 
     MyPlanViewController *myPlanViewController = [[MyPlanViewController alloc] init];

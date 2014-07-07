@@ -117,9 +117,13 @@
     }
     
     UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
+    expertNavController.tabBarItem.title = @"My Trainer";
+    expertNavController.tabBarItem.image = [UIImage imageNamed:@"ExpertIcon"];
 
     MyPlanViewController *myPlanViewController = [[MyPlanViewController alloc] init];
     UINavigationController *myPlanNavController = [[UINavigationController alloc] initWithRootViewController:myPlanViewController];
+    myPlanNavController.tabBarItem.title = @"My Plan";
+    myPlanNavController.tabBarItem.image = [UIImage imageNamed:@"CheckIcon"];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[expertNavController, myPlanNavController];

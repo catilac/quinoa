@@ -13,6 +13,7 @@
 #import "PlanActivity.h"
 #import "NSDate+dateWith.h"
 #import "Utils.h"
+#import "PNChart.h"
 
 @interface MyPlanOverviewViewController ()
 
@@ -150,6 +151,7 @@
             [self.history setValue:@(count) forKey:key];
         }
         [self.tableView reloadData];
+        [self setupChart];
     } error:^(NSError *error) {
         NSLog(@"[MyPlanOverview] error: %@", error.description);
     }];
@@ -158,6 +160,30 @@
 - (void)setupUI {
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.frame = CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height - 200);
+}
+
+- (void)setupChart {
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, 200.0)];
+    NSMutableArray *labels = [[NSMutableArray alloc] init];
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd"];
+
+    for (NSDate *date in [self.days reverseObjectEnumerator]) {
+        NSString *key = [Utils getSimpleStringFromDate:date];
+        [labels addObject:[dateFormatter stringFromDate:date]];
+        id value = [self.history objectForKey:key];
+        if (value) {
+            [values addObject:value];
+        } else {
+            [values addObject:[NSNumber numberWithInt:0]];
+        }
+    }
+    [barChart setXLabels:labels];
+    [barChart setYValues:values];
+    [barChart strokeChart];
+    [self.view addSubview:barChart];
 }
 
 @end

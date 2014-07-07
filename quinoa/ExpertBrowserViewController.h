@@ -11,4 +11,8 @@
 
 @interface ExpertBrowserViewController : UIViewController <UICollectionViewDataSource, ExpertCellDelegate>
 
+@property (nonatomic, assign) Boolean isModal;
+
+- (id)initIsModal:(Boolean)isModal;
+
 @end

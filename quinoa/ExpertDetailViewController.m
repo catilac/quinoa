@@ -8,6 +8,7 @@
 
 #import "ExpertDetailViewController.h"
 #import "ChatViewController.h"
+#import "ExpertBrowserViewController.h"
 
 @interface ExpertDetailViewController ()
 
@@ -29,11 +30,31 @@
     return self;
 }
 
+- (id)initWithExpert:(PFUser *)expert modal:(Boolean)isModal {
+    self = [super init];
+    if (self) {
+        [self setExpert:expert];
+        self.isModal = isModal;
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"My Trainer";
+        
+        if (!self.isModal) {
+            UIBarButtonItem *browse = [[UIBarButtonItem alloc] initWithTitle:@"Browse"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(showExpertsBrowser)];
+            self.navigationItem.rightBarButtonItem = browse;
+        }
+        
+        
     }
     return self;
 }
@@ -54,6 +75,18 @@
 - (IBAction)onChat:(id)sender {
     ChatViewController *chatView = [[ChatViewController alloc] initWithUser:self.expert];
     [self.navigationController pushViewController:chatView animated:YES];
+}
+
+- (void)showExpertsBrowser {
+    if (self.isModal) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        ExpertBrowserViewController *expertBrowser = [[ExpertBrowserViewController alloc] initIsModal:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:expertBrowser];
+        [self presentViewController:nc animated:YES completion:^{
+            NSLog(@"Presenting Expert Browser");
+        }];
+    }
 }
 
 @end

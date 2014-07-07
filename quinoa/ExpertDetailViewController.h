@@ -11,6 +11,9 @@
 
 @interface ExpertDetailViewController : UIViewController
 
+@property (nonatomic, assign) Boolean isModal;
+
 - (id)initWithExpert:(PFUser *)expert;
+- (id)initWithExpert:(PFUser *)expert modal:(Boolean)isModal;
 
 @end

@@ -40,6 +40,14 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     return self;
 }
 
+- (id)initIsModal:(Boolean)isModal {
+    self = [super init];
+    if (self) {
+        self.isModal = isModal;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -80,9 +88,19 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 }
 
 - (void)showCurrentTrainer {
-    PFUser *expert = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+    if (self.isModal) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        PFUser *expert = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+        [expert fetch];
+        
+        ExpertDetailViewController *expertDetail = [[ExpertDetailViewController alloc] initWithExpert:expert modal:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:expertDetail];
+        [self presentViewController:nc animated:YES completion:^{
+            NSLog(@"Presented");
+        }];
+    }
 
-    NSLog(@"Show Current Trainer: %@", expert);
 }
 
 #pragma mark - UICollectionViewDataSource methods
@@ -106,7 +124,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 # pragma mark - ExpertCellDelegate methods
 
 - (void)showExpertDetail:(PFUser *)expert {
-    ExpertDetailViewController *expertView = [[ExpertDetailViewController alloc] initWithExpert:expert];
+    ExpertDetailViewController *expertView = [[ExpertDetailViewController alloc] initWithExpert:expert modal:self.isModal];
     [self.navigationController pushViewController:expertView animated:YES];
 }
 

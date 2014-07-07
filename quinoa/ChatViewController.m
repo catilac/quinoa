@@ -8,6 +8,7 @@
 
 #import "ChatViewController.h"
 #import "Message.h"
+#import "ChatCell.h"
 
 @interface ChatViewController ()
 
@@ -45,8 +46,16 @@ static NSString *CellIdentifier = @"chatCellIdent";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.chatView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
+    [self.chatView registerNib:[UINib nibWithNibName:@"ChatCell" bundle:nil]
+    forCellWithReuseIdentifier:CellIdentifier];
+    
     self.chatView.dataSource = self;
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(300, 50)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [self.chatView setCollectionViewLayout:flowLayout];
+
     
     
     self.queryTimer = [NSTimer scheduledTimerWithTimeInterval:1
@@ -81,7 +90,6 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (void)fetchMessages {
     NSString *threadId = [Message calcThreadIdWithSender:[PFUser currentUser] recipient:self.recipient];
     [Message getMessagesByThreadId:threadId success:^(NSArray *messages) {
-        NSLog(@"messages: %@", messages);
         self.messages = messages;
         [self.chatView reloadData];
     } error:^(NSError *error) {
@@ -97,9 +105,10 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
+    ChatCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                            forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor orangeColor];
+    Message *message = self.messages[indexPath.row];
+    [cell updateChatCellWithMessage:message];
     return cell;
 }
 

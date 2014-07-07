@@ -19,6 +19,8 @@
 		460447BE1964ECC600DDE6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460447A61964ECC600DDE6C6 /* UIKit.framework */; };
 		460447C61964ECC600DDE6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460447C41964ECC600DDE6C6 /* InfoPlist.strings */; };
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
+		461E5AB7196A101E000D120F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E5AB6196A101E000D120F /* ChatCell.m */; };
+		461E5AB9196A1037000D120F /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461E5AB8196A1037000D120F /* ChatCell.xib */; };
 		4653DB971969CEEE00E4114F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653DB961969CEEE00E4114F /* Message.m */; };
 		465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C1FF51969540F008BFD30 /* ChatViewController.m */; };
 		465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465C1FF61969540F008BFD30 /* ChatViewController.xib */; };
@@ -66,6 +68,9 @@
 		460447C31964ECC600DDE6C6 /* quinoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "quinoaTests-Info.plist"; sourceTree = "<group>"; };
 		460447C51964ECC600DDE6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		460447C71964ECC600DDE6C6 /* quinoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quinoaTests.m; sourceTree = "<group>"; };
+		461E5AB5196A101E000D120F /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		461E5AB6196A101E000D120F /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		461E5AB8196A1037000D120F /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		4653DB951969CEEE00E4114F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		4653DB961969CEEE00E4114F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		465C1FF41969540F008BFD30 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -214,9 +219,20 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				461E5AB4196A0DFC000D120F /* Chat Cell */,
 				4695108519691CB700315FDC /* Expert Cell */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		461E5AB4196A0DFC000D120F /* Chat Cell */ = {
+			isa = PBXGroup;
+			children = (
+				461E5AB5196A101E000D120F /* ChatCell.h */,
+				461E5AB6196A101E000D120F /* ChatCell.m */,
+				461E5AB8196A1037000D120F /* ChatCell.xib */,
+			);
+			name = "Chat Cell";
 			sourceTree = "<group>";
 		};
 		465C1FF3196953D2008BFD30 /* Chat Screen */ = {
@@ -387,6 +403,7 @@
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
 				466C3CE1196950C0007FF30D /* LoginViewController.xib in Resources */,
 				465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */,
+				461E5AB9196A1037000D120F /* ChatCell.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
+				461E5AB7196A101E000D120F /* ChatCell.m in Sources */,
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,

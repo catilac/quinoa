@@ -50,6 +50,8 @@
                         error:(void (^)(NSError *))error {
     PFQuery *query = [Message query];
     [query whereKey:@"threadId" equalTo:threadId];
+    [query includeKey:@"sender"];
+    [query includeKey:@"recipient"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *messages, NSError *errorFromParse) {
         if (success) {
             success(messages);

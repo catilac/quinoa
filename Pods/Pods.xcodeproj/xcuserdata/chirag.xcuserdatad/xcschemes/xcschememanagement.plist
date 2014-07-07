@@ -19,7 +19,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-quinoa-PNChart.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-quinoa-Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-quinoa-UICountingLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,52 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0FEC90F759B845CF988F17C8</key>
+		<key>190031427FA945B1BF01DDA0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1781FFE1F7894AA8A8003900</key>
+		<key>246C2DD0F4C14749B7E8841D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17D355A93B1748169CCD7C1B</key>
+		<key>59A4460D5A6A4284A37A2585</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FAC9BB6E33B438CA71CE131</key>
+		<key>676F222948A841C58D92EDDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7A773DF071F341D99AA70B00</key>
+		<key>75C441081DB74EEE987EF40F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B087DCC8A59A4DEC9F90E48A</key>
+		<key>7702E7F0558344119C37649C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C491F6AA9F7F40DFA42BDF1A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C84558D3BBE34883ABBB7017</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CD8C9A4C1C234AA9AB6B4F70</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E890ABE4E8484DC0B07A2C38</key>
+		<key>932EE4C625EB4C6E8F11AF73</key>
 		<dict>
 			<key>primary</key>
 			<true/>

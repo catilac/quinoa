@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExpandCell : UITableViewCell
+@interface ExpandCell : UITableViewCell <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSArray *planAttributes;
+
+- (void)hideTableView:(BOOL)hide;
 
 @end

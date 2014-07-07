@@ -8,12 +8,21 @@
 
 #import "MyPlanOverviewViewController.h"
 #import "ExpandCell.h"
+#import "Plan.h"
+#import "PlanAttribute.h"
+#import "NSDate+dateWith.h"
 
 @interface MyPlanOverviewViewController ()
+
+@property (nonatomic, strong) Plan *plan;
+@property (nonatomic, strong) NSArray *planAttributes;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ExpandCell *stubCell;
 @property (strong, nonatomic) NSMutableArray *days;
+
+// Only one row is expanded at a time; keep track of it with this var.
+@property (strong, nonatomic) NSIndexPath *expandedIndexPath;
 @end
 
 @implementation MyPlanOverviewViewController
@@ -22,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -57,6 +66,7 @@
 
 - (void)configureCell:(ExpandCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.date = self.days[indexPath.row];
+    cell.planAttributes = self.planAttributes;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,28 +76,55 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExpandCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExpandCell" forIndexPath:indexPath];
+
     [self configureCell:cell atIndexPath:indexPath];
+    if (self.expandedIndexPath && self.expandedIndexPath.row == indexPath.row) {
+        [cell hideTableView:NO];
+    } else {
+        [cell hideTableView:YES];
+    }
     return cell;
 }
 
-- (void)populateData {
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDate *now = [NSDate date];
-    NSDate *startOfTheWeek;
-    NSDate *endOfWeek;
-    NSTimeInterval interval;
-    [cal rangeOfUnit:NSWeekCalendarUnit
-           startDate:&startOfTheWeek
-            interval:&interval
-             forDate:now];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.expandedIndexPath && self.expandedIndexPath.row == indexPath.row) {
+        self.expandedIndexPath = nil;
+    } else {
+        self.expandedIndexPath = indexPath;
+    }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                  withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
-    endOfWeek = [startOfTheWeek dateByAddingTimeInterval:interval-1];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.expandedIndexPath && self.expandedIndexPath.row == indexPath.row) {
+        return 200;
+    } else {
+        return 50;
+    }
+}
+
+- (void)populateData {
+    // Get one week date range
+    NSDate *lastDay = [NSDate date];
     self.days = [[NSMutableArray alloc] init];
 
     int i;
     for (i=0; i < 7; i++) {
-        self.days[i] = [endOfWeek dateByAddingTimeInterval:-1*i*24*60*60];
+        self.days[i] = [[lastDay dateByAddingTimeInterval:-1*i*24*60*60] dateWithHour:0 minute:0 second:0];
     }
+
+    // Fetch plan and attributes
+    [Plan getPlanByUser:[PFUser currentUser] success:^(PFObject *object) {
+        self.plan = (Plan *)object;
+        [PlanAttribute getPlanAttributesByPlan:self.plan success:^(NSArray *objects){
+            self.planAttributes = objects;
+        } error:^(NSError *error) {
+            NSLog(@"[MyPlanOverview] error: %@", error.description);
+        }];
+    } error:^(NSError *error) {
+        NSLog(@"[MyPlanOverview] error: %@", error.description);
+    }];
 }
 
 - (void)setupUI {

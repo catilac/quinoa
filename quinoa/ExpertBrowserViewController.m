@@ -26,7 +26,16 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"My Trainer";
+        self.title = @"Browse Experts";
+        PFUser *user = [PFUser currentUser];
+        NSLog(@"DEBUG USER: %@", user[@"currentTrainer"]);
+        if ([user objectForKey:@"currentTrainer"]) {
+            UIBarButtonItem *trainerButton = [[UIBarButtonItem alloc] initWithTitle:@"My Trainer"
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:self
+                                                                             action:@selector(showCurrentTrainer)];
+            self.navigationItem.rightBarButtonItem = trainerButton;
+        }
     }
     return self;
 }
@@ -68,6 +77,12 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showCurrentTrainer {
+    PFUser *expert = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+
+    NSLog(@"Show Current Trainer: %@", expert);
 }
 
 #pragma mark - UICollectionViewDataSource methods

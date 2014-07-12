@@ -41,6 +41,7 @@
 		5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC381969479600E99C4A /* MyPlanOverviewViewController.m */; };
 		5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5348EC3D19694B6200E99C4A /* ExpandCell.xib */; };
 		5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC4019694C1500E99C4A /* ExpandCell.m */; };
+		5354D0751971D76700612FFE /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0741971D76700612FFE /* Activity.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
@@ -118,6 +119,8 @@
 		5348EC3B19694B6200E99C4A /* ExpandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandCell.h; sourceTree = "<group>"; };
 		5348EC3D19694B6200E99C4A /* ExpandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandCell.xib; sourceTree = "<group>"; };
 		5348EC4019694C1500E99C4A /* ExpandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandCell.m; sourceTree = "<group>"; };
+		5354D0731971D76700612FFE /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		5354D0741971D76700612FFE /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 				A3B4A88A196A5FB400135230 /* Utils.m */,
 				4653DB951969CEEE00E4114F /* Message.h */,
 				4653DB961969CEEE00E4114F /* Message.m */,
+				5354D0731971D76700612FFE /* Activity.h */,
+				5354D0741971D76700612FFE /* Activity.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -581,6 +586,7 @@
 				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,
 				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
+				5354D0751971D76700612FFE /* Activity.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */,

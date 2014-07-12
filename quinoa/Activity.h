@@ -24,5 +24,6 @@ typedef enum {
 @property (assign) ActivityType *activityType;
 @property (retain) PFFile *image;
 @property (retain) NSString *description;
+@property (retain) PFUser *user;
 
 @end

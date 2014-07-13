@@ -73,6 +73,8 @@
             self.physicalValueLabel.text = [NSString stringWithFormat:@"%d", minutes];
             self.physicalUnitLabel.text = @"Minutes of activity";
         }
+        self.physicalValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:38];
+
         self.physicalDescriptionLabel.text = self.activity.descriptionText;
         // TODO: Figure out the best way to calculate average of activity value
         //self.physicalBlurbLabel.text = @"";
@@ -95,6 +97,7 @@
         [self.weightLabel setTextColor:[Utils getGreen]];
         [self.weightUnitLabel setTextColor:[Utils getGreen]];
         [self.weightBlurbLabel setTextColor:[Utils getGray]];
+        self.weightLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:38];
     }
 }
 
@@ -122,6 +125,7 @@
     UICollectionViewCell *cell = self.subviews[0];
     return cell.bounds.size;
 }
+
 
 //- (void)drawRect:(CGRect)rect
 //{

@@ -100,6 +100,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [flowLayout setItemSize:CGSizeMake(320, 200)];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(320, 100)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 }
 

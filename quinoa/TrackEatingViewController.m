@@ -8,6 +8,7 @@
 
 #import "TrackEatingViewController.h"
 #import "Activity.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface TrackEatingViewController ()
 

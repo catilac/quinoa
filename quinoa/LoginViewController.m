@@ -16,6 +16,7 @@
 #import "MoreViewController.h"
 #import "FanOutViewController.h"
 #import "MyClientsViewController.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface LoginViewController ()
 

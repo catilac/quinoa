@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "Message.h"
 #import "ChatCell.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface ChatViewController ()
 

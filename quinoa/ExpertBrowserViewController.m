@@ -118,7 +118,6 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     cell.delegate = self;
     
     return cell;
-    
 }
 
 # pragma mark - ExpertCellDelegate methods

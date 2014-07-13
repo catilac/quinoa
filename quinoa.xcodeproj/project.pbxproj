@@ -35,6 +35,8 @@
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
 		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
 		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
+		46F73FAF1973159B00E33932 /* ClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F73FAE1973159B00E33932 /* ClientCell.m */; };
+		46F73FB1197316B900E33932 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F73FB0197316B900E33932 /* ClientCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
 		5348EC1C1968FBE200E99C4A /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC191968FBE200E99C4A /* Plan.m */; };
@@ -120,6 +122,9 @@
 		46AA118719730C40001C7F02 /* MyClientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientsViewController.h; sourceTree = "<group>"; };
 		46AA118819730C40001C7F02 /* MyClientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientsViewController.m; sourceTree = "<group>"; };
 		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
+		46F73FAD1973159B00E33932 /* ClientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCell.h; sourceTree = "<group>"; };
+		46F73FAE1973159B00E33932 /* ClientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCell.m; sourceTree = "<group>"; };
+		46F73FB0197316B900E33932 /* ClientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientCell.xib; sourceTree = "<group>"; };
 		46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertBrowserViewController.h; sourceTree = "<group>"; };
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
@@ -295,6 +300,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46F73FAC1973156D00E33932 /* Client Cell */,
 				5354D07E1971EBD800612FFE /* Activity Cell */,
 				9FD3344E196BA748003E1727 /* Article Cell */,
 				A3B4A88E196A708500135230 /* Expand Cell */,
@@ -372,6 +378,16 @@
 				46AA118919730C40001C7F02 /* MyClientsViewController.xib */,
 			);
 			name = "My Clients";
+			sourceTree = "<group>";
+		};
+		46F73FAC1973156D00E33932 /* Client Cell */ = {
+			isa = PBXGroup;
+			children = (
+				46F73FAD1973159B00E33932 /* ClientCell.h */,
+				46F73FAE1973159B00E33932 /* ClientCell.m */,
+				46F73FB0197316B900E33932 /* ClientCell.xib */,
+			);
+			name = "Client Cell";
 			sourceTree = "<group>";
 		};
 		46FF800F1968AB240091A7B2 /* Models */ = {
@@ -600,6 +616,7 @@
 				A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				5354D0891971ED1500612FFE /* Weight.xib in Resources */,
+				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
@@ -674,6 +691,7 @@
 				46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */,
 				46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */,
 				9FD33445196BA6DC003E1727 /* Profile.m in Sources */,
+				46F73FAF1973159B00E33932 /* ClientCell.m in Sources */,
 				9FD3344A196BA6DC003E1727 /* ArticlesViewController.m in Sources */,
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,

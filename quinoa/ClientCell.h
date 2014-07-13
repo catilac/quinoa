@@ -1,5 +1,5 @@
 //
-//  MyClientsViewController.h
+//  ClientCell.h
 //  quinoa
 //
 //  Created by Chirag Davé on 7/13/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyClientsViewController : UIViewController<UICollectionViewDataSource>
+@interface ClientCell : UICollectionViewCell
 
 @end

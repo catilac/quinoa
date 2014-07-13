@@ -14,6 +14,8 @@
 #import "ActivitiesCollectionViewController.h"
 #import "ProfileViewController.h"
 #import "MoreViewController.h"
+#import "FanOutViewController.h"
+#import "MyClientsViewController.h"
 
 @interface LoginViewController ()
 
@@ -109,6 +111,34 @@
 }
 
 - (void)setupNavigation {
+    PFUser *currentUser = [PFUser currentUser];
+    if ([currentUser[@"role"] isEqualToString:@"expert"]) {
+        [self setupNavigationForExpert];
+    } else {
+        [self setupNavigationForUser];
+    }
+}
+
+- (void)setupNavigationForExpert {
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    // My Clients Tab
+    MyClientsViewController *myClientsViewController = [[MyClientsViewController alloc] init];
+    UINavigationController *myClientsNavController = [[UINavigationController alloc] initWithRootViewController:myClientsViewController];
+
+    // More Tab
+    MoreViewController *moreViewController = [[MoreViewController alloc] init];
+    UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
+    moreNavController.tabBarItem.title = @"More";
+    moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
+    
+    tabBarController.viewControllers = @[myClientsNavController, moreNavController];
+
+
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+}
+
+- (void)setupNavigationForUser {
     PFUser *trainer = [[PFUser currentUser] objectForKey:@"currentTrainer"];
     UIViewController *expertViewController;
     if (trainer) {
@@ -138,7 +168,18 @@
     moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[expertNavController, activitiesNavController, profileNavController, moreNavController];
+    
+    FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
+    UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
+
+    tabBarController.viewControllers = @[expertNavController, activitiesNavController, trackingNavController, profileNavController, moreNavController];
+
+    // Add custom view for custom track UITabBarItem
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    UIView *trackButton = [[UIView alloc] initWithFrame:CGRectMake(screenSize.width/2-25, screenSize.height-65, 50, 65)];
+    [trackButton setUserInteractionEnabled:NO];
+    [trackButton setBackgroundColor:[UIColor redColor]];
+    [tabBarController.view addSubview:trackButton];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

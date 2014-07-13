@@ -21,14 +21,20 @@
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
 		461E5AB7196A101E000D120F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E5AB6196A101E000D120F /* ChatCell.m */; };
 		461E5AB9196A1037000D120F /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461E5AB8196A1037000D120F /* ChatCell.xib */; };
+		46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46437E121971E1D700A70338 /* TrackEatingViewController.m */; };
+		46437E151971E1D700A70338 /* TrackEatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46437E131971E1D700A70338 /* TrackEatingViewController.xib */; };
 		4653DB971969CEEE00E4114F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653DB961969CEEE00E4114F /* Message.m */; };
 		465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C1FF51969540F008BFD30 /* ChatViewController.m */; };
 		465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465C1FF61969540F008BFD30 /* ChatViewController.xib */; };
 		465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DFE41196947C800817222 /* ExpertDetailViewController.m */; };
 		465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465DFE42196947C800817222 /* ExpertDetailViewController.xib */; };
 		466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466C3CDE196950C0007FF30D /* LoginViewController.m */; };
+		46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46907786197276FB00CF9DBC /* FanOutViewController.m */; };
+		46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46907787197276FB00CF9DBC /* FanOutViewController.xib */; };
 		4695108219691C0E00315FDC /* ExpertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4695108119691C0E00315FDC /* ExpertCell.m */; };
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
+		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
+		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
 		5348EC1C1968FBE200E99C4A /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC191968FBE200E99C4A /* Plan.m */; };
@@ -92,6 +98,9 @@
 		461E5AB5196A101E000D120F /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		461E5AB6196A101E000D120F /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		461E5AB8196A1037000D120F /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		46437E111971E1D700A70338 /* TrackEatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackEatingViewController.h; sourceTree = "<group>"; };
+		46437E121971E1D700A70338 /* TrackEatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackEatingViewController.m; sourceTree = "<group>"; };
+		46437E131971E1D700A70338 /* TrackEatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackEatingViewController.xib; sourceTree = "<group>"; };
 		4653DB951969CEEE00E4114F /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		4653DB961969CEEE00E4114F /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		465C1FF41969540F008BFD30 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -102,9 +111,15 @@
 		465DFE42196947C800817222 /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
 		466C3CDD196950C0007FF30D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		466C3CDE196950C0007FF30D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		46907785197276FB00CF9DBC /* FanOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanOutViewController.h; sourceTree = "<group>"; };
+		46907786197276FB00CF9DBC /* FanOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanOutViewController.m; sourceTree = "<group>"; };
+		46907787197276FB00CF9DBC /* FanOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FanOutViewController.xib; sourceTree = "<group>"; };
 		4695108019691C0E00315FDC /* ExpertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertCell.h; sourceTree = "<group>"; };
 		4695108119691C0E00315FDC /* ExpertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertCell.m; sourceTree = "<group>"; };
 		4695108319691C5E00315FDC /* ExpertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertCell.xib; sourceTree = "<group>"; };
+		46AA118719730C40001C7F02 /* MyClientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientsViewController.h; sourceTree = "<group>"; };
+		46AA118819730C40001C7F02 /* MyClientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientsViewController.m; sourceTree = "<group>"; };
+		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
 		46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertBrowserViewController.h; sourceTree = "<group>"; };
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
@@ -260,6 +275,9 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				46AA118619730C2B001C7F02 /* My Clients */,
+				46907784197276E100CF9DBC /* FanOut Controller */,
+				46437E101971E1C000A70338 /* TrackEating */,
 				5354D0761971DB0700612FFE /* Activities Collection */,
 				9FD3344D196BA70C003E1727 /* Articles */,
 				9FD3344C196BA6F5003E1727 /* Profile */,
@@ -296,6 +314,16 @@
 			name = "Chat Cell";
 			sourceTree = "<group>";
 		};
+		46437E101971E1C000A70338 /* TrackEating */ = {
+			isa = PBXGroup;
+			children = (
+				46437E111971E1D700A70338 /* TrackEatingViewController.h */,
+				46437E121971E1D700A70338 /* TrackEatingViewController.m */,
+				46437E131971E1D700A70338 /* TrackEatingViewController.xib */,
+			);
+			name = TrackEating;
+			sourceTree = "<group>";
+		};
 		465C1FF3196953D2008BFD30 /* Chat Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +344,16 @@
 			name = "Expert Detail";
 			sourceTree = "<group>";
 		};
+		46907784197276E100CF9DBC /* FanOut Controller */ = {
+			isa = PBXGroup;
+			children = (
+				46907785197276FB00CF9DBC /* FanOutViewController.h */,
+				46907786197276FB00CF9DBC /* FanOutViewController.m */,
+				46907787197276FB00CF9DBC /* FanOutViewController.xib */,
+			);
+			name = "FanOut Controller";
+			sourceTree = "<group>";
+		};
 		4695108519691CB700315FDC /* Expert Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +362,16 @@
 				4695108319691C5E00315FDC /* ExpertCell.xib */,
 			);
 			name = "Expert Cell";
+			sourceTree = "<group>";
+		};
+		46AA118619730C2B001C7F02 /* My Clients */ = {
+			isa = PBXGroup;
+			children = (
+				46AA118719730C40001C7F02 /* MyClientsViewController.h */,
+				46AA118819730C40001C7F02 /* MyClientsViewController.m */,
+				46AA118919730C40001C7F02 /* MyClientsViewController.xib */,
+			);
+			name = "My Clients";
 			sourceTree = "<group>";
 		};
 		46FF800F1968AB240091A7B2 /* Models */ = {
@@ -517,6 +565,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
+					4604479E1964ECC600DDE6C6 = {
+						DevelopmentTeam = Q4M29PLT7E;
+					};
 					460447B91964ECC600DDE6C6 = {
 						TestTargetID = 4604479E1964ECC600DDE6C6;
 					};
@@ -557,13 +608,16 @@
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
+				46437E151971E1D700A70338 /* TrackEatingViewController.xib in Resources */,
 				465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */,
 				A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */,
 				461E5AB9196A1037000D120F /* ChatCell.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
+				46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */,
 				5354D0851971ECC500612FFE /* Physical.xib in Resources */,
 				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
 				5354D0871971ED0A00612FFE /* Eating.xib in Resources */,
+				46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +671,8 @@
 			files = (
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
 				461E5AB7196A101E000D120F /* ChatCell.m in Sources */,
+				46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */,
+				46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */,
 				9FD33445196BA6DC003E1727 /* Profile.m in Sources */,
 				9FD3344A196BA6DC003E1727 /* ArticlesViewController.m in Sources */,
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
@@ -640,6 +696,7 @@
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
+				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,10 +814,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -771,10 +831,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

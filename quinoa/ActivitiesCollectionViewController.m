@@ -38,6 +38,9 @@
     self.collectionView.delegate = self;
 
     [self fetchData];
+    
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)didReceiveMemoryWarning

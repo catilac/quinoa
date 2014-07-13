@@ -62,11 +62,25 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     
     // Setup Layout for UICollectionView
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(300, 400)];
+    [flowLayout setItemSize:CGSizeMake(280, 400)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [self.expertCollection setCollectionViewLayout:flowLayout];
     
+    // Spacing for flowlayout
+    [flowLayout setMinimumLineSpacing:20];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(20, 20)];
+    [flowLayout setFooterReferenceSize:CGSizeMake(20, 20)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(-90, 0, 0, 0)];
+
+    
     [self fetchExperts];
+    
+    // Set status bar to white
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)fetchExperts {

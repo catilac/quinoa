@@ -69,6 +69,10 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     
     // Set status bar to white
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)fetchExperts {

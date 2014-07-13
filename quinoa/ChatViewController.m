@@ -38,6 +38,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Chat";
     }
     return self;
 }

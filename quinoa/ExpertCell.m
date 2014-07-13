@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code        
+        // Initialization code
     }
     return self;
 }
@@ -27,6 +27,11 @@
 -(void)setValuesWithExpert:(PFUser *)expert {
     self.expert = expert;
     self.nameLabel.text = expert.email;
+    
+    // Profile card element styling
+    self.profileButton.layer.cornerRadius = 3;
+    self.cardBackground.layer.cornerRadius = 6;
+    self.profileImage.layer.cornerRadius = 53;
 }
 
 /*

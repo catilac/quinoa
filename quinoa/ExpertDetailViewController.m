@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UITableView *reviewsTableView;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectExpertButton;
 
 @end
 
@@ -65,6 +67,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.nameLabel.text = self.expert.email;
+    
+    // Style elements on profile
+    self.profileImage.layer.cornerRadius= 53;
+    self.chatButton.layer.cornerRadius= 3;
+    self.selectExpertButton.layer.cornerRadius= 3;
 }
 
 - (void)didReceiveMemoryWarning

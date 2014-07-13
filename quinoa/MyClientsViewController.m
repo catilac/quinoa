@@ -43,12 +43,28 @@ static NSString *CellIdentifier = @"clientCellIdent";
     [flowLayout setItemSize:CGSizeMake(114, 146)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
+    
+    [self fetchClients];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)fetchClients {
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"currentTrainer" equalTo:currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.clients = objects;
+            [self.myClientsCollection reloadData];
+        } else {
+            NSLog(@"Error Fetching Clients: %@", error);
+        }
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource methods

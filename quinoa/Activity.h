@@ -21,7 +21,7 @@ typedef enum {
 @property (strong, nonatomic) NSString *activityUnit;
 @property (strong, nonatomic) NSNumber *activityValue;
 @property (strong, nonatomic) PFFile *image;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) PFUser *user;
 
 
@@ -31,5 +31,8 @@ typedef enum {
 + (void)getActivitiesByUser:(PFUser *)user
                     success:(void (^) (NSArray *objects))success
                       error:(void (^) (NSError *error))error;
-
++ (void)getAverageByUser:(PFUser *)user
+              byActivity:(ActivityType)activityType
+                 success:(void (^) (NSNumber *average))success
+                   error:(void (^) (NSError *error))error;
 @end

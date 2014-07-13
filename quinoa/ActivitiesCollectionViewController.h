@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (strong, nonatomic) PFUser *user;
 
 @end

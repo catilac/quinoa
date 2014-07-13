@@ -11,7 +11,8 @@
 
 @interface ActivityCell : UICollectionViewCell
 
-@property (nonatomic) ActivityType activityType;
+//@property (nonatomic) ActivityType activityType;
+@property (nonatomic, strong) Activity *activity;
 
 //- (id)initWithActivityType:(ActivityType)activityType;
 

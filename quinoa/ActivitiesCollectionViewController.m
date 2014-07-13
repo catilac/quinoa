@@ -13,7 +13,10 @@
 @interface ActivitiesCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
+
+@property (nonatomic, strong) ActivityCell *stubCell;
 
 @end
 
@@ -23,7 +26,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        if (self.user == nil) {
+            self.user = [PFUser currentUser];
+        }
+        self.title = self.user[@"firstName"];
     }
     return self;
 }
@@ -32,11 +38,15 @@
 {
     [super viewDidLoad];
 
+    [self setupUI];
+
     [self.collectionView registerClass:[ActivityCell class] forCellWithReuseIdentifier:@"ActivityCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
     [self fetchData];
+
+    self.stubCell = [[ActivityCell alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,19 +64,39 @@
                                                                  forIndexPath:indexPath];
 
     Activity *activity = self.activities[indexPath.row];
-    cell.activityType = activity.activityType;
+    //cell.activityType = activity.activityType;
+    cell.activity = activity;
 
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    self.stubCell.activity = self.activities[indexPath.row];
+    CGSize size = [self.stubCell intrinsicContentSize];
+    size.width = self.collectionView.frame.size.width;
+    return size;
+}
+
 - (void)fetchData {
-    [Activity getActivitiesByUser:[PFUser currentUser] success:^(NSArray *objects) {
+    [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
         self.activities = objects;
+        NSLog(@"activities count: %d", self.activities.count);
         [self.collectionView reloadData];
     } error:^(NSError *error) {
         NSLog(@"[ActivitiesCollection] error: %@", error.description);
     }];
 }
 
+- (void)setupUI {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundView = view;
+
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setItemSize:CGSizeMake(320, 200)];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+}
 
 @end

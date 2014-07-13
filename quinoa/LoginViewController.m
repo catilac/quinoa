@@ -138,7 +138,10 @@
     moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[expertNavController, activitiesNavController, profileNavController, moreNavController];
+    
+    UIViewController *tabBarStub = [[UIViewController alloc] init];
+    
+    tabBarController.viewControllers = @[expertNavController, activitiesNavController, tabBarStub, profileNavController, moreNavController];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

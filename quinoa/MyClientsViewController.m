@@ -9,6 +9,7 @@
 #import "MyClientsViewController.h"
 #import "ClientCell.h"
 #import <Parse/Parse.h>
+#import "UILabel+QuinoaLabel.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -40,11 +41,20 @@ static NSString *CellIdentifier = @"clientCellIdent";
     self.myClientsCollection.dataSource = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(114, 146)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setItemSize:CGSizeMake(150, 146)];
+    
+    // Spacing for flowlayout
+    [flowLayout setMinimumLineSpacing:20];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(20, 20)];
+    [flowLayout setFooterReferenceSize:CGSizeMake(20, 20)];
+    
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
     
     [self fetchClients];
+    
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +88,7 @@ static NSString *CellIdentifier = @"clientCellIdent";
     ClientCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
+    [cell setValuesWithClient:self.clients[indexPath.row]];
     return cell;
 }
 

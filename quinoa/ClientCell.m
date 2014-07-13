@@ -8,6 +8,15 @@
 
 #import "ClientCell.h"
 
+@interface ClientCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *clientName;
+@property (weak, nonatomic) IBOutlet UILabel *clientBasicInfo;
+
+@property (strong, nonatomic) PFUser *client;
+
+@end
+
 @implementation ClientCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -17,6 +26,10 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)setValuesWithClient:(PFUser *)client {
+    self.clientName.text = client.username;
 }
 
 /*

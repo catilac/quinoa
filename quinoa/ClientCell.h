@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ClientCell : UICollectionViewCell
+
+- (void)setValuesWithClient:(PFUser *)client;
 
 @end

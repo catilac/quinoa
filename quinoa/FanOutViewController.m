@@ -8,6 +8,7 @@
 
 #import "FanOutViewController.h"
 #import "TrackEatingViewController.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface FanOutViewController ()
 

@@ -15,6 +15,7 @@
 #import "ProfileViewController.h"
 #import "MoreViewController.h"
 #import "FanOutViewController.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface LoginViewController ()
 

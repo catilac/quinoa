@@ -29,6 +29,8 @@
 		465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DFE41196947C800817222 /* ExpertDetailViewController.m */; };
 		465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465DFE42196947C800817222 /* ExpertDetailViewController.xib */; };
 		466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466C3CDE196950C0007FF30D /* LoginViewController.m */; };
+		46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46907786197276FB00CF9DBC /* FanOutViewController.m */; };
+		46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46907787197276FB00CF9DBC /* FanOutViewController.xib */; };
 		4695108219691C0E00315FDC /* ExpertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4695108119691C0E00315FDC /* ExpertCell.m */; };
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
@@ -107,6 +109,9 @@
 		465DFE42196947C800817222 /* ExpertDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertDetailViewController.xib; sourceTree = "<group>"; };
 		466C3CDD196950C0007FF30D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		466C3CDE196950C0007FF30D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		46907785197276FB00CF9DBC /* FanOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanOutViewController.h; sourceTree = "<group>"; };
+		46907786197276FB00CF9DBC /* FanOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanOutViewController.m; sourceTree = "<group>"; };
+		46907787197276FB00CF9DBC /* FanOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FanOutViewController.xib; sourceTree = "<group>"; };
 		4695108019691C0E00315FDC /* ExpertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertCell.h; sourceTree = "<group>"; };
 		4695108119691C0E00315FDC /* ExpertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertCell.m; sourceTree = "<group>"; };
 		4695108319691C5E00315FDC /* ExpertCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertCell.xib; sourceTree = "<group>"; };
@@ -265,6 +270,7 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				46907784197276E100CF9DBC /* FanOut Controller */,
 				46437E101971E1C000A70338 /* TrackEating */,
 				5354D0761971DB0700612FFE /* Activities Collection */,
 				9FD3344D196BA70C003E1727 /* Articles */,
@@ -330,6 +336,16 @@
 				465DFE42196947C800817222 /* ExpertDetailViewController.xib */,
 			);
 			name = "Expert Detail";
+			sourceTree = "<group>";
+		};
+		46907784197276E100CF9DBC /* FanOut Controller */ = {
+			isa = PBXGroup;
+			children = (
+				46907785197276FB00CF9DBC /* FanOutViewController.h */,
+				46907786197276FB00CF9DBC /* FanOutViewController.m */,
+				46907787197276FB00CF9DBC /* FanOutViewController.xib */,
+			);
+			name = "FanOut Controller";
 			sourceTree = "<group>";
 		};
 		4695108519691CB700315FDC /* Expert Cell */ = {
@@ -584,6 +600,7 @@
 				5354D0851971ECC500612FFE /* Physical.xib in Resources */,
 				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
 				5354D0871971ED0A00612FFE /* Eating.xib in Resources */,
+				46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +678,7 @@
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
+				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

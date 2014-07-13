@@ -14,6 +14,7 @@
 #import "ActivitiesCollectionViewController.h"
 #import "ProfileViewController.h"
 #import "MoreViewController.h"
+#import "FanOutViewController.h"
 
 @interface LoginViewController ()
 
@@ -139,9 +140,12 @@
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UIViewController *tabBarStub = [[UIViewController alloc] init];
-    
-    tabBarController.viewControllers = @[expertNavController, activitiesNavController, tabBarStub, profileNavController, moreNavController];
+    FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
+    UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
+
+
+    tabBarController.viewControllers = @[expertNavController, activitiesNavController, trackingNavController, profileNavController, moreNavController];
+
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

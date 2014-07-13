@@ -33,4 +33,20 @@
     return activity;
 }
 
++ (void)getActivitiesByUser:(PFUser *)user
+              success:(void (^) (NSArray *objects))success
+                error:(void (^) (NSError *error))error {
+
+    PFQuery *query = [Activity query];
+    [query whereKey:@"user" equalTo:user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
+
+        if (success) {
+            success(objects);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
 @end

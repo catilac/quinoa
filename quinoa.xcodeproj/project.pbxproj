@@ -44,6 +44,12 @@
 		5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5348EC3D19694B6200E99C4A /* ExpandCell.xib */; };
 		5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC4019694C1500E99C4A /* ExpandCell.m */; };
 		5354D0751971D76700612FFE /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0741971D76700612FFE /* Activity.m */; };
+		5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */; };
+		5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D07C1971EAAE00612FFE /* ActivitiesCollectionViewController.m */; };
+		5354D0811971EC8800612FFE /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0801971EC8800612FFE /* ActivityCell.m */; };
+		5354D0851971ECC500612FFE /* Physical.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0841971ECC500612FFE /* Physical.xib */; };
+		5354D0871971ED0A00612FFE /* Eating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0861971ED0A00612FFE /* Eating.xib */; };
+		5354D0891971ED1500612FFE /* Weight.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0881971ED1500612FFE /* Weight.xib */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
@@ -126,6 +132,14 @@
 		5348EC4019694C1500E99C4A /* ExpandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandCell.m; sourceTree = "<group>"; };
 		5354D0731971D76700612FFE /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
 		5354D0741971D76700612FFE /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
+		5354D0771971DC6000612FFE /* ActivitiesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesCollectionViewController.h; sourceTree = "<group>"; };
+		5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivitiesCollectionViewController.xib; sourceTree = "<group>"; };
+		5354D07C1971EAAE00612FFE /* ActivitiesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesCollectionViewController.m; sourceTree = "<group>"; };
+		5354D07F1971EC8800612FFE /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
+		5354D0801971EC8800612FFE /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
+		5354D0841971ECC500612FFE /* Physical.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Physical.xib; sourceTree = "<group>"; };
+		5354D0861971ED0A00612FFE /* Eating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Eating.xib; sourceTree = "<group>"; };
+		5354D0881971ED1500612FFE /* Weight.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Weight.xib; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -252,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				46437E101971E1C000A70338 /* TrackEating */,
+				5354D0761971DB0700612FFE /* Activities Collection */,
 				9FD3344D196BA70C003E1727 /* Articles */,
 				9FD3344C196BA6F5003E1727 /* Profile */,
 				465C1FF3196953D2008BFD30 /* Chat Screen */,
@@ -268,6 +283,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5354D07E1971EBD800612FFE /* Activity Cell */,
 				9FD3344E196BA748003E1727 /* Article Cell */,
 				A3B4A88E196A708500135230 /* Expand Cell */,
 				461E5AB4196A0DFC000D120F /* Chat Cell */,
@@ -394,6 +410,28 @@
 				5348EC35196945EC00E99C4A /* MyPlanOverviewViewController.xib */,
 			);
 			name = "My Plan Overview";
+			sourceTree = "<group>";
+		};
+		5354D0761971DB0700612FFE /* Activities Collection */ = {
+			isa = PBXGroup;
+			children = (
+				5354D0771971DC6000612FFE /* ActivitiesCollectionViewController.h */,
+				5354D07C1971EAAE00612FFE /* ActivitiesCollectionViewController.m */,
+				5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */,
+			);
+			name = "Activities Collection";
+			sourceTree = "<group>";
+		};
+		5354D07E1971EBD800612FFE /* Activity Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5354D07F1971EC8800612FFE /* ActivityCell.h */,
+				5354D0801971EC8800612FFE /* ActivityCell.m */,
+				5354D0841971ECC500612FFE /* Physical.xib */,
+				5354D0861971ED0A00612FFE /* Eating.xib */,
+				5354D0881971ED1500612FFE /* Weight.xib */,
+			);
+			name = "Activity Cell";
 			sourceTree = "<group>";
 		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
@@ -529,10 +567,12 @@
 				5348EC37196945EC00E99C4A /* MyPlanOverviewViewController.xib in Resources */,
 				A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
+				5354D0891971ED1500612FFE /* Weight.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
+				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
@@ -541,7 +581,9 @@
 				A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */,
 				461E5AB9196A1037000D120F /* ChatCell.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
+				5354D0851971ECC500612FFE /* Physical.xib in Resources */,
 				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
+				5354D0871971ED0A00612FFE /* Eating.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,8 +643,10 @@
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,
+				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
+				5354D0811971EC8800612FFE /* ActivityCell.m in Sources */,
 				5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */,
 				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,

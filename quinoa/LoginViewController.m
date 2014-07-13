@@ -11,7 +11,7 @@
 
 #import "ExpertBrowserViewController.h"
 #import "ExpertDetailViewController.h"
-#import "MyPlanViewController.h"
+#import "ActivitiesCollectionViewController.h"
 #import "ProfileViewController.h"
 #import "MoreViewController.h"
 
@@ -122,10 +122,10 @@
     expertNavController.tabBarItem.title = @"My Trainer";
     expertNavController.tabBarItem.image = [UIImage imageNamed:@"ExpertIcon"];
 
-    MyPlanViewController *myPlanViewController = [[MyPlanViewController alloc] init];
-    UINavigationController *myPlanNavController = [[UINavigationController alloc] initWithRootViewController:myPlanViewController];
-    myPlanNavController.tabBarItem.title = @"My Plan";
-    myPlanNavController.tabBarItem.image = [UIImage imageNamed:@"CheckIcon"];
+    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] init];
+    UINavigationController *activitiesNavController = [[UINavigationController alloc] initWithRootViewController:activitiesController];
+    activitiesNavController.tabBarItem.title = @"My Activities";
+    activitiesNavController.tabBarItem.image = [UIImage imageNamed:@"CheckIcon"];
 
     ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
     UINavigationController *profileNavController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
@@ -138,8 +138,8 @@
     moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[expertNavController, myPlanNavController, profileNavController, moreNavController];
-    
+    tabBarController.viewControllers = @[expertNavController, activitiesNavController, profileNavController, moreNavController];
+
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
 @end

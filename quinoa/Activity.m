@@ -22,4 +22,15 @@
     return @"Activity";
 }
 
++ (Activity *)trackEating:(PFFile *)image description:(NSString *)description {
+    Activity *activity = [Activity object];
+    activity.user = [PFUser currentUser];
+    activity.activityType = Eating;
+    activity.image = image;
+    activity.description = description;
+    [activity saveInBackground];
+
+    return activity;
+}
+
 @end

@@ -17,13 +17,15 @@ typedef enum {
 
 @interface Activity : PFObject<PFSubclassing>
 
-+ (NSString *)parseClassName;
+@property (assign) ActivityType activityType;
+@property (strong, nonatomic) NSString *activityUnit;
+@property (strong, nonatomic) NSNumber *activityValue;
+@property (strong, nonatomic) PFFile *image;
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) PFUser *user;
 
-@property (retain) NSString *activityUnit;
-@property (retain) NSNumber *activityValue;
-@property (assign) ActivityType *activityType;
-@property (retain) PFFile *image;
-@property (retain) NSString *description;
-@property (retain) PFUser *user;
+
++ (NSString *)parseClassName;
++ (Activity *)trackEating:(PFFile *)image description:(NSString *)description;
 
 @end

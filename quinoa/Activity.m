@@ -38,6 +38,7 @@
                 error:(void (^) (NSError *error))error {
 
     PFQuery *query = [Activity query];
+    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"user" equalTo:user];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {

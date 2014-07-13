@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIView *physicalDivider;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *physicalBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet UIImageView *dietImage;
+@property (weak, nonatomic) IBOutlet UIView *dietDivider;
+@property (weak, nonatomic) IBOutlet UILabel *dietDescriptionLabel;
+
 @end
 
 @implementation ActivityCell
@@ -32,9 +36,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         CALayer* layer = self.layer;
-        [layer setCornerRadius:5.0f];
+        [layer setCornerRadius:3.0f];
         [layer setMasksToBounds:YES];
-        [layer setBorderWidth:0.5f];
+        [layer setBorderWidth:1.0f];
         [layer setBorderColor:[Utils getGray].CGColor];
     }
     return self;
@@ -51,6 +55,13 @@
     [self addView];
 
     if (self.activity.activityType == Eating) {
+        if (self.activity.image) {
+            self.dietImage.contentMode = UIViewContentModeScaleAspectFill;
+            self.dietImage.clipsToBounds = YES;
+            [Utils loadImageFile:self.activity.image inImageView:self.dietImage withAnimation:YES];
+        }
+        self.dietDescriptionLabel.text = self.activity.descriptionText;
+        self.dietDivider.backgroundColor = [Utils getGray];
 
     } else if (self.activity.activityType == Physical) {
         int minutes = lroundf([self.activity.activityValue floatValue] / 60);
@@ -68,6 +79,7 @@
         if ([self.activity.descriptionText length] > 0) {
             self.physicalDivider.hidden = NO;
             self.physicalDescriptionLabel.hidden = NO;
+            self.physicalDivider.backgroundColor = [Utils getLightGray];
         } else {
             // TODO: Shorten height when description text is not provided
             //self.physicalBottomConstraint.constant = 0;

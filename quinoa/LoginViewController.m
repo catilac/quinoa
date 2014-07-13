@@ -143,8 +143,16 @@
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
 
-
     tabBarController.viewControllers = @[expertNavController, activitiesNavController, trackingNavController, profileNavController, moreNavController];
+
+    // Add custom view for custom track UITabBarItem
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    UIView *trackButton = [[UIView alloc] initWithFrame:CGRectMake(screenSize.width/2-25, screenSize.height-65, 50, 65)];
+    [trackButton setUserInteractionEnabled:NO];
+    [trackButton setBackgroundColor:[UIColor redColor]];
+    [tabBarController.view addSubview:trackButton];
+
+    
 
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];

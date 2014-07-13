@@ -10,9 +10,7 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "ExpertBrowserViewController.h"
-#import "Plan.h"
-#import "PlanAttribute.h"
-#import "PlanActivity.h"
+#import "Activity.h"
 #import "Message.h"
 #import "Profile.h"
 #import "Activity.h"
@@ -24,13 +22,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     // Register sub classes
-    [Plan registerSubclass];
-    [PlanAttribute registerSubclass];
-    [PlanActivity registerSubclass];
     [Message registerSubclass];
     [Profile registerSubclass];
     [Activity registerSubclass];
-    
 
     // Override point for customization after application launch.
     

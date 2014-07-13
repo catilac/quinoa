@@ -139,7 +139,7 @@
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[expertNavController, myPlanNavController, profileNavController, moreNavController];
-
+    
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
 @end

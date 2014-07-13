@@ -20,7 +20,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
+    // Navigation bar styling
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.263 green:0.800 blue:0.522 alpha:1]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    
+    // Figure out how to make the navigation bar opaque
+    
     // Register sub classes
     [Message registerSubclass];
     [Profile registerSubclass];

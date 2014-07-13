@@ -66,6 +66,9 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     [self.expertCollection setCollectionViewLayout:flowLayout];
     
     [self fetchExperts];
+    
+    // Set status bar to white
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)fetchExperts {

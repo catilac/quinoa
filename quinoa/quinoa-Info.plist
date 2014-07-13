@@ -41,6 +41,8 @@
 	<string>416888651782230</string>
 	<key>FacebookDisplayName</key>
 	<string>3eesho iOS App</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

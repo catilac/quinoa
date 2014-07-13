@@ -15,6 +15,7 @@
 #import "ProfileViewController.h"
 #import "MoreViewController.h"
 #import "FanOutViewController.h"
+#import "MyClientsViewController.h"
 #import "UILabel+QuinoaLabel.h"
 
 @interface LoginViewController ()
@@ -111,6 +112,34 @@
 }
 
 - (void)setupNavigation {
+    PFUser *currentUser = [PFUser currentUser];
+    if ([currentUser[@"role"] isEqualToString:@"expert"]) {
+        [self setupNavigationForExpert];
+    } else {
+        [self setupNavigationForUser];
+    }
+}
+
+- (void)setupNavigationForExpert {
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    // My Clients Tab
+    MyClientsViewController *myClientsViewController = [[MyClientsViewController alloc] init];
+    UINavigationController *myClientsNavController = [[UINavigationController alloc] initWithRootViewController:myClientsViewController];
+
+    // More Tab
+    MoreViewController *moreViewController = [[MoreViewController alloc] init];
+    UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
+    moreNavController.tabBarItem.title = @"More";
+    moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
+    
+    tabBarController.viewControllers = @[myClientsNavController, moreNavController];
+
+
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+}
+
+- (void)setupNavigationForUser {
     PFUser *trainer = [[PFUser currentUser] objectForKey:@"currentTrainer"];
     UIViewController *expertViewController;
     if (trainer) {
@@ -152,9 +181,6 @@
     [trackButton setUserInteractionEnabled:NO];
     [trackButton setBackgroundColor:[UIColor redColor]];
     [tabBarController.view addSubview:trackButton];
-
-    
-
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

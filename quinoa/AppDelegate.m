@@ -15,6 +15,7 @@
 #import "PlanActivity.h"
 #import "Message.h"
 #import "Profile.h"
+#import "Activity.h"
 
 @implementation AppDelegate
 
@@ -28,6 +29,8 @@
     [PlanActivity registerSubclass];
     [Message registerSubclass];
     [Profile registerSubclass];
+    [Activity registerSubclass];
+    
 
     // Override point for customization after application launch.
     

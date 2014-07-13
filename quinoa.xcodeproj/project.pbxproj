@@ -56,6 +56,11 @@
 		5354D0851971ECC500612FFE /* Physical.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0841971ECC500612FFE /* Physical.xib */; };
 		5354D0871971ED0A00612FFE /* Eating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0861971ED0A00612FFE /* Eating.xib */; };
 		5354D0891971ED1500612FFE /* Weight.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0881971ED1500612FFE /* Weight.xib */; };
+		53B1EC5F1973068D00101B39 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */; };
+		53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */; };
+		53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */; };
+		53B1EC6919730C6800101B39 /* UILabel+QuinoaLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */; };
+		53B1EC6B19730E5400101B39 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC6A19730E5400101B39 /* readme.txt */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
@@ -155,6 +160,12 @@
 		5354D0841971ECC500612FFE /* Physical.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Physical.xib; sourceTree = "<group>"; };
 		5354D0861971ED0A00612FFE /* Eating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Eating.xib; sourceTree = "<group>"; };
 		5354D0881971ED1500612FFE /* Weight.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Weight.xib; sourceTree = "<group>"; };
+		53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
+		53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
+		53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
+		53B1EC6719730C6800101B39 /* UILabel+QuinoaLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+QuinoaLabel.h"; sourceTree = "<group>"; };
+		53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+QuinoaLabel.m"; sourceTree = "<group>"; };
+		53B1EC6A19730E5400101B39 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -236,6 +247,7 @@
 		460447A81964ECC600DDE6C6 /* quinoa */ = {
 			isa = PBXGroup;
 			children = (
+				53B1EC571973068D00101B39 /* Fonts */,
 				4611A6041968B1B100202318 /* Views */,
 				5348EC2B1969401700E99C4A /* Categories */,
 				46FF800F1968AB240091A7B2 /* Models */,
@@ -446,6 +458,8 @@
 			children = (
 				5348EC2F196940D800E99C4A /* NSDate+dateWith.h */,
 				5348EC30196940D800E99C4A /* NSDate+dateWith.m */,
+				53B1EC6719730C6800101B39 /* UILabel+QuinoaLabel.h */,
+				53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -480,6 +494,17 @@
 				5354D0881971ED1500612FFE /* Weight.xib */,
 			);
 			name = "Activity Cell";
+			sourceTree = "<group>";
+		};
+		53B1EC571973068D00101B39 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */,
+				53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */,
+				53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */,
+				53B1EC6A19730E5400101B39 /* readme.txt */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
@@ -618,9 +643,12 @@
 				5354D0891971ED1500612FFE /* Weight.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
+				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
+				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
+				53B1EC6B19730E5400101B39 /* readme.txt in Resources */,
 				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
@@ -634,6 +662,7 @@
 				5354D0851971ECC500612FFE /* Physical.xib in Resources */,
 				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
 				5354D0871971ED0A00612FFE /* Eating.xib in Resources */,
+				53B1EC5F1973068D00101B39 /* SourceSansPro-Light.otf in Resources */,
 				46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,6 +722,7 @@
 				9FD33445196BA6DC003E1727 /* Profile.m in Sources */,
 				46F73FAF1973159B00E33932 /* ClientCell.m in Sources */,
 				9FD3344A196BA6DC003E1727 /* ArticlesViewController.m in Sources */,
+				53B1EC6919730C6800101B39 /* UILabel+QuinoaLabel.m in Sources */,
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,

@@ -8,12 +8,13 @@
 
 #import "TrackEatingViewController.h"
 #import "Activity.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface TrackEatingViewController ()
 
 @property (strong, nonatomic) UIImagePickerController *camera;
 @property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
-@property (weak, nonatomic) NSData *imageData;
+@property (strong, nonatomic) NSData *imageData;
 @property (assign) Boolean imageSet;
 @property (strong, nonatomic) UITextField *descriptionField;
 
@@ -88,6 +89,7 @@
                 description = self.descriptionField.text;
             }
             [Activity trackEating:imageFile description:description];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
             NSLog(@"Couldn't save file");
         }
@@ -96,6 +98,7 @@
 
 - (void)onCancel {
     NSLog(@"Hit Cancel");
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)uploadPhoto {

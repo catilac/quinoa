@@ -15,7 +15,7 @@
 @dynamic activityValue;
 @dynamic activityType;
 @dynamic image;
-@dynamic description;
+@dynamic descriptionText;
 @dynamic user;
 
 + (NSString *)parseClassName {
@@ -27,7 +27,7 @@
     activity.user = [PFUser currentUser];
     activity.activityType = Eating;
     activity.image = image;
-    activity.description = description;
+    activity.descriptionText = description;
     [activity saveInBackground];
 
     return activity;

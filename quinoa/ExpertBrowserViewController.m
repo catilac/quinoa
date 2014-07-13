@@ -9,6 +9,7 @@
 #import "ExpertBrowserViewController.h"
 #import <Parse/Parse.h>
 #import "ExpertDetailViewController.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface ExpertBrowserViewController ()
 

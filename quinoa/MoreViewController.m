@@ -9,6 +9,8 @@
 #import "MoreViewController.h"
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
+#import "UILabel+QuinoaLabel.h"
+
 //#import "ProfileViewController.h"
 
 @interface MoreViewController ()

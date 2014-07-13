@@ -21,7 +21,7 @@ typedef enum {
 @property (strong, nonatomic) NSString *activityUnit;
 @property (strong, nonatomic) NSNumber *activityValue;
 @property (strong, nonatomic) PFFile *image;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) PFUser *user;
 
 

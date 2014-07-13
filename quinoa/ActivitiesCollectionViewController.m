@@ -9,6 +9,7 @@
 #import "ActivitiesCollectionViewController.h"
 #import "Activity.h"
 #import "ActivityCell.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface ActivitiesCollectionViewController ()
 

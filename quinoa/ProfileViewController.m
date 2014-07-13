@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Profile.h"
 #import <Parse/PFObject+Subclass.h>
+#import "UILabel+QuinoaLabel.h"
 
 @interface ProfileViewController ()
 

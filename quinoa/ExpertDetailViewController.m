@@ -9,6 +9,7 @@
 #import "ExpertDetailViewController.h"
 #import "ChatViewController.h"
 #import "ExpertBrowserViewController.h"
+#import "UILabel+QuinoaLabel.h"
 
 @interface ExpertDetailViewController ()
 

@@ -7,9 +7,6 @@
 //
 
 #import "ProfileViewController.h"
-#import <Parse/Parse.h>
-#import "Profile.h"
-#import <Parse/PFObject+Subclass.h>
 #import "UILabel+QuinoaLabel.h"
 
 @interface ProfileViewController ()
@@ -20,18 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *weightTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *heightTextBox;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
+
 - (IBAction)onSaveProfileClick:(id)sender;
-
-
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *lastName;
-@property (strong, nonatomic) NSString *birthday;
-@property (strong, nonatomic) NSString *weight;
-@property (strong, nonatomic) NSString *height;
-@property (strong, nonatomic) NSString *gender;
-
-@property (nonatomic, strong) Profile *profile;
-
 - (IBAction)onTap:(id)sender;
 
 @end
@@ -40,7 +27,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    // Very strange, but it needs to know which nib to use
+    self = [super initWithNibName:@"ProfileViewController" bundle:nibBundleOrNil];
     if (self) {
         self.title = @"My Profile";
         self.user = [User currentUser];
@@ -71,12 +59,12 @@
     }];
 }
 
-
 - (IBAction)onSaveProfileClick:(id)sender {
     self.user.firstName = self.firstNameTextBox.text;
     self.user.lastName = self.lastNameTextBox.text;
-    self.user.birthday = self.birthdayTextBox.text;
-    self.user.birthday = (self.genderSegmentControl.selectedSegmentIndex == 0) ? @"F" : @"M";
+    // TODO: Fix birthday field
+    //self.user.birthday = self.birthdayTextBox.text;
+    self.user.gender = (self.genderSegmentControl.selectedSegmentIndex == 0) ? @"F" : @"M";
     self.user.weight = [NSNumber numberWithFloat:[self.weightTextBox.text floatValue]];
     self.user.height = self.heightTextBox.text;
     [self.user saveEventually];
@@ -89,7 +77,8 @@
 - (void)updateUI {
     self.firstNameTextBox.text = self.user.firstName;
     self.lastNameTextBox.text = self.user.lastName;
-    self.birthdayTextBox.text = self.user.birthday;
+    //self.birthdayTextBox.text = self.user.birthday;
+
     self.weightTextBox.text = [NSString stringWithFormat:@"%@", self.user.weight];
     self.heightTextBox.text = self.user.height;
 
@@ -97,6 +86,6 @@
         self.genderSegmentControl.selectedSegmentIndex = 0;
     else
         self.genderSegmentControl.selectedSegmentIndex = 1;
-
 }
+
 @end

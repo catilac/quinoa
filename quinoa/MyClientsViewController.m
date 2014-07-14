@@ -42,7 +42,7 @@ static NSString *CellIdentifier = @"clientCellIdent";
     self.myClientsCollection.dataSource = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(150, 146)];
+    [flowLayout setItemSize:CGSizeMake(141, 179)];
     
     // Spacing for flowlayout
     [flowLayout setMinimumLineSpacing:20];
@@ -50,6 +50,7 @@ static NSString *CellIdentifier = @"clientCellIdent";
     [flowLayout setFooterReferenceSize:CGSizeMake(20, 20)];
     
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
+    [self.myClientsCollection setBackgroundColor:[UIColor whiteColor]];
     
     [self fetchClients];
     
@@ -88,7 +89,6 @@ static NSString *CellIdentifier = @"clientCellIdent";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ClientCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
     [cell setValuesWithClient:self.clients[indexPath.row]];
     return cell;
 }

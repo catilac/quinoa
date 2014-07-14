@@ -65,8 +65,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.nameLabel.text = self.expert.email;
+
+    [self fetchData];
     
     // Style elements on profile
     self.profileImage.layer.cornerRadius= 53;
@@ -95,6 +95,12 @@
             NSLog(@"Presenting Expert Browser");
         }];
     }
+}
+
+- (void)fetchData {
+    [self.expert fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        self.nameLabel.text = self.expert.email;
+    }];
 }
 
 @end

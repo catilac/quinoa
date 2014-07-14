@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface ExpertDetailViewController : UIViewController
 
 @property (nonatomic, assign) Boolean isModal;
 
-- (id)initWithExpert:(PFUser *)expert;
-- (id)initWithExpert:(PFUser *)expert modal:(Boolean)isModal;
+- (id)initWithExpert:(User *)expert;
+- (id)initWithExpert:(User *)expert modal:(Boolean)isModal;
 
 @end

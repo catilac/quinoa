@@ -17,6 +17,7 @@
 
 - (IBAction)onTrackFood:(id)sender;
 - (IBAction)onTrackWeight:(id)sender;
+- (IBAction)onTrackActivity:(id)sender;
 
 
 
@@ -53,9 +54,15 @@
 
 - (IBAction)onTrackWeight:(id)sender {
     
-    ActivityViewController *activityVC = [[ActivityViewController alloc] init];
+    ActivityViewController *activityVC = [[ActivityViewController alloc] initWithType:@"trackWeight"];
     [self.navigationController pushViewController:activityVC animated:YES];
 
     
+}
+
+- (IBAction)onTrackActivity:(id)sender {
+    ActivityViewController *activityVC = [[ActivityViewController alloc] initWithType:@"trackActivity"];
+    [self.navigationController pushViewController:activityVC animated:YES];
+
 }
 @end

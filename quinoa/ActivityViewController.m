@@ -12,21 +12,56 @@
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
 - (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
+@property (strong, nonatomic) NSString *activityType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
 
 @property (nonatomic) float weight;
 @property (nonatomic) float startPosition;
 @property (nonatomic) float currentPosition;
 @property (nonatomic) float delta;
+@property (nonatomic) float incrementQuantity;
 
 @end
 
 @implementation ActivityViewController
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"init with nib");
+    }
+    return self;
+}
+
+- (id)initWithType:(NSString *)activityType {
+    self = [super init];
+    if (self) {
+        if([activityType isEqualToString: @"trackWeight"])
+        {
+
+            self.activityType = @"trackWeight";
+            self.weight = 170.0f;
+            self.startPosition = 240.00f;
+            self.currentPosition = 240.00f;
+            self.delta = 0.00f;
+            self.incrementQuantity = 0.5f;
+
+        }
+        else if ([activityType isEqualToString: @"trackActivity"])
+        {
+
+            self.activityType = @"trackActivity";
+                self.incrementQuantity = 10;
+            self.weight = 0;
+            self.startPosition = 400.00f;
+            self.currentPosition = 400.00f;
+            self.delta = 0.00f;
+                    }
     }
     return self;
 }
@@ -35,12 +70,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.weight = 175.00f;
-    self.startPosition = 240.00f;
-    self.currentPosition = 240.00f;
-    self.delta = 0.00f;
-    self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
+    
+    if([self.activityType isEqualToString: @"trackWeight"])
+    {
+        self.activityUnitLabel.text = @"lbs";
+    }
+    else if([self.activityType isEqualToString: @"trackActivity"])
+    {
+                    self.slideBarHeightConstraint.constant = 430;
+        self.activityUnitLabel.text = @"min";
+        
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x
+                                               , 400);
 
+   //     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
+
+    }
+    
+
+    self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
+   
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,28 +101,27 @@
 
 - (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender {
     
-    NSLog(@"on pan.....");
-    //CGPoint point = [sender translationInView:self.view];
-    //sender.view.center = point;
+    //NSLog(@"on pan.....");
+
     CGPoint translation = [sender translationInView:self.view];
-    NSLog(@"position %f", sender.view.center.y + translation.y);
+    //NSLog(@"position %f", sender.view.center.y + translation.y);
     
     if(sender.view.center.y + translation.y >= 25 && sender.view.center.y + translation.y <= 452)
     {
         
         if (sender.state == UIGestureRecognizerStateChanged)  {
-            NSLog(@"position %f", sender.view.center.y + translation.y);
+            //NSLog(@"position %f", sender.view.center.y + translation.y);
             sender.view.center = CGPointMake(sender.view.center.x,sender.view.center.y + translation.y);
             self.currentPosition += translation.y;
-            NSLog(@"start position %f", self.startPosition);
-            NSLog(@"current position %f", self.currentPosition);
+            //NSLog(@"start position %f", self.startPosition);
+            //NSLog(@"current position %f", self.currentPosition);
             
             
             if(abs(self.startPosition - self.currentPosition) >= 10.00f){
                 if((self.startPosition - self.currentPosition) > 0)
-                    self.weight += 0.5f;
+                    self.weight += self.incrementQuantity;
                 else
-                    self.weight -= 0.5;
+                    self.weight -= self.incrementQuantity;
                 self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
                 self.startPosition = self.currentPosition;
             }
@@ -81,7 +130,7 @@
         }
         
         else if (sender.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"ended...");
+            //NSLog(@"ended...");
             //self.startPosition = self.currentPosition;
             
         }

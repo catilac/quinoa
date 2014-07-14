@@ -10,4 +10,6 @@
 
 @interface ActivityViewController : UIViewController
 
+- (id)initWithType:(NSString *)activityType;
+
 @end

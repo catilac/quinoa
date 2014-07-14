@@ -31,6 +31,9 @@
                     <state key="normal" title="Track Activity">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onTrackActivity:" destination="-1" eventType="touchUpInside" id="bhX-au-YgL"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWH-4I-cgs">
                     <rect key="frame" x="43" y="450" width="92" height="51"/>

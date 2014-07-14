@@ -7,6 +7,7 @@
 //
 
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @implementation UILabel (QuinoaLabel)
 

@@ -31,5 +31,8 @@ typedef enum {
 + (void)getActivitiesByUser:(PFUser *)user
                     success:(void (^) (NSArray *objects))success
                       error:(void (^) (NSError *error))error;
-
++ (void)getAverageByUser:(PFUser *)user
+              byActivity:(ActivityType)activityType
+                 success:(void (^) (NSNumber *average))success
+                   error:(void (^) (NSError *error))error;
 @end

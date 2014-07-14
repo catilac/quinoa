@@ -22,7 +22,7 @@
     return @"Activity";
 }
 
-+ (Activity *)trackEating:(PFFile *)image description:(NSString *)description {
++ (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
     Activity *activity = [Activity object];
     activity.user = [PFUser currentUser];
     activity.activityType = Eating;
@@ -38,11 +38,36 @@
                 error:(void (^) (NSError *error))error {
 
     PFQuery *query = [Activity query];
+    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"user" equalTo:user];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
 
         if (success) {
             success(objects);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
+
++ (void)getAverageByUser:(PFUser *)user
+              byActivity:(ActivityType)activityType
+                 success:(void (^) (NSNumber *average))success
+                   error:(void (^) (NSError *error))error {
+    PFQuery *query = [Activity query];
+    [query whereKey:@"user" equalTo:user];
+    [query whereKey:@"activityType" equalTo:@(activityType)];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
+
+        float total = 0;
+        for (Activity *activity in objects) {
+            total += [activity.activityValue floatValue];
+        }
+        float average = (total / objects.count);
+        if (success) {
+            success([NSNumber numberWithFloat:average]);
         }
         if (errorFromParse) {
             error(errorFromParse);

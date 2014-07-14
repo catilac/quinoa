@@ -35,8 +35,6 @@
     [Activity registerSubclass];
     [User registerSubclass];
 
-    // Override point for customization after application launch.
-    
     //Parse App Keys
     [Parse setApplicationId:@"Fp5eIufAJJDLCrvaC7ZPBqJmYj5lIQsS2xjLHWQm"
                   clientKey:@"4wviUoVH6lZQWG3n2yGyyncMtKYbuz0RCGG1qen3"];
@@ -52,6 +50,9 @@
     
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     self.window.rootViewController = loginViewController;
+
+    // Application wide styles
+    //[[UILabel appearance] setFont:[UIFont fontWithName:@"Source Sans Pro"]];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface Utils : NSObject
 
 + (NSString *)getSimpleStringFromDate:(NSDate *)date;
 
++ (UIColor *)getDarkBlue;
++ (UIColor *)getVibrantBlue;
++ (UIColor *)getGreen;
++ (UIColor *)getGray;
++ (UIColor *)getLightGray;
+
++ (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 @end

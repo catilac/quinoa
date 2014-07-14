@@ -61,7 +61,10 @@
 		53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */; };
 		53B1EC6919730C6800101B39 /* UILabel+QuinoaLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */; };
 		53B1EC6B19730E5400101B39 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC6A19730E5400101B39 /* readme.txt */; };
+		53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC6E197344BF00101B39 /* ProfileView.m */; };
+		53B1EC711973450200101B39 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC701973450200101B39 /* ProfileView.xib */; };
 		53B1EC74197349BE00101B39 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC73197349BE00101B39 /* User.m */; };
+		53B1EC781973683400101B39 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC771973683400101B39 /* ProfileCell.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
@@ -70,6 +73,9 @@
 		9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD33441196BA6DC003E1727 /* ArticleCell.xib */; };
 		9FD3344A196BA6DC003E1727 /* ArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD33443196BA6DC003E1727 /* ArticlesViewController.m */; };
 		9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD33444196BA6DC003E1727 /* ArticlesViewController.xib */; };
+		9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3349119735B43003E1727 /* ActivityViewController.m */; };
+		9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD3349219735B43003E1727 /* ActivityViewController.xib */; };
+		9FD3349719738292003E1727 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3349619738292003E1727 /* UIImage+ImageEffects.m */; };
 		A3B4A88B196A5FB400135230 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A88A196A5FB400135230 /* Utils.m */; };
 		A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4A88C196A6EEB00135230 /* LoginViewController.xib */; };
 		A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A891196A7F7900135230 /* MoreViewController.m */; };
@@ -167,8 +173,13 @@
 		53B1EC6719730C6800101B39 /* UILabel+QuinoaLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+QuinoaLabel.h"; sourceTree = "<group>"; };
 		53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+QuinoaLabel.m"; sourceTree = "<group>"; };
 		53B1EC6A19730E5400101B39 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		53B1EC6D197344BF00101B39 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		53B1EC6E197344BF00101B39 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		53B1EC701973450200101B39 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		53B1EC72197349BE00101B39 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		53B1EC73197349BE00101B39 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		53B1EC761973683400101B39 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		53B1EC771973683400101B39 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -181,6 +192,11 @@
 		9FD33442196BA6DC003E1727 /* ArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesViewController.h; sourceTree = "<group>"; };
 		9FD33443196BA6DC003E1727 /* ArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesViewController.m; sourceTree = "<group>"; };
 		9FD33444196BA6DC003E1727 /* ArticlesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticlesViewController.xib; sourceTree = "<group>"; };
+		9FD3349019735B43003E1727 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		9FD3349119735B43003E1727 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		9FD3349219735B43003E1727 /* ActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
+		9FD3349519738292003E1727 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		9FD3349619738292003E1727 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		A3B4A889196A5FB400135230 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		A3B4A88A196A5FB400135230 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A3B4A88C196A6EEB00135230 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -295,6 +311,7 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9FD3348F19735B23003E1727 /* Activity */,
 				46AA118619730C2B001C7F02 /* My Clients */,
 				46907784197276E100CF9DBC /* FanOut Controller */,
 				46437E101971E1C000A70338 /* TrackEating */,
@@ -315,6 +332,8 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53B1EC75197367EA00101B39 /* Profile Cell */,
+				53B1EC6C1973449E00101B39 /* Profile View */,
 				46F73FAC1973156D00E33932 /* Client Cell */,
 				5354D07E1971EBD800612FFE /* Activity Cell */,
 				9FD3344E196BA748003E1727 /* Article Cell */,
@@ -465,6 +484,8 @@
 				5348EC30196940D800E99C4A /* NSDate+dateWith.m */,
 				53B1EC6719730C6800101B39 /* UILabel+QuinoaLabel.h */,
 				53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */,
+				9FD3349519738292003E1727 /* UIImage+ImageEffects.h */,
+				9FD3349619738292003E1727 /* UIImage+ImageEffects.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -512,6 +533,25 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		53B1EC6C1973449E00101B39 /* Profile View */ = {
+			isa = PBXGroup;
+			children = (
+				53B1EC6D197344BF00101B39 /* ProfileView.h */,
+				53B1EC6E197344BF00101B39 /* ProfileView.m */,
+				53B1EC701973450200101B39 /* ProfileView.xib */,
+			);
+			name = "Profile View";
+			sourceTree = "<group>";
+		};
+		53B1EC75197367EA00101B39 /* Profile Cell */ = {
+			isa = PBXGroup;
+			children = (
+				53B1EC761973683400101B39 /* ProfileCell.h */,
+				53B1EC771973683400101B39 /* ProfileCell.m */,
+			);
+			name = "Profile Cell";
+			sourceTree = "<group>";
+		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +580,16 @@
 				9FD33440196BA6DC003E1727 /* ArticleCell.m */,
 			);
 			name = "Article Cell";
+			sourceTree = "<group>";
+		};
+		9FD3348F19735B23003E1727 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				9FD3349019735B43003E1727 /* ActivityViewController.h */,
+				9FD3349119735B43003E1727 /* ActivityViewController.m */,
+				9FD3349219735B43003E1727 /* ActivityViewController.xib */,
+			);
+			name = Activity;
 			sourceTree = "<group>";
 		};
 		A3B4A88E196A708500135230 /* Expand Cell */ = {
@@ -648,10 +698,12 @@
 				5354D0891971ED1500612FFE /* Weight.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
+				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
 				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
 				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
+				9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
 				53B1EC6B19730E5400101B39 /* readme.txt in Resources */,
 				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
@@ -731,6 +783,7 @@
 				5348EC1C1968FBE200E99C4A /* Plan.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				5348EC2A19692E2C00E99C4A /* PlanActivity.m in Sources */,
+				53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */,
 				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
@@ -740,11 +793,14 @@
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,
 				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
 				5354D0751971D76700612FFE /* Activity.m in Sources */,
+				9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				53B1EC74197349BE00101B39 /* User.m in Sources */,
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */,
 				A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */,
+				53B1EC781973683400101B39 /* ProfileCell.m in Sources */,
+				9FD3349719738292003E1727 /* UIImage+ImageEffects.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,

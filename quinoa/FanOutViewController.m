@@ -8,6 +8,7 @@
 
 #import "FanOutViewController.h"
 #import "TrackEatingViewController.h"
+#import "ActivityViewController.h"
 #import "UILabel+QuinoaLabel.h"
 
 @interface FanOutViewController ()
@@ -15,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *trackFoodButton;
 
 - (IBAction)onTrackFood:(id)sender;
+- (IBAction)onTrackWeight:(id)sender;
+
 
 
 @end
@@ -46,5 +49,13 @@
 - (IBAction)onTrackFood:(id)sender {
     TrackEatingViewController *trackEatingVC = [[TrackEatingViewController alloc] init];
     [self.navigationController pushViewController:trackEatingVC animated:YES];
+}
+
+- (IBAction)onTrackWeight:(id)sender {
+    
+    ActivityViewController *activityVC = [[ActivityViewController alloc] init];
+    [self.navigationController pushViewController:activityVC animated:YES];
+
+    
 }
 @end

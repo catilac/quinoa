@@ -48,6 +48,19 @@
     return [meta componentsJoinedByString:@" • "];
 }
 
+- (NSString *)getSexAndAge {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    if (self.gender) {
+        [array addObject:self.gender];
+    }
+    
+    if (self.birthday) {
+        [array addObject:[self.birthday timeIntervalSinceNow]];
+    }
+    
+    return [array componentsJoinedByString:@" • "];
+}
+
 + (User *)currentUser {
     return (User *)[PFUser currentUser];
 }

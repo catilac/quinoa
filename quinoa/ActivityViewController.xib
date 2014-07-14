@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="activityUnitLabel" destination="DDa-H3-dqL" id="5Om-l3-s9N"/>
                 <outlet property="activityValueLabel" destination="Mfu-mG-Zpo" id="9xh-fc-LlM"/>
+                <outlet property="backgroundImageView" destination="hjq-ih-rlh" id="ndJ-mS-MuF"/>
                 <outlet property="slideBarHeightConstraint" destination="2kL-U3-nQ7" id="iE8-5V-57n"/>
                 <outlet property="slideBarView" destination="Ohh-Cs-kWw" id="8L4-xF-aCD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,6 +19,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hjq-ih-rlh">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-Cs-kWw">
                     <rect key="frame" x="0.0" y="215" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

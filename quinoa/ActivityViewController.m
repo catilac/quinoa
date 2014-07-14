@@ -7,6 +7,7 @@
 //
 
 #import "ActivityViewController.h"
+#import "UIImage+ImageEffects.h"
 
 @interface ActivityViewController ()
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
 @property (strong, nonatomic) NSString *activityType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
+
 
 @property (nonatomic) float weight;
 @property (nonatomic) float startPosition;
@@ -87,6 +89,10 @@
 
     }
     
+    self.backgroundImageView.image = self.image;
+    UIImage *sourceImage = self.backgroundImageView.image;
+     UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.3];
+    self.backgroundImageView.image = [sourceImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
 
     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
    

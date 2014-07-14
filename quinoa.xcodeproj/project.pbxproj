@@ -72,6 +72,7 @@
 		9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD33444196BA6DC003E1727 /* ArticlesViewController.xib */; };
 		9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3349119735B43003E1727 /* ActivityViewController.m */; };
 		9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD3349219735B43003E1727 /* ActivityViewController.xib */; };
+		9FD3349719738292003E1727 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3349619738292003E1727 /* UIImage+ImageEffects.m */; };
 		A3B4A88B196A5FB400135230 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A88A196A5FB400135230 /* Utils.m */; };
 		A3B4A88D196A6EEB00135230 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4A88C196A6EEB00135230 /* LoginViewController.xib */; };
 		A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4A891196A7F7900135230 /* MoreViewController.m */; };
@@ -186,6 +187,8 @@
 		9FD3349019735B43003E1727 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		9FD3349119735B43003E1727 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		9FD3349219735B43003E1727 /* ActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
+		9FD3349519738292003E1727 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		9FD3349619738292003E1727 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		A3B4A889196A5FB400135230 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		A3B4A88A196A5FB400135230 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A3B4A88C196A6EEB00135230 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				5348EC30196940D800E99C4A /* NSDate+dateWith.m */,
 				53B1EC6719730C6800101B39 /* UILabel+QuinoaLabel.h */,
 				53B1EC6819730C6800101B39 /* UILabel+QuinoaLabel.m */,
+				9FD3349519738292003E1727 /* UIImage+ImageEffects.h */,
+				9FD3349619738292003E1727 /* UIImage+ImageEffects.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */,
 				A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */,
+				9FD3349719738292003E1727 /* UIImage+ImageEffects.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,

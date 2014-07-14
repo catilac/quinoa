@@ -29,6 +29,15 @@
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     
+    // Tab Bar Styling
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Semibold" size:11.0f],
+                                                        NSForegroundColorAttributeName : [UIColor colorWithRed:0.278 green:0.651 blue:0.839 alpha:1]
+                                                        } forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Semibold" size:11.0f],
+                                                        NSForegroundColorAttributeName : [UIColor colorWithRed:0.765 green:0.808 blue:0.851 alpha:1]
+                                                        } forState:UIControlStateNormal];
+    
     // Register sub classes
     [Message registerSubclass];
     [Profile registerSubclass];

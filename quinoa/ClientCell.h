@@ -1,5 +1,5 @@
 //
-//  MyClientsViewController.h
+//  ClientCell.h
 //  quinoa
 //
 //  Created by Chirag Davé on 7/13/14.
@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface MyClientsViewController : UIViewController<UICollectionViewDataSource>
+@interface ClientCell : UICollectionViewCell
+
+- (void)setValuesWithClient:(PFUser *)client;
 
 @end

@@ -9,6 +9,7 @@
 #import "MyClientsViewController.h"
 #import "ClientCell.h"
 #import <Parse/Parse.h>
+#import "User.h"
 #import "UILabel+QuinoaLabel.h"
 
 @interface MyClientsViewController ()
@@ -64,8 +65,8 @@ static NSString *CellIdentifier = @"clientCellIdent";
 }
 
 - (void)fetchClients {
-    PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFUser query];
+    User *currentUser = [User currentUser];
+    PFQuery *query = [User query];
     [query whereKey:@"currentTrainer" equalTo:currentUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {

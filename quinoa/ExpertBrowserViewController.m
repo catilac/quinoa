@@ -28,7 +28,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Browse Experts";
-        PFUser *user = [PFUser currentUser];
+        User *user = [User currentUser];
         NSLog(@"DEBUG USER: %@", user[@"currentTrainer"]);
         if ([user objectForKey:@"currentTrainer"]) {
             UIBarButtonItem *trainerButton = [[UIBarButtonItem alloc] initWithTitle:@"My Trainer"
@@ -84,7 +84,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 }
 
 - (void)fetchExperts {
-    PFQuery *query = [PFUser query];
+    PFQuery *query = [User query];
     [query whereKey:@"role" containsString:@"expert"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -106,7 +106,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     if (self.isModal) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-        PFUser *expert = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+        User *expert = [[User currentUser] objectForKey:@"currentTrainer"];
         [expert fetch];
         
         ExpertDetailViewController *expertDetail = [[ExpertDetailViewController alloc] initWithExpert:expert modal:YES];
@@ -137,7 +137,7 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 
 # pragma mark - ExpertCellDelegate methods
 
-- (void)showExpertDetail:(PFUser *)expert {
+- (void)showExpertDetail:(User *)expert {
     ExpertDetailViewController *expertView = [[ExpertDetailViewController alloc] initWithExpert:expert modal:self.isModal];
     [self.navigationController pushViewController:expertView animated:YES];
 }

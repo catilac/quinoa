@@ -64,7 +64,7 @@
 }
 
 - (void)fetchData {
-    [Activity getActivitiesByUser:[PFUser currentUser] success:^(NSArray *objects) {
+    [Activity getActivitiesByUser:[User currentUser] success:^(NSArray *objects) {
         self.activities = objects;
         [self.collectionView reloadData];
     } error:^(NSError *error) {

@@ -62,6 +62,7 @@
 		53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC6E197344BF00101B39 /* ProfileView.m */; };
 		53B1EC711973450200101B39 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC701973450200101B39 /* ProfileView.xib */; };
 		53B1EC74197349BE00101B39 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC73197349BE00101B39 /* User.m */; };
+		53B1EC781973683400101B39 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC771973683400101B39 /* ProfileCell.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
@@ -169,6 +170,8 @@
 		53B1EC701973450200101B39 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		53B1EC72197349BE00101B39 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		53B1EC73197349BE00101B39 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		53B1EC761973683400101B39 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		53B1EC771973683400101B39 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -315,6 +318,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53B1EC75197367EA00101B39 /* Profile Cell */,
 				53B1EC6C1973449E00101B39 /* Profile View */,
 				5354D07E1971EBD800612FFE /* Activity Cell */,
 				9FD3344E196BA748003E1727 /* Article Cell */,
@@ -510,6 +514,15 @@
 				53B1EC701973450200101B39 /* ProfileView.xib */,
 			);
 			name = "Profile View";
+			sourceTree = "<group>";
+		};
+		53B1EC75197367EA00101B39 /* Profile Cell */ = {
+			isa = PBXGroup;
+			children = (
+				53B1EC761973683400101B39 /* ProfileCell.h */,
+				53B1EC771973683400101B39 /* ProfileCell.m */,
+			);
+			name = "Profile Cell";
 			sourceTree = "<group>";
 		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
@@ -745,6 +758,7 @@
 				460447AF1964ECC600DDE6C6 /* main.m in Sources */,
 				9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */,
 				A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */,
+				53B1EC781973683400101B39 /* ProfileCell.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,

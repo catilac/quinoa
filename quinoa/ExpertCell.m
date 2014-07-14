@@ -27,7 +27,9 @@
 -(void)setValuesWithExpert:(PFUser *)expert {
     self.expert = expert;
     self.nameLabel.text = expert.email;
-    
+//    self.nameLabel.textColor = [UIColor whiteColor];
+//    self.headlineLabel.textColor = [UIColor whiteColor];
+
     // Profile card element styling
     self.profileButton.layer.cornerRadius = 3;
     self.cardBackground.layer.cornerRadius = 6;

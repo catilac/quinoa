@@ -22,29 +22,28 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        UINib *nib = [UINib nibWithNibName:@"ProfileView" bundle:nil];
+        NSArray *objects = [nib instantiateWithOwner:self options:nil];
+        [self addSubview:objects[0]];
     }
     return self;
 }
 
-- (void)setUser:(PFUser *)user {
+- (void)setUser:(User *)user {
     _user = user;
 
-    if (user[@"firstName"]) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user[@"firstName"], self.user[@"lastName"]];
+    self.nameLabel.text = [user getDisplayName];
+    if (user.image) {
+        [Utils loadImageFile:user.image inImageView:self.imageView withAnimation:NO];
     } else {
-        self.nameLabel.text = self.user[@"email"];
+        [self.imageView setImage:[user getPlaceholderImage]];
     }
+    self.secondaryLabel.text = [user getMetaInfo];
+    self.secondaryLabel.textColor = [Utils getVibrantBlue];
 
+    // Styling
+    self.imageView.layer.cornerRadius = 53;
+    [self.subviews[0] setBackgroundColor:[Utils getDarkBlue]];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

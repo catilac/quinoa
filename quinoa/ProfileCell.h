@@ -1,5 +1,5 @@
 //
-//  ProfileView.h
+//  ProfileCell.h
 //  quinoa
 //
 //  Created by Amie Kweon on 7/13/14.
@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
 #import "User.h"
-#import "Utils.h"
 
-@interface ProfileView : UIView
+@interface ProfileCell : UICollectionViewCell
 
-@property (strong, nonatomic) User *user;
+@property (nonatomic, strong) User *user;
 
 @end

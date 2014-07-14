@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *role;
+@property (nonatomic, strong) NSString *location;
 
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *birthday;
@@ -22,8 +23,15 @@
 @property (nonatomic, strong) NSNumber *weight;
 
 @property (nonatomic, strong) User *currentTrainer;
+@property (nonatomic, strong) PFFile *image;
 
 - (NSString *)getDisplayName;
+
+- (NSString *)getDisplayGender;
+
+- (NSString *)getMetaInfo;
+
+- (UIImage *)getPlaceholderImage;
 
 + (User *)currentUser;
 @end

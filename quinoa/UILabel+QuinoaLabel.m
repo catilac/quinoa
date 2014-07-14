@@ -14,7 +14,6 @@
 -(void)awakeFromNib{
     float size = [self.font pointSize];
     self.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:size];
-    self.textColor = [Utils getDarkBlue];
 }
 
 @end

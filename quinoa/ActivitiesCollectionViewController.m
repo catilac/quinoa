@@ -9,7 +9,9 @@
 #import "ActivitiesCollectionViewController.h"
 #import "Activity.h"
 #import "ActivityCell.h"
+#import "ProfileCell.h"
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @interface ActivitiesCollectionViewController ()
 
@@ -28,9 +30,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         if (self.user == nil) {
-            self.user = [PFUser currentUser];
+            self.user = [User currentUser];
         }
-        self.title = self.user[@"firstName"];
+        self.title = self.user.firstName;
     }
     return self;
 }
@@ -42,6 +44,8 @@
     [self setupUI];
 
     [self.collectionView registerClass:[ActivityCell class] forCellWithReuseIdentifier:@"ActivityCell"];
+    [self.collectionView registerClass:[ProfileCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell"];
+
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
@@ -68,7 +72,6 @@
                                                                  forIndexPath:indexPath];
 
     Activity *activity = self.activities[indexPath.row];
-    //cell.activityType = activity.activityType;
     cell.activity = activity;
 
     return cell;
@@ -78,8 +81,19 @@
 
     self.stubCell.activity = self.activities[indexPath.row];
     CGSize size = [self.stubCell intrinsicContentSize];
-    size.width = self.collectionView.frame.size.width;
+    size.width = self.collectionView.frame.size.width - 20;
     return size;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableView = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
+
+        headerView.user = self.user;
+        reusableView = headerView;
+    }
+    return reusableView;
 }
 
 - (void)fetchData {
@@ -99,8 +113,9 @@
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setItemSize:CGSizeMake(320, 200)];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(320, 100)];
+    [flowLayout setItemSize:CGSizeMake(self.view.frame.size.width, 200)];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 }
 

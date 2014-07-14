@@ -12,6 +12,6 @@
 
 @interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) User *user;
 
 @end

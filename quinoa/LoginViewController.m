@@ -43,7 +43,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if (![PFUser currentUser]) { // No user logged in
+    if (![User currentUser]) { // No user logged in
         // Create the log in view controller
         [self showLoginAndRegistration];
     } else {
@@ -85,7 +85,7 @@
 }
 
 // Sent to the delegate when a PFUser is logged in.
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(User *)user {
     // [self dismissViewControllerAnimated:YES completion:NULL];
 
     [self setupNavigation];
@@ -106,13 +106,13 @@
 
 - (IBAction)onLogOutClick:(id)sender {
     
-    [PFUser logOut];
+    [User logOut];
     [self.navigationController popViewControllerAnimated:YES];
     [self showLoginAndRegistration];
 }
 
 - (void)setupNavigation {
-    PFUser *currentUser = [PFUser currentUser];
+    User *currentUser = [User currentUser];
     if ([currentUser[@"role"] isEqualToString:@"expert"]) {
         [self setupNavigationForExpert];
     } else {
@@ -140,10 +140,9 @@
 }
 
 - (void)setupNavigationForUser {
-    PFUser *trainer = [[PFUser currentUser] objectForKey:@"currentTrainer"];
+    User *trainer = [[User currentUser] objectForKey:@"currentTrainer"];
     UIViewController *expertViewController;
     if (trainer) {
-        [trainer fetch];
         expertViewController = [[ExpertDetailViewController alloc] initWithExpert:trainer];
     } else {
         expertViewController = [[ExpertBrowserViewController alloc] init];        

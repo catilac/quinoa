@@ -131,7 +131,7 @@
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
     moreNavController.tabBarItem.title = @"More";
-    moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
+    moreNavController.tabBarItem.image = [UIImage imageNamed:@"clientFeed"];
     
     tabBarController.viewControllers = @[myClientsNavController, moreNavController];
 
@@ -150,22 +150,26 @@
     
     UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
     expertNavController.tabBarItem.title = @"My Trainer";
-    expertNavController.tabBarItem.image = [UIImage imageNamed:@"ExpertIcon"];
+    expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myTrainer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myTrainer-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] init];
     UINavigationController *activitiesNavController = [[UINavigationController alloc] initWithRootViewController:activitiesController];
-    activitiesNavController.tabBarItem.title = @"My Activities";
-    activitiesNavController.tabBarItem.image = [UIImage imageNamed:@"CheckIcon"];
+    activitiesNavController.tabBarItem.title = @"My Activity";
+    activitiesNavController.tabBarItem.image = [[UIImage imageNamed:@"myActivity"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    activitiesNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myActivity-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
     UINavigationController *profileNavController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
     profileNavController.tabBarItem.title = @"Profile";
-    profileNavController.tabBarItem.image = [UIImage imageNamed:@"ProfileIcon"];
+    profileNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    profileNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
     moreNavController.tabBarItem.title = @"More";
-    moreNavController.tabBarItem.image = [UIImage imageNamed:@"MoreIcon"];
+    moreNavController.tabBarItem.image = [[UIImage imageNamed:@"clientFeed"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"clientFeed-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     

@@ -8,6 +8,8 @@
 
 #import "ActivityViewController.h"
 #import "UIImage+ImageEffects.h"
+#import "TrackButton.h"
+#import "Activity.h"
 
 @interface ActivityViewController ()
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
@@ -35,9 +37,19 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"init with nib");
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(postActivity)
+                                                     name:kSubmitData
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToSubmitMessage object:nil];
     }
     return self;
+}
+
+- (void)postActivity {
+    // Send message to disarm track button
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 - (id)initWithType:(NSString *)activityType {
@@ -97,6 +109,11 @@
     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
    
    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotReadyToSubmitMessage object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

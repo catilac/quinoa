@@ -17,6 +17,7 @@
 #import "FanOutViewController.h"
 #import "MyClientsViewController.h"
 #import "UILabel+QuinoaLabel.h"
+#import "TrackButton.h"
 
 @interface LoginViewController ()
 
@@ -180,9 +181,7 @@
 
     // Add custom view for custom track UITabBarItem
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    UIView *trackButton = [[UIView alloc] initWithFrame:CGRectMake(screenSize.width/2-25, screenSize.height-65, 50, 65)];
-    [trackButton setUserInteractionEnabled:NO];
-    [trackButton setBackgroundColor:[UIColor redColor]];
+    TrackButton *trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-25, screenSize.height-65, 50, 65)];
     [tabBarController.view addSubview:trackButton];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];

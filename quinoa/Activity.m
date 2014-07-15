@@ -33,6 +33,31 @@
     return activity;
 }
 
++ (Activity *)trackPhysical:(NSNumber *)duration {
+    Activity *activity = [Activity object];
+    activity.user = [PFUser currentUser];
+    activity.activityType = Physical;
+    activity.activityValue = duration;
+    activity.activityUnit = @"min";
+    activity.descriptionText = @"Physical Activity";
+    [activity saveInBackground];
+    
+    return activity;
+}
+
++ (Activity *)trackWeight:(NSNumber *)weight {
+    Activity *activity = [Activity object];
+    activity.user = [PFUser currentUser];
+    activity.activityType = Weight;
+    activity.activityValue = weight;
+    activity.activityUnit = @"lbs";
+    activity.descriptionText = @"Weight";
+    [activity saveInBackground];
+    
+    return activity;
+}
+
+
 + (void)getActivitiesByUser:(PFUser *)user
               success:(void (^) (NSArray *objects))success
                 error:(void (^) (NSError *error))error {

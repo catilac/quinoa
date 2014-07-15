@@ -27,6 +27,8 @@ typedef enum {
 
 + (NSString *)parseClassName;
 + (Activity *)trackEating:(PFFile *)image description:(NSString *)description;
++ (Activity *)trackPhysical:(NSNumber *)duration;
++ (Activity *)trackWeight:(NSNumber *)weight;
 
 + (void)getActivitiesByUser:(PFUser *)user
                     success:(void (^) (NSArray *objects))success

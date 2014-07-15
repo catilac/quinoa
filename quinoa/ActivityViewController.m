@@ -48,6 +48,12 @@
 
 - (void)postActivity {
     // Send message to disarm track button
+    if ([self.activityType isEqualToString:@"trackWeight"]) {
+        [Activity trackWeight:[NSNumber numberWithFloat:self.weight]];
+    } else if ([self.activityType isEqualToString:@"trackActivity"]) {
+        [Activity trackPhysical:[NSNumber numberWithFloat:self.weight]];
+    }
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyClientsViewController : UIViewController<UICollectionViewDataSource>
+@interface MyClientsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

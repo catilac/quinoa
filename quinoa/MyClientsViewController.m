@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
+#import "ActivitiesCollectionViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -40,6 +41,7 @@ static NSString *CellIdentifier = @"clientCellIdent";
                forCellWithReuseIdentifier:CellIdentifier];
     
     self.myClientsCollection.dataSource = self;
+    self.myClientsCollection.delegate = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(141, 179)];
@@ -92,6 +94,16 @@ static NSString *CellIdentifier = @"clientCellIdent";
                                                                  forIndexPath:indexPath];
     [cell setValuesWithClient:self.clients[indexPath.row]];
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"HELLO?");
+    User *client = self.clients[indexPath.row];
+    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
+    [activitiesCollectionView setUser:client];
+    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
 }
 
 

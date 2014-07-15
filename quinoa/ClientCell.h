@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface ClientCell : UICollectionViewCell
 
-- (void)setValuesWithClient:(PFUser *)client;
+- (void)setValuesWithClient:(User *)client;
 
 @end

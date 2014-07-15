@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *clientName;
 @property (weak, nonatomic) IBOutlet UILabel *clientBasicInfo;
 
-@property (strong, nonatomic) PFUser *client;
+@property (strong, nonatomic) User *client;
 
 @end
 
@@ -28,13 +28,13 @@
     return self;
 }
 
-- (void)setValuesWithClient:(PFUser *)client {
+- (void)setValuesWithClient:(User *)client {
     self.backgroundColor = [UIColor colorWithRed:0.949 green:0.961 blue:0.969 alpha:1];
     self.layer.borderColor = [[UIColor colorWithRed:0.780 green:0.816 blue:0.851 alpha:1] CGColor];
     self.layer.borderWidth = 1;
     self.layer.cornerRadius = 3;
     self.clientName.text = client.username;
-    self.clientBasicInfo.text = @"Male • 42 years old";
+    self.clientBasicInfo.text = [client getSexAndAge];
     
     self.profileImage.layer.cornerRadius = 50;
 

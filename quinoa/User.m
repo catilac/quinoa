@@ -55,7 +55,14 @@
     }
     
     if (self.birthday) {
-        [array addObject:[self.birthday timeIntervalSinceNow]];
+        NSDate *today = [NSDate date];
+        NSDateComponents *ageComponents = [[NSCalendar currentCalendar]
+                                           components:NSYearCalendarUnit
+                                           fromDate:self.birthday
+                                           toDate:today
+                                           options:0];
+        
+        [array addObject:[NSString stringWithFormat:@"%ld years old", (long)ageComponents.year]];
     }
     
     return [array componentsJoinedByString:@" • "];

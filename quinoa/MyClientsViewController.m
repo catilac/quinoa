@@ -44,12 +44,12 @@ static NSString *CellIdentifier = @"clientCellIdent";
     self.myClientsCollection.delegate = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(141, 179)];
+    [flowLayout setItemSize:CGSizeMake(146, 182)];
     
     // Spacing for flowlayout
-    [flowLayout setMinimumLineSpacing:20];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(20, 20)];
-    [flowLayout setFooterReferenceSize:CGSizeMake(20, 20)];
+    [flowLayout setMinimumLineSpacing:8];
+    [flowLayout setMinimumInteritemSpacing:4];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
     [self.myClientsCollection setBackgroundColor:[UIColor whiteColor]];

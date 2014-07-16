@@ -58,6 +58,11 @@
     self.tabBarController.tabBar.translucent = NO;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self fetchData];
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

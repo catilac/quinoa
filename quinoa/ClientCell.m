@@ -44,8 +44,7 @@
     self.clientBasicInfo.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:[self.clientBasicInfo.font pointSize]];
 
     
-    self.profileImage.layer.cornerRadius = 50;
-
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
 }
 
 /*

@@ -33,7 +33,7 @@
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Semibold"
-                                                                                                size:21.0f],
+                                                                                                size:20.1f],
                                                            NSForegroundColorAttributeName: [UIColor whiteColor]
                                                            }];
     

@@ -31,6 +31,11 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Semibold"
+                                                                                                size:21.0f],
+                                                           NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                           }];
     
     // Tab Bar Styling
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];

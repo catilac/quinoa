@@ -45,32 +45,8 @@
 
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
-            //[imageView setImage:[UIImage imageWithData:data]];
             iv.image = [UIImage imageWithData:data];
         }
     }];
-
-
-
-//    NSURL *urlObject = [NSURL URLWithString:url];
-//    __weak UIImageView *iv = imageView;
-//
-//    [imageView
-//     setImageWithURLRequest:[NSURLRequest requestWithURL:urlObject]
-//     placeholderImage:nil
-//     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//         BOOL isCached = (request == nil);
-//         if (!isCached && enableAnimation) {
-//             iv.alpha = 0.0;
-//             iv.image = image;
-//             [UIView animateWithDuration:0.5
-//                              animations:^{
-//                                  iv.alpha = 1.0;
-//                              }];
-//         } else {
-//             iv.image = image;
-//         }
-//     }
-//     failure:nil];
 }
 @end

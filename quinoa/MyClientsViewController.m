@@ -29,7 +29,7 @@ static NSString *CellIdentifier = @"clientCellIdent";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"My Clients";
+        self.title = @"Clients";
     }
     return self;
 }

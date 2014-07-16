@@ -22,6 +22,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // Status Bar Style
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    
     // Navigation bar styling
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.263 green:0.800 blue:0.522 alpha:1]];

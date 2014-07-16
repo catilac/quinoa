@@ -12,6 +12,7 @@
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
+#import "ChatViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -99,11 +100,13 @@ static NSString *CellIdentifier = @"clientCellIdent";
 #pragma mark - UICollectionViewDelegate methods
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"HELLO?");
     User *client = self.clients[indexPath.row];
-    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
-    [activitiesCollectionView setUser:client];
-    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
+    // TODO: Put this back in once activitiescollectionview is ready
+//    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
+//    [activitiesCollectionView setUser:client];
+//    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
+    ChatViewController *chatViewController = [[ChatViewController alloc] initWithUser:client];
+    [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
 

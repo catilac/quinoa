@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *chatView;
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
 
-@property (strong, nonatomic) PFUser *recipient;
+@property (strong, nonatomic) User *recipient;
 @property (strong, nonatomic) NSArray *messages;
 @property (strong, nonatomic) NSTimer *queryTimer;
 
@@ -26,7 +26,7 @@
 
 static NSString *CellIdentifier = @"chatCellIdent";
 
-- (id)initWithUser:(PFUser *)recipient {
+- (id)initWithUser:(User *)recipient {
     self = [super init];
     if (self) {
         self.recipient = recipient;
@@ -84,13 +84,13 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (IBAction)onSend:(id)sender {
     [Message sendMessageToUser:self.recipient
-                      fromUser:[PFUser currentUser]
+                      fromUser:[User currentUser]
                        message:self.chatInput.text];
     self.chatInput.text = @"";
 }
 
 - (void)fetchMessages {
-    NSString *threadId = [Message calcThreadIdWithSender:[PFUser currentUser] recipient:self.recipient];
+    NSString *threadId = [Message calcThreadIdWithSender:[User currentUser] recipient:self.recipient];
     [Message getMessagesByThreadId:threadId success:^(NSArray *messages) {
         self.messages = messages;
         [self.chatView reloadData];

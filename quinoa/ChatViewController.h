@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface ChatViewController : UIViewController <UICollectionViewDataSource>
 
-- initWithUser:(PFUser *)recipient;
+- initWithUser:(User *)recipient;
 
 @end

@@ -52,6 +52,26 @@
     return [meta componentsJoinedByString:@" • "];
 }
 
+- (NSString *)getSexAndAge {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    if (self.gender) {
+        [array addObject:self.gender];
+    }
+    
+    if (self.birthday) {
+        NSDate *today = [NSDate date];
+        NSDateComponents *ageComponents = [[NSCalendar currentCalendar]
+                                           components:NSYearCalendarUnit
+                                           fromDate:self.birthday
+                                           toDate:today
+                                           options:0];
+        
+        [array addObject:[NSString stringWithFormat:@"%ld years old", (long)ageComponents.year]];
+    }
+    
+    return [array componentsJoinedByString:@" • "];
+}
+
 + (User *)currentUser {
     return (User *)[PFUser currentUser];
 }

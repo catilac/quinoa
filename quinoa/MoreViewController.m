@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 //#import "ProfileViewController.h"
 
@@ -26,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.menuItems = @[@"My Profile", @"Logout"];
+        self.menuItems = @[@"My Profile",@"Logout"];
         self.title = @"More";
     }
     return self;
@@ -61,6 +62,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.textLabel.text = self.menuItems[indexPath.row];
+    
+    UIFont *myFont = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 20.0 ];
+    cell.textLabel.font = myFont;
+    cell.textLabel.textColor = [Utils getDarkBlue];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

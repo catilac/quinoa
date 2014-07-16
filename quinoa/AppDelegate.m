@@ -22,12 +22,20 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // Status Bar Style
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    
     // Navigation bar styling
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.263 green:0.800 blue:0.522 alpha:1]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Semibold"
+                                                                                                size:20.1f],
+                                                           NSForegroundColorAttributeName: [UIColor whiteColor]
+                                                           }];
     
     // Tab Bar Styling
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];

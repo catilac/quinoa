@@ -28,6 +28,7 @@
 - (BOOL)isExpert;
 
 - (NSString *)getDisplayName;
+- (NSString *)getSexAndAge;
 
 - (NSString *)getDisplayGender;
 

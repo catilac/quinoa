@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
+#import "ActivitiesCollectionViewController.h"
+#import "ChatViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -40,16 +42,18 @@ static NSString *CellIdentifier = @"clientCellIdent";
                forCellWithReuseIdentifier:CellIdentifier];
     
     self.myClientsCollection.dataSource = self;
+    self.myClientsCollection.delegate = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(150, 146)];
+    [flowLayout setItemSize:CGSizeMake(146, 182)];
     
     // Spacing for flowlayout
-    [flowLayout setMinimumLineSpacing:20];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(20, 20)];
-    [flowLayout setFooterReferenceSize:CGSizeMake(20, 20)];
+    [flowLayout setMinimumLineSpacing:8];
+    [flowLayout setMinimumInteritemSpacing:4];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
+    [self.myClientsCollection setBackgroundColor:[UIColor whiteColor]];
     
     [self fetchClients];
     
@@ -89,9 +93,20 @@ static NSString *CellIdentifier = @"clientCellIdent";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ClientCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
     [cell setValuesWithClient:self.clients[indexPath.row]];
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    User *client = self.clients[indexPath.row];
+    // TODO: Put this back in once activitiescollectionview is ready
+//    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
+//    [activitiesCollectionView setUser:client];
+//    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
+    ChatViewController *chatViewController = [[ChatViewController alloc] initWithUser:client];
+    [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
 

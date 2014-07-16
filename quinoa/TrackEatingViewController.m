@@ -9,6 +9,7 @@
 #import "TrackEatingViewController.h"
 #import "Activity.h"
 #import "UILabel+QuinoaLabel.h"
+#import "TrackButton.h"
 
 @interface TrackEatingViewController ()
 
@@ -30,7 +31,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(onCancel)];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(uploadPhoto)];
     }
     return self;
 }
@@ -39,6 +39,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadPhoto)
+                                                 name:kSubmitData
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToSubmitMessage object:nil];
+
+}
+
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotReadyToSubmitMessage object:nil];
+    [super willMoveToParentViewController:parent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,7 +114,9 @@
 }
 
 - (void)uploadPhoto {
-    [self uploadImage:self.imageData];
+    if (self.imageSet) {
+        [self uploadImage:self.imageData];
+    }
 }
 
 #pragma mark UIImagePickerControllerDelegate methods

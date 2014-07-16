@@ -35,6 +35,7 @@
 		4695108419691C5E00315FDC /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4695108319691C5E00315FDC /* ExpertCell.xib */; };
 		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
 		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
+		46BDC0B31974EEF90004387D /* TrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC0B21974EEF90004387D /* TrackButton.m */; };
 		46F73FAF1973159B00E33932 /* ClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F73FAE1973159B00E33932 /* ClientCell.m */; };
 		46F73FB1197316B900E33932 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F73FB0197316B900E33932 /* ClientCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
@@ -140,6 +141,8 @@
 		46AA118719730C40001C7F02 /* MyClientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientsViewController.h; sourceTree = "<group>"; };
 		46AA118819730C40001C7F02 /* MyClientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientsViewController.m; sourceTree = "<group>"; };
 		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
+		46BDC0B11974EEF90004387D /* TrackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackButton.h; sourceTree = "<group>"; };
+		46BDC0B21974EEF90004387D /* TrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackButton.m; sourceTree = "<group>"; };
 		46F73FAD1973159B00E33932 /* ClientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCell.h; sourceTree = "<group>"; };
 		46F73FAE1973159B00E33932 /* ClientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCell.m; sourceTree = "<group>"; };
 		46F73FB0197316B900E33932 /* ClientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientCell.xib; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46BDC0B01974EEDC0004387D /* Track Button */,
 				53B1EC75197367EA00101B39 /* Profile Cell */,
 				53B1EC6C1973449E00101B39 /* Profile View */,
 				46F73FAC1973156D00E33932 /* Client Cell */,
@@ -428,6 +432,15 @@
 				46AA118919730C40001C7F02 /* MyClientsViewController.xib */,
 			);
 			name = "My Clients";
+			sourceTree = "<group>";
+		};
+		46BDC0B01974EEDC0004387D /* Track Button */ = {
+			isa = PBXGroup;
+			children = (
+				46BDC0B11974EEF90004387D /* TrackButton.h */,
+				46BDC0B21974EEF90004387D /* TrackButton.m */,
+			);
+			name = "Track Button";
 			sourceTree = "<group>";
 		};
 		46F73FAC1973156D00E33932 /* Client Cell */ = {
@@ -720,7 +733,7 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
-						DevelopmentTeam = V9W7KY986M;
+						DevelopmentTeam = Q4M29PLT7E;
 					};
 					460447B91964ECC600DDE6C6 = {
 						TestTargetID = 4604479E1964ECC600DDE6C6;
@@ -855,6 +868,7 @@
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,
 				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
 				5354D0751971D76700612FFE /* Activity.m in Sources */,
+				46BDC0B31974EEF90004387D /* TrackButton.m in Sources */,
 				9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				53B1EC74197349BE00101B39 /* User.m in Sources */,

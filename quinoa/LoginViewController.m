@@ -128,12 +128,16 @@
     // My Clients Tab
     MyClientsViewController *myClientsViewController = [[MyClientsViewController alloc] init];
     UINavigationController *myClientsNavController = [[UINavigationController alloc] initWithRootViewController:myClientsViewController];
+    myClientsNavController.tabBarItem.title = @"Clients";
+    myClientsNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    myClientsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     // More Tab
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
     moreNavController.tabBarItem.title = @"More";
-    moreNavController.tabBarItem.image = [UIImage imageNamed:@"clientFeed"];
+    moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     tabBarController.viewControllers = @[myClientsNavController, moreNavController];
 

@@ -42,6 +42,15 @@
 		46F73FB1197316B900E33932 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F73FB0197316B900E33932 /* ClientCell.xib */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
+		5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5329049E1974C16F005A2E26 /* UserHeader.xib */; };
+		532904AF1974FDCF005A2E26 /* PhysicalActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904AE1974FDCF005A2E26 /* PhysicalActivity.m */; };
+		532904B11974FDF3005A2E26 /* PhysicalActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904B01974FDF3005A2E26 /* PhysicalActivity.xib */; };
+		532904B61974FFE5005A2E26 /* DietActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904B51974FFE5005A2E26 /* DietActivity.m */; };
+		532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904B71974FFF2005A2E26 /* DietActivity.xib */; };
+		532904BC197500FD005A2E26 /* WeightActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904BB197500FD005A2E26 /* WeightActivity.m */; };
+		532904BE19750108005A2E26 /* WeightActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904BD19750108005A2E26 /* WeightActivity.xib */; };
+		532904C219750555005A2E26 /* UserHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904C119750555005A2E26 /* UserHeader.m */; };
+		532904C41975062A005A2E26 /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904C31975062A005A2E26 /* ActivityCell.xib */; };
 		5348EC1C1968FBE200E99C4A /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC191968FBE200E99C4A /* Plan.m */; };
 		5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC1B1968FBE200E99C4A /* PlanAttribute.m */; };
 		5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC1F1968FBEA00E99C4A /* MyPlanViewController.m */; };
@@ -56,9 +65,6 @@
 		5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */; };
 		5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D07C1971EAAE00612FFE /* ActivitiesCollectionViewController.m */; };
 		5354D0811971EC8800612FFE /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0801971EC8800612FFE /* ActivityCell.m */; };
-		5354D0851971ECC500612FFE /* Physical.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0841971ECC500612FFE /* Physical.xib */; };
-		5354D0871971ED0A00612FFE /* Eating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0861971ED0A00612FFE /* Eating.xib */; };
-		5354D0891971ED1500612FFE /* Weight.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0881971ED1500612FFE /* Weight.xib */; };
 		53B1EC5F1973068D00101B39 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */; };
 		53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */; };
 		53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */; };
@@ -148,6 +154,19 @@
 		46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertBrowserViewController.h; sourceTree = "<group>"; };
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
+		5329049E1974C16F005A2E26 /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
+		532904AD1974FDCF005A2E26 /* PhysicalActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalActivity.h; sourceTree = "<group>"; };
+		532904AE1974FDCF005A2E26 /* PhysicalActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalActivity.m; sourceTree = "<group>"; };
+		532904B01974FDF3005A2E26 /* PhysicalActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhysicalActivity.xib; sourceTree = "<group>"; };
+		532904B41974FFE5005A2E26 /* DietActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietActivity.h; sourceTree = "<group>"; };
+		532904B51974FFE5005A2E26 /* DietActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietActivity.m; sourceTree = "<group>"; };
+		532904B71974FFF2005A2E26 /* DietActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DietActivity.xib; sourceTree = "<group>"; };
+		532904BA197500FD005A2E26 /* WeightActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightActivity.h; sourceTree = "<group>"; };
+		532904BB197500FD005A2E26 /* WeightActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightActivity.m; sourceTree = "<group>"; };
+		532904BD19750108005A2E26 /* WeightActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeightActivity.xib; sourceTree = "<group>"; };
+		532904C019750555005A2E26 /* UserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeader.h; sourceTree = "<group>"; };
+		532904C119750555005A2E26 /* UserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeader.m; sourceTree = "<group>"; };
+		532904C31975062A005A2E26 /* ActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
 		5348EC181968FBE200E99C4A /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		5348EC191968FBE200E99C4A /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		5348EC1A1968FBE200E99C4A /* PlanAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanAttribute.h; sourceTree = "<group>"; };
@@ -172,9 +191,6 @@
 		5354D07C1971EAAE00612FFE /* ActivitiesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesCollectionViewController.m; sourceTree = "<group>"; };
 		5354D07F1971EC8800612FFE /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
 		5354D0801971EC8800612FFE /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
-		5354D0841971ECC500612FFE /* Physical.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Physical.xib; sourceTree = "<group>"; };
-		5354D0861971ED0A00612FFE /* Eating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Eating.xib; sourceTree = "<group>"; };
-		5354D0881971ED1500612FFE /* Weight.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Weight.xib; sourceTree = "<group>"; };
 		53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
 		53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
@@ -476,6 +492,46 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		532904A91974FC25005A2E26 /* Physical */ = {
+			isa = PBXGroup;
+			children = (
+				532904AD1974FDCF005A2E26 /* PhysicalActivity.h */,
+				532904AE1974FDCF005A2E26 /* PhysicalActivity.m */,
+				532904B01974FDF3005A2E26 /* PhysicalActivity.xib */,
+			);
+			name = Physical;
+			sourceTree = "<group>";
+		};
+		532904B31974FFD8005A2E26 /* Diet */ = {
+			isa = PBXGroup;
+			children = (
+				532904B41974FFE5005A2E26 /* DietActivity.h */,
+				532904B51974FFE5005A2E26 /* DietActivity.m */,
+				532904B71974FFF2005A2E26 /* DietActivity.xib */,
+			);
+			name = Diet;
+			sourceTree = "<group>";
+		};
+		532904B9197500ED005A2E26 /* Weight */ = {
+			isa = PBXGroup;
+			children = (
+				532904BA197500FD005A2E26 /* WeightActivity.h */,
+				532904BB197500FD005A2E26 /* WeightActivity.m */,
+				532904BD19750108005A2E26 /* WeightActivity.xib */,
+			);
+			name = Weight;
+			sourceTree = "<group>";
+		};
+		532904BF19750548005A2E26 /* UserHeader */ = {
+			isa = PBXGroup;
+			children = (
+				532904C019750555005A2E26 /* UserHeader.h */,
+				532904C119750555005A2E26 /* UserHeader.m */,
+				5329049E1974C16F005A2E26 /* UserHeader.xib */,
+			);
+			name = UserHeader;
+			sourceTree = "<group>";
+		};
 		5348EC241968FCD600E99C4A /* My Plan */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,11 +598,13 @@
 		5354D07E1971EBD800612FFE /* Activity Cell */ = {
 			isa = PBXGroup;
 			children = (
+				532904BF19750548005A2E26 /* UserHeader */,
+				532904B9197500ED005A2E26 /* Weight */,
+				532904B31974FFD8005A2E26 /* Diet */,
+				532904A91974FC25005A2E26 /* Physical */,
 				5354D07F1971EC8800612FFE /* ActivityCell.h */,
 				5354D0801971EC8800612FFE /* ActivityCell.m */,
-				5354D0841971ECC500612FFE /* Physical.xib */,
-				5354D0861971ED0A00612FFE /* Eating.xib */,
-				5354D0881971ED1500612FFE /* Weight.xib */,
+				532904C31975062A005A2E26 /* ActivityCell.xib */,
 			);
 			name = "Activity Cell";
 			sourceTree = "<group>";
@@ -691,7 +749,7 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
-						DevelopmentTeam = Q4M29PLT7E;
+						DevelopmentTeam = V9W7KY986M;
 					};
 					460447B91964ECC600DDE6C6 = {
 						TestTargetID = 4604479E1964ECC600DDE6C6;
@@ -723,17 +781,21 @@
 			files = (
 				5348EC37196945EC00E99C4A /* MyPlanOverviewViewController.xib in Resources */,
 				A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */,
+				532904BE19750108005A2E26 /* WeightActivity.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
-				5354D0891971ED1500612FFE /* Weight.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
+				5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
+				532904C41975062A005A2E26 /* ActivityCell.xib in Resources */,
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
 				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
 				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
+				532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */,
 				9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
+				532904B11974FDF3005A2E26 /* PhysicalActivity.xib in Resources */,
 				53B1EC6B19730E5400101B39 /* readme.txt in Resources */,
 				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
@@ -746,9 +808,7 @@
 				461E5AB9196A1037000D120F /* ChatCell.xib in Resources */,
 				5348EC221968FBEA00E99C4A /* MyPlanViewController.xib in Resources */,
 				46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */,
-				5354D0851971ECC500612FFE /* Physical.xib in Resources */,
 				5348EC3F19694B6200E99C4A /* ExpandCell.xib in Resources */,
-				5354D0871971ED0A00612FFE /* Eating.xib in Resources */,
 				53B1EC5F1973068D00101B39 /* SourceSansPro-Light.otf in Resources */,
 				46907789197276FB00CF9DBC /* FanOutViewController.xib in Resources */,
 			);
@@ -802,6 +862,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				532904BC197500FD005A2E26 /* WeightActivity.m in Sources */,
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
 				461E5AB7196A101E000D120F /* ChatCell.m in Sources */,
 				46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */,
@@ -817,6 +878,7 @@
 				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
+				532904AF1974FDCF005A2E26 /* PhysicalActivity.m in Sources */,
 				5354D0811971EC8800612FFE /* ActivityCell.m in Sources */,
 				5348EC211968FBEA00E99C4A /* MyPlanViewController.m in Sources */,
 				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,
@@ -833,6 +895,8 @@
 				A3B4A893196A7F7900135230 /* MoreViewController.m in Sources */,
 				53B1EC781973683400101B39 /* ProfileCell.m in Sources */,
 				9FD3349719738292003E1727 /* UIImage+ImageEffects.m in Sources */,
+				532904C219750555005A2E26 /* UserHeader.m in Sources */,
+				532904B61974FFE5005A2E26 /* DietActivity.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,

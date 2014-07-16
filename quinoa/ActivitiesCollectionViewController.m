@@ -14,11 +14,11 @@
 #import "Utils.h"
 
 @interface ActivitiesCollectionViewController ()
-
+{
+    BOOL isExpertView;
+}
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
-
 @property (nonatomic, strong) ActivityCell *stubCell;
 
 @end
@@ -31,6 +31,7 @@
     if (self) {
         if (self.user == nil) {
             self.user = [User currentUser];
+            isExpertView = [self.user isExpert];
         }
         self.title = self.user.firstName;
     }
@@ -73,14 +74,21 @@
                                                                  forIndexPath:indexPath];
 
     Activity *activity = self.activities[indexPath.row];
-    cell.activity = activity;
-
+    if (isExpertView) {
+        [cell setActivity:activity user:self.user];
+    } else {
+        cell.activity = activity;
+    }
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    self.stubCell.activity = self.activities[indexPath.row];
+    Activity *activity = self.activities[indexPath.row];
+    if (isExpertView) {
+        [self.stubCell setActivity:activity user:self.user];
+    } else {
+        self.stubCell.activity = activity;
+    }
     CGSize size = [self.stubCell intrinsicContentSize];
     size.width = self.collectionView.frame.size.width - 20;
     return size;

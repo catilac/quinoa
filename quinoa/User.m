@@ -14,6 +14,10 @@
 @dynamic gender, birthday, height, weight;
 @dynamic currentTrainer, image;
 
+- (BOOL)isExpert {
+    return [self.role isEqualToString:@"expert"];
+}
+
 - (NSString *)getDisplayName {
     if (self.firstName) {
         return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];

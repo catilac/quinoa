@@ -74,4 +74,22 @@
         }
     }];
 }
+
++ (void)likeActivityById:(NSString *)activityId
+              byExpertId:(NSString *)expertId {
+    PFObject *like = [PFObject objectWithClassName:@"ActivityLike"];
+    like[@"activityId"] = activityId;
+    like[@"expertId"] = expertId;
+    [like saveInBackground];
+}
+
++ (void)unlikeActivityById:(NSString *)activityId
+                byExpertId:(NSString *)expertId {
+    PFQuery *query = [PFQuery queryWithClassName:@"ActivityLike"];
+    [query whereKey:@"activityId" equalTo:activityId];
+    [query whereKey:@"expertId" equalTo:expertId];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [object deleteInBackground];
+    }];
+}
 @end

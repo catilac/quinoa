@@ -21,6 +21,8 @@
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
 		461E5AB7196A101E000D120F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E5AB6196A101E000D120F /* ChatCell.m */; };
 		461E5AB9196A1037000D120F /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461E5AB8196A1037000D120F /* ChatCell.xib */; };
+		462769DB197636770049482F /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462769D9197636770049482F /* DashboardViewController.m */; };
+		462769DC197636770049482F /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 462769DA197636770049482F /* DashboardViewController.xib */; };
 		46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46437E121971E1D700A70338 /* TrackEatingViewController.m */; };
 		46437E151971E1D700A70338 /* TrackEatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46437E131971E1D700A70338 /* TrackEatingViewController.xib */; };
 		4653DB971969CEEE00E4114F /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653DB961969CEEE00E4114F /* Message.m */; };
@@ -113,6 +115,9 @@
 		461E5AB5196A101E000D120F /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		461E5AB6196A101E000D120F /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		461E5AB8196A1037000D120F /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		462769D8197636770049482F /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		462769D9197636770049482F /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		462769DA197636770049482F /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		46437E111971E1D700A70338 /* TrackEatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackEatingViewController.h; sourceTree = "<group>"; };
 		46437E121971E1D700A70338 /* TrackEatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackEatingViewController.m; sourceTree = "<group>"; };
 		46437E131971E1D700A70338 /* TrackEatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackEatingViewController.xib; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				462769D7197636630049482F /* Dashboard */,
 				9FD3348F19735B23003E1727 /* Activity */,
 				46AA118619730C2B001C7F02 /* My Clients */,
 				46907784197276E100CF9DBC /* FanOut Controller */,
@@ -356,6 +362,16 @@
 				461E5AB8196A1037000D120F /* ChatCell.xib */,
 			);
 			name = "Chat Cell";
+			sourceTree = "<group>";
+		};
+		462769D7197636630049482F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				462769D8197636770049482F /* DashboardViewController.h */,
+				462769D9197636770049482F /* DashboardViewController.m */,
+				462769DA197636770049482F /* DashboardViewController.xib */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 		46437E101971E1C000A70338 /* TrackEating */ = {
@@ -722,6 +738,7 @@
 				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
+				462769DC197636770049482F /* DashboardViewController.xib in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
 				46437E151971E1D700A70338 /* TrackEatingViewController.xib in Resources */,
 				465C1FF81969540F008BFD30 /* ChatViewController.xib in Resources */,
@@ -805,6 +822,7 @@
 				5348EC4119694C1500E99C4A /* ExpandCell.m in Sources */,
 				5348EC1D1968FBE200E99C4A /* PlanAttribute.m in Sources */,
 				5348EC391969479600E99C4A /* MyPlanOverviewViewController.m in Sources */,
+				462769DB197636770049482F /* DashboardViewController.m in Sources */,
 				5354D0751971D76700612FFE /* Activity.m in Sources */,
 				46BDC0B31974EEF90004387D /* TrackButton.m in Sources */,
 				9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */,

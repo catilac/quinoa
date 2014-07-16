@@ -18,6 +18,7 @@
 #import "MyClientsViewController.h"
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
+#import "DashboardViewController.h"
 
 @interface LoginViewController ()
 
@@ -149,6 +150,9 @@
         expertViewController = [[ExpertBrowserViewController alloc] init];        
     }
     
+    DashboardViewController *dashboardViewController = [[DashboardViewController alloc] init];
+    UINavigationController *dashboardNavController = [[UINavigationController alloc] initWithRootViewController:dashboardViewController];
+    
     UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
     expertNavController.tabBarItem.title = @"My Trainer";
     expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myTrainer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
@@ -177,7 +181,7 @@
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
 
-    tabBarController.viewControllers = @[expertNavController, activitiesNavController, trackingNavController, profileNavController, moreNavController];
+    tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
 
     // Add custom view for custom track UITabBarItem
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;

@@ -7,6 +7,7 @@
 //
 
 #import "TrackButton.h"
+#import "Utils.h"
 
 @interface TrackButton ()
 
@@ -23,7 +24,13 @@
     if (self) {
         // Initialization code
         [self setUserInteractionEnabled:NO];
-        [self setBackgroundColor:[UIColor redColor]];
+        
+        // Set track button properties
+        [self setBackgroundColor:[Utils getGreen]];
+        UIImageView *trackImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"track"]];
+        trackImage.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - 25);
+        
+        [self addSubview:trackImage];
         
         _armed = NO;
         

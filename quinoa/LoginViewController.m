@@ -124,7 +124,14 @@
 
 - (void)setupNavigationForExpert {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    
+
+    // Activity Tab
+    ActivitiesCollectionViewController *activitiesViewController = [[ActivitiesCollectionViewController alloc] init];
+    UINavigationController *activitiesNavController = [[UINavigationController alloc] initWithRootViewController:activitiesViewController];
+    activitiesNavController.tabBarItem.title = @"Activity";
+    activitiesNavController.tabBarItem.image = [[UIImage imageNamed:@"activity"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    activitiesNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"activity-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
     // My Clients Tab
     MyClientsViewController *myClientsViewController = [[MyClientsViewController alloc] init];
     UINavigationController *myClientsNavController = [[UINavigationController alloc] initWithRootViewController:myClientsViewController];
@@ -139,7 +146,7 @@
     moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    tabBarController.viewControllers = @[myClientsNavController, moreNavController];
+    tabBarController.viewControllers = @[activitiesNavController, myClientsNavController, moreNavController];
 
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];

@@ -33,7 +33,7 @@
 - (void)setActivity:(Activity *)activity {
     _activity = activity;
 
-    self.valueLabel.text = [NSString stringWithFormat:@"%@", self.activity.activityValue];
+    self.valueLabel.text = [NSString stringWithFormat:@"%i", [self.activity.activityValue intValue]];
     [self.valueLabel setTextColor:[Utils getGreen]];
     [self.unitLabel setTextColor:[Utils getGreen]];
     [self.blurbLabel setTextColor:[Utils getGray]];

@@ -13,13 +13,17 @@
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
 
+static const CGFloat UserHeaderHeight = 65;
+static const CGFloat ActivitySectionHeight = 60;
+static const CGFloat DividerHeight = 30;
+static const CGFloat ImageDimension = 260;
+
 @interface ActivitiesCollectionViewController ()
 {
     BOOL isExpertView;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
-@property (nonatomic, strong) ActivityCell *stubCell;
 
 @end
 
@@ -50,10 +54,6 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
-    [self fetchData];
-
-    self.stubCell = [[ActivityCell alloc] init];
-    
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
@@ -61,6 +61,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self fetchData];
+    [self.collectionView setContentOffset:CGPointZero animated:NO];
     [super viewDidAppear:animated];
 }
 
@@ -77,25 +78,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActivityCell"
                                                                  forIndexPath:indexPath];
-
     Activity *activity = self.activities[indexPath.row];
-    if (isExpertView) {
-        [cell setActivity:activity user:self.user];
-    } else {
-        cell.activity = activity;
-    }
+    [cell setActivity:activity showHeader:isExpertView];
+
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    Activity *activity = self.activities[indexPath.row];
-    if (isExpertView) {
-        [self.stubCell setActivity:activity user:self.user];
-    } else {
-        self.stubCell.activity = activity;
-    }
-    CGSize size = [self.stubCell intrinsicContentSize];
-    size.width = self.collectionView.frame.size.width - 20;
+    CGSize size = [self cellHeight:self.activities[indexPath.row]];
     return size;
 }
 
@@ -111,13 +101,27 @@
 }
 
 - (void)fetchData {
-    [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
-        self.activities = objects;
-        NSLog(@"activities count: %d", self.activities.count);
-        [self.collectionView reloadData];
-    } error:^(NSError *error) {
-        NSLog(@"[ActivitiesCollection] error: %@", error.description);
-    }];
+    // TODO: Add paging here
+    if (self.activities > 0) {
+        return;
+    }
+    if (isExpertView) {
+        [Activity getClientActivitiesByExpert:self.user success:^(NSArray *objects) {
+            self.activities = objects;
+            NSLog(@"client activities count: %d", self.activities.count);
+            [self.collectionView reloadData];
+        } error:^(NSError *error) {
+            NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
+        }];
+    } else {
+        [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
+            self.activities = objects;
+            NSLog(@"my activities count: %d", self.activities.count);
+            [self.collectionView reloadData];
+        } error:^(NSError *error) {
+            NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
+        }];
+    }
 }
 
 - (void)setupUI {
@@ -131,6 +135,24 @@
     [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
+}
+
+- (CGSize)cellHeight:(Activity *)activity {
+    CGSize size = CGSizeMake(self.collectionView.frame.size.width - 20, 0);
+    if (activity.activityType == Eating) {
+        size.height += ImageDimension;
+    }
+    if (activity.activityType != Weight && [activity.descriptionText length] > 0) {
+        NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:13]};
+        CGRect rect = [activity.descriptionText boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
+        size.height += rect.size.height + DividerHeight;
+    }
+    size.height += ActivitySectionHeight;
+    if (isExpertView) {
+        size.height += UserHeaderHeight;
+    }
+    NSLog(@"type: %i - %f", activity.activityType, size.height);
+    return size;
 }
 
 @end

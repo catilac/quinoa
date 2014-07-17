@@ -19,8 +19,10 @@
 }
 
 - (NSString *)getDisplayName {
-    if (self.firstName) {
+    if (self.firstName && self.lastName) {
         return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+    } else if (self.firstName) {
+        return [NSString stringWithFormat:@"%@", self.firstName];
     } else {
         return self.email;
     }

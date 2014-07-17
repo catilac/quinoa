@@ -14,10 +14,6 @@
 #import "UserHeader.h"
 
 static const CGFloat UserHeaderHeight = 65;
-static const CGFloat ActivitySectionHeight = 60;
-static const CGFloat DividerHeight = 50;
-static const CGFloat ImageDimension = 260;
-static const CGFloat CellWidth = 260;
 
 @interface ActivityCell ()
 
@@ -43,8 +39,17 @@ static const CGFloat CellWidth = 260;
         UINib *nib = [UINib nibWithNibName:@"ActivityCell" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
         [self addSubview:objects[0]];
+
+        // Supposed to fix resizing issue with dequeued cells;
+        // I don't think it's helping.
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
+}
+
+-(void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self setNeedsDisplay]; // force drawRect:
 }
 
 - (void)setActivity:(Activity *)activity {
@@ -64,42 +69,29 @@ static const CGFloat CellWidth = 260;
         weightActivity.activity = activity;
         [self.activityView addSubview:weightActivity];
     }
-
-    if (self.user == nil) {
-        self.topConstraint.constant = 0;
-    }
 }
 
-- (void)setActivity:(Activity *)activity user:(User *)user {
-    _user = user;
-    UserHeader *userHeader = [[UserHeader alloc] init];
-    self.userView.backgroundColor = [Utils getLightGray];
-
-    userHeader.user = user;
-    [self.userView addSubview:userHeader];
-    self.userView.hidden = NO;
-    self.topConstraint.constant = UserHeaderHeight;
-
+- (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader {
+    if (showHeader) {
+        UserHeader *userHeader = [[UserHeader alloc] init];
+        self.userView.backgroundColor = [Utils getLightGray];
+        userHeader.user = activity.user;
+        [self.userView addSubview:userHeader];
+        self.userView.hidden = NO;
+        self.topConstraint.constant = UserHeaderHeight;
+    } else {
+        self.userView.hidden = YES;
+        self.topConstraint.constant = 0;
+    }
     self.activity = activity;
 }
 
-- (CGSize)intrinsicContentSize {
-    CGSize size = CGSizeMake(CellWidth, 0);
-    if (self.activity.activityType == Eating) {
-        size.height += ImageDimension;
-    }
-    if (self.activity.descriptionText) {
-        NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:13]};
-        CGRect rect = [self.activity.descriptionText boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
-        size.height += rect.size.height + DividerHeight;
-    }
-    size.height += ActivitySectionHeight;
-    if (self.user) {
-        size.height += UserHeaderHeight;
-    }
-    NSLog(@"type: %i - %f", self.activity.activityType, size.height);
-    return size;
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.userView = nil;
+    self.activityView = nil;
+    self.topConstraint = 0;
+    self.activity = nil;
 }
-
 
 @end

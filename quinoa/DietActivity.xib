@@ -13,27 +13,46 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="IwL-AS-m6H">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="426"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2p4-3n-EO3">
-                    <rect key="frame" x="10" y="8" width="280" height="280"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2p4-3n-EO3">
+                    <rect key="frame" x="10" y="10" width="280" height="280"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="0Vb-4Y-OEZ"/>
+                        <constraint firstAttribute="height" constant="280" id="wnY-6x-rVq"/>
+                    </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tlj-HY-dDN" userLabel="Divider">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tlj-HY-dDN" userLabel="Divider">
                     <rect key="frame" x="10" y="300" width="280" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="CSa-c3-LrT"/>
+                    </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Optional description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="265" translatesAutoresizingMaskIntoConstraints="NO" id="46I-ag-umz">
-                    <rect key="frame" x="15" y="310" width="265" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="46I-ag-umz">
+                    <rect key="frame" x="10" y="311" width="280" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="46I-ag-umz" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="BKO-gx-OPg"/>
+                <constraint firstItem="Tlj-HY-dDN" firstAttribute="top" secondItem="2p4-3n-EO3" secondAttribute="bottom" constant="10" id="H9g-fX-C3w"/>
+                <constraint firstAttribute="trailing" secondItem="46I-ag-umz" secondAttribute="trailing" constant="10" id="MDH-Sq-hsX"/>
+                <constraint firstItem="2p4-3n-EO3" firstAttribute="top" secondItem="IwL-AS-m6H" secondAttribute="top" constant="10" id="MNZ-de-X65"/>
+                <constraint firstItem="46I-ag-umz" firstAttribute="top" secondItem="Tlj-HY-dDN" secondAttribute="bottom" constant="10" id="RHc-FL-5Q7"/>
+                <constraint firstAttribute="bottom" secondItem="46I-ag-umz" secondAttribute="bottom" constant="10" id="XgM-4p-JOh"/>
+                <constraint firstItem="2p4-3n-EO3" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="hIL-Q9-cgA"/>
+                <constraint firstAttribute="trailing" secondItem="Tlj-HY-dDN" secondAttribute="trailing" constant="10" id="hif-lk-5wX"/>
+                <constraint firstAttribute="trailing" secondItem="2p4-3n-EO3" secondAttribute="trailing" constant="10" id="joi-9m-Dfh"/>
+                <constraint firstItem="Tlj-HY-dDN" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="yKi-Aq-fmE"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

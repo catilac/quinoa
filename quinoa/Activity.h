@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 typedef enum {
     Eating,
@@ -22,7 +23,7 @@ typedef enum {
 @property (strong, nonatomic) NSNumber *activityValue;
 @property (strong, nonatomic) PFFile *image;
 @property (strong, nonatomic) NSString *descriptionText;
-@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) User *user;
 
 
 + (NSString *)parseClassName;
@@ -30,10 +31,15 @@ typedef enum {
 + (Activity *)trackPhysical:(NSNumber *)duration;
 + (Activity *)trackWeight:(NSNumber *)weight;
 
-+ (void)getActivitiesByUser:(PFUser *)user
++ (void)getActivitiesByUser:(User *)user
                     success:(void (^) (NSArray *objects))success
                       error:(void (^) (NSError *error))error;
-+ (void)getAverageByUser:(PFUser *)user
+
++ (void)getClientActivitiesByExpert:(User *)expert
+                    success:(void (^) (NSArray *objects))success
+                      error:(void (^) (NSError *error))error;
+
++ (void)getAverageByUser:(User *)user
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success
                    error:(void (^) (NSError *error))error;

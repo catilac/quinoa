@@ -26,6 +26,7 @@
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
 @property (strong, nonatomic) Activity *activity;
+@property (assign) ActivityType activityType;
 
 
 @end

@@ -14,6 +14,7 @@
 @dynamic user;
 @dynamic expert;
 @dynamic activity;
+@dynamic activityType;
 
 + (NSString *)parseClassName {
     return @"ActivityLike";
@@ -41,6 +42,7 @@
     newActivityLike.user = user;
     newActivityLike.expert = expert;
     newActivityLike.activity = activity;
+    newActivityLike.activityType = activity.activityType;
     [newActivityLike saveInBackground];
 
     return newActivityLike;

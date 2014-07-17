@@ -42,7 +42,7 @@ static const CGFloat UserHeaderHeight = 65;
 
         // Supposed to fix resizing issue with dequeued cells;
         // I don't think it's helping.
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        //self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
 }
@@ -88,9 +88,18 @@ static const CGFloat UserHeaderHeight = 65;
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    self.userView = nil;
-    self.activityView = nil;
-    self.topConstraint = 0;
+
+    NSArray *userViewsToRemove = [self.userView subviews];
+    for (UIView *subview in userViewsToRemove) {
+        [subview removeFromSuperview];
+    }
+
+    NSArray *viewsToRemove = [self.activityView subviews];
+    for (UIView *subview in viewsToRemove) {
+        [subview removeFromSuperview];
+    }
+
+    self.topConstraint.constant = 0;
     self.activity = nil;
 }
 

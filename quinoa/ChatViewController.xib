@@ -52,8 +52,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
             </subviews>
+            <gestureRecognizers/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="cFO-Lo-VKI" appends="YES" id="nLq-fh-h4I"/>
+            </connections>
         </view>
         <viewController id="yVT-wZ-eNv">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -62,5 +66,11 @@
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </viewController>
+        <tapGestureRecognizer id="2x9-Yo-mxd"/>
+        <tapGestureRecognizer id="cFO-Lo-VKI">
+            <connections>
+                <action selector="onViewTap:" destination="-1" id="zK5-jy-AAe"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

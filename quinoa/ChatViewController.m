@@ -23,6 +23,7 @@
 
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
+- (IBAction)onViewTap:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -157,9 +158,16 @@ static NSString *CellIdentifier = @"chatCellIdent";
                           delay:0.0
                         options:(animationCurve << 16)
                      animations:^{
-                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.inputContainer.frame.origin.y + kbSize.height + self.tabBarController.tabBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
                      }
                      completion:nil];
+}
+
+- (IBAction)onViewTap:(UITapGestureRecognizer *)sender {
+    
+    // dismiss keyboard
+    [self.view endEditing:YES];
+    
 }
 
 

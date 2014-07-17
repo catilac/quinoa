@@ -42,8 +42,7 @@
     } else {
         [self.imageView setImage:[UIImage imageNamed:@"avatar"]];
     }
-    // Not sure why this is not working :(
-    self.imageView.layer.cornerRadius = 30;
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     self.nameLabel.text = [user getDisplayName];
     self.metaLabel.text = [user getMetaInfo];
 

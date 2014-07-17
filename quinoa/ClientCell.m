@@ -7,6 +7,8 @@
 //
 
 #import "ClientCell.h"
+#import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @interface ClientCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -29,15 +31,22 @@
 }
 
 - (void)setValuesWithClient:(User *)client {
-    self.backgroundColor = [UIColor colorWithRed:0.949 green:0.961 blue:0.969 alpha:1];
+    
+    [self setBackgroundColor:[Utils getLightGray]];
     self.layer.borderColor = [[UIColor colorWithRed:0.780 green:0.816 blue:0.851 alpha:1] CGColor];
     self.layer.borderWidth = 1;
     self.layer.cornerRadius = 3;
-    self.clientName.text = client.username;
-    self.clientBasicInfo.text = [client getSexAndAge];
     
-    self.profileImage.layer.cornerRadius = 50;
+    self.clientName.text = client.username;
+    [self.clientName setTextColor:[Utils getDarkBlue]];
+    self.clientName.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:[self.clientName.font pointSize]];
+    
+    self.clientBasicInfo.text = [client getSexAndAge];
+    [self.clientBasicInfo setTextColor:[Utils getGray]];
+    self.clientBasicInfo.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:[self.clientBasicInfo.font pointSize]];
 
+    
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
 }
 
 /*

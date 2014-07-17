@@ -18,6 +18,7 @@
 #import "MyClientsViewController.h"
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
+#import "DashboardViewController.h"
 
 @interface LoginViewController ()
 
@@ -127,12 +128,16 @@
     // My Clients Tab
     MyClientsViewController *myClientsViewController = [[MyClientsViewController alloc] init];
     UINavigationController *myClientsNavController = [[UINavigationController alloc] initWithRootViewController:myClientsViewController];
+    myClientsNavController.tabBarItem.title = @"Clients";
+    myClientsNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    myClientsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     // More Tab
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
     moreNavController.tabBarItem.title = @"More";
-    moreNavController.tabBarItem.image = [UIImage imageNamed:@"clientFeed"];
+    moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     tabBarController.viewControllers = @[myClientsNavController, moreNavController];
 
@@ -149,14 +154,20 @@
         expertViewController = [[ExpertBrowserViewController alloc] init];        
     }
     
+    DashboardViewController *dashboardViewController = [[DashboardViewController alloc] init];
+    UINavigationController *dashboardNavController = [[UINavigationController alloc] initWithRootViewController:dashboardViewController];
+    dashboardNavController.tabBarItem.title = @"Dashboard";
+    dashboardNavController.tabBarItem.image = [[UIImage imageNamed:@"dashboard"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    dashboardNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"dashboard-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
-    expertNavController.tabBarItem.title = @"My Trainer";
-    expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myTrainer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myTrainer-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    expertNavController.tabBarItem.title = @"Trainer";
+    expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] init];
     UINavigationController *activitiesNavController = [[UINavigationController alloc] initWithRootViewController:activitiesController];
-    activitiesNavController.tabBarItem.title = @"My Activity";
+    activitiesNavController.tabBarItem.title = @"Profile";
     activitiesNavController.tabBarItem.image = [[UIImage imageNamed:@"myActivity"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     activitiesNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myActivity-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
@@ -169,19 +180,20 @@
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
     moreNavController.tabBarItem.title = @"More";
-    moreNavController.tabBarItem.image = [[UIImage imageNamed:@"clientFeed"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
-    moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"clientFeed-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
 
-    tabBarController.viewControllers = @[expertNavController, activitiesNavController, trackingNavController, profileNavController, moreNavController];
+    tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
 
     // Add custom view for custom track UITabBarItem
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    TrackButton *trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-25, screenSize.height-65, 50, 65)];
+    TrackButton *trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-35, screenSize.height-55, 70, 110)];
+    trackButton.layer.cornerRadius = 3;
     [tabBarController.view addSubview:trackButton];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];

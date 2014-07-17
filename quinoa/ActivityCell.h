@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#import "User.h"
 
 @interface ActivityCell : UICollectionViewCell
 
-//@property (nonatomic) ActivityType activityType;
 @property (nonatomic, strong) Activity *activity;
+@property (nonatomic, strong) User *user;
 
-//- (id)initWithActivityType:(ActivityType)activityType;
+- (void)setActivity:(Activity *)activity user:(User *)user;
 
 @end

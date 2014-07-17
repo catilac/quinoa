@@ -25,6 +25,8 @@
 @property (nonatomic, strong) User *currentTrainer;
 @property (nonatomic, strong) PFFile *image;
 
+- (BOOL)isExpert;
+
 - (NSString *)getDisplayName;
 - (NSString *)getSexAndAge;
 

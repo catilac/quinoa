@@ -37,4 +37,11 @@ typedef enum {
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success
                    error:(void (^) (NSError *error))error;
+
++ (void)likeActivityById:(NSString *)activityId
+              byExpertId:(NSString *)expertId;
+
++ (void)unlikeActivityById:(NSString *)activityId
+              byExpertId:(NSString *)expertId;
+
 @end

@@ -38,8 +38,11 @@
 		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
 		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
 		46BDC0B31974EEF90004387D /* TrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC0B21974EEF90004387D /* TrackButton.m */; };
+		46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */; };
+		46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */; };
 		46F73FAF1973159B00E33932 /* ClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F73FAE1973159B00E33932 /* ClientCell.m */; };
 		46F73FB1197316B900E33932 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F73FB0197316B900E33932 /* ClientCell.xib */; };
+		46FBFAC41977B2700024BB10 /* ActivityLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FBFAC31977B2700024BB10 /* ActivityLike.m */; };
 		46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */; };
 		46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */; };
 		5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5329049E1974C16F005A2E26 /* UserHeader.xib */; };
@@ -148,9 +151,14 @@
 		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
 		46BDC0B11974EEF90004387D /* TrackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackButton.h; sourceTree = "<group>"; };
 		46BDC0B21974EEF90004387D /* TrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackButton.m; sourceTree = "<group>"; };
+		46CDF23E19765DE900B43FBB /* DashboardFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardFeedCell.h; sourceTree = "<group>"; };
+		46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardFeedCell.m; sourceTree = "<group>"; };
+		46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardFeedCell.xib; sourceTree = "<group>"; };
 		46F73FAD1973159B00E33932 /* ClientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCell.h; sourceTree = "<group>"; };
 		46F73FAE1973159B00E33932 /* ClientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientCell.m; sourceTree = "<group>"; };
 		46F73FB0197316B900E33932 /* ClientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientCell.xib; sourceTree = "<group>"; };
+		46FBFAC21977B2700024BB10 /* ActivityLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLike.h; sourceTree = "<group>"; };
+		46FBFAC31977B2700024BB10 /* ActivityLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityLike.m; sourceTree = "<group>"; };
 		46FF800A1968A9C50091A7B2 /* ExpertBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertBrowserViewController.h; sourceTree = "<group>"; };
 		46FF800B1968A9C50091A7B2 /* ExpertBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertBrowserViewController.m; sourceTree = "<group>"; };
 		46FF800C1968A9C50091A7B2 /* ExpertBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertBrowserViewController.xib; sourceTree = "<group>"; };
@@ -357,6 +365,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
 				46BDC0B01974EEDC0004387D /* Track Button */,
 				53B1EC75197367EA00101B39 /* Profile Cell */,
 				53B1EC6C1973449E00101B39 /* Profile View */,
@@ -459,6 +468,16 @@
 			name = "Track Button";
 			sourceTree = "<group>";
 		};
+		46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */ = {
+			isa = PBXGroup;
+			children = (
+				46CDF23E19765DE900B43FBB /* DashboardFeedCell.h */,
+				46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */,
+				46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */,
+			);
+			name = "Dashboard Feed Cell";
+			sourceTree = "<group>";
+		};
 		46F73FAC1973156D00E33932 /* Client Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +507,8 @@
 				5354D0741971D76700612FFE /* Activity.m */,
 				53B1EC72197349BE00101B39 /* User.h */,
 				53B1EC73197349BE00101B39 /* User.m */,
+				46FBFAC21977B2700024BB10 /* ActivityLike.h */,
+				46FBFAC31977B2700024BB10 /* ActivityLike.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -785,6 +806,7 @@
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */,
+				46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
 				532904C41975062A005A2E26 /* ActivityCell.xib in Resources */,
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
@@ -887,6 +909,7 @@
 				462769DB197636770049482F /* DashboardViewController.m in Sources */,
 				5354D0751971D76700612FFE /* Activity.m in Sources */,
 				46BDC0B31974EEF90004387D /* TrackButton.m in Sources */,
+				46FBFAC41977B2700024BB10 /* ActivityLike.m in Sources */,
 				9FD3349319735B43003E1727 /* ActivityViewController.m in Sources */,
 				5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */,
 				53B1EC74197349BE00101B39 /* User.m in Sources */,
@@ -898,6 +921,7 @@
 				532904C219750555005A2E26 /* UserHeader.m in Sources */,
 				532904B61974FFE5005A2E26 /* DietActivity.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
+				46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,

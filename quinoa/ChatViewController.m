@@ -76,13 +76,14 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (void)viewDidLayoutSubviews {
     
-    self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+    /*self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
 
     NSLog(@"view: %f", self.view.frame.size.height);
     NSLog(@"tab: %f", self.tabBarController.tabBar.frame.size.height);
-    NSLog(@"container: %f", self.inputContainer.frame.size.height);
+    NSLog(@"container: %f", self.inputContainer.frame.size.height);*/
     
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     if (self.queryTimer) {
@@ -100,10 +101,12 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (IBAction)onSend:(id)sender {
+    
     [Message sendMessageToUser:self.recipient
                       fromUser:[User currentUser]
                        message:self.chatInput.text];
     self.chatInput.text = @"";
+
 }
 
 - (void)fetchMessages {
@@ -142,6 +145,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 
 - (void)willHideKeyboard:(NSNotification *)notification {
+    
+    NSLog(@"willHideKeyboard");
+    
     NSDictionary *userInfo = [notification userInfo];
     
     CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -158,15 +164,22 @@ static NSString *CellIdentifier = @"chatCellIdent";
                           delay:0.0
                         options:(animationCurve << 16)
                      animations:^{
-                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
                      }
                      completion:nil];
 }
 
 - (IBAction)onViewTap:(UITapGestureRecognizer *)sender {
     
-    // dismiss keyboard
-    [self.view endEditing:YES];
+    // get touch location
+    CGPoint touchPosition = [sender locationInView:self.view];
+    
+    if(touchPosition.y < self.inputContainer.frame.origin.y) {
+        
+        NSLog(@"Dismiss keyboard");
+        // dismiss keyboard
+        [self.view endEditing:YES];
+    }
     
 }
 

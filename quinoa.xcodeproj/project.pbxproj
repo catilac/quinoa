@@ -19,6 +19,8 @@
 		460447BE1964ECC600DDE6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460447A61964ECC600DDE6C6 /* UIKit.framework */; };
 		460447C61964ECC600DDE6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460447C41964ECC600DDE6C6 /* InfoPlist.strings */; };
 		460447C81964ECC600DDE6C6 /* quinoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460447C71964ECC600DDE6C6 /* quinoaTests.m */; };
+		460992C51977C6B400F03200 /* ActivityLikeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 460992C31977C6B400F03200 /* ActivityLikeCell.m */; };
+		460992C61977C6B400F03200 /* ActivityLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 460992C41977C6B400F03200 /* ActivityLikeCell.xib */; };
 		461E5AB7196A101E000D120F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E5AB6196A101E000D120F /* ChatCell.m */; };
 		461E5AB9196A1037000D120F /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461E5AB8196A1037000D120F /* ChatCell.xib */; };
 		462769DB197636770049482F /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462769D9197636770049482F /* DashboardViewController.m */; };
@@ -121,6 +123,9 @@
 		460447C31964ECC600DDE6C6 /* quinoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "quinoaTests-Info.plist"; sourceTree = "<group>"; };
 		460447C51964ECC600DDE6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		460447C71964ECC600DDE6C6 /* quinoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quinoaTests.m; sourceTree = "<group>"; };
+		460992C21977C6B400F03200 /* ActivityLikeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikeCell.h; sourceTree = "<group>"; };
+		460992C31977C6B400F03200 /* ActivityLikeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityLikeCell.m; sourceTree = "<group>"; };
+		460992C41977C6B400F03200 /* ActivityLikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityLikeCell.xib; sourceTree = "<group>"; };
 		461E5AB5196A101E000D120F /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		461E5AB6196A101E000D120F /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		461E5AB8196A1037000D120F /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -340,6 +345,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		460992C11977C69300F03200 /* Activity Like Cell */ = {
+			isa = PBXGroup;
+			children = (
+				460992C21977C6B400F03200 /* ActivityLikeCell.h */,
+				460992C31977C6B400F03200 /* ActivityLikeCell.m */,
+				460992C41977C6B400F03200 /* ActivityLikeCell.xib */,
+			);
+			name = "Activity Like Cell";
+			sourceTree = "<group>";
+		};
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +380,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				460992C11977C69300F03200 /* Activity Like Cell */,
 				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
 				46BDC0B01974EEDC0004387D /* Track Button */,
 				53B1EC75197367EA00101B39 /* Profile Cell */,
@@ -807,6 +823,7 @@
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */,
 				46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */,
+				460992C61977C6B400F03200 /* ActivityLikeCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
 				532904C41975062A005A2E26 /* ActivityCell.xib in Resources */,
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
@@ -927,6 +944,7 @@
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
 				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,
+				460992C51977C6B400F03200 /* ActivityLikeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

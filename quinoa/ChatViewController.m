@@ -143,6 +143,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
                         options:(animationCurve << 16)
                      animations:^{
                          self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.inputContainer.frame.origin.y - kbSize.height + self.tabBarController.tabBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                         
+                         self.chatView.frame = CGRectMake(self.chatView.frame.origin.x, self.chatView.frame.origin.y - kbSize.height + self.tabBarController.tabBar.frame.size.height, self.chatView.frame.size.width, self.chatView.frame.size.height);
                      }
                      completion:nil];
 }
@@ -169,6 +171,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
                         options:(animationCurve << 16)
                      animations:^{
                          self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                         
+                         self.chatView.frame = CGRectMake(self.chatView.frame.origin.x, 0, self.chatView.frame.size.width, self.chatView.frame.size.height);
                      }
                      completion:nil];
 }

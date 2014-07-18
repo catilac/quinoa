@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActivityLike.h"
 
 @interface ActivityLikeCell : UITableViewCell
+
+- (void)setActivityLike:(ActivityLike *)like;
 
 @end

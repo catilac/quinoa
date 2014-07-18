@@ -7,6 +7,15 @@
 //
 
 #import "ActivityLikeCell.h"
+#import "Activity.h"
+
+@interface ActivityLikeCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *likeTypeImage;
+@property (weak, nonatomic) IBOutlet UILabel *message;
+@property (strong, nonatomic) ActivityLike *like;
+
+@end
 
 @implementation ActivityLikeCell
 
@@ -18,8 +27,25 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
+}
+
+- (void)setActivityLike:(ActivityLike *)like {
+    _like = like;
+    if (like.activityType == ActivityTypeWeight) {
+        // TODO this is horrible copy
+        self.message.text = @"Enjoyed your Weight Loss";
+        self.imageView.backgroundColor = [UIColor redColor];
+
+    } else if (like.activityType == ActivityTypePhysical) {
+        self.imageView.backgroundColor = [UIColor blueColor];
+        self.message.text = @"Liked your Physical Activity";
+    } else {
+        self.imageView.backgroundColor = [UIColor greenColor];
+        self.message.text = @"Delicious!";
+    }
+    
+    
 }
 
 @end

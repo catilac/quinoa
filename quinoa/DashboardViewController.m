@@ -73,7 +73,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ActivityLikeCell *cell = (ActivityLikeCell *)[tableView dequeueReusableCellWithIdentifier:LikeCellIdent];
     ActivityLike *like = self.activityLikes[indexPath.row];
-    NSLog(@"Like: %@", like);
+    [cell setActivityLike:like];
     return cell;
 }
 

@@ -39,6 +39,7 @@
         [Utils loadImageFile:self.activity.image inImageView:self.imageView withAnimation:YES];
     }
     self.descriptionLabel.text = self.activity.descriptionText;
+    [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
     self.divider.backgroundColor = [Utils getGray];
 }
 

@@ -53,6 +53,8 @@ static const CGFloat ImageDimension = 260;
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    self.title = @"Activity";
 
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
@@ -82,6 +84,11 @@ static const CGFloat ImageDimension = 260;
     [cell setActivity:activity showHeader:isExpertView];
 
     return cell;
+}
+
+-(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+    return YES;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

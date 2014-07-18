@@ -45,7 +45,7 @@
         self.valueLabel.text = [NSString stringWithFormat:@"%d", minutes];
         self.unitLabel.text = [NSString stringWithFormat:@"%@ of activity", ((minutes < 2) ? @"Minute" : @"Minutes")];
     }
-    self.valueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:38];
+    self.valueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:38];
 
     self.descriptionLabel.text = self.activity.descriptionText;
     // TODO: Figure out the best way to calculate average of activity value

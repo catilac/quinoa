@@ -7,18 +7,16 @@
 //
 
 #import "ActivityViewController.h"
-#import "UIImage+ImageEffects.h"
 #import "TrackButton.h"
 #import "Activity.h"
 
 @interface ActivityViewController ()
+
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
-- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
 @property (strong, nonatomic) NSString *activityType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
-
 
 @property (nonatomic) float weight;
 @property (nonatomic) float startPosition;
@@ -26,17 +24,16 @@
 @property (nonatomic) float delta;
 @property (nonatomic) float incrementQuantity;
 
+- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender;
+
 @end
 
 @implementation ActivityViewController
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(postActivity)
                                                      name:kSubmitData
@@ -91,30 +88,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if([self.activityType isEqualToString: @"trackWeight"])
-    {
+    if ([self.activityType isEqualToString: @"trackWeight"]) {
         self.activityUnitLabel.text = @"lbs";
     }
-    else if([self.activityType isEqualToString: @"trackActivity"])
-    {
+    else if ([self.activityType isEqualToString: @"trackActivity"]) {
                     self.slideBarHeightConstraint.constant = 430;
         self.activityUnitLabel.text = @"min";
-        
-        self.slideBarView.center = CGPointMake(self.slideBarView.center.x
-                                               , 400);
-
-   //     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
-
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
     }
-    
-    self.backgroundImageView.image = self.image;
-    UIImage *sourceImage = self.backgroundImageView.image;
-     UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.3];
-    self.backgroundImageView.image = [sourceImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
-
     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
-   
-   
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -164,6 +149,9 @@
             
         }
     }
-    
+}
+
+- (void)cancel {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 @end

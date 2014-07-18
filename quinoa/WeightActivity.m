@@ -37,7 +37,7 @@
     [self.valueLabel setTextColor:[Utils getGreen]];
     [self.unitLabel setTextColor:[Utils getGreen]];
     [self.blurbLabel setTextColor:[Utils getGray]];
-    self.valueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:38];
+    self.valueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:38];
 }
 
 /*

@@ -13,6 +13,7 @@
 #import "ActivityLikeCell.h"
 #import "Utils.h"
 #import "PNChart.h"
+#import "UILabel+QuinoaLabel.h"
 
 static NSString *LikeCellIdent = @"likeCellIdent";
 
@@ -23,7 +24,16 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
 @property (strong, nonatomic) UserHeader *expertHeader;
+
+@property (strong, nonatomic) UIView *dashboardHeader;
+
 @property (strong, nonatomic) PNBarChart *barChart;
+
+@property (strong, nonatomic) UIView *statsBar;
+@property (strong, nonatomic) UILabel *weightDifferential;
+@property (strong, nonatomic) UILabel *totalActiveTime;
+@property (strong, nonatomic) UILabel *numActivityLikes;
+
 
 
 @end
@@ -50,16 +60,40 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
-    [self setupBarChart];
+    [self setupDashboardHeader];
     [self fetchActivityLikes];
     [self fetchWeightStats];
     
 }
 
-- (void)setupBarChart {
-    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
-    [self.view addSubview:self.barChart];
+- (void)setupDashboardHeader {
+    // Initialize Container
+    CGRect dashFrame = CGRectMake(0, 10, SCREEN_WIDTH, 250);
+    self.dashboardHeader = [[UIView alloc] initWithFrame:dashFrame];
+    
+    // Add Label
+    UILabel *chartLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH, 20)];
+    [chartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    chartLabel.text = @"Weight over Last 7 Days";
+    
+    
+    // Initialize BarChart
+    CGRect barChartFrame = CGRectMake(5, 5, dashFrame.size.width-10, dashFrame.size.height*0.75f);
+    self.barChart = [[PNBarChart alloc] initWithFrame:barChartFrame];
+    [self.barChart setBackgroundColor:[Utils getLightGray]];
+    [self.barChart addSubview:chartLabel];
+    [self.dashboardHeader addSubview:self.barChart];
 
+    // Initialize Stats Bar
+    CGRect statsFrame = CGRectMake(5, barChartFrame.size.height, dashFrame.size.width-10, dashFrame.size.height*0.25f);
+    self.statsBar = [[UIView alloc] initWithFrame:statsFrame];
+//    [self.statsBar setBackgroundColor:[Utils getVibrantBlue]];
+    
+    
+    [self.view addSubview:self.dashboardHeader];
+    
+    [self.view addSubview:self.statsBar];
+    
 }
 
 - (void)fetchWeightStats {
@@ -117,7 +151,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"Header Height: %f", self.expertHeader.frame.size.height);
     return 65;
 }
 

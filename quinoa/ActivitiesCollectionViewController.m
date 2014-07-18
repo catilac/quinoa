@@ -141,10 +141,10 @@ static const CGFloat ImageDimension = 260;
 
 - (CGSize)cellHeight:(Activity *)activity {
     CGSize size = CGSizeMake(self.collectionView.frame.size.width - 20, 0);
-    if (activity.activityType == Eating) {
+    if (activity.activityType == ActivityTypeEating) {
         size.height += ImageDimension;
     }
-    if (activity.activityType != Weight && [activity.descriptionText length] > 0) {
+    if (activity.activityType != ActivityTypeWeight && [activity.descriptionText length] > 0) {
         NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:13]};
         CGRect rect = [activity.descriptionText boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
         size.height += rect.size.height + DividerHeight;

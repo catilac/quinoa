@@ -55,16 +55,16 @@ static const CGFloat UserHeaderHeight = 65;
 - (void)setActivity:(Activity *)activity {
     _activity = activity;
 
-    if (self.activity.activityType == Eating) {
+    if (self.activity.activityType == ActivityTypeEating) {
         DietActivity *dietActivity = [[DietActivity alloc] init];
         dietActivity.activity = activity;
         [self.activityView addSubview:dietActivity];
-    } else if (self.activity.activityType == Physical) {
+    } else if (self.activity.activityType == ActivityTypePhysical) {
         PhysicalActivity *physicalActivity = [[PhysicalActivity alloc] init];
         physicalActivity.activity = activity;
         [self.activityView addSubview:physicalActivity];
         [physicalActivity layoutSubviews];
-    } else if (self.activity.activityType == Weight) {
+    } else if (self.activity.activityType == ActivityTypeWeight) {
         WeightActivity *weightActivity = [[WeightActivity alloc] init];
         weightActivity.activity = activity;
         [self.activityView addSubview:weightActivity];

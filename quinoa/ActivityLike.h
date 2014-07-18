@@ -15,8 +15,18 @@
 
 + (NSString *)parseClassName;
 
++ (void)getActivityLikesByUser:(User *)user
+                      success:(void (^) (NSArray *activityLikes))success
+                        error:(void (^) (NSError *error))error;
+
++ (ActivityLike *)likeActivity:(Activity *)activity user:(User *)user expert:(User *)expert;
+
+
+
 @property (strong, nonatomic) User *user;
-@property (strong, nonatomic) NSString *expertId;
+@property (strong, nonatomic) User *expert;
 @property (strong, nonatomic) Activity *activity;
+@property (assign) ActivityType activityType;
+
 
 @end

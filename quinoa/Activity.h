@@ -11,9 +11,9 @@
 #import "User.h"
 
 typedef enum {
-    Eating,
-    Weight,
-    Physical
+    ActivityTypeEating,
+    ActivityTypeWeight,
+    ActivityTypePhysical
 } ActivityType;
 
 @interface Activity : PFObject<PFSubclassing>

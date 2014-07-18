@@ -26,7 +26,7 @@
 + (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
-    activity.activityType = Eating;
+    activity.activityType = ActivityTypeEating;
     activity.image = image;
     activity.descriptionText = description;
     [activity saveInBackground];
@@ -37,7 +37,7 @@
 + (Activity *)trackPhysical:(NSNumber *)duration {
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
-    activity.activityType = Physical;
+    activity.activityType = ActivityTypePhysical;
     activity.activityValue = duration;
     activity.activityUnit = @"min";
     activity.descriptionText = @"Physical Activity";
@@ -49,7 +49,7 @@
 + (Activity *)trackWeight:(NSNumber *)weight {
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
-    activity.activityType = Weight;
+    activity.activityType = ActivityTypeWeight;
     activity.activityValue = weight;
     activity.activityUnit = @"lbs";
     activity.descriptionText = @"Weight";

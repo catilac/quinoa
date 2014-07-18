@@ -9,12 +9,15 @@
 #import "DashboardViewController.h"
 #import "UserHeader.h"
 #import "User.h"
+#import "ActivityLike.h"
+#import "ActivityLikeCell.h"
 
+static NSString *LikeCellIdent = @"likeCellIdent";
 
 @interface DashboardViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
-@property (strong, nonatomic) NSArray *likes;
+@property (strong, nonatomic) NSArray *activityLikes;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
 @property (strong, nonatomic) UserHeader *expertHeader;
@@ -35,12 +38,25 @@
     return self;
 }
 
+- (void)fetchActivityLikes {
+    [ActivityLike getActivityLikesByUser:self.user success:^(NSArray *activityLikes) {
+        self.activityLikes = activityLikes;
+        [self.feedTable reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"Error fetching ActivityLikes %@", error);
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.feedTable registerNib:[UINib nibWithNibName:@"ActivityLikeCell" bundle:nil] forCellReuseIdentifier:LikeCellIdent];
+    
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
+    [self fetchActivityLikes];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,10 +67,13 @@
 
 #pragma mark UITableViewDataSource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.likes count];
+    return [self.activityLikes count];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell" forIndexPath:indexPath];
+    ActivityLikeCell *cell = (ActivityLikeCell *)[tableView dequeueReusableCellWithIdentifier:LikeCellIdent];
+    ActivityLike *like = self.activityLikes[indexPath.row];
+    [cell setActivityLike:like];
     return cell;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "Activity.h"
+#import "User.h"
 #import <Parse/PFObject+Subclass.h>
 
 @implementation Activity
@@ -24,8 +25,8 @@
 
 + (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
     Activity *activity = [Activity object];
-    activity.user = [PFUser currentUser];
-    activity.activityType = Eating;
+    activity.user = [User currentUser];
+    activity.activityType = ActivityTypeEating;
     activity.image = image;
     activity.descriptionText = description;
     [activity saveInBackground];
@@ -35,8 +36,8 @@
 
 + (Activity *)trackPhysical:(NSNumber *)duration {
     Activity *activity = [Activity object];
-    activity.user = [PFUser currentUser];
-    activity.activityType = Physical;
+    activity.user = [User currentUser];
+    activity.activityType = ActivityTypePhysical;
     activity.activityValue = duration;
     activity.activityUnit = @"min";
     activity.descriptionText = @"Physical Activity";
@@ -47,8 +48,8 @@
 
 + (Activity *)trackWeight:(NSNumber *)weight {
     Activity *activity = [Activity object];
-    activity.user = [PFUser currentUser];
-    activity.activityType = Weight;
+    activity.user = [User currentUser];
+    activity.activityType = ActivityTypeWeight;
     activity.activityValue = weight;
     activity.activityUnit = @"lbs";
     activity.descriptionText = @"Weight";
@@ -58,13 +59,14 @@
 }
 
 
-+ (void)getActivitiesByUser:(PFUser *)user
++ (void)getActivitiesByUser:(User *)user
               success:(void (^) (NSArray *objects))success
                 error:(void (^) (NSError *error))error {
 
     PFQuery *query = [Activity query];
     //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"user" equalTo:user];
+    [query includeKey:@"user"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
 
@@ -77,7 +79,28 @@
     }];
 }
 
-+ (void)getAverageByUser:(PFUser *)user
++ (void)getClientActivitiesByExpert:(User *)expert
+                            success:(void (^) (NSArray *objects))success
+                              error:(void (^) (NSError *error))error {
+    PFQuery *clientQuery = [User query];
+    [clientQuery whereKey:@"currentTrainer" equalTo:expert];
+    [clientQuery findObjectsInBackgroundWithBlock:^(NSArray *clients, NSError *errorFromParse) {
+        PFQuery *query = [Activity query];
+        [query whereKey:@"user" containedIn:clients];
+        [query includeKey:@"user"];
+        [query orderByDescending:@"createdAt"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
+            if (success) {
+                success(objects);
+            }
+            if (errorFromParse) {
+                error(errorFromParse);
+            }
+        }];
+    }];
+}
+
++ (void)getAverageByUser:(User *)user
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success
                    error:(void (^) (NSError *error))error {

@@ -39,13 +39,13 @@
     int minutes = lroundf([self.activity.activityValue floatValue] / 60);
     if (minutes >= 60) {
         float hours = (minutes / 60);
-        self.valueLabel.text = [NSString stringWithFormat:@"%.2f", hours];
-        self.unitLabel.text = @"Hours of activity";
+        self.valueLabel.text = [NSString stringWithFormat:@"%g", hours];
+        self.unitLabel.text = [NSString stringWithFormat:@"%@ of activity", ((hours < 2) ? @"Hour" : @"Hours")];
     } else {
         self.valueLabel.text = [NSString stringWithFormat:@"%d", minutes];
-        self.unitLabel.text = @"Minutes of activity";
+        self.unitLabel.text = [NSString stringWithFormat:@"%@ of activity", ((minutes < 2) ? @"Minute" : @"Minutes")];
     }
-    self.valueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:38];
+    self.valueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:38];
 
     self.descriptionLabel.text = self.activity.descriptionText;
     // TODO: Figure out the best way to calculate average of activity value
@@ -54,16 +54,11 @@
         self.divider.hidden = NO;
         self.descriptionLabel.hidden = NO;
         self.divider.backgroundColor = [Utils getLightGray];
-    } else {
-        // TODO: Shorten height when description text is not provided
-        //self.physicalBottomConstraint.constant = 0;
-        //            CGRect currentFrame = self.frame;
-        //            currentFrame.size.height = currentFrame.size.height - 10;
-        //            self.frame = currentFrame;
     }
     [self.valueLabel setTextColor:[Utils getVibrantBlue]];
     [self.unitLabel setTextColor:[Utils getVibrantBlue]];
     [self.blurbLabel setTextColor:[Utils getGray]];
+    [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
 }
 
 

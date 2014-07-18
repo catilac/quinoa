@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ActivityViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (strong, nonatomic) UIImage *image;
 
 - (id)initWithType:(NSString *)activityType;
 

@@ -86,6 +86,11 @@ static const CGFloat ImageDimension = 260;
     return cell;
 }
 
+-(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+    return YES;
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize size = [self cellHeight:self.activities[indexPath.row]];
     return size;

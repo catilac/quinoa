@@ -53,6 +53,8 @@ static const CGFloat ImageDimension = 260;
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    self.title = @"Activity";
 
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;

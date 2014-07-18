@@ -9,6 +9,12 @@
 #import "ChatCell.h"
 #import "Utils.h"
 
+@interface ChatCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+
+@end
+
 @implementation ChatCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -29,10 +35,26 @@
     PFUser *sender = (PFUser *)message.sender;
     self.usernameLabel.text = sender.username;
     
+    UIFont *usernameFont = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 12.0 ];
+    self.usernameLabel.font = usernameFont;
+    
+    self.userImage.layer.cornerRadius = 20.0;
+    self.userImage.layer.masksToBounds = YES;
+    
+    UIFont *msgFont = [ UIFont fontWithName: @"SourceSansPro-Light" size: 16.0 ];
+    self.messageLabel.font = msgFont;
+    
     if ([message.sender.username isEqualToString:currentUser.username]) {
         self.backgroundColor = [Utils getLightGray];
+        self.messageLabel.textColor = [Utils getDarkBlue];
+        self.usernameLabel.textColor = [Utils getDarkBlue];
+        self.userImage.image = [UIImage imageNamed: @"cat.png"];
+        
     } else {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [Utils getGray];
+        self.messageLabel.textColor = [UIColor whiteColor];
+        self.usernameLabel.textColor = [Utils getVibrantBlue];
+        self.userImage.image = [UIImage imageNamed: @"dog.png"];
     }
 }
 

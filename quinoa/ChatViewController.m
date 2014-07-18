@@ -199,8 +199,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
     ChatCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                            forIndexPath:indexPath];
     
-    cell.layer.borderWidth = 1;
-    cell.layer.borderColor = [Utils getGray].CGColor;
+    //cell.layer.borderWidth = 1;
+    //cell.layer.borderColor = [Utils getGray].CGColor;
     cell.layer.cornerRadius = 6;
     
     Message *message = self.messages[indexPath.row];

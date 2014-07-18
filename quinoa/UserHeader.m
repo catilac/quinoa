@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *metaLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UIView *bottomBorder;
 
 // TODO: set this correctly initially
 @property BOOL liked;
@@ -45,6 +46,7 @@
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     self.nameLabel.text = [user getDisplayName];
     self.metaLabel.text = [user getMetaInfo];
+    self.bottomBorder.backgroundColor = [Utils getGray];
 
 }
 

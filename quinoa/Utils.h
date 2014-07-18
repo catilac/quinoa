@@ -20,4 +20,6 @@
 + (UIColor *)getLightGray;
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
+
++ (UIImage *)screenshot;
 @end

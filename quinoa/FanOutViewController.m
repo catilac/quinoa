@@ -10,6 +10,8 @@
 #import "TrackEatingViewController.h"
 #import "ActivityViewController.h"
 #import "UILabel+QuinoaLabel.h"
+#import "UIImage+ImageEffects.h"
+#import "Utils.h"
 
 @interface FanOutViewController ()
 
@@ -18,8 +20,6 @@
 - (IBAction)onTrackFood:(id)sender;
 - (IBAction)onTrackWeight:(id)sender;
 - (IBAction)onTrackActivity:(id)sender;
-
-
 
 @end
 
@@ -38,7 +38,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [self blurBackground];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self undoBlurBackground];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,47 +112,20 @@
     ActivityViewController *activityVC = [[ActivityViewController alloc] initWithType:@"trackActivity"];
     
     [self.navigationController pushViewController:activityVC animated:YES];
-
 }
 
-+ (UIImage *)screenshot
-{
-    CGSize imageSize = CGSizeZero;
-    
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (UIInterfaceOrientationIsPortrait(orientation)) {
-        imageSize = [UIScreen mainScreen].bounds.size;
-    } else {
-        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-    }
-    
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
-        CGContextSaveGState(context);
-        CGContextTranslateCTM(context, window.center.x, window.center.y);
-        CGContextConcatCTM(context, window.transform);
-        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-            CGContextRotateCTM(context, M_PI_2);
-            CGContextTranslateCTM(context, 0, -imageSize.width);
-        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-            CGContextRotateCTM(context, -M_PI_2);
-            CGContextTranslateCTM(context, -imageSize.height, 0);
-        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-            CGContextRotateCTM(context, M_PI);
-            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
-        }
-        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
-        } else {
-            [window.layer renderInContext:context];
-        }
-        CGContextRestoreGState(context);
-    }
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+- (void)blurBackground {
+    UIImage *bgImage = [Utils screenshot];
+
+    // Tweak these values Nathan!
+    UIColor *tintColor = [UIColor colorWithWhite:0.1 alpha:0.5];
+    bgImage = [bgImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
 }
+
+- (void)undoBlurBackground {
+    self.view.backgroundColor = [UIColor clearColor];
+}
+
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ChatCell.h"
+#import "Utils.h"
 
 @implementation ChatCell
 
@@ -15,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-    }
+            }
     return self;
 }
 
@@ -29,7 +30,7 @@
     self.usernameLabel.text = sender.username;
     
     if ([message.sender.username isEqualToString:currentUser.username]) {
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [Utils getLightGray];
     } else {
         self.backgroundColor = [UIColor blueColor];
     }

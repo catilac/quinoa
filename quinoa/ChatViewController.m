@@ -10,6 +10,7 @@
 #import "Message.h"
 #import "ChatCell.h"
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @interface ChatViewController ()
 
@@ -120,6 +121,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (void)willShowKeyboard:(NSNotification *)notification {
+    
+    NSLog(@"willShowKeyboard: %f", self.inputContainer.frame.origin.y);
+    
     NSDictionary *userInfo = [notification userInfo];
     
     // Get the keyboard height and width from the notification
@@ -146,7 +150,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (void)willHideKeyboard:(NSNotification *)notification {
     
-    NSLog(@"willHideKeyboard");
+    NSLog(@"willHideKeyboard: %f", self.inputContainer.frame.origin.y);
     
     NSDictionary *userInfo = [notification userInfo];
     
@@ -194,6 +198,11 @@ static NSString *CellIdentifier = @"chatCellIdent";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ChatCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                            forIndexPath:indexPath];
+    
+    cell.layer.borderWidth = 1;
+    cell.layer.borderColor = [Utils getGray].CGColor;
+    cell.layer.cornerRadius = 6;
+    
     Message *message = self.messages[indexPath.row];
     [cell updateChatCellWithMessage:message];
     return cell;

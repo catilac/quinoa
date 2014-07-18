@@ -14,6 +14,7 @@
 #import "Message.h"
 #import "Profile.h"
 #import "Activity.h"
+#import "ActivityLike.h"
 #import "User.h"
 
 @implementation AppDelegate
@@ -51,6 +52,7 @@
     [Profile registerSubclass];
     [Activity registerSubclass];
     [User registerSubclass];
+    [ActivityLike registerSubclass];
 
     //Parse App Keys
     [Parse setApplicationId:@"Fp5eIufAJJDLCrvaC7ZPBqJmYj5lIQsS2xjLHWQm"

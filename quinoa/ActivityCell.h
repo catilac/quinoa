@@ -13,8 +13,7 @@
 @interface ActivityCell : UICollectionViewCell
 
 @property (nonatomic, strong) Activity *activity;
-@property (nonatomic, strong) User *user;
 
-- (void)setActivity:(Activity *)activity user:(User *)user;
+- (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader;
 
 @end

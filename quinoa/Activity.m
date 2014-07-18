@@ -100,6 +100,25 @@
     }];
 }
 
++ (void)getLatestActivityByUser:(User *)user
+                     byActivity:(ActivityType)activityType
+                       quantity:(NSInteger)quantity
+                        success:(void (^)(NSArray *))success
+                          error:(void (^)(NSError *))error {
+    PFQuery *query = [Activity query];
+    [query whereKey:@"user" equalTo:user];
+    [query whereKey:@"activityType" equalTo:@(activityType)];
+    [query setLimit:quantity];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
+        if (success) {
+            success(objects);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
+
 + (void)getAverageByUser:(User *)user
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success

@@ -11,6 +11,8 @@
 #import "User.h"
 #import "ActivityLike.h"
 #import "ActivityLikeCell.h"
+#import "Utils.h"
+#import "PNChart.h"
 
 static NSString *LikeCellIdent = @"likeCellIdent";
 
@@ -21,6 +23,8 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
 @property (strong, nonatomic) UserHeader *expertHeader;
+@property (strong, nonatomic) PNBarChart *barChart;
+
 
 @end
 
@@ -38,6 +42,44 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self.feedTable registerNib:[UINib nibWithNibName:@"ActivityLikeCell" bundle:nil] forCellReuseIdentifier:LikeCellIdent];
+    
+    self.feedTable.dataSource = self;
+    self.feedTable.delegate = self;
+    [self setupBarChart];
+    [self fetchActivityLikes];
+    [self fetchWeightStats];
+    
+}
+
+- (void)setupBarChart {
+    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    [self.view addSubview:self.barChart];
+
+}
+
+- (void)fetchWeightStats {
+    [Activity getLatestActivityByUser:self.user
+                           byActivity:ActivityTypeWeight
+                             quantity:7
+                              success:^(NSArray *objects) {
+                                  NSMutableArray *dataPoints = [[NSMutableArray alloc] init];
+                                  for (NSDictionary *weightData in objects) {
+                                      NSNumber *weight = [weightData objectForKey:@"activityValue"];
+                                      [dataPoints addObject:weight];
+                                  }
+                                  [self.barChart setYValues:dataPoints];
+                                  [self.barChart strokeChart];
+                                  
+                              } error:^(NSError *error) {
+                                  NSLog(@"Error fetching latest weight activities: %@", error);
+                              }];
+}
+
 - (void)fetchActivityLikes {
     [ActivityLike getActivityLikesByUser:self.user success:^(NSArray *activityLikes) {
         self.activityLikes = activityLikes;
@@ -47,17 +89,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     }];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [self.feedTable registerNib:[UINib nibWithNibName:@"ActivityLikeCell" bundle:nil] forCellReuseIdentifier:LikeCellIdent];
-    
-    self.feedTable.dataSource = self;
-    self.feedTable.delegate = self;
-    [self fetchActivityLikes];
-
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -81,7 +112,14 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     self.expertHeader = [[UserHeader alloc] init];
     [self.expertHeader setUser:self.expert];
+    [self.expertHeader setBackgroundColor:[Utils getGray]];
     return self.expertHeader;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    NSLog(@"Header Height: %f", self.expertHeader.frame.size.height);
+    return 65;
+}
+
 
 @end

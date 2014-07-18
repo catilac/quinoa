@@ -77,14 +77,17 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (void)viewDidLayoutSubviews {
     
-    /*self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
-
-    NSLog(@"view: %f", self.view.frame.size.height);
-    NSLog(@"tab: %f", self.tabBarController.tabBar.frame.size.height);
-    NSLog(@"container: %f", self.inputContainer.frame.size.height);*/
+    if (self.chatView.contentSize.height > self.chatView.frame.size.height)
+    {
+        CGPoint offset = CGPointMake(0, self.chatView.contentSize.height - self.chatView.frame.size.height);
+        [self.chatView setContentOffset:offset animated:YES];
+    }
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     if (self.queryTimer) {
@@ -107,7 +110,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
                       fromUser:[User currentUser]
                        message:self.chatInput.text];
     self.chatInput.text = @"";
-
+    
 }
 
 - (void)fetchMessages {
@@ -156,7 +159,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     
     NSDictionary *userInfo = [notification userInfo];
     
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    //CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
     
     // Get the animation duration and curve from the notification
@@ -173,6 +176,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
                          self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
                          
                          self.chatView.frame = CGRectMake(self.chatView.frame.origin.x, 0, self.chatView.frame.size.width, self.chatView.frame.size.height);
+                         
                      }
                      completion:nil];
 }

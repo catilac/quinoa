@@ -31,6 +31,8 @@
     PFUser *currentUser = [PFUser currentUser];
     
     self.messageLabel.text = message.text;
+    self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.messageLabel.numberOfLines = 0;
     
     PFUser *sender = (PFUser *)message.sender;
     self.usernameLabel.text = sender.username;

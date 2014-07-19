@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuinoaTabBarViewController : UITabBarController
+@interface QuinoaTabBarViewController : UITabBarController<UITabBarControllerDelegate>
 
 @end

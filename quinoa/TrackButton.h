@@ -12,6 +12,9 @@ static NSString *kReadyToSubmitMessage = @"readyToSubmitMessage";
 static NSString *kNotReadyToSubmitMessage = @"notReadyToSubmitMessage";
 static NSString *kSubmitData = @"submitDataMessage";
 
+static NSString *kOpenMenu = @"MenuOpenMessage";
+static NSString *kCloseMenu = @"MenuCloseMessage";
+
 @interface TrackButton : UIView
 
 @end

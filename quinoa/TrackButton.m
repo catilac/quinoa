@@ -12,7 +12,7 @@
 @interface TrackButton ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
-@property (assign) Boolean armed;
+@property (assign) Boolean menuOpen;
 
 @end
 
@@ -32,44 +32,33 @@
         
         [self addSubview:trackImage];
         
-        _armed = NO;
-        
-        // Initialize TapGesture
+        // Initialize TapGesture to handle closing the menu
         self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                     action:@selector(sendSubmitMessage)];
+                                                                     action:@selector(closeMenu)];
         [self addGestureRecognizer:self.tapRecognizer];
         
-        // Arm Trigger
+        // Handle notification for when menu is open
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(readyToSubmit)
-                                                     name:kReadyToSubmitMessage
-                                                   object:nil];
-        // Disarm Trigger
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(notReadyToSubmit)
-                                                     name:kNotReadyToSubmitMessage
+                                                 selector:@selector(openMenu)
+                                                     name:kOpenMenu
                                                    object:nil];
     }
     return self;
 }
 
-- (void)readyToSubmit {
-    [self setBackgroundColor:[UIColor colorWithRed:0.278 green:0.651 blue:0.839 alpha:1]];
-    self.armed = YES;
+- (void)openMenu {
+    self.backgroundColor = [UIColor redColor];
     [self setUserInteractionEnabled:YES];
 }
 
-- (void)notReadyToSubmit {
-    [self setBackgroundColor:[UIColor redColor]];
-}
+- (void)closeMenu {
+    [self setUserInteractionEnabled:NO];
+    self.backgroundColor = [Utils getGreen];
+    
+    // Send out a message saying we're closing the menu
+    // The LoginViewController will be listening for it, and will swap us back to the last tab bar in use.
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 
-- (void)sendSubmitMessage {
-    if (self.armed) {
-        self.armed = NO;
-        [self setUserInteractionEnabled:NO];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSubmitData
-                                                            object:nil];
-    }
 }
 
 /*

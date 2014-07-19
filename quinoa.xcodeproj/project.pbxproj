@@ -174,6 +174,7 @@
 		532904C019750555005A2E26 /* UserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeader.h; sourceTree = "<group>"; };
 		532904C119750555005A2E26 /* UserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeader.m; sourceTree = "<group>"; };
 		532904C31975062A005A2E26 /* ActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
+		532904CC197A7036005A2E26 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		5348EC2F196940D800E99C4A /* NSDate+dateWith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+dateWith.h"; sourceTree = "<group>"; };
 		5348EC30196940D800E99C4A /* NSDate+dateWith.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+dateWith.m"; sourceTree = "<group>"; };
 		5354D0731971D76700612FFE /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
@@ -270,6 +271,7 @@
 		460447A11964ECC600DDE6C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				532904CC197A7036005A2E26 /* Reveal.framework */,
 				460447A21964ECC600DDE6C6 /* Foundation.framework */,
 				460447A41964ECC600DDE6C6 /* CoreGraphics.framework */,
 				460447A61964ECC600DDE6C6 /* UIKit.framework */,
@@ -736,7 +738,7 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
-						DevelopmentTeam = V9W7KY986M;
+						DevelopmentTeam = PN7RM78XDW;
 					};
 					460447B91964ECC600DDE6C6 = {
 						TestTargetID = 4604479E1964ECC600DDE6C6;
@@ -1006,9 +1008,50 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					Parse,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					StoreKit,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-weak_framework",
+					Accounts,
+					"-weak_framework",
+					Security,
+					"-weak_framework",
+					Social,
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1023,6 +1066,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";

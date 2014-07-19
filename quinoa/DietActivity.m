@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *divider;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
+@property (strong, nonatomic) UIView *contentView;
 @end
 
 @implementation DietActivity
@@ -25,7 +26,9 @@
     if (self) {
         UINib *nib = [UINib nibWithNibName:@"DietActivity" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
-        [self addSubview:objects[0]];
+        self.contentView = objects[0];
+        [self.contentView setFrame:frame];
+        [self addSubview:self.contentView];
     }
     return self;
 }
@@ -43,8 +46,14 @@
     self.divider.backgroundColor = [Utils getGray];
 }
 
+- (void)clean {
+    self.descriptionLabel.text = @"";
+}
+
 - (void)layoutSubviews {
-    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, 260, 500)];
+    [super layoutSubviews];
+
+    [self.contentView setFrame:self.frame];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

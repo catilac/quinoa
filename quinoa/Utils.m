@@ -50,6 +50,13 @@
     }];
 }
 
++ (void)removeSubviewsFrom:(UIView *)view {
+    NSArray *subviews = [view subviews];
+    for (UIView *subview in subviews) {
+        [subview removeFromSuperview];
+    }
+}
+
 + (UIImage *)screenshot {
     CGSize imageSize = CGSizeZero;
 

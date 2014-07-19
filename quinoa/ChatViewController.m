@@ -10,15 +10,21 @@
 #import "Message.h"
 #import "ChatCell.h"
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @interface ChatViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *chatView;
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
+@property (weak, nonatomic) IBOutlet UIView *inputContainer;
 
 @property (strong, nonatomic) User *recipient;
 @property (strong, nonatomic) NSArray *messages;
 @property (strong, nonatomic) NSTimer *queryTimer;
+
+- (void)willShowKeyboard:(NSNotification *)notification;
+- (void)willHideKeyboard:(NSNotification *)notification;
+- (IBAction)onViewTap:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -40,6 +46,10 @@ static NSString *CellIdentifier = @"chatCellIdent";
     if (self) {
         // Custom initialization
         self.title = @"Chat";
+        
+        // Register the methods for the keyboard hide/show events
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -57,8 +67,6 @@ static NSString *CellIdentifier = @"chatCellIdent";
     [flowLayout setItemSize:CGSizeMake(300, 50)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.chatView setCollectionViewLayout:flowLayout];
-
-    
     
     self.queryTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
@@ -66,6 +74,17 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                    userInfo:nil
                                     repeats:YES];
 }
+
+- (void)viewDidLayoutSubviews {
+    
+    /*self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+
+    NSLog(@"view: %f", self.view.frame.size.height);
+    NSLog(@"tab: %f", self.tabBarController.tabBar.frame.size.height);
+    NSLog(@"container: %f", self.inputContainer.frame.size.height);*/
+    
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     if (self.queryTimer) {
@@ -83,10 +102,12 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (IBAction)onSend:(id)sender {
+    
     [Message sendMessageToUser:self.recipient
                       fromUser:[User currentUser]
                        message:self.chatInput.text];
     self.chatInput.text = @"";
+
 }
 
 - (void)fetchMessages {
@@ -99,6 +120,74 @@ static NSString *CellIdentifier = @"chatCellIdent";
     }];
 }
 
+- (void)willShowKeyboard:(NSNotification *)notification {
+    
+    NSLog(@"willShowKeyboard: %f", self.inputContainer.frame.origin.y);
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the keyboard height and width from the notification
+    // Size varies depending on OS, language, orientation
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    //NSLog(@"Height: %f Width: %f", kbSize.height, kbSize.width);
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.inputContainer.frame.origin.y - kbSize.height + self.tabBarController.tabBar.frame.size.height, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                     }
+                     completion:nil];
+}
+
+
+- (void)willHideKeyboard:(NSNotification *)notification {
+    
+    NSLog(@"willHideKeyboard: %f", self.inputContainer.frame.origin.y);
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - self.inputContainer.frame.size.height + self.navigationController.navigationBar.frame.size.height + 5, self.inputContainer.frame.size.width, self.inputContainer.frame.size.height);
+                     }
+                     completion:nil];
+}
+
+- (IBAction)onViewTap:(UITapGestureRecognizer *)sender {
+    
+    // get touch location
+    CGPoint touchPosition = [sender locationInView:self.view];
+    
+    if(touchPosition.y < self.inputContainer.frame.origin.y) {
+        
+        NSLog(@"Dismiss keyboard");
+        // dismiss keyboard
+        [self.view endEditing:YES];
+    }
+    
+}
+
+
 #pragma mark - UICollectionViewDataSource methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
@@ -109,6 +198,11 @@ static NSString *CellIdentifier = @"chatCellIdent";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ChatCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                            forIndexPath:indexPath];
+    
+    //cell.layer.borderWidth = 1;
+    //cell.layer.borderColor = [Utils getGray].CGColor;
+    cell.layer.cornerRadius = 6;
+    
     Message *message = self.messages[indexPath.row];
     [cell updateChatCellWithMessage:message];
     return cell;

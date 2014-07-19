@@ -14,8 +14,8 @@
 #import "UserHeader.h"
 
 static const CGFloat UserHeaderHeight = 65;
-static const CGFloat ActivitySectionHeight = 70;
-static const CGFloat DividerHeight = 30;
+static const CGFloat ActivitySectionHeight = 65;
+static const CGFloat DividerHeight = 15;
 static const CGFloat ImageDimension = 290;
 static const CGFloat ContainerWidth = 300;
 
@@ -77,11 +77,11 @@ static const CGFloat ContainerWidth = 300;
     } else if (self.activity.activityType == ActivityTypePhysical) {
         self.physicalActivity.activity = activity;
         [self.activityView addSubview:self.physicalActivity];
-        [self.dietActivity setNeedsLayout];
+        [self.physicalActivity setNeedsLayout];
     } else if (self.activity.activityType == ActivityTypeWeight) {
         self.weightActivity.activity = activity;
         [self.activityView addSubview:self.weightActivity];
-        [self.dietActivity setNeedsLayout];
+        [self.weightActivity setNeedsLayout];
     }
 }
 
@@ -147,7 +147,7 @@ static const CGFloat ContainerWidth = 300;
     BOOL displayDescription = (self.activity.activityType != ActivityTypeWeight && [self.activity.descriptionText length] > 0);
 
     if (displayDescription) {
-        NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:13]};
+        NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:14]};
         CGRect rect = [self.activity.descriptionText
                        boundingRectWithSize:CGSizeMake(ContainerWidth - 20, 0)
                        options:NSStringDrawingUsesLineFragmentOrigin

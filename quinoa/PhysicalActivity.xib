@@ -15,7 +15,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="bAH-hE-TFC">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="94"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="000" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="5VE-Bq-FiR">
@@ -26,19 +26,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Minutes of activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZP-Ac-wCc">
-                    <rect key="frame" x="75" y="12" width="215" height="17"/>
+                    <rect key="frame" x="70" y="12" width="220" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="value blurb" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfh-t8-mCS">
-                    <rect key="frame" x="75" y="31" width="215" height="21"/>
+                    <rect key="frame" x="70" y="32" width="220" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9v-MG-ekO" userLabel="Divider">
-                    <rect key="frame" x="10" y="56" width="280" height="1"/>
+                    <rect key="frame" x="10" y="64" width="280" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
@@ -47,7 +47,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="JMV-Eq-VtI">
-                    <rect key="frame" x="10" y="67" width="280" height="17"/>
+                    <rect key="frame" x="10" y="72" width="280" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
@@ -55,18 +55,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="JMV-Eq-VtI" firstAttribute="top" secondItem="O9v-MG-ekO" secondAttribute="bottom" constant="7" id="12O-wR-BGM"/>
                 <constraint firstItem="O9v-MG-ekO" firstAttribute="leading" secondItem="bAH-hE-TFC" secondAttribute="leading" constant="10" id="5VD-pB-vfr"/>
-                <constraint firstItem="Xfh-t8-mCS" firstAttribute="leading" secondItem="5VE-Bq-FiR" secondAttribute="trailing" constant="15" id="8LN-oH-arn"/>
-                <constraint firstItem="O9v-MG-ekO" firstAttribute="top" secondItem="Xfh-t8-mCS" secondAttribute="bottom" constant="4" id="8tT-7m-wes"/>
+                <constraint firstItem="Xfh-t8-mCS" firstAttribute="leading" secondItem="5VE-Bq-FiR" secondAttribute="trailing" constant="10" id="8LN-oH-arn"/>
+                <constraint firstItem="O9v-MG-ekO" firstAttribute="top" secondItem="Xfh-t8-mCS" secondAttribute="bottom" constant="7" id="8tT-7m-wes"/>
                 <constraint firstAttribute="trailing" secondItem="UZP-Ac-wCc" secondAttribute="trailing" constant="10" id="BDN-Bb-tU2"/>
                 <constraint firstItem="JMV-Eq-VtI" firstAttribute="leading" secondItem="bAH-hE-TFC" secondAttribute="leading" constant="10" id="EOr-RN-IQx"/>
+                <constraint firstItem="Xfh-t8-mCS" firstAttribute="top" secondItem="UZP-Ac-wCc" secondAttribute="bottom" constant="3" id="HxA-OP-ibR"/>
                 <constraint firstAttribute="trailing" secondItem="O9v-MG-ekO" secondAttribute="trailing" constant="10" id="LmN-Wk-ZQl"/>
-                <constraint firstItem="UZP-Ac-wCc" firstAttribute="leading" secondItem="5VE-Bq-FiR" secondAttribute="trailing" constant="15" id="MUO-o3-xrR"/>
+                <constraint firstItem="UZP-Ac-wCc" firstAttribute="leading" secondItem="5VE-Bq-FiR" secondAttribute="trailing" constant="10" id="MUO-o3-xrR"/>
                 <constraint firstItem="UZP-Ac-wCc" firstAttribute="top" secondItem="bAH-hE-TFC" secondAttribute="top" constant="12" id="RZ7-Bf-doq"/>
-                <constraint firstItem="JMV-Eq-VtI" firstAttribute="top" secondItem="O9v-MG-ekO" secondAttribute="bottom" constant="10" id="UKH-Ko-iZm"/>
                 <constraint firstAttribute="trailing" secondItem="JMV-Eq-VtI" secondAttribute="trailing" constant="10" id="WOh-ta-06s"/>
                 <constraint firstItem="5VE-Bq-FiR" firstAttribute="leading" secondItem="bAH-hE-TFC" secondAttribute="leading" constant="15" id="a7h-C5-g9I"/>
-                <constraint firstItem="Xfh-t8-mCS" firstAttribute="top" secondItem="UZP-Ac-wCc" secondAttribute="bottom" constant="2" id="cFW-xA-6tt"/>
                 <constraint firstAttribute="trailing" secondItem="Xfh-t8-mCS" secondAttribute="trailing" constant="10" id="dUO-ac-R3L"/>
                 <constraint firstItem="5VE-Bq-FiR" firstAttribute="top" secondItem="bAH-hE-TFC" secondAttribute="top" constant="8" id="kh9-dg-HZX"/>
                 <constraint firstAttribute="bottom" secondItem="JMV-Eq-VtI" secondAttribute="bottom" constant="10" id="wXq-w6-FmC"/>

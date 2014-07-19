@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (assign) Boolean menuOpen;
+@property (nonatomic, strong) UIImageView * trackImage;
 
 @end
 
@@ -27,10 +28,10 @@
         
         // Set track button properties
         [self setBackgroundColor:[Utils getGreen]];
-        UIImageView *trackImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"track"]];
-        trackImage.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - 25);
+        self.trackImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"track"]];
+        self.trackImage.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - 25);
         
-        [self addSubview:trackImage];
+        [self addSubview:self.trackImage];
         
         // Initialize TapGesture to handle closing the menu
         self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -47,13 +48,23 @@
 }
 
 - (void)openMenu {
-    self.backgroundColor = [UIColor redColor];
+    
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [self setBackgroundColor:[UIColor redColor]];
+        self.trackImage.transform = CGAffineTransformMakeRotation(M_PI/4);
+    } completion:nil];
+    
     [self setUserInteractionEnabled:YES];
 }
 
 - (void)closeMenu {
+    
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [self setBackgroundColor:[Utils getGreen]];
+        self.trackImage.transform = CGAffineTransformMakeRotation(0);
+    } completion:nil];
+    
     [self setUserInteractionEnabled:NO];
-    self.backgroundColor = [Utils getGreen];
     
     // Send out a message saying we're closing the menu
     // The LoginViewController will be listening for it, and will swap us back to the last tab bar in use.

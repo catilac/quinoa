@@ -9,6 +9,7 @@
 #import "FanOutViewController.h"
 #import "TrackEatingViewController.h"
 #import "ActivityViewController.h"
+#import "TrackButton.h"
 #import "UILabel+QuinoaLabel.h"
 #import "UIImage+ImageEffects.h"
 #import "Utils.h"
@@ -39,7 +40,7 @@
     [super viewDidLoad];
 }
 - (void)viewWillAppear:(BOOL)animated {
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOpenMenu object:nil];
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self blurBackground];

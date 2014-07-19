@@ -19,6 +19,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
 #import "DashboardViewController.h"
+#import "QuinoaTabBarViewController.h"
 
 @interface LoginViewController ()
 
@@ -123,7 +124,7 @@
 }
 
 - (void)setupNavigationForExpert {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
 
     // Activity Tab
     ActivitiesCollectionViewController *activitiesViewController = [[ActivitiesCollectionViewController alloc] init];
@@ -149,7 +150,7 @@
     tabBarController.viewControllers = @[activitiesNavController, myClientsNavController, moreNavController];
 
 
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
 }
 
 - (void)setupNavigationForUser {
@@ -190,7 +191,7 @@
     moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
     
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
@@ -205,4 +206,5 @@
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
+
 @end

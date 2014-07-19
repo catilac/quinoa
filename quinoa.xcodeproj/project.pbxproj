@@ -40,6 +40,7 @@
 		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
 		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
 		46BDC0B31974EEF90004387D /* TrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC0B21974EEF90004387D /* TrackButton.m */; };
+		46C25F57197A6B1F00B49CDC /* QuinoaTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C25F56197A6B1F00B49CDC /* QuinoaTabBarViewController.m */; };
 		46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */; };
 		46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */; };
 		46F73FAF1973159B00E33932 /* ClientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F73FAE1973159B00E33932 /* ClientCell.m */; };
@@ -147,6 +148,8 @@
 		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
 		46BDC0B11974EEF90004387D /* TrackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackButton.h; sourceTree = "<group>"; };
 		46BDC0B21974EEF90004387D /* TrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackButton.m; sourceTree = "<group>"; };
+		46C25F55197A6B1F00B49CDC /* QuinoaTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuinoaTabBarViewController.h; sourceTree = "<group>"; };
+		46C25F56197A6B1F00B49CDC /* QuinoaTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuinoaTabBarViewController.m; sourceTree = "<group>"; };
 		46CDF23E19765DE900B43FBB /* DashboardFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardFeedCell.h; sourceTree = "<group>"; };
 		46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardFeedCell.m; sourceTree = "<group>"; };
 		46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardFeedCell.xib; sourceTree = "<group>"; };
@@ -334,6 +337,7 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				46C25F54197A6AF400B49CDC /* QuinoaTabBarController */,
 				462769D7197636630049482F /* Dashboard */,
 				9FD3348F19735B23003E1727 /* Activity */,
 				46AA118619730C2B001C7F02 /* My Clients */,
@@ -455,6 +459,15 @@
 				46BDC0B21974EEF90004387D /* TrackButton.m */,
 			);
 			name = "Track Button";
+			sourceTree = "<group>";
+		};
+		46C25F54197A6AF400B49CDC /* QuinoaTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				46C25F55197A6B1F00B49CDC /* QuinoaTabBarViewController.h */,
+				46C25F56197A6B1F00B49CDC /* QuinoaTabBarViewController.m */,
+			);
+			name = QuinoaTabBarController;
 			sourceTree = "<group>";
 		};
 		46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */ = {
@@ -838,6 +851,7 @@
 				532904BC197500FD005A2E26 /* WeightActivity.m in Sources */,
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
 				461E5AB7196A101E000D120F /* ChatCell.m in Sources */,
+				46C25F57197A6B1F00B49CDC /* QuinoaTabBarViewController.m in Sources */,
 				46437E141971E1D700A70338 /* TrackEatingViewController.m in Sources */,
 				46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */,
 				9FD33445196BA6DC003E1727 /* Profile.m in Sources */,

@@ -11,6 +11,8 @@
 
 @interface QuinoaTabBarViewController ()
 
+@property (strong, nonatomic) TrackButton *trackButton;
+
 @end
 
 @implementation QuinoaTabBarViewController
@@ -39,6 +41,12 @@
                                              selector:@selector(popBackToLastTabBarView)
                                                  name:kCloseMenu
                                                object:nil];
+    // Add custom view for custom track UITabBarItem
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    self.trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-35, screenSize.height-55, 70, 110)];
+    self.trackButton.layer.cornerRadius = 3;
+    [self.view addSubview:self.trackButton];
+
 
 }
 

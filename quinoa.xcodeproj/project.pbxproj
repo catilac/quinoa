@@ -118,6 +118,7 @@
 		460992C21977C6B400F03200 /* ActivityLikeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityLikeCell.h; sourceTree = "<group>"; };
 		460992C31977C6B400F03200 /* ActivityLikeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityLikeCell.m; sourceTree = "<group>"; };
 		460992C41977C6B400F03200 /* ActivityLikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityLikeCell.xib; sourceTree = "<group>"; };
+		460F69DD197B2EED00E99C9D /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		461E5AB5196A101E000D120F /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		461E5AB6196A101E000D120F /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		461E5AB8196A1037000D120F /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -272,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				532904CC197A7036005A2E26 /* Reveal.framework */,
+				460F69DD197B2EED00E99C9D /* Reveal.framework */,
 				460447A21964ECC600DDE6C6 /* Foundation.framework */,
 				460447A41964ECC600DDE6C6 /* CoreGraphics.framework */,
 				460447A61964ECC600DDE6C6 /* UIKit.framework */,
@@ -738,6 +740,7 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
+						DevelopmentTeam = PN7RM78XDW;
 						DevelopmentTeam = Q4M29PLT7E;
 					};
 					460447B91964ECC600DDE6C6 = {

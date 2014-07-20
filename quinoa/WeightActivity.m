@@ -37,6 +37,9 @@
     _activity = activity;
 
     self.valueLabel.text = [NSString stringWithFormat:@"%i", [self.activity.activityValue intValue]];
+    self.unitLabel.text = @"Pounds";
+    self.blurbLabel.text = [self getBlurbCopy];
+
     [self.valueLabel setTextColor:[Utils getGreen]];
     [self.unitLabel setTextColor:[Utils getGreen]];
     [self.blurbLabel setTextColor:[Utils getGray]];
@@ -45,14 +48,32 @@
 
 - (void)clean {
     self.valueLabel.text = @"000";
-    self.unitLabel.text = @"Default value";
-    self.blurbLabel.text = @"Default value";
+    self.unitLabel.text = @"";
+    self.blurbLabel.text = @"";
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
 
     [self.contentView setFrame:self.frame];
+}
+
+- (NSString *)getBlurbCopy {
+    NSString *copy = @"";
+    NSNumber *before = self.activity.user.weight;
+    NSNumber *after = self.activity.user.currentWeight;
+    if (before > 0 && after > 0) {
+        int diff = abs([before doubleValue] - [after doubleValue]);
+        NSNumber *diffNumber = [NSNumber numberWithInteger:diff];
+        if (before > after) {
+            copy = [NSString stringWithFormat:@"%@ lost", [Utils getPounds:diffNumber]];
+        } else if (before < after) {
+            copy = [NSString stringWithFormat:@"%@ gained", [Utils getPounds:diffNumber]];
+        } else {
+            copy = @"Your weight remained the same.";
+        }
+    }
+    return copy;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

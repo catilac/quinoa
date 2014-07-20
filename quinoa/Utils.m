@@ -96,4 +96,12 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
++ (NSString *)getPounds:(NSNumber *)weight {
+    if ([weight doubleValue] > 1) {
+        return [NSString stringWithFormat:@"%d pounds", [weight intValue]];
+    } else {
+        return [NSString stringWithFormat:@"%d pound", [weight intValue]];
+    }
+}
 @end

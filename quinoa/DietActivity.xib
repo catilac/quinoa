@@ -20,8 +20,8 @@
                     <rect key="frame" x="10" y="10" width="280" height="280"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="280" id="0Vb-4Y-OEZ"/>
-                        <constraint firstAttribute="height" constant="280" id="wnY-6x-rVq"/>
+                        <constraint firstAttribute="height" constant="280" id="f3L-f6-afd"/>
+                        <constraint firstAttribute="width" constant="280" id="xUj-lM-09r"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tlj-HY-dDN" userLabel="Divider">
@@ -29,29 +29,29 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="CSa-c3-LrT"/>
+                        <constraint firstAttribute="height" constant="1" id="eds-TH-HYa"/>
+                        <constraint firstAttribute="width" constant="280" id="kGw-vP-cpU"/>
                     </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="46I-ag-umz">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="46I-ag-umz">
                     <rect key="frame" x="10" y="311" width="280" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="YmG-m1-jGZ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="46I-ag-umz" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="BKO-gx-OPg"/>
-                <constraint firstItem="Tlj-HY-dDN" firstAttribute="top" secondItem="2p4-3n-EO3" secondAttribute="bottom" constant="10" id="H9g-fX-C3w"/>
-                <constraint firstAttribute="trailing" secondItem="46I-ag-umz" secondAttribute="trailing" constant="10" id="MDH-Sq-hsX"/>
-                <constraint firstItem="2p4-3n-EO3" firstAttribute="top" secondItem="IwL-AS-m6H" secondAttribute="top" constant="10" id="MNZ-de-X65"/>
-                <constraint firstAttribute="bottom" secondItem="46I-ag-umz" secondAttribute="bottom" constant="10" id="XgM-4p-JOh"/>
-                <constraint firstItem="46I-ag-umz" firstAttribute="top" secondItem="Tlj-HY-dDN" secondAttribute="bottom" constant="10" id="a92-fF-TIM"/>
-                <constraint firstItem="2p4-3n-EO3" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="hIL-Q9-cgA"/>
-                <constraint firstAttribute="trailing" secondItem="Tlj-HY-dDN" secondAttribute="trailing" constant="10" id="hif-lk-5wX"/>
-                <constraint firstAttribute="trailing" secondItem="2p4-3n-EO3" secondAttribute="trailing" constant="10" id="joi-9m-Dfh"/>
-                <constraint firstItem="Tlj-HY-dDN" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="yKi-Aq-fmE"/>
+                <constraint firstItem="Tlj-HY-dDN" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="3PV-6n-mvk"/>
+                <constraint firstItem="Tlj-HY-dDN" firstAttribute="top" secondItem="2p4-3n-EO3" secondAttribute="bottom" constant="10" id="Or3-Ye-S7O"/>
+                <constraint firstItem="46I-ag-umz" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="UV8-1v-VD1"/>
+                <constraint firstItem="46I-ag-umz" firstAttribute="top" secondItem="Tlj-HY-dDN" secondAttribute="bottom" constant="10" id="nGo-et-Ude"/>
+                <constraint firstItem="2p4-3n-EO3" firstAttribute="top" secondItem="IwL-AS-m6H" secondAttribute="top" constant="10" id="u6H-Jy-8TG"/>
+                <constraint firstItem="2p4-3n-EO3" firstAttribute="leading" secondItem="IwL-AS-m6H" secondAttribute="leading" constant="10" id="wYT-MD-hcF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

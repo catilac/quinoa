@@ -13,6 +13,7 @@
 @interface ActivityCell : UICollectionViewCell
 
 @property (nonatomic, strong) Activity *activity;
+@property BOOL liked;
 
 - (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader;
 

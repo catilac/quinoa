@@ -8,6 +8,7 @@
 
 #import "ActivitiesCollectionViewController.h"
 #import "Activity.h"
+#import "ActivityLike.h"
 #import "ActivityCell.h"
 #import "ProfileCell.h"
 #import "UILabel+QuinoaLabel.h"
@@ -18,8 +19,9 @@
     BOOL isExpertView;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
 @property (strong, nonatomic) ActivityCell *stubCell;
+@property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
+@property (strong, nonatomic) NSMutableArray *likes;
 @end
 
 @implementation ActivitiesCollectionViewController
@@ -34,6 +36,12 @@
             self.stubCell = [[ActivityCell alloc] init];
         }
         self.title = self.user.firstName;
+        self.likes = [[NSMutableArray alloc] init];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onActivityLiked:)
+                                                     name:@"activityLiked"
+                                                   object:nil];
     }
     return self;
 }
@@ -80,6 +88,7 @@
     ActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActivityCell"
                                                                  forIndexPath:indexPath];
     Activity *activity = self.activities[indexPath.row];
+    cell.liked = [self liked:activity];
     [cell setActivity:activity showHeader:isExpertView];
 
     return cell;
@@ -104,13 +113,30 @@
     return reusableView;
 }
 
+- (void)onActivityLiked:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"activityLiked"]) {
+        NSDictionary *activityData = [notification valueForKey:@"object"];
+        Activity *activity = activityData[@"activity"];
+        User *expert = activityData[@"expert"];
+        if ([activityData[@"liked"] isEqual:@(YES)]) {
+            NSLog(@"[ActivitiesCollection] liked");
+            [ActivityLike likeActivity:activity user:activity.user expert:expert];
+            [self.likes addObject:activity.objectId];
+        } else {
+            NSLog(@"[ActivitiesCollection] unliked");
+            [ActivityLike unlikeActivity:activity expert:expert];
+            [self.likes removeObject:activity.objectId];
+        }
+    }
+}
 
 - (void)fetchData {
     // TODO: Add paging here
     if (isExpertView) {
+        [self fetchActivityLikes];
         [Activity getClientActivitiesByExpert:self.user success:^(NSArray *objects) {
             self.activities = objects;
-            NSLog(@"client activities count: %lu", (unsigned long)self.activities.count);
+            NSLog(@"client activities count: %d", self.activities.count);
             [self.collectionView reloadData];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
@@ -118,12 +144,23 @@
     } else {
         [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
             self.activities = objects;
-            NSLog(@"my activities count: %lu", self.activities.count);
+            NSLog(@"my activities count: %d", self.activities.count);
             [self.collectionView reloadData];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
         }];
     }
+}
+
+- (void)fetchActivityLikes {
+    [ActivityLike getActivityLikesByExpert:self.user success:^(NSArray *activityLikes) {
+        for (ActivityLike *activityLike in activityLikes) {
+            [self.likes addObject:activityLike.activity.objectId];
+        }
+        NSLog(@"activityLikes count: %d", self.likes.count);
+    } error:^(NSError *error) {
+        NSLog(@"[ActivitiesCollection activityLikes] error: %@", error.description);
+    }];
 }
 
 - (void)setupUI {
@@ -136,6 +173,10 @@
     [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
+}
+
+- (BOOL)liked:(Activity *)activity {
+    return [self.likes indexOfObject:activity.objectId] != NSNotFound;
 }
 
 @end

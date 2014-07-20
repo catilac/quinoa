@@ -29,6 +29,11 @@
 }
 
 - (void)popBackToLastTabBarView {
+    [self performSelector:@selector(setToLastTabBar) withObject:nil afterDelay:.4 ];
+//    [self setSelectedIndex:self.lastIndex];
+}
+
+- (void)setToLastTabBar {
     [self setSelectedIndex:self.lastIndex];
 }
 
@@ -56,10 +61,13 @@
 }
 
 #pragma mark - UITabBarControllerDelegate methods
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController; {
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex != 2) {
         self.lastIndex = tabBarController.selectedIndex;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
     }
+
+    
 }
 
 

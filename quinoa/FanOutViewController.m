@@ -16,6 +16,9 @@
 
 @interface FanOutViewController ()
 
+
+@property (weak, nonatomic) IBOutlet UIButton *trackWeightButton;
+@property (weak, nonatomic) IBOutlet UIButton *trackActivityButton;
 @property (weak, nonatomic) IBOutlet UIButton *trackFoodButton;
 @property (strong, nonatomic) UIImage *currentBackgroundImage;
 
@@ -38,19 +41,53 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(animateFanOutView)
+                                                 name:kCloseMenu
+                                               object:nil];
+    
+    // hide compose buttons
+    self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
+    self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
+    self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
 }
 - (void)viewWillAppear:(BOOL)animated {
+    
+    // hidden 130, viewheight - 60, 60, 60
+    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.trackWeightButton.frame = CGRectMake(45, self.view.frame.size.height - 140 + 44, 60, 60);
+        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 185 + 44, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(215, self.view.frame.size.height - 140 + 44, 60, 60);
+    } completion:nil];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kOpenMenu object:nil];
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self blurBackground];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
 
-    [super viewWillDisappear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [self undoBlurBackground];
+    
+}
+
+- (void)animateFanOutView {
+    NSLog(@"pop fancontroller");
+    
+    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+    } completion:^(BOOL finished){
+        NSLog(@"animate complete");
+        [self undoBlurBackground];
+        //[super viewWillDisappear:animated];
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }];
 }
 
 - (void)didReceiveMemoryWarning

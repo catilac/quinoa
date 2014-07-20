@@ -43,13 +43,19 @@
                                                  selector:@selector(openMenu)
                                                      name:kOpenMenu
                                                    object:nil];
+//        // Handle notification for closing menu
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(closeMenu)
+//                                                     name:kCloseMenu
+//                                                   object:nil];
+
     }
     return self;
 }
 
 - (void)openMenu {
     
-    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self setBackgroundColor:[UIColor redColor]];
         self.trackImage.transform = CGAffineTransformMakeRotation(M_PI/4);
     } completion:nil];
@@ -57,9 +63,13 @@
     [self setUserInteractionEnabled:YES];
 }
 
+- (void)sendCloseMessage {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
+}
+
 - (void)closeMenu {
     
-    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self setBackgroundColor:[Utils getGreen]];
         self.trackImage.transform = CGAffineTransformMakeRotation(0);
     } completion:nil];

@@ -46,9 +46,12 @@
 }
 
 + (void)getMessagesByThreadId:(NSString *)threadId
+                         skip:(NSInteger)skip
                       success:(void (^)(NSArray *))success
                         error:(void (^)(NSError *))error {
     PFQuery *query = [Message query];
+    [query setSkip:skip];
+    [query orderByAscending:@"createdAt"];
     [query whereKey:@"threadId" equalTo:threadId];
     [query includeKey:@"sender"];
     [query includeKey:@"recipient"];

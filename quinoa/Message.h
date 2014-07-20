@@ -22,9 +22,8 @@
 + (Message *)sendMessageToUser:(PFUser *)recipient fromUser:(PFUser *)sender message:(NSString *)message;
 
 + (void)getMessagesByThreadId:(NSString *)threadId
+                         skip:(NSInteger)skip
                       success:(void (^) (NSArray *messages))success
                         error:(void (^) (NSError *error))error;
-
-
 
 @end

@@ -21,5 +21,7 @@
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 
++ (void)removeSubviewsFrom:(UIView *)view;
+
 + (UIImage *)screenshot;
 @end

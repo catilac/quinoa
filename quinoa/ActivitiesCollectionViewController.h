@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 
-@interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) User *user;
 

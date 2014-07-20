@@ -19,6 +19,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
 #import "DashboardViewController.h"
+#import "QuinoaTabBarViewController.h"
 
 @interface LoginViewController ()
 
@@ -123,7 +124,7 @@
 }
 
 - (void)setupNavigationForExpert {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
 
     // Activity Tab
     ActivitiesCollectionViewController *activitiesViewController = [[ActivitiesCollectionViewController alloc] init];
@@ -149,7 +150,7 @@
     tabBarController.viewControllers = @[activitiesNavController, myClientsNavController, moreNavController];
 
 
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
 }
 
 - (void)setupNavigationForUser {
@@ -190,19 +191,14 @@
     moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
     
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
 
     tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
 
-    // Add custom view for custom track UITabBarItem
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    TrackButton *trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-35, screenSize.height-55, 70, 110)];
-    trackButton.layer.cornerRadius = 3;
-    [tabBarController.view addSubview:trackButton];
-
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
+
 @end

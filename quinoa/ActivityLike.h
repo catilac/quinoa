@@ -19,9 +19,14 @@
                       success:(void (^) (NSArray *activityLikes))success
                         error:(void (^) (NSError *error))error;
 
++ (void)getActivityLikesByExpert:(User *)expert
+                         success:(void (^)(NSArray *activityLikes))success
+                           error:(void (^)(NSError *error))error;
+
 + (ActivityLike *)likeActivity:(Activity *)activity user:(User *)user expert:(User *)expert;
 
-
++ (void)unlikeActivity:(Activity *)activity
+                expert:(User *)expert;
 
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;

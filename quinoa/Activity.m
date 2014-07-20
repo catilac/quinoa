@@ -18,6 +18,7 @@
 @dynamic image;
 @dynamic descriptionText;
 @dynamic user;
+@dynamic updatedAt;
 
 + (NSString *)parseClassName {
     return @"Activity";

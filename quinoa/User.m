@@ -11,7 +11,8 @@
 @implementation User
 
 @dynamic username, email, firstName, lastName, role, location;
-@dynamic gender, birthday, height, weight;
+@dynamic gender, birthday;
+@dynamic height, weight, currentWeight, averageActivityDuration;
 @dynamic currentTrainer, image;
 
 - (BOOL)isExpert {

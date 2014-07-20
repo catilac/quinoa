@@ -24,7 +24,7 @@ static const CGFloat ContainerWidth = 300;
 @property (weak, nonatomic) IBOutlet UIView *userView;
 @property (weak, nonatomic) IBOutlet UIView *activityView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
-@property (strong, nonatomic) UICollectionViewCell *cell;
+@property (strong, nonatomic) UICollectionViewCell *containerCell;
 
 @property (strong,nonatomic) DietActivity *dietActivity;
 @property (strong,nonatomic) PhysicalActivity *physicalActivity;
@@ -48,13 +48,9 @@ static const CGFloat ContainerWidth = 300;
         UINib *nib = [UINib nibWithNibName:@"ActivityCell" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
 
-        self.cell = objects[0];
-        [self.contentView addSubview:self.cell];
-        [self.cell setFrame:self.contentView.frame];
-
-        self.dietActivity = [[DietActivity alloc] initWithFrame:self.contentView.frame];
-        self.physicalActivity = [[PhysicalActivity alloc] initWithFrame:self.contentView.frame];
-        self.weightActivity = [[WeightActivity alloc] initWithFrame:self.contentView.frame];
+        self.containerCell = objects[0];
+        [self.contentView addSubview:self.containerCell];
+        [self.containerCell setFrame:self.contentView.frame];
     }
     return self;
 }
@@ -71,14 +67,23 @@ static const CGFloat ContainerWidth = 300;
     [Utils removeSubviewsFrom:self.activityView];
 
     if (self.activity.activityType == ActivityTypeEating) {
+        if (self.dietActivity == nil) {
+            self.dietActivity = [[DietActivity alloc] initWithFrame:[self activityFrame]];
+        }
         self.dietActivity.activity = activity;
         [self.activityView addSubview:self.dietActivity];
         [self.dietActivity setNeedsLayout];
     } else if (self.activity.activityType == ActivityTypePhysical) {
+        if (self.physicalActivity == nil) {
+            self.physicalActivity = [[PhysicalActivity alloc] initWithFrame:[self activityFrame]];
+        }
         self.physicalActivity.activity = activity;
         [self.activityView addSubview:self.physicalActivity];
         [self.physicalActivity setNeedsLayout];
     } else if (self.activity.activityType == ActivityTypeWeight) {
+        if (self.weightActivity == nil) {
+            self.weightActivity = [[WeightActivity alloc] initWithFrame:[self activityFrame]];
+        }
         self.weightActivity.activity = activity;
         [self.activityView addSubview:self.weightActivity];
         [self.weightActivity setNeedsLayout];
@@ -88,10 +93,14 @@ static const CGFloat ContainerWidth = 300;
 - (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader {
     _showHeader = showHeader;
     if (showHeader) {
-        UserHeader *userHeader = [[UserHeader alloc] init];
+        UserHeader *userHeader = [[UserHeader alloc] initWithFrame:CGRectMake(0, 0, ContainerWidth, UserHeaderHeight)];
         self.userView.backgroundColor = [Utils getLightGray];
+        userHeader.liked = self.liked;
+        userHeader.activity = activity;
         userHeader.user = activity.user;
+
         [self.userView addSubview:userHeader];
+        [self.userView setNeedsLayout];
         self.userView.hidden = NO;
         self.topConstraint.constant = UserHeaderHeight;
     } else {
@@ -110,7 +119,7 @@ static const CGFloat ContainerWidth = 300;
     [Utils removeSubviewsFrom:self.userView];
     [Utils removeSubviewsFrom:self.activityView];
 
-    [self.cell setFrame:self.contentView.frame];
+    [self.containerCell setFrame:self.contentView.frame];
 
     [self.dietActivity clean];
     [self.physicalActivity clean];
@@ -123,19 +132,22 @@ static const CGFloat ContainerWidth = 300;
     CGRect currentFrame = [self.contentView frame];
     currentFrame.size = [self cellSize];
 
-    self.cell.frame = currentFrame;
+    self.containerCell.frame = currentFrame;
 
     if (self.activity.activityType == ActivityTypeEating) {
-        [self.dietActivity setFrame:currentFrame];
+        [self.dietActivity setFrame:[self activityFrame]];
         [self.dietActivity layoutSubviews];
     } else if (self.activity.activityType == ActivityTypePhysical) {
-        [self.physicalActivity setFrame:currentFrame];
+        [self.physicalActivity setFrame:[self activityFrame]];
         [self.physicalActivity layoutSubviews];
     } else if (self.activity.activityType == ActivityTypeWeight) {
-        [self.weightActivity setFrame:currentFrame];
+        [self.weightActivity setFrame:[self activityFrame]];
         [self.weightActivity layoutSubviews];
     }
 
+    if (self.showHeader) {
+        [self.userView setNeedsLayout];
+    }
     //NSLog(@"layoutSubviews: %@", NSStringFromCGRect(currentFrame));
 }
 
@@ -163,5 +175,12 @@ static const CGFloat ContainerWidth = 300;
     return size;
 }
 
+- (CGRect)activityFrame {
+    CGRect frame = self.contentView.frame;
+    if (self.showHeader) {
+        frame.size.height = frame.size.height - UserHeaderHeight;
+    }
+    return frame;
+}
 
 @end

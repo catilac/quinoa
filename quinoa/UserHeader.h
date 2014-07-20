@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Activity.h"
 #import "User.h"
 
 @interface UserHeader : UIView
 
+// Required
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSString *activityId;
+
+// Optional for the kudos button
+@property (nonatomic, strong) Activity *activity;
+
+@property BOOL liked;
+
 @end

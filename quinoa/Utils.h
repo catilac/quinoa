@@ -24,4 +24,6 @@
 + (void)removeSubviewsFrom:(UIView *)view;
 
 + (UIImage *)screenshot;
+
++ (NSString *)getPounds:(NSNumber *)weight;
 @end

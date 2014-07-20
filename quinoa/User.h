@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSDate *birthday;
 @property (nonatomic, strong) NSString *height;
 @property (nonatomic, strong) NSNumber *weight;
+@property (nonatomic, strong) NSNumber *currentWeight;
+@property (nonatomic, strong) NSNumber *averageActivityDuration;
 
 @property (nonatomic, strong) User *currentTrainer;
 @property (nonatomic, strong) PFFile *image;

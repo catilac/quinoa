@@ -24,7 +24,7 @@ typedef enum {
 @property (strong, nonatomic) PFFile *image;
 @property (strong, nonatomic) NSString *descriptionText;
 @property (strong, nonatomic) User *user;
-
+@property (strong, nonatomic) NSDate *updatedAt;
 
 + (NSString *)parseClassName;
 + (Activity *)trackEating:(PFFile *)image description:(NSString *)description;

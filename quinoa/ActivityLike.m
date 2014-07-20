@@ -35,6 +35,21 @@
     }];
 }
 
++ (void)getActivityLikesByExpert:(User *)expert
+                       success:(void (^)(NSArray *activityLikes))success
+                         error:(void (^)(NSError *error))error {
+    PFQuery *query = [ActivityLike query];
+    [query whereKey:@"expert" equalTo:expert];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *activityLikes, NSError *errorFromParse) {
+        if (success) {
+            success(activityLikes);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
+
 + (ActivityLike *)likeActivity:(Activity *)activity
                           user:(User *)user
                         expert:(User *)expert {
@@ -48,4 +63,14 @@
     return newActivityLike;
 }
 
++ (void)unlikeActivity:(Activity *)activity
+                  expert:(User *)expert {
+    PFQuery *query = [ActivityLike query];
+    [query whereKey:@"activity" equalTo:activity];
+    [query whereKey:@"expert" equalTo:expert];
+
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [object deleteInBackground];
+    }];
+}
 @end

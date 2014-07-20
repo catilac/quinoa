@@ -44,10 +44,10 @@
                                                      name:kOpenMenu
                                                    object:nil];
 //        // Handle notification for closing menu
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(closeMenu)
-//                                                     name:kCloseMenu
-//                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onClose)
+                                                     name:kCloseMenu
+                                                   object:nil];
 
     }
     return self;
@@ -68,17 +68,19 @@
 }
 
 - (void)closeMenu {
-    
+    // Send out a message saying we're closing the menu
+    // The LoginViewController will be listening for it, and will swap us back to the last tab bar in use.
+    [self sendCloseMessage];
+
+}
+
+- (void)onClose {
     [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self setBackgroundColor:[Utils getGreen]];
         self.trackImage.transform = CGAffineTransformMakeRotation(0);
     } completion:nil];
     
     [self setUserInteractionEnabled:NO];
-    
-    // Send out a message saying we're closing the menu
-    // The LoginViewController will be listening for it, and will swap us back to the last tab bar in use.
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 
 }
 

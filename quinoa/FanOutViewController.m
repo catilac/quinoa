@@ -105,7 +105,9 @@
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithImage:self.currentBackgroundImage];
     [trackViewController.view addSubview:backgroundImageView];
     [trackViewController.view sendSubviewToBack:backgroundImageView];
-    [self.navigationController pushViewController:trackViewController animated:NO];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:trackViewController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)onTrackActivity:(id)sender {
@@ -115,7 +117,9 @@
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithImage:self.currentBackgroundImage];
     [activityViewController.view addSubview:backgroundImageView];
     [activityViewController.view sendSubviewToBack:backgroundImageView];
-    [self.navigationController pushViewController:activityViewController animated:NO];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:activityViewController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)onTapParentView:(id)sender {

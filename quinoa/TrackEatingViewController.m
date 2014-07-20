@@ -100,8 +100,11 @@
             if (self.descriptionField != nil) {
                 description = self.descriptionField.text;
             }
-            [Activity trackEating:imageFile description:description];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [Activity trackEating:imageFile
+                      description:description
+                         callback:^(BOOL succeeded, NSError *error) {
+                             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                         }];
         } else {
             NSLog(@"Couldn't save file");
         }

@@ -34,11 +34,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(postActivity)
-                                                     name:kSubmitData
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToSubmitMessage object:nil];
+
     }
     return self;
 }
@@ -46,13 +42,16 @@
 - (void)postActivity {
     // Send message to disarm track button
     if ([self.activityType isEqualToString:@"trackWeight"]) {
-        [Activity trackWeight:[NSNumber numberWithFloat:self.weight]];
+        [Activity trackWeight:[NSNumber numberWithFloat:self.weight]
+                     callback:^(BOOL succeeded, NSError *error) {
+                         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                     }];
     } else if ([self.activityType isEqualToString:@"trackActivity"]) {
-        [Activity trackPhysical:[NSNumber numberWithFloat:self.weight]];
+        [Activity trackPhysical:[NSNumber numberWithFloat:self.weight]
+                       callback:^(BOOL succeeded, NSError *error) {
+                           [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                       }];
     }
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
 }
 
 - (id)initWithType:(NSString *)activityType {
@@ -98,7 +97,20 @@
     }
     self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self
+                                                                            action:@selector(cancel)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:self
+                                                                             action:@selector(postActivity)];
+
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.translucent = NO;
+
 
 }
 
@@ -152,6 +164,7 @@
 }
 
 - (void)cancel {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

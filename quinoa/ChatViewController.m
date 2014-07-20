@@ -117,9 +117,20 @@ static NSString *CellIdentifier = @"chatCellIdent";
     [Message getMessagesByThreadId:threadId
                               skip:[self.messages count] - 1
                            success:^(NSArray *messages) {
-                               [self.messages addObjectsFromArray:messages];
-                               [self.chatView reloadData];
-                               [self scrollToBottom];
+
+                               [self.chatView performBatchUpdates:^{
+                                   NSInteger resultSize = [self.messages count];
+                                   [self.messages addObjectsFromArray:messages];
+                                   
+                                   NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                                   for (NSInteger i = resultSize; i < resultSize + messages.count; i++) {
+                                       [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                                   }
+                                   
+                                   [self.chatView insertItemsAtIndexPaths:arrayWithIndexPaths];
+                               } completion:^(BOOL finished) {
+                                   [self scrollToBottom];
+                               }];                               
                            } error:^(NSError *error) {
                                NSLog(@"ERROR");
                            }];

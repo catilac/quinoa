@@ -24,37 +24,42 @@
     return @"Activity";
 }
 
-+ (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
+//+ (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
++ (Activity *)trackEating:(PFFile *)image
+              description:(NSString *)description
+                 callback:(void (^)(BOOL, NSError *))callback {
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
     activity.activityType = ActivityTypeEating;
     activity.image = image;
     activity.descriptionText = description;
-    [activity saveInBackground];
+    [activity saveInBackgroundWithBlock:callback];
 
     return activity;
 }
 
-+ (Activity *)trackPhysical:(NSNumber *)duration {
++ (Activity *)trackPhysical:(NSNumber *)duration
+                   callback:(void (^)(BOOL, NSError *))callback {
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
     activity.activityType = ActivityTypePhysical;
     activity.activityValue = duration;
     activity.activityUnit = @"min";
     activity.descriptionText = @"Physical Activity";
-    [activity saveInBackground];
+    [activity saveInBackgroundWithBlock:callback];
     
     return activity;
 }
 
-+ (Activity *)trackWeight:(NSNumber *)weight {
++ (Activity *)trackWeight:(NSNumber *)weight
+                 callback:(void (^)(BOOL, NSError *))callback {
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
     activity.activityType = ActivityTypeWeight;
     activity.activityValue = weight;
     activity.activityUnit = @"lbs";
     activity.descriptionText = @"Weight";
-    [activity saveInBackground];
+    [activity saveInBackgroundWithBlock:callback];
     
     return activity;
 }

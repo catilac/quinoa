@@ -27,9 +27,17 @@ typedef enum {
 @property (strong, nonatomic) NSDate *updatedAt;
 
 + (NSString *)parseClassName;
-+ (Activity *)trackEating:(PFFile *)image description:(NSString *)description;
-+ (Activity *)trackPhysical:(NSNumber *)duration;
-+ (Activity *)trackWeight:(NSNumber *)weight;
+
++ (Activity *)trackEating:(PFFile *)image
+              description:(NSString *)description
+                 callback:(void (^) (BOOL succeeded, NSError *error))callback;
+
++ (Activity *)trackPhysical:(NSNumber *)duration
+                   callback:(void (^) (BOOL succeeded, NSError *error))callback;
+
++ (Activity *)trackWeight:(NSNumber *)weight
+                 callback:(void (^) (BOOL succeeded, NSError *error))callback;
+
 
 + (void)getActivitiesByUser:(User *)user
                     success:(void (^) (NSArray *objects))success

@@ -343,7 +343,7 @@
 			children = (
 				46C25F54197A6AF400B49CDC /* QuinoaTabBarController */,
 				462769D7197636630049482F /* Dashboard */,
-				9FD3348F19735B23003E1727 /* Activity */,
+				9FD3348F19735B23003E1727 /* Track Activity */,
 				46AA118619730C2B001C7F02 /* My Clients */,
 				46907784197276E100CF9DBC /* FanOut Controller */,
 				46437E101971E1C000A70338 /* TrackEating */,
@@ -670,14 +670,14 @@
 			name = "Article Cell";
 			sourceTree = "<group>";
 		};
-		9FD3348F19735B23003E1727 /* Activity */ = {
+		9FD3348F19735B23003E1727 /* Track Activity */ = {
 			isa = PBXGroup;
 			children = (
 				9FD3349019735B43003E1727 /* ActivityViewController.h */,
 				9FD3349119735B43003E1727 /* ActivityViewController.m */,
 				9FD3349219735B43003E1727 /* ActivityViewController.xib */,
 			);
-			name = Activity;
+			name = "Track Activity";
 			sourceTree = "<group>";
 		};
 		A3B4A88F196A7F5800135230 /* More */ = {
@@ -740,7 +740,6 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
-						DevelopmentTeam = PN7RM78XDW;
 						DevelopmentTeam = Q4M29PLT7E;
 					};
 					460447B91964ECC600DDE6C6 = {

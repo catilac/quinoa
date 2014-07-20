@@ -195,6 +195,7 @@
     
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
+    trackingNavController.view.tag = kFanOutIdent;
 
     tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
 

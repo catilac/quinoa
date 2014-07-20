@@ -34,6 +34,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
     }
     return self;
 }
@@ -66,7 +67,6 @@
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self blurBackground];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,16 +76,12 @@
 }
 
 - (void)animateFanOutView {
-    NSLog(@"pop fancontroller");
-    
     [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
         self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
         self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
     } completion:^(BOOL finished){
-        NSLog(@"animate complete");
         [self undoBlurBackground];
-        //[super viewWillDisappear:animated];
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }];
 }

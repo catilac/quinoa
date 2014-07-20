@@ -150,7 +150,7 @@
     tabBarController.viewControllers = @[activitiesNavController, myClientsNavController, moreNavController];
 
 
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
 
 - (void)setupNavigationForUser {

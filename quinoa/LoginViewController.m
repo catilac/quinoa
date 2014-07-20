@@ -150,7 +150,7 @@
     tabBarController.viewControllers = @[activitiesNavController, myClientsNavController, moreNavController];
 
 
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }
 
 - (void)setupNavigationForUser {
@@ -195,6 +195,7 @@
     
     FanOutViewController *fanOutControl = [[FanOutViewController alloc] init];
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
+    trackingNavController.view.tag = kFanOutIdent;
 
     tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
 

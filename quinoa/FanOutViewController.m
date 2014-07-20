@@ -123,13 +123,11 @@
 }
 
 - (void)blurBackground {
-    if (self.currentBackgroundImage == nil) {
-        UIImage *bgImage = [Utils screenshot];
+    UIImage *bgImage = [Utils screenshot];
 
-        // Tweak these values Nathan!
-        UIColor *tintColor = [UIColor colorWithWhite:0.1 alpha:0.5];
-        self.currentBackgroundImage = [bgImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
-    }
+    // Tweak these values Nathan!
+    UIColor *tintColor = [UIColor colorWithWhite:0.1 alpha:0.5];
+    self.currentBackgroundImage = [bgImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
     self.view.backgroundColor = [UIColor colorWithPatternImage:self.currentBackgroundImage];
 }
 

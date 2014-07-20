@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FanOutViewController">
             <connections>
+                <outlet property="trackActivityButton" destination="2xq-LV-S4I" id="g41-rx-57y"/>
                 <outlet property="trackFoodButton" destination="Lcu-dm-cGy" id="x8y-yH-7a2"/>
+                <outlet property="trackWeightButton" destination="AWH-4I-cgs" id="srD-Ji-cj7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,10 +17,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcu-dm-cGy">
-                    <rect key="frame" x="200" y="450" width="77" height="51"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcu-dm-cGy" userLabel="TrackFoodButton">
+                    <rect key="frame" x="215" y="428" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Track Food">
+                    <state key="normal" image="cat">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -26,10 +28,10 @@
                         <action selector="onTrackFood:" destination="-1" eventType="touchUpInside" id="PKc-9T-rPD"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xq-LV-S4I">
-                    <rect key="frame" x="122" y="384" width="92" height="51"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xq-LV-S4I" userLabel="TrackActivityButton">
+                    <rect key="frame" x="130" y="383" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Track Activity">
+                    <state key="normal" image="dog">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -37,10 +39,10 @@
                         <action selector="onTrackActivity:" destination="-1" eventType="touchUpInside" id="bhX-au-YgL"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWH-4I-cgs">
-                    <rect key="frame" x="43" y="450" width="92" height="51"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWH-4I-cgs" userLabel="TrackWeightButton">
+                    <rect key="frame" x="45" y="428" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Track Weight">
+                    <state key="normal" image="avatar">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -48,10 +50,28 @@
                         <action selector="onTrackWeight:" destination="-1" eventType="touchUpInside" id="CLt-SN-npM"/>
                     </connections>
                 </button>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="ewV-Wj-GY5">
+                    <rect key="frame" x="130" y="537" width="60" height="60"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="72z-9q-cEo" appends="YES" id="Fvz-BT-Wwu"/>
+            </connections>
         </view>
+        <tapGestureRecognizer id="72z-9q-cEo">
+            <connections>
+                <action selector="onTapParentView:" destination="-1" id="erY-Lv-S9F"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="avatar" width="109" height="105"/>
+        <image name="cat" width="302" height="302"/>
+        <image name="dog" width="265" height="265"/>
+    </resources>
 </document>

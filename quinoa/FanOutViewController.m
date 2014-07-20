@@ -16,12 +16,17 @@
 
 @interface FanOutViewController ()
 
+
+@property (weak, nonatomic) IBOutlet UIButton *trackWeightButton;
+@property (weak, nonatomic) IBOutlet UIButton *trackActivityButton;
 @property (weak, nonatomic) IBOutlet UIButton *trackFoodButton;
 @property (strong, nonatomic) UIImage *currentBackgroundImage;
 
 - (IBAction)onTrackFood:(id)sender;
 - (IBAction)onTrackWeight:(id)sender;
 - (IBAction)onTrackActivity:(id)sender;
+- (IBAction)onTapParentView:(id)sender;
+
 
 @end
 
@@ -31,6 +36,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
     }
     return self;
 }
@@ -38,8 +44,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(animateFanOutView)
+                                                 name:kCloseMenu
+                                               object:nil];
+    
+    // hide compose buttons
+    self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
+    self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
+    self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
 }
 - (void)viewWillAppear:(BOOL)animated {
+    
+    // hidden 130, viewheight - 60, 60, 60
+    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.trackWeightButton.frame = CGRectMake(45, self.view.frame.size.height - 140 + 44, 60, 60);
+        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 185 + 44, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(215, self.view.frame.size.height - 140 + 44, 60, 60);
+    } completion:nil];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kOpenMenu object:nil];
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -47,10 +72,20 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
 
-    [super viewWillDisappear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [self undoBlurBackground];
+    
+}
+
+- (void)animateFanOutView {
+    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+    } completion:^(BOOL finished){
+        [self undoBlurBackground];
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +116,10 @@
     [activityViewController.view addSubview:backgroundImageView];
     [activityViewController.view sendSubviewToBack:backgroundImageView];
     [self.navigationController pushViewController:activityViewController animated:NO];
+}
+
+- (IBAction)onTapParentView:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 }
 
 - (void)blurBackground {

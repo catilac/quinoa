@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+static const NSInteger kFanOutIdent = 1337;
+
 @interface FanOutViewController : UIViewController
 
 @end

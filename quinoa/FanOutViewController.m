@@ -25,6 +25,8 @@
 - (IBAction)onTrackFood:(id)sender;
 - (IBAction)onTrackWeight:(id)sender;
 - (IBAction)onTrackActivity:(id)sender;
+- (IBAction)onTapParentView:(id)sender;
+
 
 @end
 
@@ -114,6 +116,10 @@
     [activityViewController.view addSubview:backgroundImageView];
     [activityViewController.view sendSubviewToBack:backgroundImageView];
     [self.navigationController pushViewController:activityViewController animated:NO];
+}
+
+- (IBAction)onTapParentView:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 }
 
 - (void)blurBackground {

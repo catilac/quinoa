@@ -61,7 +61,7 @@
 - (NSString *)getBlurbCopy {
     NSString *copy = @"";
     NSNumber *before = self.activity.user.weight;
-    NSNumber *after = self.activity.user.currentWeight;
+    NSNumber *after = self.activity.activityValue;
     if (before > 0 && after > 0) {
         int diff = abs([before doubleValue] - [after doubleValue]);
         NSNumber *diffNumber = [NSNumber numberWithInteger:diff];

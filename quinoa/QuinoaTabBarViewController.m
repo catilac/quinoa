@@ -31,10 +31,6 @@
 }
 
 - (void)popBackToLastTabBarView {
-    [self performSelector:@selector(setToLastTabBar) withObject:nil afterDelay:0.4];
-}
-
-- (void)setToLastTabBar {
     [self setSelectedIndex:self.lastIndex];
 }
 

@@ -16,4 +16,5 @@
 
 - (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader;
 
+- (CGSize)cellSize;
 @end

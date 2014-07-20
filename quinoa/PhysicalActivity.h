@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) Activity *activity;
 
+- (void)clean;
 
 @end

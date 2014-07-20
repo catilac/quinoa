@@ -54,11 +54,24 @@
     }
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     self.nameLabel.text = [self.user getDisplayName];
-    self.metaLabel.text = [self.user getMetaInfo];
+    if (self.activity != nil) {
+        NSDate *now = [NSDate date];
+        NSDate *sevenDaysAgo = [now dateByAddingTimeInterval:-7*24*60*60];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        if ([self.activity.updatedAt compare:sevenDaysAgo] == NSOrderedAscending) {
+            [dateFormat setDateFormat:@"M-d-YYYY • ha"];
+        } else {
+            [dateFormat setDateFormat:@"EEEE • ha"];
+        }
+        self.metaLabel.text = [dateFormat stringFromDate:self.activity.updatedAt];
+    } else {
+        self.metaLabel.text = [self.user getMetaInfo];
+    }
     self.bottomBorder.backgroundColor = [Utils getGray];
 
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
-    [self.metaLabel setTextColor:[Utils getDarkBlue]];
+    [self.metaLabel setTextColor:[Utils getGray]];
+
     self.likeButton.hidden = (self.activity == nil);
     [self.likeButton setSelected:self.liked];
 }

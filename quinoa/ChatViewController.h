@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 
-@interface ChatViewController : UIViewController <UICollectionViewDataSource>
+@interface ChatViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 - initWithUser:(User *)recipient;
 

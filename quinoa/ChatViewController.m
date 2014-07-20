@@ -22,6 +22,8 @@
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) NSTimer *queryTimer;
 
+@property (strong, nonatomic) ChatCell *stubCell;
+
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
 - (IBAction)onViewTap:(UITapGestureRecognizer *)sender;
@@ -49,6 +51,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
         
         self.messages = [[NSMutableArray alloc] init];
         
+        self.stubCell = [[ChatCell alloc] init];
+        
         // Register the methods for the keyboard hide/show events
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
@@ -64,10 +68,12 @@ static NSString *CellIdentifier = @"chatCellIdent";
     forCellWithReuseIdentifier:CellIdentifier];
     
     self.chatView.dataSource = self;
+    self.chatView.delegate = self;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(300, 50)];
+//    [flowLayout setItemSize:CGSizeMake(300, 50)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
     [self.chatView setCollectionViewLayout:flowLayout];
     
     self.queryTimer = [NSTimer scheduledTimerWithTimeInterval:1
@@ -117,7 +123,6 @@ static NSString *CellIdentifier = @"chatCellIdent";
     [Message getMessagesByThreadId:threadId
                               skip:[self.messages count] - 1
                            success:^(NSArray *messages) {
-
                                [self.chatView performBatchUpdates:^{
                                    NSInteger resultSize = [self.messages count];
                                    [self.messages addObjectsFromArray:messages];
@@ -222,7 +227,13 @@ static NSString *CellIdentifier = @"chatCellIdent";
     }
     
 }
-
+#pragma mark - UICollectionViewDelegateFlowLayout methods
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.stubCell updateChatCellWithMessage:self.messages[indexPath.row]];
+    CGSize size = [self.stubCell cellSize];
+    
+    return size;
+}
 
 #pragma mark - UICollectionViewDataSource methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -241,6 +252,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
     [cell updateChatCellWithMessage:message];
     return cell;
 }
+
+
 
 
 @end

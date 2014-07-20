@@ -9,6 +9,9 @@
 #import "ChatCell.h"
 #import "Utils.h"
 
+static const CGFloat ContainerWidth = 300;
+static const CGFloat MessageWidth = 237;
+
 @interface ChatCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -58,6 +61,27 @@
         self.usernameLabel.textColor = [Utils getVibrantBlue];
         self.userImage.image = [UIImage imageNamed: @"dog.png"];
     }
+}
+
+- (CGSize)cellSize {
+    CGSize size = CGSizeMake(ContainerWidth, 0);
+
+    // Distance from top to MessageLabel
+    size.height = 22;
+    
+    // add height of message label
+    NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName: @"SourceSansPro-Light" size: 16.0]};
+    CGRect rect = [self.message.text
+            boundingRectWithSize:CGSizeMake(MessageWidth, 0)
+            options:NSStringDrawingUsesLineFragmentOrigin
+            attributes:dict
+            context:nil];
+    size.height += rect.size.height;
+    
+    // Bottom Margin
+    size.height += 5;
+    
+    return size;
 }
 
 /*

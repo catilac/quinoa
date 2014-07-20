@@ -18,4 +18,6 @@
 
 - (void)updateChatCellWithMessage:(Message *)message;
 
+- (CGSize)cellSize;
+
 @end

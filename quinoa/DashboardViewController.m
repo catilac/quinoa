@@ -61,6 +61,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
     [self setupDashboardHeader];
+    [self setupFeedTable];
     [self fetchActivityLikes];
     [self fetchWeightStats];
     
@@ -167,6 +168,12 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     [self.view addSubview:self.dashboardHeader];
     [self.view addSubview:self.statsBar];
+}
+
+- (void)setupFeedTable {
+    self.feedTable.layer.borderWidth = 1;
+    self.feedTable.layer.borderColor = [Utils getGray].CGColor;
+    self.feedTable.layer.cornerRadius = 6;
 }
 
 - (void)fetchWeightStats {

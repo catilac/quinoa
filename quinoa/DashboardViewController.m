@@ -90,6 +90,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     // Initialize BarChart
     CGRect barChartFrame = CGRectMake(0, 0, dashFrame.size.width, dashFrame.size.height*0.75f);
     self.barChart = [[PNBarChart alloc] initWithFrame:barChartFrame];
+    [self.barChart setStrokeColor:[Utils getDarkBlue]];
     [self.barChart setBackgroundColor:[Utils getLightGray]];
     [self.barChart addSubview:chartLabel];
     [self.dashboardHeader addSubview:self.barChart];

@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.menuItems = @[@"My Profile",@"Logout"];
+        self.menuItems = @[@"Logout"];
         self.title = @"More";
     }
     return self;

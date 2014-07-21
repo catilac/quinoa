@@ -7,6 +7,7 @@
 //
 
 #import "ActivitiesCollectionViewController.h"
+#import "ProfileViewController.h"
 #import "Activity.h"
 #import "ActivityLike.h"
 #import "ActivityCell.h"
@@ -173,6 +174,19 @@
     [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
+
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"Edit Profile"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(showProfile:)];
+    self.navigationItem.rightBarButtonItem = profileButton;
+}
+
+- (void)showProfile:(id)sender {
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    UINavigationController *navBar = [[UINavigationController alloc] initWithRootViewController:profileViewController];
+    [self presentViewController:navBar animated:YES completion:nil];
 }
 
 - (BOOL)liked:(Activity *)activity {

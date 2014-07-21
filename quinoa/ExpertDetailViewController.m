@@ -8,6 +8,8 @@
 
 #import "ExpertDetailViewController.h"
 #import "ChatViewController.h"
+#import "ContainerViewController.h"
+#import "DailySummaryCollectionViewController.h"
 #import "ExpertBrowserViewController.h"
 #import "UILabel+QuinoaLabel.h"
 
@@ -73,6 +75,8 @@
     self.chatButton.layer.cornerRadius= 3;
     self.selectExpertButton.layer.cornerRadius= 3;
     self.navigationController.navigationBar.translucent = NO;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,8 +86,18 @@
 }
 
 - (IBAction)onChat:(id)sender {
+    ContainerViewController *containerViewController = [[ContainerViewController alloc]init];
     ChatViewController *chatView = [[ChatViewController alloc] initWithUser:self.expert];
-    [self.navigationController pushViewController:chatView animated:YES];
+    
+    DailySummaryCollectionViewController *dailySummaryViewController = [[DailySummaryCollectionViewController alloc]init];
+
+    [containerViewController addViewController:chatView];
+    
+    [containerViewController addViewController:dailySummaryViewController];
+    
+    
+    //add container view controller
+    [self.navigationController pushViewController:containerViewController animated:YES];
 }
 
 - (void)showExpertsBrowser {

@@ -115,6 +115,7 @@
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"activityType" equalTo:@(activityType)];
     [query setLimit:quantity];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
         if (success) {
             success(objects);

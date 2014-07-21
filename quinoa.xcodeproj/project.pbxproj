@@ -72,6 +72,15 @@
 		53B1EC74197349BE00101B39 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC73197349BE00101B39 /* User.m */; };
 		53B1EC781973683400101B39 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC771973683400101B39 /* ProfileCell.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
+		9F890E47197B17C800DBB343 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F890E45197B17C800DBB343 /* ContainerViewController.m */; };
+		9F890E48197B17C800DBB343 /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F890E46197B17C800DBB343 /* ContainerViewController.xib */; };
+		9F890E4D197B207300DBB343 /* DailySummaryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F890E4B197B207300DBB343 /* DailySummaryCollectionViewController.m */; };
+		9F890E4E197B207300DBB343 /* DailySummaryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F890E4C197B207300DBB343 /* DailySummaryCollectionViewController.xib */; };
+		9F890E52197B243300DBB343 /* DailySummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F890E51197B243300DBB343 /* DailySummaryCell.m */; };
+		9F890E54197B256B00DBB343 /* DailySummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F890E53197B256B00DBB343 /* DailySummaryCell.xib */; };
+		9F890E56197BB56700DBB343 /* food.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9F890E55197BB56700DBB343 /* food.jpg */; };
+		9F890E58197BB75D00DBB343 /* weigh_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F890E57197BB75D00DBB343 /* weigh_scale.png */; };
+		9F890E5B197C9D4F00DBB343 /* DailyActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F890E5A197C9D4F00DBB343 /* DailyActivity.m */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
 		9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD3343E196BA6DC003E1727 /* ProfileViewController.xib */; };
@@ -199,6 +208,19 @@
 		53B1EC761973683400101B39 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		53B1EC771973683400101B39 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F890E44197B17C800DBB343 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		9F890E45197B17C800DBB343 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		9F890E46197B17C800DBB343 /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		9F890E4A197B207300DBB343 /* DailySummaryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailySummaryCollectionViewController.h; sourceTree = "<group>"; };
+		9F890E4B197B207300DBB343 /* DailySummaryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailySummaryCollectionViewController.m; sourceTree = "<group>"; };
+		9F890E4C197B207300DBB343 /* DailySummaryCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailySummaryCollectionViewController.xib; sourceTree = "<group>"; };
+		9F890E50197B243300DBB343 /* DailySummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailySummaryCell.h; sourceTree = "<group>"; };
+		9F890E51197B243300DBB343 /* DailySummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailySummaryCell.m; sourceTree = "<group>"; };
+		9F890E53197B256B00DBB343 /* DailySummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailySummaryCell.xib; sourceTree = "<group>"; };
+		9F890E55197BB56700DBB343 /* food.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food.jpg; sourceTree = "<group>"; };
+		9F890E57197BB75D00DBB343 /* weigh_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weigh_scale.png; sourceTree = "<group>"; };
+		9F890E59197C9D4F00DBB343 /* DailyActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyActivity.h; sourceTree = "<group>"; };
+		9F890E5A197C9D4F00DBB343 /* DailyActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyActivity.m; sourceTree = "<group>"; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		9FD3343C196BA6DC003E1727 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -286,6 +308,8 @@
 		460447A81964ECC600DDE6C6 /* quinoa */ = {
 			isa = PBXGroup;
 			children = (
+				9F890E57197BB75D00DBB343 /* weigh_scale.png */,
+				9F890E55197BB56700DBB343 /* food.jpg */,
 				53B1EC571973068D00101B39 /* Fonts */,
 				4611A6041968B1B100202318 /* Views */,
 				5348EC2B1969401700E99C4A /* Categories */,
@@ -341,6 +365,8 @@
 		4611A6031968AD9B00202318 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9F890E49197B1DE200DBB343 /* DailySummary  */,
+				9F890E43197B16F800DBB343 /* ChatSummaryContainer */,
 				46C25F54197A6AF400B49CDC /* QuinoaTabBarController */,
 				462769D7197636630049482F /* Dashboard */,
 				9FD3348F19735B23003E1727 /* Track Activity */,
@@ -362,6 +388,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F890E4F197B233000DBB343 /* Daily Summary Cell */,
 				460992C11977C69300F03200 /* Activity Like Cell */,
 				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
 				46BDC0B01974EEDC0004387D /* Track Button */,
@@ -509,6 +536,8 @@
 				53B1EC73197349BE00101B39 /* User.m */,
 				46FBFAC21977B2700024BB10 /* ActivityLike.h */,
 				46FBFAC31977B2700024BB10 /* ActivityLike.m */,
+				9F890E59197C9D4F00DBB343 /* DailyActivity.h */,
+				9F890E5A197C9D4F00DBB343 /* DailyActivity.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -638,6 +667,36 @@
 				53B1EC771973683400101B39 /* ProfileCell.m */,
 			);
 			name = "Profile Cell";
+			sourceTree = "<group>";
+		};
+		9F890E43197B16F800DBB343 /* ChatSummaryContainer */ = {
+			isa = PBXGroup;
+			children = (
+				9F890E44197B17C800DBB343 /* ContainerViewController.h */,
+				9F890E45197B17C800DBB343 /* ContainerViewController.m */,
+				9F890E46197B17C800DBB343 /* ContainerViewController.xib */,
+			);
+			name = ChatSummaryContainer;
+			sourceTree = "<group>";
+		};
+		9F890E49197B1DE200DBB343 /* DailySummary  */ = {
+			isa = PBXGroup;
+			children = (
+				9F890E4A197B207300DBB343 /* DailySummaryCollectionViewController.h */,
+				9F890E4B197B207300DBB343 /* DailySummaryCollectionViewController.m */,
+				9F890E4C197B207300DBB343 /* DailySummaryCollectionViewController.xib */,
+			);
+			name = "DailySummary ";
+			sourceTree = "<group>";
+		};
+		9F890E4F197B233000DBB343 /* Daily Summary Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9F890E50197B243300DBB343 /* DailySummaryCell.h */,
+				9F890E51197B243300DBB343 /* DailySummaryCell.m */,
+				9F890E53197B256B00DBB343 /* DailySummaryCell.xib */,
+			);
+			name = "Daily Summary Cell";
 			sourceTree = "<group>";
 		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
@@ -772,18 +831,23 @@
 			files = (
 				A3B4A894196A7F7900135230 /* MoreViewController.xib in Resources */,
 				532904BE19750108005A2E26 /* WeightActivity.xib in Resources */,
+				9F890E54197B256B00DBB343 /* DailySummaryCell.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
+				9F890E4E197B207300DBB343 /* DailySummaryCollectionViewController.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
 				5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */,
 				46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */,
 				460992C61977C6B400F03200 /* ActivityLikeCell.xib in Resources */,
 				9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */,
 				532904C41975062A005A2E26 /* ActivityCell.xib in Resources */,
+				9F890E56197BB56700DBB343 /* food.jpg in Resources */,
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
+				9F890E58197BB75D00DBB343 /* weigh_scale.png in Resources */,
 				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
 				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
+				9F890E48197B17C800DBB343 /* ContainerViewController.xib in Resources */,
 				532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */,
 				9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
@@ -866,6 +930,9 @@
 				53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */,
 				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
+				9F890E52197B243300DBB343 /* DailySummaryCell.m in Sources */,
+				9F890E47197B17C800DBB343 /* ContainerViewController.m in Sources */,
+				9F890E5B197C9D4F00DBB343 /* DailyActivity.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				532904AF1974FDCF005A2E26 /* PhysicalActivity.m in Sources */,
 				5354D0811971EC8800612FFE /* ActivityCell.m in Sources */,
@@ -887,6 +954,7 @@
 				46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,
+				9F890E4D197B207300DBB343 /* DailySummaryCollectionViewController.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
 				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,
@@ -1050,9 +1118,6 @@
 					Security,
 					"-weak_framework",
 					Social,
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

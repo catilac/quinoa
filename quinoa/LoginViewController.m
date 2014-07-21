@@ -20,6 +20,7 @@
 #import "TrackButton.h"
 #import "DashboardViewController.h"
 #import "QuinoaTabBarViewController.h"
+#import "DailySummaryCollectionViewController.h"
 
 @interface LoginViewController ()
 
@@ -139,7 +140,8 @@
     myClientsNavController.tabBarItem.title = @"Clients";
     myClientsNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     myClientsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
+    
+    
     // More Tab
     MoreViewController *moreViewController = [[MoreViewController alloc] init];
     UINavigationController *moreNavController = [[UINavigationController alloc] initWithRootViewController:moreViewController];
@@ -190,6 +192,14 @@
     moreNavController.tabBarItem.title = @"More";
     moreNavController.tabBarItem.image = [[UIImage imageNamed:@"more"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     moreNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"more-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    //Test Daily Summary Tab
+    DailySummaryCollectionViewController *dsvc = [[DailySummaryCollectionViewController alloc] init];
+    UINavigationController *dsNavController = [[UINavigationController alloc] initWithRootViewController:dsvc];
+    dsNavController.tabBarItem.title = @"Test";
+    dsNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    dsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
 
     QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
     
@@ -197,7 +207,7 @@
     UINavigationController *trackingNavController = [[UINavigationController alloc] initWithRootViewController:fanOutControl];
     trackingNavController.view.tag = kFanOutIdent;
 
-    tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController];
+    tabBarController.viewControllers = @[dashboardNavController, expertNavController, trackingNavController, activitiesNavController, moreNavController,dsNavController];
 
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
 }

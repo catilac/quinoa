@@ -60,6 +60,8 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
+    [self.feedTable setSeparatorInset:UIEdgeInsetsZero];
+
     [self setupFeedTable];
     [self fetchActivityLikes];
     [self fetchWeightStats];

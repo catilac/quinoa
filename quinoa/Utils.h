@@ -28,4 +28,7 @@
 + (NSString *)getPounds:(NSNumber *)weight;
 
 + (NSString *)getFriendlyTime:(NSNumber *)seconds;
+
++ (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1;
+
 @end

@@ -1050,9 +1050,6 @@
 					Security,
 					"-weak_framework",
 					Social,
-					"-ObjC",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

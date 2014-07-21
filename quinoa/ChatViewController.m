@@ -151,6 +151,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (void)scrollToBottom {
     NSInteger section = 0;
     NSInteger item = [self collectionView:self.chatView numberOfItemsInSection:section] - 1;
+    if (item == -1) {
+        return;
+    }
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
     [self.chatView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }

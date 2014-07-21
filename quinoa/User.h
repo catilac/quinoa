@@ -42,5 +42,7 @@
 
 - (void)updateAverageActivityDuration;
 
+- (void)selectExpert:(User *)expert;
+
 + (User *)currentUser;
 @end

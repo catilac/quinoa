@@ -24,6 +24,9 @@
 
 @property (strong, nonatomic) ChatCell *stubCell;
 
+@property (assign) Boolean keyboardOut;
+@property (assign) CGSize kbSize;
+
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
 - (IBAction)onViewTap:(UITapGestureRecognizer *)sender;
@@ -71,7 +74,6 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self.chatView.delegate = self;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    [flowLayout setItemSize:CGSizeMake(300, 50)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
     [self.chatView setCollectionViewLayout:flowLayout];
@@ -84,14 +86,19 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (void)viewDidLayoutSubviews {
-    
-    NSLog(@"-------------------Layout Subviews");
-    if (self.chatView.contentSize.height > self.chatView.frame.size.height)
-    {
-        CGPoint offset = CGPointMake(0, self.chatView.contentSize.height - self.chatView.frame.size.height);
-        [self.chatView setContentOffset:offset animated:YES];
+    // If the keyboard is out, maintain the correct frame for these items.
+    // This is definitely a code smell, nobody knows why the frames keep popping back to their original
+    // dimensions.
+    if (self.keyboardOut) {
+        self.chatView.frame = CGRectMake(self.chatView.frame.origin.x,
+                                        self.chatView.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
+                                        self.chatView.frame.size.width,
+                                        self.chatView.frame.size.height);
+        self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x,
+                                         self.inputContainer.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
+                                         self.inputContainer.frame.size.width,
+                                         self.inputContainer.frame.size.height);
     }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -121,21 +128,21 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (void)fetchMessages {
     NSString *threadId = [Message calcThreadIdWithSender:[User currentUser] recipient:self.recipient];
     [Message getMessagesByThreadId:threadId
-                              skip:[self.messages count] - 1
-                           success:^(NSArray *messages) {
+                              skip:[self.messages count]
+                           success:^(NSArray *newMessages) {
                                [self.chatView performBatchUpdates:^{
                                    NSInteger resultSize = [self.messages count];
-                                   [self.messages addObjectsFromArray:messages];
+                                   [self.messages addObjectsFromArray:newMessages];
                                    
                                    NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
-                                   for (NSInteger i = resultSize; i < resultSize + messages.count; i++) {
+                                   for (NSInteger i = resultSize; i < resultSize + newMessages.count; i++) {
                                        [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
                                    }
                                    
                                    [self.chatView insertItemsAtIndexPaths:arrayWithIndexPaths];
                                } completion:^(BOOL finished) {
                                    [self scrollToBottom];
-                               }];                               
+                               }];
                            } error:^(NSError *error) {
                                NSLog(@"ERROR");
                            }];
@@ -144,20 +151,22 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (void)scrollToBottom {
     NSInteger section = 0;
     NSInteger item = [self collectionView:self.chatView numberOfItemsInSection:section] - 1;
+    if (item == -1) {
+        return;
+    }
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
     [self.chatView scrollToItemAtIndexPath:lastIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
 
 - (void)willShowKeyboard:(NSNotification *)notification {
     
-    NSLog(@"willShowKeyboard: %f", self.inputContainer.frame.origin.y);
-    
+    self.keyboardOut = YES;
+
     NSDictionary *userInfo = [notification userInfo];
     
     // Get the keyboard height and width from the notification
     // Size varies depending on OS, language, orientation
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    //NSLog(@"Height: %f Width: %f", kbSize.height, kbSize.width);
+    self.kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // Get the animation duration and curve from the notification
     NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
@@ -171,12 +180,12 @@ static NSString *CellIdentifier = @"chatCellIdent";
                         options:(animationCurve << 16)
                      animations:^{
                          self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x,
-                                                                self.inputContainer.frame.origin.y - kbSize.height + self.tabBarController.tabBar.frame.size.height,
+                                                                self.inputContainer.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
                                                                 self.inputContainer.frame.size.width,
                                                                 self.inputContainer.frame.size.height);
                          
                          self.chatView.frame = CGRectMake(self.chatView.frame.origin.x,
-                                                          self.chatView.frame.origin.y - kbSize.height + self.tabBarController.tabBar.frame.size.height,
+                                                          self.chatView.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
                                                           self.chatView.frame.size.width,
                                                           self.chatView.frame.size.height);
                      }
@@ -186,7 +195,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
 
 - (void)willHideKeyboard:(NSNotification *)notification {
     
-    NSLog(@"willHideKeyboard: %f", self.inputContainer.frame.origin.y);
+    self.keyboardOut = NO;
     
     NSDictionary *userInfo = [notification userInfo];
     
@@ -195,6 +204,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     NSTimeInterval animationDuration = durationValue.doubleValue;
     NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
     UIViewAnimationCurve animationCurve = curveValue.intValue;
+
     
     // Move the view with the same duration and animation curve so that it will match with the keyboard animation
     [UIView animateWithDuration:animationDuration
@@ -220,8 +230,6 @@ static NSString *CellIdentifier = @"chatCellIdent";
     CGPoint touchPosition = [sender locationInView:self.view];
     
     if(touchPosition.y < self.inputContainer.frame.origin.y) {
-        
-        NSLog(@"Dismiss keyboard");
         // dismiss keyboard
         [self.view endEditing:YES];
     }

@@ -116,4 +116,11 @@
     }
     return result;
 }
+
++ (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1 {
+    if (object0 == nil || object1 == nil) {
+        return NO;
+    }
+    return [object0 class] == [object1 class] && [object0.objectId isEqualToString:object1.objectId];
+}
 @end

@@ -38,6 +38,10 @@
 
 - (UIImage *)getPlaceholderImage;
 
+- (NSNumber *)getWeightDifference;
+
+- (NSString *)hhmmFormatAvgActivityDuration;
+
 - (void)updateCurrentWeight:(NSNumber *)updateCurrentWeight;
 
 - (void)updateAverageActivityDuration;

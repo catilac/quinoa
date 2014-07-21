@@ -55,7 +55,7 @@ static const CGFloat ContainerWidth = 300;
     return self;
 }
 
--(void)setFrame:(CGRect)frame {
+- (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     [self setNeedsDisplay]; // force drawRect:
 }

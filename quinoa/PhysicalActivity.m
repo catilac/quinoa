@@ -52,8 +52,7 @@
     self.valueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:38];
 
     self.descriptionLabel.text = self.activity.descriptionText;
-    // TODO: Figure out the best way to calculate average of activity value
-    //blurbLabel = @"";
+    self.blurbLabel.text = [self getBlurbCopy];
     if ([self.activity.descriptionText length] > 0) {
         self.divider.hidden = NO;
         self.descriptionLabel.hidden = NO;
@@ -63,6 +62,24 @@
     [self.unitLabel setTextColor:[Utils getVibrantBlue]];
     [self.blurbLabel setTextColor:[Utils getGray]];
     [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
+}
+
+- (NSString *)getBlurbCopy {
+    NSString *copy = @"";
+    double average = [self.activity.user.averageActivityDuration doubleValue];
+    double current = [self.activity.activityValue doubleValue];
+    if (average > 0 && current > 0) {
+        int diff = abs(average - current);
+        NSNumber *diffNumber = [NSNumber numberWithInteger:diff];
+        if (average > current) {
+            copy = [NSString stringWithFormat:@"%@ less than average", [Utils getFriendlyTime:diffNumber]];
+        } else if (average < current) {
+            copy = [NSString stringWithFormat:@"%@ more than average", [Utils getFriendlyTime:diffNumber]];
+        } else {
+            copy = @"Same as the average";
+        }
+    }
+    return copy;
 }
 
 - (void)clean {

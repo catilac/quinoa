@@ -38,5 +38,9 @@
 
 - (UIImage *)getPlaceholderImage;
 
+- (void)updateCurrentWeight:(NSNumber *)updateCurrentWeight;
+
+- (void)updateAverageActivityDuration;
+
 + (User *)currentUser;
 @end

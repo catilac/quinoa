@@ -9,6 +9,12 @@
 #import "ActivityViewController.h"
 #import "TrackButton.h"
 #import "Activity.h"
+#import "User.h"
+
+// This is an arbitrary number that is going to be used only when
+// current user doesn't have weight set.
+static const float DEFAULT_WEIGHT = 150.0f;
+static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 @interface ActivityViewController ()
 
@@ -18,11 +24,12 @@
 @property (strong, nonatomic) NSString *activityType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
 
-@property (nonatomic) float weight;
+@property (nonatomic) float activityValue;
 @property (nonatomic) float startPosition;
 @property (nonatomic) float currentPosition;
 @property (nonatomic) float delta;
 @property (nonatomic) float incrementQuantity;
+@property (strong, nonatomic) User *user;
 
 - (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender;
 
@@ -34,7 +41,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        self.user = [User currentUser];
     }
     return self;
 }
@@ -42,13 +49,16 @@
 - (void)postActivity {
     // Send message to disarm track button
     if ([self.activityType isEqualToString:@"trackWeight"]) {
-        [Activity trackWeight:[NSNumber numberWithFloat:self.weight]
+        [Activity trackWeight:[NSNumber numberWithFloat:self.activityValue]
                      callback:^(BOOL succeeded, NSError *error) {
+                         [self.user updateCurrentWeight:[NSNumber numberWithFloat:self.activityValue]];
                          [self dismissModalAndCloseFanOutMenu];
                      }];
+
     } else if ([self.activityType isEqualToString:@"trackActivity"]) {
-        [Activity trackPhysical:[NSNumber numberWithFloat:self.weight]
+        [Activity trackPhysical:[NSNumber numberWithFloat:self.activityValue]
                        callback:^(BOOL succeeded, NSError *error) {
+                           [self.user updateAverageActivityDuration];
                            [self dismissModalAndCloseFanOutMenu];
                        }];
     }
@@ -57,27 +67,29 @@
 - (id)initWithType:(NSString *)activityType {
     self = [super init];
     if (self) {
-        if([activityType isEqualToString: @"trackWeight"])
-        {
+        if([activityType isEqualToString: @"trackWeight"]) {
 
             self.activityType = @"trackWeight";
-            self.weight = 170.0f;
-            self.startPosition = 240.00f;
-            self.currentPosition = 240.00f;
+            if (self.user && self.user.currentWeight > 0) {
+                self.activityValue = [self.user.currentWeight floatValue];
+            } else {
+                self.activityValue = DEFAULT_WEIGHT;
+            }
+
+            self.startPosition = self.activityValue + WEIGHT_MAX_MIN_RANGE;
+            self.currentPosition = self.startPosition; //
             self.delta = 0.00f;
             self.incrementQuantity = 0.5f;
 
-        }
-        else if ([activityType isEqualToString: @"trackActivity"])
-        {
+        } else if ([activityType isEqualToString: @"trackActivity"]) {
 
             self.activityType = @"trackActivity";
-                self.incrementQuantity = 10;
-            self.weight = 0;
+            self.incrementQuantity = 10;
+            self.activityValue = 0;
             self.startPosition = 400.00f;
             self.currentPosition = 400.00f;
             self.delta = 0.00f;
-                    }
+        }
     }
     return self;
 }
@@ -91,11 +103,11 @@
         self.activityUnitLabel.text = @"lbs";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
-                    self.slideBarHeightConstraint.constant = 430;
+        self.slideBarHeightConstraint.constant = 430;
         self.activityUnitLabel.text = @"min";
         self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
     }
-    self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
+    self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.activityValue];
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                              style:UIBarButtonItemStyleBordered
@@ -111,6 +123,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(postActivity)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -144,10 +157,10 @@
             
             if(abs(self.startPosition - self.currentPosition) >= 10.00f){
                 if((self.startPosition - self.currentPosition) > 0)
-                    self.weight += self.incrementQuantity;
+                    self.activityValue += self.incrementQuantity;
                 else
-                    self.weight -= self.incrementQuantity;
-                self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.weight];
+                    self.activityValue -= self.incrementQuantity;
+                self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.activityValue];
                 self.startPosition = self.currentPosition;
             }
             

@@ -71,12 +71,6 @@
     [self blurBackground];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
-
-    
-}
-
 - (void)animateFanOutView {
     [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
@@ -95,7 +89,9 @@
 
 - (IBAction)onTrackFood:(id)sender {
     TrackEatingViewController *trackEatingVC = [[TrackEatingViewController alloc] init];
-    [self.navigationController pushViewController:trackEatingVC animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:trackEatingVC];
+    
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)onTrackWeight:(id)sender {

@@ -30,7 +30,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(onCancel)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                                 style:UIBarButtonItemStyleBordered
+                                                                                target:self
+                                                                                action:@selector(onCancel)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(uploadPhoto)];
     }
     return self;
 }
@@ -39,17 +47,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(uploadPhoto)
-                                                 name:kSubmitData
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToSubmitMessage object:nil];
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.translucent = NO;
 
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotReadyToSubmitMessage object:nil];
     [super willMoveToParentViewController:parent];
 }
 
@@ -103,7 +108,7 @@
             [Activity trackEating:imageFile
                       description:description
                          callback:^(BOOL succeeded, NSError *error) {
-                             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                             [self dismissModalAndCloseFanOutMenu];
                          }];
         } else {
             NSLog(@"Couldn't save file");
@@ -113,13 +118,18 @@
 
 - (void)onCancel {
     NSLog(@"Hit Cancel");
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissModalAndCloseFanOutMenu];
 }
 
 - (void)uploadPhoto {
     if (self.imageSet) {
         [self uploadImage:self.imageData];
     }
+}
+
+- (void) dismissModalAndCloseFanOutMenu {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate methods

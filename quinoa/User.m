@@ -72,7 +72,7 @@
         
         [array addObject:[NSString stringWithFormat:@"%ld years old", (long)ageComponents.year]];
     }
-    
+
     return [array componentsJoinedByString:@" • "];
 }
 
@@ -90,6 +90,11 @@
     } error:^(NSError *error) {
         NSLog(@"User.updateAverageActivityDuration error: %@", error.description);
     }];
+}
+
+- (void)selectExpert:(User *)expert {
+    self.currentTrainer = expert;
+    [self saveInBackground];
 }
 
 + (User *)currentUser {

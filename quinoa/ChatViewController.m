@@ -91,9 +91,10 @@ static NSString *CellIdentifier = @"chatCellIdent";
     // dimensions.
     if (self.keyboardOut) {
         self.chatView.frame = CGRectMake(self.chatView.frame.origin.x,
-                                        self.chatView.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
-                                        self.chatView.frame.size.width,
-                                        self.chatView.frame.size.height);
+                                         self.chatView.frame.origin.y,
+                                         self.chatView.frame.size.width,
+                                         self.chatView.frame.size.height - self.kbSize.height + self.tabBarController.tabBar.frame.size.height);
+
         self.inputContainer.frame = CGRectMake(self.inputContainer.frame.origin.x,
                                          self.inputContainer.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
                                          self.inputContainer.frame.size.width,
@@ -185,9 +186,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                                                 self.inputContainer.frame.size.height);
                          
                          self.chatView.frame = CGRectMake(self.chatView.frame.origin.x,
-                                                          self.chatView.frame.origin.y - self.kbSize.height + self.tabBarController.tabBar.frame.size.height,
+                                                          self.chatView.frame.origin.y,
                                                           self.chatView.frame.size.width,
-                                                          self.chatView.frame.size.height);
+                                                          self.chatView.frame.size.height - self.kbSize.height + self.tabBarController.tabBar.frame.size.height);
                      }
                      completion:nil];
 }
@@ -217,9 +218,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                                                 self.inputContainer.frame.size.height);
                          
                          self.chatView.frame = CGRectMake(self.chatView.frame.origin.x,
-                                                          0,
+                                                          self.chatView.frame.origin.y,
                                                           self.chatView.frame.size.width,
-                                                          self.chatView.frame.size.height);
+                                                          self.chatView.frame.size.height + self.kbSize.height - self.tabBarController.tabBar.frame.size.height);
                          
                      }
                      completion:nil];

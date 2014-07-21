@@ -44,12 +44,12 @@
     if ([self.activityType isEqualToString:@"trackWeight"]) {
         [Activity trackWeight:[NSNumber numberWithFloat:self.weight]
                      callback:^(BOOL succeeded, NSError *error) {
-                         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                         [self dismissModalAndCloseFanOutMenu];
                      }];
     } else if ([self.activityType isEqualToString:@"trackActivity"]) {
         [Activity trackPhysical:[NSNumber numberWithFloat:self.weight]
                        callback:^(BOOL succeeded, NSError *error) {
-                           [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                           [self dismissModalAndCloseFanOutMenu];
                        }];
     }
 }
@@ -111,7 +111,6 @@
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -164,7 +163,12 @@
 }
 
 - (void)cancel {
+    [self dismissModalAndCloseFanOutMenu];
+}
+
+- (void) dismissModalAndCloseFanOutMenu {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 }
 
 @end

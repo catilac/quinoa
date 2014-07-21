@@ -55,9 +55,16 @@
 
 - (void)openMenu {
     
-    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [self setBackgroundColor:[UIColor redColor]];
+    // Animate Rotation of + icon
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.5 initialSpringVelocity:20 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.trackImage.transform = CGAffineTransformMakeRotation(M_PI/4);
+    } completion:^(BOOL finished) {
+        NSLog(@"Menu Open");
+    }];
+    
+    // Smooth animation of color transition
+    [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [self setBackgroundColor:[Utils getRed]];
     } completion:nil];
     
     [self setUserInteractionEnabled:YES];
@@ -75,9 +82,15 @@
 }
 
 - (void)onClose {
-    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [self setBackgroundColor:[Utils getGreen]];
+    
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.5 initialSpringVelocity:20 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.trackImage.transform = CGAffineTransformMakeRotation(0);
+    } completion:^(BOOL finished) {
+        NSLog(@"Menu Open");
+    }];
+    
+    [UIView animateWithDuration:.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [self setBackgroundColor:[Utils getGreen]];
     } completion:nil];
     
     [self setUserInteractionEnabled:NO];

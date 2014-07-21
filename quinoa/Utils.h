@@ -30,6 +30,8 @@
 
 + (NSString *)getFriendlyTime:(NSNumber *)seconds;
 
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
+
 + (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1;
 
 @end

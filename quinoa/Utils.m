@@ -104,4 +104,16 @@
         return [NSString stringWithFormat:@"%d pound", [weight intValue]];
     }
 }
+
++ (NSString *)getFriendlyTime:(NSNumber *)seconds {
+    NSString *result = @"";
+    float minutes = [seconds floatValue] / 60;
+    if (minutes >= 60) {
+        float hours = (minutes / 60);
+        result = [NSString stringWithFormat:@"%0.0f %@", hours, ((hours < 2) ? @"Hour" : @"Hours")];
+    } else {
+        result = [NSString stringWithFormat:@"%0.0f %@", minutes, ((minutes < 2) ? @"Minute" : @"Minutes")];
+    }
+    return result;
+}
 @end

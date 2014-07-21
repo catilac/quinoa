@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "Activity.h"
 
 @implementation User
 
@@ -73,6 +74,22 @@
     }
     
     return [array componentsJoinedByString:@" • "];
+}
+
+// I don't know how to override a setter for dynamic property..
+// create an instance method that updates self.currentWeight and remote data
+- (void)updateCurrentWeight:(NSNumber *)currentWeight {
+    self.currentWeight = currentWeight;
+    [self saveInBackground];
+}
+
+- (void)updateAverageActivityDuration {
+    [Activity getAverageByUser:self byActivity:ActivityTypePhysical success:^(NSNumber *average) {
+        self.averageActivityDuration = average;
+        [self saveInBackground];
+    } error:^(NSError *error) {
+        NSLog(@"User.updateAverageActivityDuration error: %@", error.description);
+    }];
 }
 
 + (User *)currentUser {

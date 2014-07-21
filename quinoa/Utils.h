@@ -26,4 +26,6 @@
 + (UIImage *)screenshot;
 
 + (NSString *)getPounds:(NSNumber *)weight;
+
++ (NSString *)getFriendlyTime:(NSNumber *)seconds;
 @end

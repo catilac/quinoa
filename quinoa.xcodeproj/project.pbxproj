@@ -57,6 +57,8 @@
 		532904BE19750108005A2E26 /* WeightActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904BD19750108005A2E26 /* WeightActivity.xib */; };
 		532904C219750555005A2E26 /* UserHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904C119750555005A2E26 /* UserHeader.m */; };
 		532904C41975062A005A2E26 /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532904C31975062A005A2E26 /* ActivityCell.xib */; };
+		532904D1197CFC5E005A2E26 /* QuinoaLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904D0197CFC5E005A2E26 /* QuinoaLoginViewController.m */; };
+		532904D4197CFD79005A2E26 /* QuinoaSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904D3197CFD79005A2E26 /* QuinoaSignUpViewController.m */; };
 		5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC30196940D800E99C4A /* NSDate+dateWith.m */; };
 		5354D0751971D76700612FFE /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0741971D76700612FFE /* Activity.m */; };
 		5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */; };
@@ -176,6 +178,10 @@
 		532904C119750555005A2E26 /* UserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeader.m; sourceTree = "<group>"; };
 		532904C31975062A005A2E26 /* ActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
 		532904CC197A7036005A2E26 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		532904CF197CFC5E005A2E26 /* QuinoaLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuinoaLoginViewController.h; sourceTree = "<group>"; };
+		532904D0197CFC5E005A2E26 /* QuinoaLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuinoaLoginViewController.m; sourceTree = "<group>"; };
+		532904D2197CFD79005A2E26 /* QuinoaSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuinoaSignUpViewController.h; sourceTree = "<group>"; };
+		532904D3197CFD79005A2E26 /* QuinoaSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuinoaSignUpViewController.m; sourceTree = "<group>"; };
 		5348EC2F196940D800E99C4A /* NSDate+dateWith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+dateWith.h"; sourceTree = "<group>"; };
 		5348EC30196940D800E99C4A /* NSDate+dateWith.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+dateWith.m"; sourceTree = "<group>"; };
 		5354D0731971D76700612FFE /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
@@ -354,6 +360,7 @@
 				465DFE3F196947AA00817222 /* Expert Detail */,
 				5348EC271968FCF300E99C4A /* Experts Browser */,
 				5348EC261968FCEB00E99C4A /* Login */,
+				532904CE197CFC24005A2E26 /* Quinoa Login */,
 				A3B4A88F196A7F5800135230 /* More */,
 			);
 			name = ViewControllers;
@@ -551,6 +558,17 @@
 				5329049E1974C16F005A2E26 /* UserHeader.xib */,
 			);
 			name = UserHeader;
+			sourceTree = "<group>";
+		};
+		532904CE197CFC24005A2E26 /* Quinoa Login */ = {
+			isa = PBXGroup;
+			children = (
+				532904CF197CFC5E005A2E26 /* QuinoaLoginViewController.h */,
+				532904D0197CFC5E005A2E26 /* QuinoaLoginViewController.m */,
+				532904D2197CFD79005A2E26 /* QuinoaSignUpViewController.h */,
+				532904D3197CFD79005A2E26 /* QuinoaSignUpViewController.m */,
+			);
+			name = "Quinoa Login";
 			sourceTree = "<group>";
 		};
 		5348EC261968FCEB00E99C4A /* Login */ = {
@@ -887,6 +905,8 @@
 				46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,
 				4653DB971969CEEE00E4114F /* Message.m in Sources */,
+				532904D4197CFD79005A2E26 /* QuinoaSignUpViewController.m in Sources */,
+				532904D1197CFC5E005A2E26 /* QuinoaLoginViewController.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
 				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,

@@ -49,6 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Track Diet";
+    
     // Do any additional setup after loading the view from its nib.
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;

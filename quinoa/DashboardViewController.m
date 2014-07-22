@@ -60,10 +60,13 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
-    [self setupDashboardHeader];
+    [self.feedTable setSeparatorInset:UIEdgeInsetsZero];
+
     [self setupFeedTable];
     [self fetchActivityLikes];
     [self fetchWeightStats];
+    [self setupDashboardHeader];
+
     
     self.title = @"Dashboard";
     
@@ -106,7 +109,14 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     UIView *weightInfo = [[UIView alloc] initWithFrame:weightFrame];
 
     self.weightDifferential = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
-    self.weightDifferential.text = @"-5lbs";
+    
+    NSInteger weightDiff = [[self.user getWeightDifference] intValue];
+    if (weightDiff >= 0) {
+        self.weightDifferential.text = [NSString stringWithFormat:@"%+ld lbs", (long)weightDiff];
+    } else {
+        self.weightDifferential.text = [NSString stringWithFormat:@"%ld lbs", (long)weightDiff];
+    }
+    
     [self.weightDifferential setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f]];
     self.weightDifferential.textColor = [Utils getDarkBlue];
     self.weightDifferential.textAlignment = NSTextAlignmentCenter;
@@ -128,7 +138,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     UIView *activeTimeInfo = [[UIView alloc] initWithFrame:timeFrame];
     
     self.totalActiveTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
-    self.totalActiveTime.text = @"00h 00m";
+    self.totalActiveTime.text = [self.user hhmmFormatAvgActivityDuration];
     self.totalActiveTime.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f];
     self.totalActiveTime.textColor = [Utils getDarkBlue];
     self.totalActiveTime.textAlignment = NSTextAlignmentCenter;
@@ -150,7 +160,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     UIView *kudosInfo = [[UIView alloc] initWithFrame:kudosRect];
     
     self.numKudos = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
-    self.numKudos.text = @"100";
+    self.numKudos.text = [NSString stringWithFormat:@"%lu", (unsigned long)[self.activityLikes count]];
     self.numKudos.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f];
     self.numKudos.textColor = [Utils getDarkBlue];
     self.numKudos.textAlignment = NSTextAlignmentCenter;
@@ -198,6 +208,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 - (void)fetchActivityLikes {
     [ActivityLike getActivityLikesByUser:self.user success:^(NSArray *activityLikes) {
         self.activityLikes = activityLikes;
+        self.numKudos.text = [NSString stringWithFormat:@"%lu", (unsigned long)[self.activityLikes count]];
         [self.feedTable reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error fetching ActivityLikes %@", error);

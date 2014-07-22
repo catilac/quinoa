@@ -100,17 +100,6 @@
                         <segment title="Male"/>
                     </segments>
                 </segmentedControl>
-                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BH2-d9-Vyi">
-                    <rect key="frame" x="20" y="303" width="275" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.19065005845734961" green="0.77173284507053297" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Save Profile">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onSaveProfileClick:" destination="-1" eventType="touchUpInside" id="wb1-0a-hHH"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>

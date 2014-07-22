@@ -18,6 +18,7 @@
 + (UIColor *)getGreen;
 + (UIColor *)getGray;
 + (UIColor *)getLightGray;
++ (UIColor *)getRed;
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 
@@ -28,6 +29,8 @@
 + (NSString *)getPounds:(NSNumber *)weight;
 
 + (NSString *)getFriendlyTime:(NSNumber *)seconds;
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 + (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1;
 

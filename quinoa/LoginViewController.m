@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "QuinoaLoginViewController.h"
+#import "QuinoaSignUpViewController.h"
 
 #import "ExpertBrowserViewController.h"
 #import "ExpertDetailViewController.h"
@@ -57,12 +59,12 @@
 
 - (void)showLoginAndRegistration
 {
-    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    QuinoaLoginViewController *logInViewController = [[QuinoaLoginViewController alloc] init];
     logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton ;
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     
     // Create the sign up view controller
-    PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+    QuinoaSignUpViewController *signUpViewController = [[QuinoaSignUpViewController alloc] init];
     [signUpViewController setDelegate:self]; // Set ourselves as the delegate
     
     // Assign our sign up controller to be displayed from the login controller
@@ -124,7 +126,7 @@
 }
 
 - (void)setupNavigationForExpert {
-    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
 
     // Activity Tab
     ActivitiesCollectionViewController *activitiesViewController = [[ActivitiesCollectionViewController alloc] init];

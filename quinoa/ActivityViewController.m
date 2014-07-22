@@ -109,10 +109,12 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     // Do any additional setup after loading the view from its nib.
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
-        //self.activityUnitLabel.text = @"lbs";
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+        //self.title = @"Track Weight";
+        //self.activityUnitLabel.text = @"lbs";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.title = @"Track Activity";
         self.slideBarHeightConstraint.constant = 430;
         //self.activityUnitLabel.text = @"min";
         self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];

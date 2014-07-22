@@ -11,8 +11,7 @@
 #import "LoginViewController.h"
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
-
-//#import "ProfileViewController.h"
+#import "ProfileViewController.h"
 
 @interface MoreViewController ()
 
@@ -27,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.menuItems = @[@"My Profile",@"Logout"];
+        self.menuItems = @[@"Logout"];
         self.title = @"More";
     }
     return self;
@@ -74,9 +73,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *menu = self.menuItems[indexPath.row];
     if ([menu isEqualToString:@"My Profile"]) {
-        // TODO: Go to Profile
-        // ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
-        //[self.navigationController pushViewController:profileViewController animated:YES];
+        ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+        [self.navigationController pushViewController:profileViewController animated:YES];
     } else if ([menu isEqualToString:@"Logout"]) {
         [PFUser logOut];
         LoginViewController *loginViewController = [[LoginViewController alloc] init];

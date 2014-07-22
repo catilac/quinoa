@@ -72,8 +72,29 @@
         
         [array addObject:[NSString stringWithFormat:@"%ld years old", (long)ageComponents.year]];
     }
-    
+
     return [array componentsJoinedByString:@" • "];
+}
+
+- (NSNumber *)getWeightDifference {
+    NSNumber *difference = [NSNumber numberWithFloat:([self.currentWeight floatValue] - [self.weight floatValue])];
+    return difference;
+}
+
+- (NSString *)hhmmFormatAvgActivityDuration {
+    NSDateComponents* c = [[NSDateComponents alloc] init];
+    [c setSecond:[self.averageActivityDuration floatValue]];
+    
+    NSCalendar* cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDate* d = [cal dateFromComponents:c];
+    
+    NSDateComponents* result = [cal components:NSHourCalendarUnit |
+                                NSMinuteCalendarUnit |
+                                NSSecondCalendarUnit
+                                      fromDate:d];
+    
+    return [NSString stringWithFormat:@"%0ldh %0ldm", [result hour], (long)[result minute]];
 }
 
 // I don't know how to override a setter for dynamic property..
@@ -90,6 +111,11 @@
     } error:^(NSError *error) {
         NSLog(@"User.updateAverageActivityDuration error: %@", error.description);
     }];
+}
+
+- (void)selectExpert:(User *)expert {
+    self.currentTrainer = expert;
+    [self saveInBackground];
 }
 
 + (User *)currentUser {

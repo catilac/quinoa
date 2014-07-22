@@ -12,10 +12,12 @@
 #import "DailySummaryCollectionViewController.h"
 #import "ExpertBrowserViewController.h"
 #import "UILabel+QuinoaLabel.h"
+#import "Utils.h"
 
 @interface ExpertDetailViewController ()
 
-@property (strong, nonatomic) PFUser *expert;
+@property (strong, nonatomic) User *currentUser;
+@property (strong, nonatomic) User *expert;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
@@ -23,22 +25,25 @@
 @property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectExpertButton;
 
+@property BOOL isMyExpert;
 @end
 
 @implementation ExpertDetailViewController
 
-- (id)initWithExpert:(PFUser *)expert {
+- (id)initWithExpert:(User *)expert {
     self = [super init];
     if (self) {
         [self setExpert:expert];
+        self.currentUser = [User currentUser];
     }
     return self;
 }
 
-- (id)initWithExpert:(PFUser *)expert modal:(Boolean)isModal {
+- (id)initWithExpert:(User *)expert modal:(Boolean)isModal {
     self = [super init];
     if (self) {
         [self setExpert:expert];
+        self.currentUser = [User currentUser];
         self.isModal = isModal;
     }
     return self;
@@ -50,7 +55,7 @@
     if (self) {
         // Custom initialization
         self.title = @"My Trainer";
-        
+        self.currentUser = [User currentUser];
         if (!self.isModal) {
             UIBarButtonItem *browse = [[UIBarButtonItem alloc] initWithTitle:@"Browse"
                                                                        style:UIBarButtonItemStyleBordered
@@ -67,6 +72,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.isMyExpert = [Utils sameObjects:self.currentUser.currentTrainer object:self.expert];
+    [self updateButtons];
 
     [self fetchData];
     
@@ -100,6 +108,13 @@
     [self.navigationController pushViewController:containerViewController animated:YES];
 }
 
+- (IBAction)onSelectExpert:(id)sender {
+    self.isMyExpert = YES;
+    [self.currentUser selectExpert:self.expert];
+    [self updateButtons];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hasExpert" object:nil];
+}
+
 - (void)showExpertsBrowser {
     if (self.isModal) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -116,6 +131,11 @@
     [self.expert fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         self.nameLabel.text = self.expert.email;
     }];
+}
+
+- (void)updateButtons {
+    self.chatButton.hidden = !self.isMyExpert;
+    self.selectExpertButton.hidden = self.isMyExpert;
 }
 
 @end

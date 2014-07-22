@@ -40,6 +40,10 @@
     return [UIColor colorWithRed:0.949 green:0.961 blue:0.969 alpha:1];
 }
 
++ (UIColor *)getRed {
+    return [UIColor colorWithRed:0.890 green:0.302 blue:0.380 alpha:1];
+}
+
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation {
     __weak UIImageView *iv = imageView;
 
@@ -115,5 +119,20 @@
         result = [NSString stringWithFormat:@"%0.0f %@", minutes, ((minutes < 2) ? @"Minute" : @"Minutes")];
     }
     return result;
+}
+
++ (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1 {
+    if (object0 == nil || object1 == nil) {
+        return NO;
+    }
+    return [object0 class] == [object1 class] && [object0.objectId isEqualToString:object1.objectId];
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 @end

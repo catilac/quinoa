@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *heightTextBox;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
 
-- (IBAction)onSaveProfileClick:(id)sender;
 - (IBAction)onTap:(id)sender;
 
 @end
@@ -40,6 +39,8 @@
 {
     [super viewDidLoad];
 
+    [self setupUI];
+
     [self getProfile];
 
     // I can only make the navigation bar opaque by setting it on each page
@@ -59,16 +60,6 @@
     }];
 }
 
-- (IBAction)onSaveProfileClick:(id)sender {
-    self.user.firstName = self.firstNameTextBox.text;
-    self.user.lastName = self.lastNameTextBox.text;
-    // TODO: Fix birthday field
-    //self.user.birthday = self.birthdayTextBox.text;
-    self.user.gender = (self.genderSegmentControl.selectedSegmentIndex == 0) ? @"F" : @"M";
-    self.user.weight = [NSNumber numberWithFloat:[self.weightTextBox.text floatValue]];
-    self.user.height = self.heightTextBox.text;
-    [self.user saveEventually];
-}
 - (IBAction)onTap:(id)sender {
     
     [self.view endEditing:YES];
@@ -88,4 +79,34 @@
         self.genderSegmentControl.selectedSegmentIndex = 1;
 }
 
+- (void)setupUI {
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Cancel"
+                                     style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Save"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(save)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+}
+
+- (void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)save {
+    self.user.firstName = self.firstNameTextBox.text;
+    self.user.lastName = self.lastNameTextBox.text;
+    // TODO: Fix birthday field
+    //self.user.birthday = self.birthdayTextBox.text;
+    self.user.gender = (self.genderSegmentControl.selectedSegmentIndex == 0) ? @"F" : @"M";
+    self.user.weight = [NSNumber numberWithFloat:[self.weightTextBox.text floatValue]];
+    self.user.height = self.heightTextBox.text;
+    [self.user saveEventually];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

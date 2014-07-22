@@ -9,6 +9,7 @@
 #import "QuinoaTabBarViewController.h"
 #import "TrackButton.h"
 #import "FanOutViewController.h"
+#import "ExpertDetailViewController.h"
 
 @interface QuinoaTabBarViewController ()
 
@@ -42,7 +43,12 @@
                                              selector:@selector(popBackToLastTabBarView)
                                                  name:kCloseMenu
                                                object:nil];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateNavigation:)
+                                                 name:@"hasExpert"
+                                               object:nil];
+
     // Add custom view for custom track UITabBarItem
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     self.trackButton = [[TrackButton alloc] initWithFrame:CGRectMake(screenSize.width/2-35, screenSize.height-55, 70, 110)];
@@ -54,6 +60,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateNavigation:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"hasExpert"]) {
+        // Refresh tabbar navigation with Expert Detail
+        ExpertDetailViewController *expertViewController = [[ExpertDetailViewController alloc] initWithExpert:[User currentUser].currentTrainer];
+        UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
+        expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+        expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+        NSMutableArray *newControllers = [[NSMutableArray alloc] init];
+        [newControllers addObjectsFromArray:self.viewControllers];
+        [newControllers replaceObjectAtIndex:1 withObject:expertNavController];
+        self.viewControllers = [newControllers copy];
+    }
 }
 
 #pragma mark - UITabBarControllerDelegate methods

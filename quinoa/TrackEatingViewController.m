@@ -14,12 +14,15 @@
 @interface TrackEatingViewController ()
 
 @property (strong, nonatomic) UIImagePickerController *camera;
-@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
+@property (strong, nonatomic) UIImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UIView *imagePreviewContainer;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+
 @property (strong, nonatomic) NSData *imageData;
 @property (assign) Boolean imageSet;
-@property (strong, nonatomic) UITextField *descriptionField;
 
 - (IBAction)onTap:(id)sender;
+- (IBAction)tappedSendButton:(id)sender;
 
 @end
 
@@ -46,6 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Track Diet";
+    
     // Do any additional setup after loading the view from its nib.
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
@@ -65,35 +71,26 @@
 }
 
 - (IBAction)onTap:(id)sender {
-    if (!self.imageSet) {
         // Capture a photo
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera] == YES){
+        // Create image picker controller
+        self.camera = [[UIImagePickerController alloc] init];
         
-        if ([UIImagePickerController isSourceTypeAvailable:
-             UIImagePickerControllerSourceTypeCamera] == YES){
-            // Create image picker controller
-            self.camera = [[UIImagePickerController alloc] init];
-            
-            // Set source to the camera
-            self.camera.sourceType =  UIImagePickerControllerSourceTypeCamera;
-            
-            // Delegate is self
-            self.camera.delegate = self;
-            
-            // Show image picker
-            [self presentViewController:self.camera animated:YES completion:nil];
-        }
-    } else if ([self.descriptionField isDescendantOfView:self.view]) {
-        [self.descriptionField endEditing:YES];
-        if ([self.descriptionField.text length] == 0) {
-            [self.descriptionField removeFromSuperview];
-        }
-    } else {
-        // Create a caption
-        self.descriptionField = [[UITextField alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 50)];
-        [self.descriptionField setTextColor:[UIColor whiteColor]];
-        [self.descriptionField setBackgroundColor:[UIColor blueColor]];
-        [self.view addSubview:self.descriptionField];
-        [self.descriptionField becomeFirstResponder];
+        // Set source to the camera
+        self.camera.sourceType =  UIImagePickerControllerSourceTypeCamera;
+        
+        // Delegate is self
+        self.camera.delegate = self;
+        
+        // Show image picker
+        [self presentViewController:self.camera animated:YES completion:nil];
+    }
+}
+
+- (IBAction)tappedSendButton:(id)sender {
+    if (![self.descriptionTextField.text isEqual:@""] ) {
+        [self uploadPhoto];
     }
 }
 
@@ -102,8 +99,8 @@
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             NSString *description = nil;
-            if (self.descriptionField != nil) {
-                description = self.descriptionField.text;
+            if (self.descriptionTextField != nil) {
+                description = self.descriptionTextField.text;
             }
             [Activity trackEating:imageFile
                       description:description
@@ -140,7 +137,12 @@
     // Dismiss the image picker
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.imageData = UIImageJPEGRepresentation(image, 0.05f);
-    self.imagePreview.image = [UIImage imageWithData:self.imageData];
+    [self.imagePreview removeFromSuperview];
+    self.imagePreview = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.imageData]];
+    self.imagePreview.frame = self.imagePreviewContainer.frame;
+
+    [self.imagePreviewContainer addSubview:self.imagePreview];
+    [self.imagePreviewContainer sendSubviewToBack:self.imagePreview];
     self.imageSet = YES;
 }
 @end

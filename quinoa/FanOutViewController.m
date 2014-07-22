@@ -51,18 +51,16 @@
                                                  name:kCloseMenu
                                                object:nil];
     
-    // hide compose buttons
-    self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
-    self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
-    self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height - 30, 60, 60);
 }
 - (void)viewWillAppear:(BOOL)animated {
     
     // hidden 130, viewheight - 60, 60, 60
-    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.trackWeightButton.frame = CGRectMake(45, self.view.frame.size.height - 140 + 44, 60, 60);
-        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 185 + 44, 60, 60);
-        self.trackFoodButton.frame = CGRectMake(215, self.view.frame.size.height - 140 + 44, 60, 60);
+    [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:16 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.trackWeightButton.frame = CGRectMake(45, self.view.frame.size.height - 100, 60, 60);
+        self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height - 100, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(215, self.view.frame.size.height - 100, 60, 60);
+        NSLog(@"View Appeared");
+        
     } completion:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kOpenMenu object:nil];
@@ -72,10 +70,10 @@
 }
 
 - (void)animateFanOutView {
-    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.trackWeightButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+    [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:16 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.trackWeightButton.frame = CGRectMake(45, self.view.frame.size.height, 60, 60);
         self.trackActivityButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
-        self.trackFoodButton.frame = CGRectMake(130, self.view.frame.size.height, 60, 60);
+        self.trackFoodButton.frame = CGRectMake(215, self.view.frame.size.height, 60, 60);
     } completion:^(BOOL finished){
         [self undoBlurBackground];
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
@@ -126,8 +124,8 @@
     UIImage *bgImage = [Utils screenshot];
 
     // Tweak these values Nathan!
-    UIColor *tintColor = [UIColor colorWithWhite:0.1 alpha:0.5];
-    self.currentBackgroundImage = [bgImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
+    UIColor *tintColor = [UIColor colorWithRed:0.157 green:0.204 blue:0.251 alpha:.5];
+    self.currentBackgroundImage = [bgImage applyBlurWithRadius:2 tintColor:tintColor saturationDeltaFactor:1 maskImage:nil];
     self.view.backgroundColor = [UIColor colorWithPatternImage:self.currentBackgroundImage];
 }
 

@@ -8,6 +8,7 @@
 
 #import "ActivityLikeCell.h"
 #import "Activity.h"
+#import "Utils.h"
 
 @interface ActivityLikeCell ()
 
@@ -32,20 +33,27 @@
 
 - (void)setActivityLike:(ActivityLike *)like {
     _like = like;
+    [self.imageView setContentMode:UIViewContentModeScaleToFill];
+    [self.imageView clipsToBounds];
     if (like.activityType == ActivityTypeWeight) {
         // TODO this is horrible copy
-        self.message.text = @"Enjoyed your Weight Loss";
-        self.imageView.backgroundColor = [UIColor redColor];
+        self.message.text = @"Liked your Weight Loss";
+        UIImage *composeIcon = [Utils imageWithImage:[UIImage imageNamed:@"composeWeight"] scaledToSize:CGSizeMake(30, 30)];
+        [self.imageView setImage:composeIcon];
 
     } else if (like.activityType == ActivityTypePhysical) {
-        self.imageView.backgroundColor = [UIColor blueColor];
         self.message.text = @"Liked your Physical Activity";
+        UIImage *composeIcon = [Utils imageWithImage:[UIImage imageNamed:@"composeActivity"] scaledToSize:CGSizeMake(30, 30)];
+        [self.imageView setImage:composeIcon];
+
     } else {
         self.imageView.backgroundColor = [UIColor greenColor];
         self.message.text = @"Delicious!";
+        UIImage *composeIcon = [Utils imageWithImage:[UIImage imageNamed:@"composeDiet"] scaledToSize:CGSizeMake(30, 30)];
+        [self.imageView setImage:composeIcon];
     }
-    
-    
+    [self.message setTextColor:[Utils getDarkBlue]];
+    self.message.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
 }
 
 @end

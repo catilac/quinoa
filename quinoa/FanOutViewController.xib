@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -17,10 +17,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcu-dm-cGy" userLabel="TrackFoodButton">
-                    <rect key="frame" x="215" y="428" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lcu-dm-cGy" userLabel="TrackFoodButton">
+                    <rect key="frame" x="215" y="568" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="cat">
+                    <state key="normal" backgroundImage="composeDiet">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -28,10 +28,10 @@
                         <action selector="onTrackFood:" destination="-1" eventType="touchUpInside" id="PKc-9T-rPD"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xq-LV-S4I" userLabel="TrackActivityButton">
-                    <rect key="frame" x="130" y="383" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2xq-LV-S4I" userLabel="TrackActivityButton">
+                    <rect key="frame" x="130" y="568" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="dog">
+                    <state key="normal" backgroundImage="composeActivity">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -39,10 +39,10 @@
                         <action selector="onTrackActivity:" destination="-1" eventType="touchUpInside" id="bhX-au-YgL"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWH-4I-cgs" userLabel="TrackWeightButton">
-                    <rect key="frame" x="45" y="428" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AWH-4I-cgs" userLabel="TrackWeightButton">
+                    <rect key="frame" x="45" y="568" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="avatar">
+                    <state key="normal" backgroundImage="composeWeight">
                         <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -50,7 +50,7 @@
                         <action selector="onTrackWeight:" destination="-1" eventType="touchUpInside" id="CLt-SN-npM"/>
                     </connections>
                 </button>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="ewV-Wj-GY5">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="avatar" id="ewV-Wj-GY5">
                     <rect key="frame" x="130" y="537" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
@@ -71,7 +71,8 @@
     </objects>
     <resources>
         <image name="avatar" width="109" height="105"/>
-        <image name="cat" width="302" height="302"/>
-        <image name="dog" width="265" height="265"/>
+        <image name="composeActivity" width="120" height="120"/>
+        <image name="composeDiet" width="120" height="120"/>
+        <image name="composeWeight" width="120" height="120"/>
     </resources>
 </document>

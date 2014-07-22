@@ -60,9 +60,13 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     
     self.feedTable.dataSource = self;
     self.feedTable.delegate = self;
-    [self setupDashboardHeader];
+    [self.feedTable setSeparatorInset:UIEdgeInsetsZero];
+
+    [self setupFeedTable];
     [self fetchActivityLikes];
     [self fetchWeightStats];
+    [self setupDashboardHeader];
+
     
     self.title = @"Dashboard";
     
@@ -74,78 +78,100 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
 - (void)setupDashboardHeader {
     // Initialize Container
-    CGRect dashFrame = CGRectMake(0, 10, SCREEN_WIDTH, 250);
+    CGRect dashFrame = CGRectMake(10, 10, SCREEN_WIDTH-20, 230);
     self.dashboardHeader = [[UIView alloc] initWithFrame:dashFrame];
+    self.dashboardHeader.layer.borderWidth = 1;
+    self.dashboardHeader.layer.borderColor = [Utils getGray].CGColor;
+    self.dashboardHeader.layer.cornerRadius = 6;
     
     // Add Label
     UILabel *chartLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, SCREEN_WIDTH, 20)];
     [chartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    chartLabel.textColor = [Utils getGray];
     chartLabel.text = @"Weight over Last 7 Days";
     
     // Initialize BarChart
-    CGRect barChartFrame = CGRectMake(5, 5, dashFrame.size.width-10, dashFrame.size.height*0.75f);
+    CGRect barChartFrame = CGRectMake(0, 0, dashFrame.size.width, dashFrame.size.height*0.75f);
     self.barChart = [[PNBarChart alloc] initWithFrame:barChartFrame];
+    [self.barChart setStrokeColor:[Utils getDarkBlue]];
     [self.barChart setBackgroundColor:[Utils getLightGray]];
     [self.barChart addSubview:chartLabel];
     [self.dashboardHeader addSubview:self.barChart];
 
     // Initialize Stats Bar
-    CGRect statsFrame = CGRectMake(5, barChartFrame.size.height, dashFrame.size.width-10, 83);
+    CGRect statsFrame = CGRectMake(11, barChartFrame.size.height + self.dashboardHeader.frame.origin.y, dashFrame.size.width-2, self.dashboardHeader.frame.size.height - barChartFrame.size.height - 2);
     self.statsBar = [[UIView alloc] initWithFrame:statsFrame];
-    self.statsBar.backgroundColor = [Utils getGreen];
+    self.statsBar.backgroundColor = [UIColor whiteColor];
+    self.statsBar.layer.cornerRadius = 6;
     
     // Weight Info
-    CGRect weightFrame = CGRectMake(25, 0, 40, 30);
+    CGRect weightFrame = CGRectMake(0, 8, statsFrame.size.width/3, 30);
     UIView *weightInfo = [[UIView alloc] initWithFrame:weightFrame];
 
-    self.weightDifferential = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 16)];
-    self.weightDifferential.text = @"-5lbs";
-    [self.weightDifferential setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f]];
-    self.weightDifferential.textColor = [Utils getDarkBlue];
-    [self.weightDifferential sizeToFit];
-    self.weightDifferential.backgroundColor = [Utils getVibrantBlue];
+    self.weightDifferential = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
     
-    UILabel *weightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.weightDifferential.frame.size.height, 40, 10)];
+    NSInteger weightDiff = [[self.user getWeightDifference] intValue];
+    if (weightDiff >= 0) {
+        self.weightDifferential.text = [NSString stringWithFormat:@"%+ld lbs", (long)weightDiff];
+    } else {
+        self.weightDifferential.text = [NSString stringWithFormat:@"%ld lbs", (long)weightDiff];
+    }
+    
+    [self.weightDifferential setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f]];
+    self.weightDifferential.textColor = [Utils getDarkBlue];
+    self.weightDifferential.textAlignment = NSTextAlignmentCenter;
+    //[self.weightDifferential sizeToFit];
+    
+    UILabel *weightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.weightDifferential.frame.size.height, statsFrame.size.width/3, 16)];
     weightLabel.text = @"Weight";
-    weightLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
-    [weightLabel sizeToFit];
+    weightLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    weightLabel.textColor = [Utils getGray];
+    weightLabel.textAlignment = NSTextAlignmentCenter;
+    //[weightLabel sizeToFit];
     
     [weightInfo addSubview:self.weightDifferential];
     [weightInfo addSubview:weightLabel];
     [self.statsBar addSubview:weightInfo];
     
     // Total Active Time Label
-    CGRect timeFrame = CGRectMake(25+weightFrame.size.width+40, 0, 80, 30);
+    CGRect timeFrame = CGRectMake(statsFrame.size.width/3, 8, statsFrame.size.width/3, 30);
     UIView *activeTimeInfo = [[UIView alloc] initWithFrame:timeFrame];
-    self.totalActiveTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 16)];
-    self.totalActiveTime.text = @"00h 00m";
-    self.totalActiveTime.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f];
-    self.totalActiveTime.textColor = [Utils getDarkBlue];
-    [self.totalActiveTime sizeToFit];
     
-    UILabel *activeTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.totalActiveTime.frame.size.height, 40, 10)];
+    self.totalActiveTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
+    self.totalActiveTime.text = [self.user hhmmFormatAvgActivityDuration];
+    self.totalActiveTime.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f];
+    self.totalActiveTime.textColor = [Utils getDarkBlue];
+    self.totalActiveTime.textAlignment = NSTextAlignmentCenter;
+    //[self.totalActiveTime sizeToFit];
+    
+    UILabel *activeTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.totalActiveTime.frame.size.height, statsFrame.size.width/3, 16)];
     activeTimeLabel.text = @"Active Time";
-    activeTimeLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
-    [activeTimeLabel sizeToFit];
+    activeTimeLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    activeTimeLabel.textColor = [Utils getGray];
+    activeTimeLabel.textAlignment = NSTextAlignmentCenter;
+    //[activeTimeLabel sizeToFit];
     
     [activeTimeInfo addSubview:self.totalActiveTime];
     [activeTimeInfo addSubview:activeTimeLabel];
     [self.statsBar addSubview:activeTimeInfo];
     
     // Number Kudos Label
-    CGRect kudosRect = CGRectMake(25+timeFrame.size.width + 100, 0, 40, 30);
+    CGRect kudosRect = CGRectMake(statsFrame.size.width/3*2, 8, statsFrame.size.width/3, 30);
     UIView *kudosInfo = [[UIView alloc] initWithFrame:kudosRect];
     
-    self.numKudos = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 16)];
-    self.numKudos.text = @"100";
-    self.numKudos.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f];
+    self.numKudos = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, statsFrame.size.width/3, 24)];
+    self.numKudos.text = [NSString stringWithFormat:@"%lu", (unsigned long)[self.activityLikes count]];
+    self.numKudos.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:21.0f];
     self.numKudos.textColor = [Utils getDarkBlue];
-    [self.numKudos sizeToFit];
+    self.numKudos.textAlignment = NSTextAlignmentCenter;
+    //[self.numKudos sizeToFit];
     
-    UILabel *kudosLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numKudos.frame.size.height, 40, 10)];
+    UILabel *kudosLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numKudos.frame.size.height, statsFrame.size.width/3, 16)];
     kudosLabel.text = @"Kudos";
-    kudosLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
-    [kudosLabel sizeToFit];
+    kudosLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    kudosLabel.textColor = [Utils getGray];
+    kudosLabel.textAlignment = NSTextAlignmentCenter;
+    //[kudosLabel sizeToFit];
     
     [kudosInfo addSubview:self.numKudos];
     [kudosInfo addSubview:kudosLabel];
@@ -153,6 +179,12 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     [self.view addSubview:self.dashboardHeader];
     [self.view addSubview:self.statsBar];
+}
+
+- (void)setupFeedTable {
+    self.feedTable.layer.borderWidth = 1;
+    self.feedTable.layer.borderColor = [Utils getGray].CGColor;
+    self.feedTable.layer.cornerRadius = 6;
 }
 
 - (void)fetchWeightStats {
@@ -176,6 +208,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 - (void)fetchActivityLikes {
     [ActivityLike getActivityLikesByUser:self.user success:^(NSArray *activityLikes) {
         self.activityLikes = activityLikes;
+        self.numKudos.text = [NSString stringWithFormat:@"%lu", (unsigned long)[self.activityLikes count]];
         [self.feedTable reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error fetching ActivityLikes %@", error);

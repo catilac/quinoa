@@ -67,24 +67,31 @@
     
     for (NSString* key in dictionary) {
         Activity *activity = [dictionary objectForKey:key];
-        // do stuff
-        // 0 is food pic
-        // 1 is weight
-        // 2 is p.activity
-        //if([key isEqualToString:@"0"])
-       // {
+                
+        if (activity.activityType == ActivityTypeEating)
+        {
+            
+            self.foodImageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.foodImageView.clipsToBounds = YES;
+            [Utils loadImageFile:activity.image inImageView:self.foodImageView withAnimation:YES];
+            
+            
+        }
         
-       // }
         
             if (activity.activityType == ActivityTypeWeight)
             {
                 self.weightLabel.text = [NSString stringWithFormat:@"%@", activity.activityValue];
+                [self.weightLabel setTextColor:[Utils getGreen]];
+                
                 
             }
            
         if (activity.activityType == ActivityTypePhysical)
         {
             self.activityDurationLabel.text = [NSString stringWithFormat:@"%@", activity.activityValue];
+            [self.activityDurationLabel setTextColor:[Utils getGreen]];
+            //[self.blurbLabel setTextColor:[Utils getGray]];
            
         }
     

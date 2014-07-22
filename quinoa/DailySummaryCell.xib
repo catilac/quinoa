@@ -24,33 +24,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myActivity-selected" id="mbf-6E-rd7">
-                        <rect key="frame" x="168" y="121" width="30" height="30"/>
+                        <rect key="frame" x="168" y="113" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weigh_scale.png" id="ye0-T4-CCM">
-                        <rect key="frame" x="168" y="199" width="30" height="30"/>
+                        <rect key="frame" x="168" y="191" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCO-iF-h7X">
-                        <rect key="frame" x="213" y="125" width="55" height="21"/>
+                        <rect key="frame" x="213" y="108" width="55" height="35"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes of activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CIF-Yg-r5h">
-                        <rect key="frame" x="168" y="159" width="126" height="32"/>
+                        <rect key="frame" x="168" y="151" width="126" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oBi-o6-NM4">
-                        <rect key="frame" x="270" y="199" width="39" height="32"/>
+                        <rect key="frame" x="270" y="193" width="39" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjn-TE-NQ8">
-                        <rect key="frame" x="206" y="197" width="56" height="32"/>
+                        <rect key="frame" x="206" y="185" width="56" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                         <nil key="highlightedColor"/>

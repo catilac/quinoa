@@ -38,6 +38,8 @@
     // Customize logo, color, font, background here.
     // Look at this example for customization:
     // https://github.com/ParsePlatform/LoginAndSignUpTutorial/blob/master/LogInAndSignUpDemo/MyLogInViewController.m#L20
+    
+    UIColor *placeholderColor = [UIColor colorWithRed:0.396 green:0.455 blue:0.506 alpha:1];
 
     // Background color and logo
     [self.logInView setBackgroundColor:[Utils getDarkBlue]];
@@ -58,12 +60,14 @@
     [self.logInView.usernameField setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     [self.logInView.usernameField setTextAlignment:NSTextAlignmentLeft];
     [self.logInView.usernameField setTextColor:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]];
+    self.logInView.usernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username" attributes:@{NSForegroundColorAttributeName: placeholderColor}];
     
     // Password Field Styling
     [self.logInView.passwordField.layer setShadowOpacity:0.0f];
     [self.logInView.passwordField setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     [self.logInView.passwordField setTextAlignment:NSTextAlignmentLeft];
     [self.logInView.passwordField setTextColor:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]];
+    self.logInView.passwordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: placeholderColor}];
     
     // Sign Up Button
     [self.logInView.signUpButton setBackgroundImage:nil forState:UIControlStateNormal];
@@ -77,9 +81,8 @@
     [self.logInView.logInButton setTitle:@"" forState:UIControlStateNormal];
     [self.logInView.logInButton setTitle:@"" forState:UIControlStateHighlighted];
     [self.logInView.logInButton.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
-    
-
 }
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];

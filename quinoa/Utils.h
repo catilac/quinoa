@@ -34,4 +34,6 @@
 
 + (BOOL) sameObjects:(PFObject *)object0 object:(PFObject *)object1;
 
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
+
 @end

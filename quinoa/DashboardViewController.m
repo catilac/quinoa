@@ -85,18 +85,19 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
 - (void)setupDashboardHeader {
     // Initialize Container
-    CGRect dashFrame = CGRectMake(10, 10, SCREEN_WIDTH-20, 230);
+    CGRect dashFrame = CGRectMake(10, 5, SCREEN_WIDTH-20, 240);
     self.scrollView = [[UIScrollView alloc] initWithFrame:dashFrame];
 
     self.dashboardHeader = [[UIView alloc] initWithFrame:dashFrame];
     self.dashboardHeader.layer.borderWidth = 1;
     self.dashboardHeader.layer.borderColor = [Utils getGray].CGColor;
     self.dashboardHeader.layer.cornerRadius = 6;
+    self.dashboardHeader.clipsToBounds = YES;
 
 
     // ============== Page 1: Physical Activity Chart ==============
     UIView *physicalChartView = [[UIView alloc]
-                                 initWithFrame:CGRectMake(0, 0, dashFrame.size.width, dashFrame.size.height*0.7f)];
+                                 initWithFrame:CGRectMake(0, 0, dashFrame.size.width*0.9f, dashFrame.size.height*0.55f)];
     self.physicalChart = [[PNLineChart alloc]
                           initWithFrame:CGRectMake(0, 30, physicalChartView.frame.size.width, physicalChartView.frame.size.height)];
     NSMutableArray *physicalLabels = [NSMutableArray array];
@@ -121,7 +122,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     // ============== Page 2: Weight Chart ==============
     CGRect barChartFrame = CGRectMake(dashFrame.size.width, 0, dashFrame.size.width*0.9f, dashFrame.size.height*0.7f);
     UIView *weightChartView = [[UIView alloc] initWithFrame:barChartFrame];
-    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, dashFrame.size.width*0.9f, dashFrame.size.height*0.7f)];
+    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 5, dashFrame.size.width*0.9f, dashFrame.size.height*0.7f)];
     [self.barChart setStrokeColor:[Utils getDarkBlue]];
 //    [self.barChart setBackgroundColor:[Utils getLightGray]];
 
@@ -138,7 +139,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [self.dashboardHeader addSubview:self.scrollView];
 
     // Add page control
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, dashFrame.size.height*0.6f, dashFrame.size.width, 50)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, dashFrame.size.height*0.62f, dashFrame.size.width, 50)];
     [self.pageControl setNumberOfPages:2];
     self.pageControl.pageIndicatorTintColor = [Utils getLightGray];
     self.pageControl.currentPageIndicatorTintColor = [Utils getGray];
@@ -151,7 +152,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
 
     // Initialize Stats Bar
-    CGRect statsFrame = CGRectMake(11, 10 + barChartFrame.size.height + self.dashboardHeader.frame.origin.y, dashFrame.size.width-2, self.dashboardHeader.frame.size.height - barChartFrame.size.height - 15);
+    CGRect statsFrame = CGRectMake(11, 13 + barChartFrame.size.height + self.dashboardHeader.frame.origin.y, dashFrame.size.width-2, self.dashboardHeader.frame.size.height - barChartFrame.size.height - 15);
     self.statsBar = [[UIView alloc] initWithFrame:statsFrame];
     self.statsBar.backgroundColor = [UIColor whiteColor];
     self.statsBar.layer.cornerRadius = 6;

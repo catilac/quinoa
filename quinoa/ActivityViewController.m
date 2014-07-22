@@ -148,6 +148,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
     NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
     
+    self.activityValueLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:64];
     self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:64];
 }
 
@@ -161,7 +162,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         NSLog(@"trackActivity");
 
         self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
-        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 446, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 476, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
     }
 
 }
@@ -184,14 +185,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
     CGPoint translation = [sender translationInView:self.view];
     //NSLog(@"position %f", sender.view.center.y + translation.y);
-    
-    
-    
-
         
         if (sender.state == UIGestureRecognizerStateChanged)  {
                 
-            if(sender.view.center.y + translation.y >= 70 && sender.view.center.y + translation.y <= 452)
+            if(sender.view.center.y + translation.y >= 80 && sender.view.center.y + translation.y <= 480)
                 {
                 
                 //NSLog(@"position %f", sender.view.center.y + translation.y);

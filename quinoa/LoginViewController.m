@@ -126,7 +126,7 @@
 }
 
 - (void)setupNavigationForExpert {
-    QuinoaTabBarViewController *tabBarController = [[QuinoaTabBarViewController alloc] init];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
 
     // Activity Tab
     ActivitiesCollectionViewController *activitiesViewController = [[ActivitiesCollectionViewController alloc] init];

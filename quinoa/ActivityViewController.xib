@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityViewController">
             <connections>
-                <outlet property="activityUnitLabel" destination="DDa-H3-dqL" id="5Om-l3-s9N"/>
                 <outlet property="activityValueLabel" destination="Mfu-mG-Zpo" id="9xh-fc-LlM"/>
-                <outlet property="slideBarHeightConstraint" destination="2kL-U3-nQ7" id="iE8-5V-57n"/>
+                <outlet property="dividerLine" destination="0er-T9-D6g" id="ZZ9-wW-DrH"/>
+                <outlet property="panGestureRecognizer" destination="v15-RD-xnj" id="UYY-t7-UL0"/>
                 <outlet property="slideBarView" destination="Ohh-Cs-kWw" id="8L4-xF-aCD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -18,58 +18,42 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-Cs-kWw">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0er-T9-D6g">
+                    <rect key="frame" x="29" y="240" width="262" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-Cs-kWw">
                     <rect key="frame" x="0.0" y="215" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vxT-MS-NtR">
-                            <rect key="frame" x="10" y="15" width="20" height="20"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="TAd-8X-5V0"/>
-                                <constraint firstAttribute="width" constant="20" id="kfs-sa-eia"/>
-                            </constraints>
-                        </imageView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0er-T9-D6g">
-                            <rect key="frame" x="38" y="24" width="262" height="1"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfu-mG-Zpo" userLabel="Value">
+                            <rect key="frame" x="31" y="0.0" width="257" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfu-mG-Zpo" userLabel="Value">
-                            <rect key="frame" x="96" y="14" width="86" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="64"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDa-H3-dqL" userLabel="Unit">
-                            <rect key="frame" x="189" y="12" width="77" height="23"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oba-f3-N0U">
+                            <rect key="frame" x="38" y="0.0" width="250" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onSlideBarTouch:" destination="-1" eventType="touchDown" id="ZzX-1W-W6B"/>
+                                <action selector="onSlideBarTouchUp:" destination="-1" eventType="touchUpInside" id="kFr-Zq-YEo"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Czz-Ob-m9H"/>
-                        <constraint firstItem="vxT-MS-NtR" firstAttribute="top" secondItem="Ohh-Cs-kWw" secondAttribute="top" constant="15" id="Kbs-Nb-2GI"/>
-                        <constraint firstItem="vxT-MS-NtR" firstAttribute="leading" secondItem="Ohh-Cs-kWw" secondAttribute="leading" constant="10" id="Zg9-f2-Qqq"/>
-                    </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="v15-RD-xnj" appends="YES" id="kEr-3O-znZ"/>
                     </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="Ohh-Cs-kWw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Y3-zG-nqG"/>
-                <constraint firstItem="Ohh-Cs-kWw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="215" id="2kL-U3-nQ7"/>
-                <constraint firstAttribute="trailing" secondItem="Ohh-Cs-kWw" secondAttribute="trailing" id="Mgj-ej-jP3"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
@@ -79,7 +63,4 @@
             </connections>
         </panGestureRecognizer>
     </objects>
-    <resources>
-        <image name="CheckIcon" width="25" height="20"/>
-    </resources>
 </document>

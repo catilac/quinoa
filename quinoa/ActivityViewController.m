@@ -16,7 +16,7 @@
 static const float DEFAULT_WEIGHT = 150.0f;
 static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
-@interface ActivityViewController ()
+@interface ActivityViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
@@ -31,7 +31,16 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 @property (nonatomic) float incrementQuantity;
 @property (strong, nonatomic) User *user;
 
+@property (weak, nonatomic) IBOutlet UIView *dividerLine;
+@property (nonatomic, assign) BOOL didPan;
+@property (nonatomic, assign) BOOL didTouch;
+
+@property (nonatomic, assign) BOOL isActivityValueLabelBig;
+
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGestureRecognizer;
 - (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender;
+- (IBAction)onSlideBarTouch:(id)sender;
+- (IBAction)onSlideBarTouchUp:(id)sender;
 
 @end
 
@@ -100,14 +109,15 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     // Do any additional setup after loading the view from its nib.
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
-        self.activityUnitLabel.text = @"lbs";
+        //self.activityUnitLabel.text = @"lbs";
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.slideBarHeightConstraint.constant = 430;
-        self.activityUnitLabel.text = @"min";
-        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
+        //self.activityUnitLabel.text = @"min";
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
     }
-    self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.activityValue];
+    
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                              style:UIBarButtonItemStyleBordered
@@ -124,6 +134,34 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     self.tabBarController.tabBar.translucent = NO;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(postActivity)];
+    
+    self.panGestureRecognizer.delegate = self;
+    
+    self.didPan = 0;
+    self.didTouch = 0;
+    self.isActivityValueLabelBig = NO;
+    
+    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+//    self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    
+    NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
+    NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
+}
+
+- (void)viewDidLayoutSubviews {
+    if ([self.activityType isEqualToString: @"trackWeight"]) {
+        NSLog(@"trackWeight");
+
+        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 240, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+    }
+    else if ([self.activityType isEqualToString: @"trackActivity"]) {
+        NSLog(@"trackActivity");
+
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
+        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 446, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -139,40 +177,125 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 - (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender {
     
-    //NSLog(@"on pan.....");
+//    NSLog(@"on pan.....");
+    self.didPan = 1;
 
     CGPoint translation = [sender translationInView:self.view];
     //NSLog(@"position %f", sender.view.center.y + translation.y);
     
-    if(sender.view.center.y + translation.y >= 25 && sender.view.center.y + translation.y <= 452)
-    {
+    
+    
+
         
         if (sender.state == UIGestureRecognizerStateChanged)  {
-            //NSLog(@"position %f", sender.view.center.y + translation.y);
-            sender.view.center = CGPointMake(sender.view.center.x,sender.view.center.y + translation.y);
-            self.currentPosition += translation.y;
-            //NSLog(@"start position %f", self.startPosition);
-            //NSLog(@"current position %f", self.currentPosition);
-            
-            
-            if(abs(self.startPosition - self.currentPosition) >= 10.00f){
-                if((self.startPosition - self.currentPosition) > 0)
-                    self.activityValue += self.incrementQuantity;
-                else
-                    self.activityValue -= self.incrementQuantity;
-                self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f", self.activityValue];
-                self.startPosition = self.currentPosition;
+                
+            if(sender.view.center.y + translation.y >= 70 && sender.view.center.y + translation.y <= 452)
+                {
+                
+                //NSLog(@"position %f", sender.view.center.y + translation.y);
+                sender.view.center = CGPointMake(sender.view.center.x,sender.view.center.y + translation.y);
+                self.currentPosition += translation.y;
+                //NSLog(@"start position %f", self.startPosition);
+                //NSLog(@"current position %f", self.currentPosition);
+                
+                
+                if(abs(self.startPosition - self.currentPosition) >= 10.00f){
+                    if((self.startPosition - self.currentPosition) > 0)
+                        self.activityValue += self.incrementQuantity;
+                    else
+                        self.activityValue -= self.incrementQuantity;
+                    
+                    // decimals for weight
+                    if ([self.activityType isEqualToString: @"trackWeight"]) {
+                        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+                    }
+                    // no decimals for time
+                    else if ([self.activityType isEqualToString: @"trackActivity"]) {
+                        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
+                    }
+                    
+                    self.startPosition = self.currentPosition;
+                }
+                
+                [sender setTranslation:CGPointZero inView:self.view];
             }
-            
-            [sender setTranslation:CGPointZero inView:self.view];
         }
         
         else if (sender.state == UIGestureRecognizerStateEnded) {
             //NSLog(@"ended...");
             //self.startPosition = self.currentPosition;
             
+            if (self.isActivityValueLabelBig) {
+                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    
+                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                    self.isActivityValueLabelBig = NO;
+                    
+                } completion:nil];
+            }
+            
+            self.didPan = 0;
         }
+        else if (sender.state == UIGestureRecognizerStateFailed) {
+            NSLog(@"cancelled...");
+            //self.startPosition = self.currentPosition;
+            
+            
+            if (self.isActivityValueLabelBig) {
+                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    
+                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                    self.isActivityValueLabelBig = NO;
+                    
+                } completion:nil];
+            }
+            
+            self.didPan = 0;
+        }
+    
+
+}
+
+
+- (IBAction)onSlideBarTouch:(id)sender {
+    
+    NSLog(@"touch");
+    
+    self.didTouch = 1;
+    
+    if (!self.isActivityValueLabelBig) {
+        [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.5 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            
+            //self.activityValueLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 2.0, 2.0, 1);
+            self.isActivityValueLabelBig = YES;
+            
+        } completion:nil];
     }
+    
+}
+
+- (IBAction)onSlideBarTouchUp:(id)sender {
+    
+    if(!self.didPan) {
+        if (self.isActivityValueLabelBig) {
+            [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                
+                self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                self.isActivityValueLabelBig = NO;
+                
+            } completion:nil];
+        }
+        
+        self.didPan = 0;
+    }
+    
 }
 
 - (void)cancel {
@@ -182,6 +305,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 - (void) dismissModalAndCloseFanOutMenu {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 @end

@@ -147,6 +147,8 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     
     NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
     NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
+    
+    self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:64];
 }
 
 - (void)viewDidLayoutSubviews {

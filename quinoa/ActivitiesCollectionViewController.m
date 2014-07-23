@@ -188,10 +188,10 @@
             self.activities = objects;
             NSLog(@"client activities count: %d", self.activities.count);
             [self.collectionView reloadData];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     } else {
         [Activity getActivitiesByUser:user success:^(NSArray *objects) {
@@ -201,10 +201,10 @@
             if (reload) {
                 [self.collectionView reloadData];
             }
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     }
 }

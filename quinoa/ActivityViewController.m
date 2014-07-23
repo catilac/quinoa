@@ -10,6 +10,8 @@
 #import "TrackButton.h"
 #import "Activity.h"
 #import "User.h"
+#import "QuinoaTabBarViewController.h"
+#import "ActivitiesCollectionViewController.h"
 
 // This is an arbitrary number that is going to be used only when
 // current user doesn't have weight set.
@@ -61,6 +63,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         [Activity trackWeight:[NSNumber numberWithFloat:self.activityValue]
                      callback:^(BOOL succeeded, NSError *error) {
                          [self.user updateCurrentWeight:[NSNumber numberWithFloat:self.activityValue]];
+                         [self goToActivitiesScreen];
                          [self dismissModalAndCloseFanOutMenu];
                      }];
 
@@ -68,6 +71,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         [Activity trackPhysical:[NSNumber numberWithFloat:self.activityValue]
                        callback:^(BOOL succeeded, NSError *error) {
                            [self.user updateAverageActivityDuration];
+                           [self goToActivitiesScreen];
                            [self dismissModalAndCloseFanOutMenu];
                        }];
     }
@@ -310,6 +314,11 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
+}
+
+- (void)goToActivitiesScreen {
+    QuinoaTabBarViewController *tabBarController = (QuinoaTabBarViewController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    tabBarController.lastIndex = 3;
 }
 
 @end

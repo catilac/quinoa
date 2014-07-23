@@ -30,6 +30,7 @@
     User *user;
     BOOL isExpert;
     BOOL isProfile;
+    BOOL showChat;
 }
 
 
@@ -51,7 +52,7 @@
         self.stubCell = [[ActivityCell alloc] init];
         self.title = @"Activities";
         self.likes = [[NSMutableArray alloc] init];
-
+        showChat = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
@@ -69,7 +70,7 @@
         self.stubCell = [[ActivityCell alloc] init];
         self.title = user.firstName;
         self.likes = [[NSMutableArray alloc] init];
-        
+        showChat = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
@@ -157,22 +158,20 @@
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
         
-        if(isExpert){
+       headerView.user = user;
+        if(showChat){
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button addTarget:self
                    action:@selector(chatClick:)
          forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"Chat" forState:UIControlStateNormal];
         button.frame = CGRectMake(20, 145, 280.0, 50.0);
-        
         button.backgroundColor = [Utils getVibrantBlue];
-        
         button.layer.borderWidth = 0.5f;
         button.layer.cornerRadius = 5.0f;
-         [headerView addSubview:button];
+       [headerView addSubview:button];
         }
-        headerView.user = user;
-       
         reusableView = headerView;
     }
     return reusableView;

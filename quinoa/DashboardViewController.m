@@ -121,7 +121,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     UILabel *chartLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
     [chartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     chartLabel.textColor = [Utils getGray];
-    chartLabel.text = @"Weight over Last 7 Days";
+    chartLabel.text = @"Weight over Last 7 Weeks";
 
     [weightChartView addSubview:self.barChart];
     [weightChartView addSubview:chartLabel];
@@ -143,8 +143,11 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [self.scrollView addGestureRecognizer:panGesture];
 
 
-    // Initialize Stats Bar
-    CGRect statsFrame = CGRectMake(11, 13 + barChartFrame.size.height + self.dashboardHeader.frame.origin.y, dashFrame.size.width-2, self.dashboardHeader.frame.size.height - barChartFrame.size.height - 15);
+    // =============== Initialize Stats Bar ==================
+    CGRect statsFrame = CGRectMake(11,
+                                   13 + barChartFrame.size.height + self.dashboardHeader.frame.origin.y,
+                                   dashFrame.size.width-2,
+                                   self.dashboardHeader.frame.size.height - barChartFrame.size.height - 15);
     self.statsBar = [[UIView alloc] initWithFrame:statsFrame];
     self.statsBar.backgroundColor = [UIColor whiteColor];
     self.statsBar.layer.cornerRadius = 6;

@@ -13,6 +13,7 @@
 #import "ActivityCell.h"
 #import "ProfileCell.h"
 #import "UILabel+QuinoaLabel.h"
+#import "MBProgressHUD.h"
 #import "Utils.h"
 
 @interface ActivitiesCollectionViewController ()
@@ -175,15 +176,17 @@
 
 - (void)fetchData {
     // TODO: Add paging here
-
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if (isExpertView) {
         [self fetchActivityLikes];
         [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
             self.activities = objects;
             NSLog(@"client activities count: %d", self.activities.count);
             [self.collectionView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     } else {
         [Activity getActivitiesByUser:user success:^(NSArray *objects) {
@@ -193,8 +196,10 @@
             if (reload) {
                 [self.collectionView reloadData];
             }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     }
 }

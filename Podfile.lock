@@ -23,6 +23,7 @@ PODS:
   - Bolts (1.1.0)
   - Facebook-iOS-SDK (3.15.1):
     - Bolts
+  - MBProgressHUD (0.8)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
   - PNChart (0.3.3):
@@ -32,6 +33,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - Facebook-iOS-SDK
+  - MBProgressHUD (~> 0.5)
   - Parse
   - PNChart (~> 0.3.3)
 
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   PNChart: c77c6880b03851f01d7b5523648e0b93cfe51978
   UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9

@@ -156,6 +156,8 @@
     UICollectionReusableView *reusableView = nil;
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
+        
+        if(isExpert){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button addTarget:self
                    action:@selector(chatClick:)
@@ -167,9 +169,10 @@
         
         button.layer.borderWidth = 0.5f;
         button.layer.cornerRadius = 5.0f;
-
+         [headerView addSubview:button];
+        }
         headerView.user = user;
-        [headerView addSubview:button];
+       
         reusableView = headerView;
     }
     return reusableView;

@@ -35,10 +35,10 @@
         [self.contentView setFrame:frame];
         [self addSubview:self.contentView];
 
-        [self.likeButton setImage:[UIImage imageNamed:@"myActivity"] forState:UIControlStateNormal];
-        [self.likeButton setImage:[UIImage imageNamed:@"myActivity-selected"] forState:UIControlStateSelected];
-        [self.likeButton setImage:[UIImage imageNamed:@"myActivity-selected"] forState:UIControlStateHighlighted];
-        [self.likeButton setImage:[UIImage imageNamed:@"myActivity-selected"] forState:UIControlStateSelected | UIControlStateHighlighted];
+        [self.likeButton setImage:[UIImage imageNamed:@"kudos"] forState:UIControlStateNormal];
+        [self.likeButton setImage:[UIImage imageNamed:@"kudos-selected"] forState:UIControlStateSelected];
+        [self.likeButton setImage:[UIImage imageNamed:@"kudos-selected"] forState:UIControlStateHighlighted];
+        [self.likeButton setImage:[UIImage imageNamed:@"kudos-selected"] forState:UIControlStateSelected | UIControlStateHighlighted];
 
         [self.likeButton addTarget:self action:@selector(onLike:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -82,6 +82,9 @@
         likedActivity = @{@"liked": @NO,
                           @"activity": self.activity,
                           @"expert": [User currentUser]};
+        
+        
+        
     } else {
         likedActivity = @{@"liked": @YES,
                           @"activity": self.activity,

@@ -23,7 +23,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     NSString *direction;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @property (strong, nonatomic) NSArray *activityLikes;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
@@ -62,18 +61,11 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.feedTable registerNib:[UINib nibWithNibName:@"ActivityLikeCell" bundle:nil] forCellReuseIdentifier:LikeCellIdent];
-    
-    self.feedTable.dataSource = self;
-    self.feedTable.delegate = self;
-    [self.feedTable setSeparatorInset:UIEdgeInsetsZero];
-
-    [self setupFeedTable];
-    [self fetchActivityLikes];
 
     // Charts
     [self fetchPhysicalStats];
     [self fetchWeightStats];
+    [self fetchActivityLikes];
     [self setupDashboardHeader];
 
     self.title = @"Dashboard";
@@ -234,12 +226,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [self.view addSubview:self.statsBar];
 }
 
-- (void)setupFeedTable {
-    self.feedTable.layer.borderWidth = 1;
-    self.feedTable.layer.borderColor = [Utils getGray].CGColor;
-    self.feedTable.layer.cornerRadius = 6;
-}
-
 - (void)fetchWeightStats {
     [Activity getLatestActivityByUser:self.user
                            byActivity:ActivityTypeWeight
@@ -304,7 +290,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [ActivityLike getActivityLikesByUser:self.user success:^(NSArray *activityLikes) {
         self.activityLikes = activityLikes;
         self.numKudos.text = [NSString stringWithFormat:@"%lu", (unsigned long)[self.activityLikes count]];
-        [self.feedTable reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error fetching ActivityLikes %@", error);
     }];
@@ -315,30 +300,6 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark UITableViewDataSource methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.activityLikes count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ActivityLikeCell *cell = (ActivityLikeCell *)[tableView dequeueReusableCellWithIdentifier:LikeCellIdent];
-    ActivityLike *like = self.activityLikes[indexPath.row];
-    [cell setActivityLike:like];
-    return cell;
-}
-
-#pragma mark UITableViewDelegate methods
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    self.expertHeader = [[UserHeader alloc] init];
-    [self.expertHeader setUser:self.expert];
-    [self.expertHeader setBackgroundColor:[Utils getGray]];
-    return self.expertHeader;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 65;
 }
 
 #pragma mark PageControl methods

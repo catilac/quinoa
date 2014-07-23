@@ -22,15 +22,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Pounds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wg-VM-sFI">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" misplaced="YES" text="Pounds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wg-VM-sFI">
                     <rect key="frame" x="67" y="12" width="50" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2 pounds lost in the past month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbP-Pv-QLK">
-                    <rect key="frame" x="67" y="29" width="223" height="16"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="2 pounds lost in the past month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbP-Pv-QLK">
+                    <rect key="frame" x="67" y="29" width="223" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="gPU-JK-ZIL"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,7 +46,7 @@
                 <constraint firstItem="FMy-iN-hzP" firstAttribute="leading" secondItem="CHN-wX-1sP" secondAttribute="leading" constant="10" id="gsQ-4H-2hk"/>
                 <constraint firstItem="4wg-VM-sFI" firstAttribute="leading" secondItem="FMy-iN-hzP" secondAttribute="trailing" constant="10" id="jQw-eO-mdD"/>
                 <constraint firstItem="FMy-iN-hzP" firstAttribute="top" secondItem="CHN-wX-1sP" secondAttribute="top" constant="8" id="m7S-gs-YJh"/>
-                <constraint firstAttribute="bottom" secondItem="QbP-Pv-QLK" secondAttribute="bottom" constant="15" id="o0p-Vg-8MZ"/>
+                <constraint firstAttribute="bottom" secondItem="QbP-Pv-QLK" secondAttribute="bottom" constant="20" id="o0p-Vg-8MZ"/>
                 <constraint firstItem="4wg-VM-sFI" firstAttribute="top" secondItem="CHN-wX-1sP" secondAttribute="top" constant="12" id="xa8-eZ-ieI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

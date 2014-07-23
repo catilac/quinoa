@@ -27,7 +27,7 @@
 
 -(void)setValuesWithExpert:(User *)expert {
     self.expert = expert;
-    self.nameLabel.text = expert.email;
+    self.nameLabel.text = [self.expert getDisplayName];
     
     if (self.expert.image) {
         [Utils loadImageFile:self.expert.image inImageView:self.profileImage withAnimation:NO];

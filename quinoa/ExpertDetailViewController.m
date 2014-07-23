@@ -148,7 +148,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
 - (void)fetchData {
     [self.expert fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        self.nameLabel.text = self.expert.email;
+        self.nameLabel.text = [self.expert getDisplayName];
         if (self.expert.image) {
             [Utils loadImageFile:self.expert.image inImageView:self.profileImage withAnimation:NO];
         } else {

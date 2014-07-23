@@ -42,7 +42,7 @@
 
     [self.valueLabel setTextColor:[Utils getGreen]];
     [self.unitLabel setTextColor:[Utils getGreen]];
-    [self.blurbLabel setTextColor:[Utils getGray]];
+    [self.blurbLabel setTextColor:[Utils getDarkerGray]];
     self.valueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:38];
 }
 

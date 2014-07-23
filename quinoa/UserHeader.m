@@ -70,7 +70,7 @@
     self.bottomBorder.backgroundColor = [Utils getGray];
 
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
-    [self.metaLabel setTextColor:[Utils getGray]];
+    [self.metaLabel setTextColor:[Utils getDarkerGray]];
 
     self.likeButton.hidden = !self.showLike;
     [self.likeButton setSelected:self.liked];

@@ -60,7 +60,7 @@
     }
     [self.valueLabel setTextColor:[Utils getVibrantBlue]];
     [self.unitLabel setTextColor:[Utils getVibrantBlue]];
-    [self.blurbLabel setTextColor:[Utils getGray]];
+    [self.blurbLabel setTextColor:[Utils getDarkerGray]];
     [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
 }
 

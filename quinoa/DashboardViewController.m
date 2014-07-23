@@ -114,7 +114,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     UILabel *physicalChartLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
     [physicalChartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
-    physicalChartLabel.textColor = [Utils getGray];
+    physicalChartLabel.textColor = [Utils getDarkerGray];
     physicalChartLabel.text = @"Activity duration in minutes";
     [physicalChartView addSubview:physicalChartLabel];
     [physicalChartView addSubview:self.physicalChart];
@@ -129,7 +129,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     UILabel *chartLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
     [chartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
-    chartLabel.textColor = [Utils getGray];
+    chartLabel.textColor = [Utils getDarkerGray];
     chartLabel.text = @"Weight over Last 7 Weeks";
 
     [weightChartView addSubview:self.barChart];
@@ -172,7 +172,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     self.weightView.layer.borderColor = [Utils getGray].CGColor;
     self.weightView.layer.cornerRadius = 6;
     self.weightValue.textColor = [Utils getDarkBlue];
-    self.weightLabel.textColor = [Utils getGray];
+    self.weightLabel.textColor = [Utils getDarkerGray];
     
     [self.activityValue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0f]];
     self.activityView.backgroundColor = [Utils getLightGray];
@@ -180,7 +180,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     self.activityView.layer.borderColor = [Utils getGray].CGColor;
     self.activityView.layer.cornerRadius = 6;
     self.activityValue.textColor = [Utils getDarkBlue];
-    self.activityLabel.textColor = [Utils getGray];
+    self.activityLabel.textColor = [Utils getDarkerGray];
     
     [self.kudosValue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0f]];
     self.kudosView.backgroundColor = [Utils getLightGray];
@@ -188,7 +188,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     self.kudosView.layer.borderColor = [Utils getGray].CGColor;
     self.kudosView.layer.cornerRadius = 6;
     self.kudosValue.textColor = [Utils getDarkBlue];
-    self.kudosLabel.textColor = [Utils getGray];
+    self.kudosLabel.textColor = [Utils getDarkerGray];
     
 }
 

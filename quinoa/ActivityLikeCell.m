@@ -47,7 +47,6 @@
         [self.imageView setImage:composeIcon];
 
     } else {
-        self.imageView.backgroundColor = [UIColor greenColor];
         self.message.text = @"Delicious!";
         UIImage *composeIcon = [Utils imageWithImage:[UIImage imageNamed:@"composeDiet"] scaledToSize:CGSizeMake(30, 30)];
         [self.imageView setImage:composeIcon];

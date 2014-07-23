@@ -273,11 +273,13 @@ static NSString *LikeCellIdent = @"likeCellIdent";
                                   }
                                   for (Activity *activity in objects) {
                                       NSInteger index = [Utils daysBetweenDate:startDate andDate:activity.createdAt];
-                                      if ([[dataPoints objectAtIndex:index] isEqual:[NSNull null]]) {
-                                          [dataPoints replaceObjectAtIndex:index withObject:activity.activityValue];
-                                      } else {
-                                          float sum = [[dataPoints objectAtIndex:index] floatValue] + [activity.activityValue floatValue];
-                                          [dataPoints replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:sum]];
+                                      if (index < [dataPoints count]) {
+                                          if ([[dataPoints objectAtIndex:index] isEqual:[NSNull null]]) {
+                                              [dataPoints replaceObjectAtIndex:index withObject:activity.activityValue];
+                                          } else {
+                                              float sum = [[dataPoints objectAtIndex:index] floatValue] + [activity.activityValue floatValue];
+                                              [dataPoints replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:sum]];
+                                          }
                                       }
                                   }
                                   PNLineChartData *physicalDataPoints = [PNLineChartData new];

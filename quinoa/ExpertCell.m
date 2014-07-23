@@ -7,6 +7,7 @@
 //
 
 #import "ExpertCell.h"
+#import "Utils.h"
 
 @implementation ExpertCell
 
@@ -27,6 +28,12 @@
 -(void)setValuesWithExpert:(User *)expert {
     self.expert = expert;
     self.nameLabel.text = expert.email;
+    
+    if (self.expert.image) {
+        [Utils loadImageFile:self.expert.image inImageView:self.profileImage withAnimation:NO];
+    } else {
+        [self.profileImage setImage:[self.expert getPlaceholderImage]];
+    }
 
     // Profile card element styling
     self.profileButton.layer.cornerRadius = 3;

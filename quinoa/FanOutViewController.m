@@ -101,7 +101,42 @@
     [trackViewController.view sendSubviewToBack:backgroundImageView];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:trackViewController];
-    [self presentViewController:nav animated:YES completion:nil];
+    //[self presentViewController:nav animated:NO completion:nil];
+    
+    UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
+    overlay.backgroundColor = [UIColor blackColor];
+    overlay.alpha = 0;
+    [self.view addSubview:overlay];
+    [self.view bringSubviewToFront:overlay];
+    
+    [UIView animateWithDuration:.15 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        overlay.alpha = 0.65;
+        
+        self.trackActivityButton.transform = CGAffineTransformMakeScale(.1, .1);
+        self.trackFoodButton.transform = CGAffineTransformMakeScale(.1, .1);
+        
+        self.trackActivityButton.transform = CGAffineTransformMakeTranslation(0, 25);
+        self.trackFoodButton.transform = CGAffineTransformMakeTranslation(0, 25);
+        self.trackWeightButton.transform = CGAffineTransformMakeTranslation(0, -50);
+        
+        self.trackWeightButton.alpha = 0;
+        self.trackFoodButton.alpha = 0;
+        self.trackActivityButton.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        self.trackActivityButton.transform = CGAffineTransformMakeScale(10, 10);
+        self.trackFoodButton.transform = CGAffineTransformMakeScale(10, 10);
+        self.trackActivityButton.transform = CGAffineTransformMakeTranslation(0, -25);
+        self.trackFoodButton.transform = CGAffineTransformMakeTranslation(0, -25);
+        self.trackWeightButton.transform = CGAffineTransformMakeTranslation(0, 50);
+        self.trackWeightButton.alpha = 1;
+        self.trackFoodButton.alpha = 1;
+        self.trackActivityButton.alpha = 1;
+        [overlay removeFromSuperview];
+        [self presentViewController:nav animated:NO completion:nil];
+        
+    }];
 }
 
 - (IBAction)onTrackActivity:(id)sender {
@@ -113,8 +148,37 @@
     [activityViewController.view sendSubviewToBack:backgroundImageView];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:activityViewController];
-    [self presentViewController:nav animated:YES completion:nil];
+    //[self presentViewController:nav animated:NO completion:nil];
+    
+    UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
+    overlay.backgroundColor = [UIColor blackColor];
+    overlay.alpha = 0;
+    [self.view addSubview:overlay];
+    [self.view bringSubviewToFront:overlay];
+    
+    [UIView animateWithDuration:.15 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        overlay.alpha = 0.65;
+        self.trackWeightButton.transform = CGAffineTransformMakeScale(.1, .1);
+        self.trackFoodButton.transform = CGAffineTransformMakeScale(.1, .1);
+        self.trackActivityButton.transform = CGAffineTransformMakeTranslation(0, -50);
+        self.trackWeightButton.alpha = 0;
+        self.trackFoodButton.alpha = 0;
+        self.trackActivityButton.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        self.trackWeightButton.transform = CGAffineTransformMakeScale(10, 10);
+        self.trackFoodButton.transform = CGAffineTransformMakeScale(10, 10);
+        self.trackActivityButton.transform = CGAffineTransformMakeTranslation(0, 50);
+        self.trackWeightButton.alpha = 1;
+        self.trackFoodButton.alpha = 1;
+        self.trackActivityButton.alpha = 1;
+        [overlay removeFromSuperview];
+        [self presentViewController:nav animated:NO completion:nil];
+        
+    }];
 }
+
 
 - (IBAction)onTapParentView:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
@@ -128,6 +192,7 @@
     self.currentBackgroundImage = [bgImage applyBlurWithRadius:2 tintColor:tintColor saturationDeltaFactor:1 maskImage:nil];
     self.view.backgroundColor = [UIColor colorWithPatternImage:self.currentBackgroundImage];
 }
+
 
 - (void)undoBlurBackground {
     self.view.backgroundColor = [UIColor clearColor];

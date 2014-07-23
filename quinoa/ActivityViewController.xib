@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="activityValueLabel" destination="Mfu-mG-Zpo" id="9xh-fc-LlM"/>
                 <outlet property="dividerLine" destination="0er-T9-D6g" id="ZZ9-wW-DrH"/>
+                <outlet property="hintLabel" destination="RvX-MG-JLy" id="QSd-Sg-zAw"/>
                 <outlet property="panGestureRecognizer" destination="v15-RD-xnj" id="UYY-t7-UL0"/>
                 <outlet property="slideBarView" destination="Ohh-Cs-kWw" id="8L4-xF-aCD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,7 +25,7 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-Cs-kWw">
-                    <rect key="frame" x="0.0" y="215" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="215" width="320" height="90"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfu-mG-Zpo" userLabel="Value">
@@ -35,7 +36,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oba-f3-N0U">
-                            <rect key="frame" x="38" y="0.0" width="250" height="50"/>
+                            <rect key="frame" x="38" y="0.0" width="250" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,6 +46,13 @@
                                 <action selector="onSlideBarTouchUp:" destination="-1" eventType="touchUpInside" id="kFr-Zq-YEo"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-MG-JLy">
+                            <rect key="frame" x="29" y="60" width="262" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>

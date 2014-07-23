@@ -72,8 +72,8 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [self fetchActivityLikes];
 
     // Charts
-    [self fetchPhysicalStats];
-    [self fetchWeightStats];
+    //[self fetchPhysicalStats];
+    //[self fetchWeightStats];
     [self setupDashboardHeader];
 
     self.title = @"Dashboard";

@@ -10,6 +10,7 @@
 #import "TrackButton.h"
 #import "Activity.h"
 #import "User.h"
+#import "Utils.h"
 
 // This is an arbitrary number that is going to be used only when
 // current user doesn't have weight set.
@@ -23,6 +24,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 @property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
 @property (strong, nonatomic) NSString *activityType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 
 @property (nonatomic) float activityValue;
 @property (nonatomic) float startPosition;
@@ -112,11 +114,13 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
         //self.title = @"Track Weight";
         //self.activityUnitLabel.text = @"lbs";
+        self.hintLabel.text = @"Drag to adjust weight";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.title = @"Track Activity";
         self.slideBarHeightConstraint.constant = 430;
         //self.activityUnitLabel.text = @"min";
+        self.hintLabel.text = @"Drag to adjust activity length";
         self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
     }
     
@@ -143,15 +147,44 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     self.didTouch = 0;
     self.isActivityValueLabelBig = NO;
     
+    self.activityValueLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:64];
+    self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:64];
     self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
-//    self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .25, .25, 1);
+    self.activityValueLabel.alpha = 0;
+    
+    self.hintLabel.textColor = [Utils getLightGray];
+    [self hideHint];
     
     NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
     NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     
-    self.activityValueLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:64];
-    self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:64];
+    UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
+    overlay.backgroundColor = [UIColor blackColor];
+    overlay.alpha = .65;
+    [self.view addSubview:overlay];
+    [self.view bringSubviewToFront:overlay];
+    
+    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        overlay.alpha = 0;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [UIView animateWithDuration:.4 delay:.2 usingSpringWithDamping:.4 initialSpringVelocity:6 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+        
+        self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+        self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 2, 2, 1);
+        self.activityValueLabel.alpha = 1;
+
+    } completion:^(BOOL finished){
+        [overlay removeFromSuperview];
+        [self showHint];
+    }];
+    
 }
 
 - (void)viewDidLayoutSubviews {
@@ -190,7 +223,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         
         if (sender.state == UIGestureRecognizerStateChanged)  {
                 
-            if(sender.view.center.y + translation.y >= 80 && sender.view.center.y + translation.y <= 480)
+            if(sender.view.center.y + translation.y >= 100 && sender.view.center.y + translation.y <= 480)
                 {
                 
                 //NSLog(@"position %f", sender.view.center.y + translation.y);
@@ -231,10 +264,13 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                     
                     //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
                     self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
                     self.isActivityValueLabelBig = NO;
                     
-                } completion:nil];
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                }];
             }
             
             self.didPan = 0;
@@ -249,10 +285,13 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                     
                     //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
                     self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
                     self.isActivityValueLabelBig = NO;
                     
-                } completion:nil];
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                }];
             }
             
             self.didPan = 0;
@@ -273,10 +312,15 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
             
             //self.activityValueLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
             self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-            self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 2.0, 2.0, 1);
+            self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, -70.0, 1, 1);
+            self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 1.5, 1.5, 1);
+            self.activityValueLabel.textColor = [UIColor whiteColor];
+            [self hideHint];
             self.isActivityValueLabelBig = YES;
             
-        } completion:nil];
+        } completion:^(BOOL finished) {
+            
+        }];
     }
     
 }
@@ -288,10 +332,13 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
             [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
                 
                 self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 0.5, 0.5, 1);
+                self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
                 self.isActivityValueLabelBig = NO;
                 
-            } completion:nil];
+            } completion:^(BOOL finished) {
+                [self showHint];
+            }];
         }
         
         self.didPan = 0;
@@ -299,12 +346,25 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     
 }
 
+- (void)showHint {
+    [UIView animateWithDuration:.75 animations:^{
+        self.hintLabel.alpha = 1;
+    }];
+    
+}
+
+- (void)hideHint {
+    self.hintLabel.alpha = 0;
+}
+
 - (void)cancel {
     [self dismissModalAndCloseFanOutMenu];
 }
 
 - (void) dismissModalAndCloseFanOutMenu {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    //self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCloseMenu object:nil];
 }
 

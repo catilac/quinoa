@@ -105,7 +105,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableView = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
+    if (!isExpertView && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
 
         headerView.user = self.user;
@@ -171,7 +171,9 @@
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    if (!isExpertView) {
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 

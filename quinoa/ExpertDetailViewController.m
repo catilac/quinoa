@@ -93,6 +93,12 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     [self fetchData];
     
+    if (self.expert.image) {
+        [Utils loadImageFile:self.expert.image inImageView:self.profileImage withAnimation:NO];
+    } else {
+        [self.profileImage setImage:[self.expert getPlaceholderImage]];
+    }
+    
     // Style elements on profile
     self.profileImage.layer.cornerRadius= 53;
     self.chatButton.layer.cornerRadius= 3;

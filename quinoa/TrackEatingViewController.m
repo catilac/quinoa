@@ -14,12 +14,8 @@
 @interface TrackEatingViewController ()
 
 @property (strong, nonatomic) UIImagePickerController *camera;
-@property (strong, nonatomic) UIImageView *imagePreview;
-@property (weak, nonatomic) IBOutlet UIView *imagePreviewContainer;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *cameraIconImageView;
 
-@property (strong, nonatomic) NSData *imageData;
 @property (assign) Boolean imageSet;
 
 - (IBAction)onTap:(id)sender;
@@ -57,7 +53,22 @@
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
+    
+    [self.imagePreview removeFromSuperview];
+    self.imagePreview = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.imageData]];
+    self.imagePreview.frame = self.imagePreviewContainer.frame;
+    
+    [self.imagePreviewContainer addSubview:self.imagePreview];
+    [self.imagePreviewContainer sendSubviewToBack:self.imagePreview];
+    self.imageSet = YES;
 
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    //[self takePictureMode];
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -71,8 +82,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onTap:(id)sender {
-        // Capture a photo
+- (void) takePictureMode{
     self.cameraIconImageView.hidden = YES;
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera] == YES){
@@ -88,6 +98,25 @@
         // Show image picker
         [self presentViewController:self.camera animated:YES completion:nil];
     }
+
+}
+- (IBAction)onTap:(id)sender {
+        // Capture a photo
+    /*self.cameraIconImageView.hidden = YES;
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera] == YES){
+        // Create image picker controller
+        self.camera = [[UIImagePickerController alloc] init];
+        
+        // Set source to the camera
+        self.camera.sourceType =  UIImagePickerControllerSourceTypeCamera;
+        
+        // Delegate is self
+        self.camera.delegate = self;
+        
+        // Show image picker
+        [self presentViewController:self.camera animated:YES completion:nil];
+    }*/
 }
 
 - (IBAction)tappedSendButton:(id)sender {

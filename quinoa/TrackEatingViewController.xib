@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackEatingViewController">
             <connections>
-                <outlet property="cameraIconImageView" destination="y3g-cz-E5n" id="vpp-tS-Zy5"/>
                 <outlet property="descriptionTextField" destination="xig-CF-9ZF" id="im7-57-iBX"/>
                 <outlet property="imagePreviewContainer" destination="MSD-Rj-Mci" id="X1d-2i-506"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -51,12 +50,6 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSD-Rj-Mci" userLabel="PreviewImage">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-cz-E5n">
-                            <rect key="frame" x="110" y="50" width="100" height="100"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </imageView>
-                    </subviews>
                     <color key="backgroundColor" red="0.2666666667" green="0.3411764706" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                     <gestureRecognizers/>
                     <connections>
@@ -75,7 +68,4 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
-    <resources>
-        <image name="camera_icon" width="42" height="42"/>
-    </resources>
 </document>

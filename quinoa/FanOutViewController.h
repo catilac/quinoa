@@ -10,6 +10,6 @@
 
 static const NSInteger kFanOutIdent = 1337;
 
-@interface FanOutViewController : UIViewController
+@interface FanOutViewController : UIViewController<UIImagePickerControllerDelegate>
 
 @end

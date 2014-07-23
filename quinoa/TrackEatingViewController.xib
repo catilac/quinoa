@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackEatingViewController">
             <connections>
-                <outlet property="descriptionTextField" destination="xig-CF-9ZF" id="im7-57-iBX"/>
+                <outlet property="descriptionContainer" destination="DoY-TR-ye9" id="7yY-UD-AVQ"/>
+                <outlet property="descriptionTextField" destination="xig-CF-9ZF" id="4sR-qZ-eo5"/>
                 <outlet property="imagePreviewContainer" destination="MSD-Rj-Mci" id="X1d-2i-506"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,30 +17,28 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DoY-TR-ye9">
-                    <rect key="frame" x="0.0" y="208" width="320" height="44"/>
+                <view contentMode="scaleAspectFill" id="MSD-Rj-Mci" userLabel="PreviewImage">
+                    <rect key="frame" x="20" y="20" width="280" height="280"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.78039222955703735" green="0.81568634510040283" blue="0.85098046064376831" alpha="1" colorSpace="deviceRGB"/>
+                    <gestureRecognizers/>
+                </view>
+                <view contentMode="scaleToFill" id="DoY-TR-ye9">
+                    <rect key="frame" x="0.0" y="320" width="320" height="248"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type message here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xig-CF-9ZF">
-                            <rect key="frame" x="10" y="0.0" width="246" height="44"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Tap to add description..." minimumFontSize="17" id="xig-CF-9ZF">
+                            <rect key="frame" x="20" y="15" width="280" height="219"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.2666666667" green="0.3411764706" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eT-bh-ZgK">
-                            <rect key="frame" x="264" y="0.0" width="56" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.2784313725" green="0.65098039220000004" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Send">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             <connections>
-                                <action selector="tappedSendButton:" destination="-1" eventType="touchUpInside" id="eNh-p8-QiC"/>
+                                <action selector="textFieldDismiss:" destination="-1" eventType="editingDidEndOnExit" id="b0J-XI-CCA"/>
                             </connections>
-                        </button>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10Q-0i-v3E">
+                        </textField>
+                        <view contentMode="scaleToFill" id="10Q-0i-v3E">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,24 +46,18 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSD-Rj-Mci" userLabel="PreviewImage">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.2666666667" green="0.3411764706" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <gestureRecognizers/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="cNW-YF-DxA" appends="YES" id="oSh-Qn-2o5"/>
-                    </connections>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-        </view>
-        <tapGestureRecognizer id="cNW-YF-DxA">
             <connections>
-                <action selector="onTap:" destination="-1" id="SCE-Fi-ia4"/>
+                <outletCollection property="gestureRecognizers" destination="ACQ-cc-EEF" appends="YES" id="RDt-WZ-JoW"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="ACQ-cc-EEF">
+            <connections>
+                <action selector="onEndEditing:" destination="-1" id="zC2-sY-hhb"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

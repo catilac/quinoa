@@ -22,6 +22,7 @@
 #import "TrackButton.h"
 #import "DashboardViewController.h"
 #import "QuinoaTabBarViewController.h"
+#import "Utils.h"
 
 @interface LoginViewController ()
 
@@ -35,7 +36,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.view.backgroundColor = [Utils getDarkBlue];
     }
     return self;
 }

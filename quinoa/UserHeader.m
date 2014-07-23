@@ -72,7 +72,7 @@
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
     [self.metaLabel setTextColor:[Utils getGray]];
 
-    self.likeButton.hidden = (self.activity == nil);
+    self.likeButton.hidden = !self.showLike;
     [self.likeButton setSelected:self.liked];
 }
 

@@ -17,5 +17,7 @@
 
 - (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader;
 
+- (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader showLike:(BOOL)showLike;
+
 - (CGSize)cellSize;
 @end

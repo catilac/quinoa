@@ -90,14 +90,14 @@
                                                                  forIndexPath:indexPath];
     Activity *activity = self.activities[indexPath.row];
     cell.liked = [self liked:activity];
-    [cell setActivity:activity showHeader:isExpertView];
+    [cell setActivity:activity showHeader:YES showLike:isExpertView];
 
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:isExpertView];
+    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:YES showLike:isExpertView];
     CGSize size = [self.stubCell cellSize];
 
     return size;

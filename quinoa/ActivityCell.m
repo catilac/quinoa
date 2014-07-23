@@ -40,6 +40,8 @@ static const CGFloat ContainerWidth = 300;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.showHeader = YES;
+
         CALayer* layer = self.layer;
         [layer setCornerRadius:3.0f];
         [layer setBorderWidth:1.0f];
@@ -95,6 +97,27 @@ static const CGFloat ContainerWidth = 300;
     if (showHeader) {
         UserHeader *userHeader = [[UserHeader alloc] initWithFrame:CGRectMake(0, 0, ContainerWidth, UserHeaderHeight)];
         self.userView.backgroundColor = [Utils getLightGray];
+        userHeader.liked = self.liked;
+        userHeader.activity = activity;
+        userHeader.user = activity.user;
+
+        [self.userView addSubview:userHeader];
+        [self.userView setNeedsLayout];
+        self.userView.hidden = NO;
+        self.topConstraint.constant = UserHeaderHeight;
+    } else {
+        self.userView.hidden = YES;
+        self.topConstraint.constant = 0;
+    }
+    self.activity = activity;
+}
+
+- (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader showLike:(BOOL)showLike {
+    _showHeader = showHeader;
+    if (showHeader) {
+        UserHeader *userHeader = [[UserHeader alloc] initWithFrame:CGRectMake(0, 0, ContainerWidth, UserHeaderHeight)];
+        self.userView.backgroundColor = [Utils getLightGray];
+        userHeader.showLike = showLike;
         userHeader.liked = self.liked;
         userHeader.activity = activity;
         userHeader.user = activity.user;

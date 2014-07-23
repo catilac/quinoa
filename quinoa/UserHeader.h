@@ -20,4 +20,6 @@
 
 @property BOOL liked;
 
+@property BOOL showLike;
+
 @end

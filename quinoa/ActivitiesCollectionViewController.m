@@ -58,7 +58,7 @@
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+
     self.title = @"Activity";
 
     // I can only make the navigation bar opaque by setting it on each page
@@ -144,9 +144,12 @@
         }];
     } else {
         [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
+            BOOL reload = self.activities.count != objects.count;
             self.activities = objects;
             NSLog(@"my activities count: %d", self.activities.count);
-            [self.collectionView reloadData];
+            if (reload) {
+                [self.collectionView reloadData];
+            }
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
         }];

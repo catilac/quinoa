@@ -166,10 +166,10 @@
                    action:@selector(chatClick:)
          forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"Chat" forState:UIControlStateNormal];
-        button.frame = CGRectMake(20, 145, 280.0, 50.0);
+        button.frame = CGRectMake(20, 150, 280.0, 50.0);
         button.backgroundColor = [Utils getVibrantBlue];
-        button.layer.borderWidth = 0.5f;
-        button.layer.cornerRadius = 5.0f;
+        [button setTintColor:[UIColor whiteColor]];
+        button.layer.cornerRadius = 3.0f;
        [headerView addSubview:button];
         }
         reusableView = headerView;

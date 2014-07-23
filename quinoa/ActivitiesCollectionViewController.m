@@ -22,6 +22,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "MBProgressHUD.h"
 #import "Utils.h"
+#import "ChatViewController.h"
 
 @interface ActivitiesCollectionViewController ()
 {
@@ -155,12 +156,26 @@
     UICollectionReusableView *reusableView = nil;
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(chatClick:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"Chat" forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, 160.0, 40.0);
+        
 
         headerView.user = user;
+        [headerView addSubview:button];
         reusableView = headerView;
     }
     return reusableView;
 }
+
+- (void)chatClick:(id)sender {
+    ChatViewController *chatView = [[ChatViewController alloc] initWithUser:user];
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
 
 - (void)onActivityLiked:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"activityLiked"]) {

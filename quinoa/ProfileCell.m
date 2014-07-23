@@ -30,7 +30,7 @@
 
     //ProfileView *profileView = [[ProfileView alloc] initWithFrame:CGRectMake(0, 0, 320, 230)];
     ProfileView *profileView = [[ProfileView alloc] init];
-    profileView.user = self.user;
+       profileView.user = self.user;
     [self addSubview:profileView];
 }
 /*

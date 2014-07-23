@@ -15,7 +15,7 @@
 
 static const CGFloat UserHeaderHeight = 65;
 static const CGFloat ActivitySectionHeight = 65;
-static const CGFloat DividerHeight = 15;
+static const CGFloat DividerHeight = 20;
 static const CGFloat ImageDimension = 290;
 static const CGFloat ContainerWidth = 300;
 
@@ -177,7 +177,7 @@ static const CGFloat ContainerWidth = 300;
 - (CGSize)cellSize {
     CGSize size = CGSizeMake(ContainerWidth, 0);
     if (self.activity.activityType == ActivityTypeEating) {
-        size.height += ImageDimension;
+        size.height += ImageDimension + 13;
     }
     BOOL displayDescription = (self.activity.activityType != ActivityTypeWeight && [self.activity.descriptionText length] > 0);
 
@@ -190,7 +190,9 @@ static const CGFloat ContainerWidth = 300;
                        context:nil];
         size.height += rect.size.height + DividerHeight;
     }
-    size.height += ActivitySectionHeight;
+    if (self.activity.activityType != ActivityTypeEating) {
+        size.height += ActivitySectionHeight;
+    }
     if (self.showHeader) {
         size.height += UserHeaderHeight;
     }

@@ -43,7 +43,14 @@
     }
     self.descriptionLabel.text = self.activity.descriptionText;
     [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
-    self.divider.backgroundColor = [Utils getGray];
+    if ([self.activity.descriptionText length] > 0) {
+        self.divider.hidden = NO;
+        self.descriptionLabel.hidden = NO;
+        self.divider.backgroundColor = [Utils getLightGray];
+    } else {
+        self.divider.hidden = YES;
+        self.descriptionLabel.hidden = YES;
+    }
 }
 
 - (void)clean {

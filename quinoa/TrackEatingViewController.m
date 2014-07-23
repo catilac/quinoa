@@ -14,15 +14,18 @@
 @interface TrackEatingViewController ()
 
 @property (strong, nonatomic) UIImagePickerController *camera;
-@property (strong, nonatomic) UIImageView *imagePreview;
-@property (weak, nonatomic) IBOutlet UIView *imagePreviewContainer;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UIView *descriptionContainer;
 
-@property (strong, nonatomic) NSData *imageData;
 @property (assign) Boolean imageSet;
 
-- (IBAction)onTap:(id)sender;
-- (IBAction)tappedSendButton:(id)sender;
+- (void)willShowKeyboard:(NSNotification *)notification;
+- (void)willHideKeyboard:(NSNotification *)notification;
+
+- (IBAction)onEndEditing:(UITapGestureRecognizer *)sender;
+
+
+//- (IBAction)tappedSendButton:(id)sender;
 
 @end
 
@@ -42,6 +45,10 @@
                                                                                   style:UIBarButtonItemStyleBordered
                                                                                  target:self
                                                                                  action:@selector(uploadPhoto)];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
+        
     }
     return self;
 }
@@ -56,7 +63,29 @@
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
+    
+    [self.imagePreview removeFromSuperview];
+    self.imagePreview = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.imageData]];
+    [self.imagePreview setContentMode:UIViewContentModeScaleAspectFill];
+    [self.imagePreview setClipsToBounds:TRUE];
+    
+    // TODO find a way to calculate this programmatically
+    self.imagePreview.frame = CGRectMake(0, 0, 280, 280);
+    
+    [self.imagePreviewContainer addSubview:self.imagePreview];
+    [self.imagePreviewContainer sendSubviewToBack:self.imagePreview];
+    self.imageSet = YES;
+    
+    // Set font to description text
+    [self.descriptionTextField setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size: 18.0f]];
 
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    //[self takePictureMode];
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -70,8 +99,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onTap:(id)sender {
-        // Capture a photo
+- (void) takePictureMode{
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera] == YES){
         // Create image picker controller
@@ -86,13 +114,22 @@
         // Show image picker
         [self presentViewController:self.camera animated:YES completion:nil];
     }
+
 }
 
-- (IBAction)tappedSendButton:(id)sender {
-    if (![self.descriptionTextField.text isEqual:@""] ) {
-        [self uploadPhoto];
-    }
+- (IBAction)onEndEditing:(UITapGestureRecognizer *)sender {
+    
+    [self.view endEditing:YES];
+    
 }
+
+// I don't think we need this now. Let's consolidate all submit actions to the nav bar.
+
+//- (IBAction)tappedSendButton:(id)sender {
+//    if (![self.descriptionTextField.text isEqual:@""] ) {
+//        [self uploadPhoto];
+//    }
+//}
 
 - (void)uploadImage:(NSData *)imageData {
     PFFile *imageFile = [PFFile fileWithData:imageData];
@@ -144,5 +181,61 @@
     [self.imagePreviewContainer addSubview:self.imagePreview];
     [self.imagePreviewContainer sendSubviewToBack:self.imagePreview];
     self.imageSet = YES;
+}
+
+- (void)willShowKeyboard:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the keyboard height and width from the notification
+    // Size varies depending on OS, language, orientation
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSLog(@"Height: %f Width: %f", kbSize.height, kbSize.width);
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.descriptionContainer.frame = CGRectMake(0, 236, self.descriptionContainer.frame.size.width, self.descriptionContainer.frame.size.height);
+                     }
+                     completion:nil];
+    
+}
+
+- (void)willHideKeyboard:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the animation duration and curve from the notification
+    NSNumber *durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    NSNumber *curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve = curveValue.intValue;
+    
+    // Move the view with the same duration and animation curve so that it will match with the keyboard animation
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(animationCurve << 16)
+                     animations:^{
+                         self.descriptionContainer.frame = CGRectMake(0, 320, self.descriptionContainer.frame.size.width, self.descriptionContainer.frame.size.height);
+                     }
+                     completion:nil];
+    
+}
+
+
+
+
+
+
+- (IBAction)textFieldDismiss:(id)sender {
+    
+    [self.descriptionTextField resignFirstResponder];
 }
 @end

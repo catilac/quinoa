@@ -11,17 +11,24 @@
 #import "ExpertBrowserViewController.h"
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
+#import "ActivityLike.h"
+#import "ActivityLikeCell.h"
+
+static NSString *LikeCellIdent = @"likeCellIdent";
 
 @interface ExpertDetailViewController ()
 
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) User *expert;
+
+@property (strong, nonatomic) NSArray *activityLikes;
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
-@property (weak, nonatomic) IBOutlet UITableView *reviewsTableView;
 @property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectExpertButton;
+@property (weak, nonatomic) IBOutlet UITableView *feedTable;
 
 @property BOOL isMyExpert;
 @end
@@ -61,8 +68,6 @@
                                                                       action:@selector(showExpertsBrowser)];
             self.navigationItem.rightBarButtonItem = browse;
         }
-        
-        
     }
     return self;
 }
@@ -70,9 +75,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.feedTable registerNib:[UINib nibWithNibName:@"ActivityLikeCell" bundle:nil] forCellReuseIdentifier:LikeCellIdent];
+    
+    self.feedTable.dataSource = self;
+    self.feedTable.delegate = self;
+    [self.feedTable setSeparatorInset:UIEdgeInsetsZero];
+
 
     self.isMyExpert = [Utils sameObjects:self.currentUser.currentTrainer object:self.expert];
     [self updateButtons];
+    [self setupFeedTable];
+
+    [self fetchActivityLikes];
+    
+    
 
     [self fetchData];
     
@@ -113,6 +130,22 @@
     }
 }
 
+- (void)setupFeedTable {
+    self.feedTable.layer.borderWidth = 1;
+    self.feedTable.layer.borderColor = [Utils getGray].CGColor;
+    self.feedTable.layer.cornerRadius = 6;
+}
+
+- (void)fetchActivityLikes {
+    [ActivityLike getActivityLikesByUser:self.currentUser success:^(NSArray *activityLikes) {
+        self.activityLikes = activityLikes;
+        [self.feedTable reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"Error fetching ActivityLikes %@", error);
+    }];
+}
+
+
 - (void)fetchData {
     [self.expert fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         self.nameLabel.text = self.expert.email;
@@ -123,5 +156,18 @@
     self.chatButton.hidden = !self.isMyExpert;
     self.selectExpertButton.hidden = self.isMyExpert;
 }
+
+#pragma mark UITableViewDataSource methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.activityLikes count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ActivityLikeCell *cell = (ActivityLikeCell *)[tableView dequeueReusableCellWithIdentifier:LikeCellIdent];
+    ActivityLike *like = self.activityLikes[indexPath.row];
+    [cell setActivityLike:like];
+    return cell;
+}
+
 
 @end

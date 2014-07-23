@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 
-@interface ExpertDetailViewController : UIViewController
+@interface ExpertDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) Boolean isModal;
 

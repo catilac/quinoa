@@ -15,7 +15,7 @@
 
 static const CGFloat UserHeaderHeight = 65;
 static const CGFloat ActivitySectionHeight = 65;
-static const CGFloat DividerHeight = 15;
+static const CGFloat DividerHeight = 20;
 static const CGFloat ImageDimension = 290;
 static const CGFloat ContainerWidth = 300;
 
@@ -40,6 +40,8 @@ static const CGFloat ContainerWidth = 300;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.showHeader = YES;
+
         CALayer* layer = self.layer;
         [layer setCornerRadius:3.0f];
         [layer setBorderWidth:1.0f];
@@ -110,6 +112,27 @@ static const CGFloat ContainerWidth = 300;
     self.activity = activity;
 }
 
+- (void)setActivity:(Activity *)activity showHeader:(BOOL)showHeader showLike:(BOOL)showLike {
+    _showHeader = showHeader;
+    if (showHeader) {
+        UserHeader *userHeader = [[UserHeader alloc] initWithFrame:CGRectMake(0, 0, ContainerWidth, UserHeaderHeight)];
+        self.userView.backgroundColor = [Utils getLightGray];
+        userHeader.showLike = showLike;
+        userHeader.liked = self.liked;
+        userHeader.activity = activity;
+        userHeader.user = activity.user;
+
+        [self.userView addSubview:userHeader];
+        [self.userView setNeedsLayout];
+        self.userView.hidden = NO;
+        self.topConstraint.constant = UserHeaderHeight;
+    } else {
+        self.userView.hidden = YES;
+        self.topConstraint.constant = 0;
+    }
+    self.activity = activity;
+}
+
 - (void)prepareForReuse {
     [super prepareForReuse];
 
@@ -154,7 +177,7 @@ static const CGFloat ContainerWidth = 300;
 - (CGSize)cellSize {
     CGSize size = CGSizeMake(ContainerWidth, 0);
     if (self.activity.activityType == ActivityTypeEating) {
-        size.height += ImageDimension;
+        size.height += ImageDimension + 13;
     }
     BOOL displayDescription = (self.activity.activityType != ActivityTypeWeight && [self.activity.descriptionText length] > 0);
 
@@ -167,7 +190,9 @@ static const CGFloat ContainerWidth = 300;
                        context:nil];
         size.height += rect.size.height + DividerHeight;
     }
-    size.height += ActivitySectionHeight;
+    if (self.activity.activityType != ActivityTypeEating) {
+        size.height += ActivitySectionHeight;
+    }
     if (self.showHeader) {
         size.height += UserHeaderHeight;
     }

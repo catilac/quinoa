@@ -758,7 +758,7 @@
 				ORGANIZATIONNAME = 3eesho;
 				TargetAttributes = {
 					4604479E1964ECC600DDE6C6 = {
-						DevelopmentTeam = PN7RM78XDW;
+						DevelopmentTeam = V9W7KY986M;
 					};
 					460447B91964ECC600DDE6C6 = {
 						TestTargetID = 4604479E1964ECC600DDE6C6;

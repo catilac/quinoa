@@ -21,7 +21,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *trackActivityButton;
 @property (weak, nonatomic) IBOutlet UIButton *trackFoodButton;
 @property (strong, nonatomic) UIImage *currentBackgroundImage;
+@property (strong, nonatomic) UIImagePickerController *camera;
 
+@property (strong, nonatomic) UIImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UIView *imagePreviewContainer;
+
+
+@property (strong, nonatomic) NSData *imageData;
+@property (assign) Boolean imageSet;
 - (IBAction)onTrackFood:(id)sender;
 - (IBAction)onTrackWeight:(id)sender;
 - (IBAction)onTrackActivity:(id)sender;
@@ -86,10 +93,45 @@
 }
 
 - (IBAction)onTrackFood:(id)sender {
-    TrackEatingViewController *trackEatingVC = [[TrackEatingViewController alloc] init];
+   /* TrackEatingViewController *trackEatingVC = [[TrackEatingViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:trackEatingVC];
     
+    [self presentViewController:nav animated:YES completion:nil]; */
+    
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera] == YES){
+        // Create image picker controller
+        self.camera = [[UIImagePickerController alloc] init];
+        
+        // Set source to the camera
+        self.camera.sourceType =  UIImagePickerControllerSourceTypeCamera;
+        
+        // Delegate is self
+        self.camera.delegate = self;
+        
+        // Show image picker
+        [self presentViewController:self.camera animated:YES completion:nil];
+    }
+
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // Grab the image that was selected
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // Dismiss the image picker
+    //[picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissModalViewControllerAnimated: NO];
+    TrackEatingViewController *trackEatingVC = [[TrackEatingViewController alloc] init];
+        trackEatingVC.imageData = UIImageJPEGRepresentation(image, 0.05f);
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:trackEatingVC];
+    
+
+
+    //self.imageData = UIImageJPEGRepresentation(image, 0.05f);
+    
     [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (IBAction)onTrackWeight:(id)sender {

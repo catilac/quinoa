@@ -26,6 +26,11 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 
+@property (nonatomic, strong) UIView *upArrowView;
+@property (nonatomic, strong) UIView *downArrowView;
+@property (nonatomic, strong) UIImageView *upArrowImageView;
+@property (nonatomic, strong) UIImageView *downArrowImageView;
+
 @property (nonatomic) float activityValue;
 @property (nonatomic) float startPosition;
 @property (nonatomic) float currentPosition;
@@ -153,8 +158,30 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .25, .25, 1);
     self.activityValueLabel.alpha = 0;
     
-    self.hintLabel.textColor = [Utils getLightGray];
+    self.hintLabel.font = [UIFont fontWithName:@"Source-Sans" size:16];
+    self.hintLabel.textColor = [Utils getGray];
     [self hideHint];
+    
+    // arrows
+    UIImage *upArrow = [UIImage imageNamed:@"arrow_up.png"];
+    UIImage *downArrow = [UIImage imageNamed:@"arrow_down.png"];
+    
+    self.upArrowImageView = [[UIImageView alloc] initWithImage:upArrow];
+    self.downArrowImageView = [[UIImageView alloc] initWithImage:downArrow];
+    self.upArrowView = [[UIView alloc] init];
+    self.downArrowView = [[UIView alloc] init];
+    CGRect arrowFrame = CGRectMake(self.view.frame.size.width/2 - upArrow.size.width/2, 0, upArrow.size.width, upArrow.size.height);
+    CGRect arrowViewFrame = CGRectMake(0, -25, self.view.frame.size.width, upArrow.size.height);
+    [self.upArrowImageView setFrame:arrowFrame];
+    [self.downArrowImageView setFrame:arrowFrame];
+    [self.upArrowView setFrame:arrowViewFrame];
+    [self.downArrowView setFrame:arrowViewFrame];
+    [self.upArrowView addSubview:self.upArrowImageView];
+    [self.downArrowView addSubview:self.downArrowImageView];
+    [self.view addSubview:self.upArrowView];
+    [self.view addSubview:self.downArrowView];
+    [self hideArrow];
+    
     
     NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
     NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
@@ -182,7 +209,6 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
     } completion:^(BOOL finished){
         [overlay removeFromSuperview];
-        [self showHint];
     }];
     
 }
@@ -199,8 +225,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
         self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 476, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
     }
-
+    [self showHint];
+    [self showArrow];
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotReadyToSubmitMessage object:nil];
@@ -270,6 +298,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                     
                 } completion:^(BOOL finished) {
                     [self showHint];
+                    [self showArrow];
                 }];
             }
             
@@ -291,6 +320,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                     
                 } completion:^(BOOL finished) {
                     [self showHint];
+                    [self showArrow];
                 }];
             }
             
@@ -316,6 +346,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
             self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, 1.5, 1.5, 1);
             self.activityValueLabel.textColor = [UIColor whiteColor];
             [self hideHint];
+            [self hideArrow];
             self.isActivityValueLabelBig = YES;
             
         } completion:^(BOOL finished) {
@@ -338,6 +369,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                 
             } completion:^(BOOL finished) {
                 [self showHint];
+                [self showArrow];
             }];
         }
         
@@ -346,7 +378,43 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     
 }
 
+- (void)showArrow {
+    
+    self.upArrowView.frame = CGRectMake(0,
+                                      self.slideBarView.frame.origin.y - 20,
+                                      self.upArrowView.frame.size.width,
+                                        self.upArrowView.frame.size.height);
+    
+    self.downArrowView.frame = CGRectMake(0,
+                                          self.slideBarView.frame.origin.y + self.slideBarView.frame.size.height + self.hintLabel.frame.size.height + 20,
+                                          self.downArrowView.frame.size.width,
+                                          self.downArrowView.frame.size.height);
+    
+    [UIView animateWithDuration:.65 delay:0 options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
+        self.upArrowView.alpha = 1;
+        self.downArrowView.alpha = 1;
+    } completion:nil
+    ];
+    
+}
+
+- (void)hideArrow {
+    
+    self.upArrowView.alpha = 0;
+    self.downArrowView.alpha = 0;
+    
+}
+
+
+
 - (void)showHint {
+    
+    self.hintLabel.frame = CGRectMake(self.hintLabel.frame.origin.x,
+                                      self.slideBarView.frame.origin.y + self.slideBarView.frame.size.height,
+                                      self.hintLabel.frame.size.width,
+                                      self.hintLabel.frame.size.height);
+    
+    
     [UIView animateWithDuration:.75 animations:^{
         self.hintLabel.alpha = 1;
     }];

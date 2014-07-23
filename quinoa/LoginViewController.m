@@ -176,7 +176,7 @@
     expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
     expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] init];
+    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] initWithUser:[User currentUser]];
     UINavigationController *activitiesNavController = [[UINavigationController alloc] initWithRootViewController:activitiesController];
     activitiesNavController.tabBarItem.title = @"Profile";
     activitiesNavController.tabBarItem.image = [[UIImage imageNamed:@"myActivity"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];

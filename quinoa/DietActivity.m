@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) UILabel *mealName;
 @end
 
 @implementation DietActivity
@@ -40,6 +41,15 @@
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.clipsToBounds = YES;
         [Utils loadImageFile:self.activity.image inImageView:self.imageView withAnimation:YES];
+
+        self.mealName = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 50, 30)];
+        self.mealName.text = [NSString stringWithFormat:@"  %@  ", self.activity.mealName];
+        [self.mealName setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+        self.mealName.backgroundColor = [Utils getGreen];
+        self.mealName.textColor = [UIColor whiteColor];
+        [self.mealName sizeToFit];
+
+        [self addSubview:self.mealName];
     }
     self.descriptionLabel.text = self.activity.descriptionText;
     [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
@@ -55,11 +65,12 @@
 
 - (void)clean {
     self.descriptionLabel.text = @"";
+    self.mealName.text = @"";
+    [self.mealName sizeToFit];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
     [self.contentView setFrame:self.frame];
 }
 /*

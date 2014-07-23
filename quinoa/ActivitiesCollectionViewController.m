@@ -5,6 +5,13 @@
 //  Created by Amie Kweon on 7/12/14.
 //  Copyright (c) 2014 3eesho. All rights reserved.
 //
+//  This is used for three different flows:
+//  - Seeker / Profile: Show header  "Profile"
+//  - Expert / Profile: Show header  "Profile"  initWithUser
+//  - Expert / Activities: No header  "Activities"
+//
+//  `isProfile` indicates this is a Profile view
+//  `isExpert` indicates the current user is an expert
 
 #import "ActivitiesCollectionViewController.h"
 #import "ProfileViewController.h"
@@ -20,8 +27,8 @@
 {
 
     User *user;
-    BOOL isExpertView;
-   
+    BOOL isExpert;
+    BOOL isProfile;
 }
 
 
@@ -37,12 +44,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        if (user == nil) {
-            user = [User currentUser];
-            isExpertView = [user isExpert];
-            self.stubCell = [[ActivityCell alloc] init];
-        }
-        self.title = user.firstName;
+        isProfile = NO;
+        user = [User currentUser];
+        isExpert = [user isExpert];
+        self.stubCell = [[ActivityCell alloc] init];
+        self.title = @"Activities";
         self.likes = [[NSMutableArray alloc] init];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -53,10 +59,12 @@
     return self;
 }
 
-- (id)initWithUser:(User *)usr {
+- (id)initWithUser:(User *)profileUser {
     if ( self = [super init] ) {
-        isExpertView = NO;
-        user = usr;
+        isProfile = YES;
+        isExpert = [user isExpert];
+        user = profileUser;
+
         self.stubCell = [[ActivityCell alloc] init];
         self.title = user.firstName;
         self.likes = [[NSMutableArray alloc] init];
@@ -65,7 +73,6 @@
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
                                                    object:nil];
-
         
     }
     return self;
@@ -102,8 +109,6 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
-    self.title = @"Activity";
-
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
@@ -133,14 +138,14 @@
                                                                  forIndexPath:indexPath];
     Activity *activity = self.activities[indexPath.row];
     cell.liked = [self liked:activity];
-    [cell setActivity:activity showHeader:YES showLike:isExpertView];
+    [cell setActivity:activity showHeader:YES showLike:isExpert];
 
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:YES showLike:isExpertView];
+    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:YES showLike:isExpert];
     CGSize size = [self.stubCell cellSize];
 
     return size;
@@ -148,7 +153,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableView = nil;
-    if (!isExpertView && kind == UICollectionElementKindSectionHeader) {
+    if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
 
         headerView.user = user;
@@ -177,7 +182,7 @@
 - (void)fetchData {
     // TODO: Add paging here
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if (isExpertView) {
+    if (isExpert && !isProfile) {
         [self fetchActivityLikes];
         [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
             self.activities = objects;
@@ -222,18 +227,20 @@
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    if (!isExpertView) {
+    if (isProfile) {
         [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
     }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"Edit Profile"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(showProfile:)];
-    self.navigationItem.rightBarButtonItem = profileButton;
+    if (isProfile && !isExpert) {
+        UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
+                                          initWithTitle:@"Edit Profile"
+                                          style:UIBarButtonItemStylePlain
+                                          target:self
+                                          action:@selector(showProfile:)];
+        self.navigationItem.rightBarButtonItem = profileButton;
+    }
 }
 
 - (void)showProfile:(id)sender {

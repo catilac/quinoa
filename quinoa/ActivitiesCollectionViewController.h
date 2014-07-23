@@ -12,6 +12,6 @@
 
 @interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-- (id)initWithUser:(User *)usr;
+- (id)initWithUser:(User *)profileUser;
  
 @end

@@ -97,7 +97,7 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
 
             self.activityType = @"trackActivity";
-            self.incrementQuantity = 10;
+            self.incrementQuantity = 1;
             self.activityValue = 0;
             self.startPosition = 400.00f;
             self.currentPosition = 400.00f;

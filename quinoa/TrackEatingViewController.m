@@ -10,6 +10,7 @@
 #import "Activity.h"
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
+#import "QuinoaTabBarViewController.h"
 
 @interface TrackEatingViewController ()
 
@@ -142,6 +143,7 @@
             [Activity trackEating:imageFile
                       description:description
                          callback:^(BOOL succeeded, NSError *error) {
+                             [self goToActivitiesScreen];
                              [self dismissModalAndCloseFanOutMenu];
                          }];
         } else {
@@ -229,13 +231,12 @@
     
 }
 
-
-
-
-
+- (void)goToActivitiesScreen {
+    QuinoaTabBarViewController *tabBarController = (QuinoaTabBarViewController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    tabBarController.lastIndex = 3;
+}
 
 - (IBAction)textFieldDismiss:(id)sender {
-    
     [self.descriptionTextField resignFirstResponder];
 }
 @end

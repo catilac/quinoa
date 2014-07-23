@@ -12,4 +12,6 @@
                                                            UIViewControllerAnimatedTransitioning,
                                                            UIViewControllerTransitioningDelegate>
 
+@property (assign) NSInteger lastIndex;
+
 @end

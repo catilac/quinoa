@@ -105,8 +105,13 @@ static NSString *CellIdentifier = @"clientCellIdent";
 //    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
 //    [activitiesCollectionView setUser:client];
 //    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
-    ChatViewController *chatViewController = [[ChatViewController alloc] initWithUser:client];
-    [self.navigationController pushViewController:chatViewController animated:YES];
+    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] initWithUser:client];
+    //activitiesController.user = client;
+    //activitiesController.isExpertView = NO;
+    [self.navigationController pushViewController:activitiesController animated:YES];
+    //ChatViewController *chatViewController = [[ChatViewController alloc] initWithUser:client];
+    //[self.navigationController pushViewController:chatViewController animated:YES];
+    
 }
 
 

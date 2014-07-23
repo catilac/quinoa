@@ -13,7 +13,8 @@
 @property (strong, nonatomic) UIImageView *imagePreview;
 @property (weak, nonatomic) IBOutlet UIView *imagePreviewContainer;
 
-@property (weak, nonatomic) IBOutlet UIImageView *cameraIconImageView;
-
 @property (strong, nonatomic) NSData *imageData;
+
+- (IBAction)textFieldDismiss:(id)sender;
+
 @end

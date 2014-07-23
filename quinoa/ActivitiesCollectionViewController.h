@@ -12,6 +12,6 @@
 
 @interface ActivitiesCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (strong, nonatomic) User *user;
-
+- (id)initWithUser:(User *)usr;
+ 
 @end

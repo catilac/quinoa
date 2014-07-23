@@ -17,8 +17,13 @@
 
 @interface ActivitiesCollectionViewController ()
 {
+
+    User *user;
     BOOL isExpertView;
+   
 }
+
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) ActivityCell *stubCell;
 @property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
@@ -31,12 +36,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        if (self.user == nil) {
-            self.user = [User currentUser];
-            isExpertView = [self.user isExpert];
+        if (user == nil) {
+            user = [User currentUser];
+            isExpertView = [user isExpert];
             self.stubCell = [[ActivityCell alloc] init];
         }
-        self.title = self.user.firstName;
+        self.title = user.firstName;
         self.likes = [[NSMutableArray alloc] init];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -46,6 +51,43 @@
     }
     return self;
 }
+
+- (id)initWithUser:(User *)usr {
+    if ( self = [super init] ) {
+        isExpertView = NO;
+        user = usr;
+        self.stubCell = [[ActivityCell alloc] init];
+        self.title = user.firstName;
+        self.likes = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onActivityLiked:)
+                                                     name:@"activityLiked"
+                                                   object:nil];
+
+        
+    }
+    return self;
+}
+
+
+/*- (id)initWithUser:(User *)user initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+            self.stubCell = [[ActivityCell alloc] init];
+         self.title = user.firstName;
+        self.likes = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onActivityLiked:)
+                                                     name:@"activityLiked"
+                                                   object:nil];
+    }
+    return self;
+}
+*/
 
 - (void)viewDidLoad
 {
@@ -58,7 +100,7 @@
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+
     self.title = @"Activity";
 
     // I can only make the navigation bar opaque by setting it on each page
@@ -108,7 +150,7 @@
     if (!isExpertView && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
 
-        headerView.user = self.user;
+        headerView.user = user;
         reusableView = headerView;
     }
     return reusableView;
@@ -133,9 +175,10 @@
 
 - (void)fetchData {
     // TODO: Add paging here
+
     if (isExpertView) {
         [self fetchActivityLikes];
-        [Activity getClientActivitiesByExpert:self.user success:^(NSArray *objects) {
+        [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
             self.activities = objects;
             NSLog(@"client activities count: %d", self.activities.count);
             [self.collectionView reloadData];
@@ -143,10 +186,13 @@
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
         }];
     } else {
-        [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
+        [Activity getActivitiesByUser:user success:^(NSArray *objects) {
+            BOOL reload = self.activities.count != objects.count;
             self.activities = objects;
             NSLog(@"my activities count: %d", self.activities.count);
-            [self.collectionView reloadData];
+            if (reload) {
+                [self.collectionView reloadData];
+            }
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
         }];
@@ -154,7 +200,7 @@
 }
 
 - (void)fetchActivityLikes {
-    [ActivityLike getActivityLikesByExpert:self.user success:^(NSArray *activityLikes) {
+    [ActivityLike getActivityLikesByExpert:user success:^(NSArray *activityLikes) {
         for (ActivityLike *activityLike in activityLikes) {
             [self.likes addObject:activityLike.activity.objectId];
         }

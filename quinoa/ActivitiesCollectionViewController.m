@@ -161,8 +161,12 @@
                    action:@selector(chatClick:)
          forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"Chat" forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, 0, 160.0, 40.0);
+        button.frame = CGRectMake(20, 145, 280.0, 50.0);
         
+        button.backgroundColor = [Utils getVibrantBlue];
+        
+        button.layer.borderWidth = 0.5f;
+        button.layer.cornerRadius = 5.0f;
 
         headerView.user = user;
         [headerView addSubview:button];

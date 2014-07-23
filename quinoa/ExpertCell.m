@@ -21,10 +21,10 @@
 }
 
 - (IBAction)onSelect:(id)sender {
-    [self.delegate showExpertDetail:self.expert];
+    [self.delegate selectExpert:self.expert];
 }
 
--(void)setValuesWithExpert:(PFUser *)expert {
+-(void)setValuesWithExpert:(User *)expert {
     self.expert = expert;
     self.nameLabel.text = expert.email;
 

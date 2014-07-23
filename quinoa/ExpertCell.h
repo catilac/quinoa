@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @protocol ExpertCellDelegate <NSObject>
 
-- (void)showExpertDetail:(PFUser *)expert;
+- (void)selectExpert:(User *)expert;
 
 @end
 
@@ -24,10 +25,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *profileButton;
 @property (weak, nonatomic) IBOutlet UIView *cardBackground;
 
-@property (strong, nonatomic) PFUser *expert;
+@property (strong, nonatomic) User *expert;
 
 @property (weak, nonatomic) UIViewController<ExpertCellDelegate> *delegate;
 
-- (void)setValuesWithExpert:(PFUser *)expert;
+- (void)setValuesWithExpert:(User *)expert;
 
 @end

@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) NSArray *experts;
 
+@property (strong, nonatomic) User *currentUser;
+
 @end
 
 @implementation ExpertBrowserViewController
@@ -28,14 +30,14 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Browse Experts";
-        User *user = [User currentUser];
-        NSLog(@"DEBUG USER: %@", user[@"currentTrainer"]);
-        if ([user objectForKey:@"currentTrainer"]) {
-            UIBarButtonItem *trainerButton = [[UIBarButtonItem alloc] initWithTitle:@"My Trainer"
+        self.currentUser = [User currentUser];
+        NSLog(@"DEBUG USER: %@", self.currentUser.currentTrainer);
+        if (self.currentUser.currentTrainer) {
+            UIBarButtonItem *trainerButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                               style:UIBarButtonItemStyleBordered
                                                                              target:self
                                                                              action:@selector(showCurrentTrainer)];
-            self.navigationItem.rightBarButtonItem = trainerButton;
+            self.navigationItem.leftBarButtonItem = trainerButton;
         }
     }
     return self;
@@ -107,8 +109,8 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
     if (self.isModal) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-        User *expert = [[User currentUser] objectForKey:@"currentTrainer"];
-        [expert fetch];
+        User *expert = self.currentUser.currentTrainer;
+        //[expert fetch]; I don't think fetch is necessary
         
         ExpertDetailViewController *expertDetail = [[ExpertDetailViewController alloc] initWithExpert:expert modal:YES];
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:expertDetail];
@@ -138,9 +140,10 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 
 # pragma mark - ExpertCellDelegate methods
 
-- (void)showExpertDetail:(User *)expert {
-    ExpertDetailViewController *expertView = [[ExpertDetailViewController alloc] initWithExpert:expert modal:self.isModal];
-    [self.navigationController pushViewController:expertView animated:YES];
+- (void)selectExpert:(User *)expert {
+    [self.currentUser selectExpert:expert];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hasExpert" object:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

@@ -58,7 +58,7 @@
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+
     self.title = @"Activity";
 
     // I can only make the navigation bar opaque by setting it on each page
@@ -105,7 +105,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableView = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
+    if (!isExpertView && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
 
         headerView.user = self.user;
@@ -144,9 +144,12 @@
         }];
     } else {
         [Activity getActivitiesByUser:self.user success:^(NSArray *objects) {
+            BOOL reload = self.activities.count != objects.count;
             self.activities = objects;
             NSLog(@"my activities count: %d", self.activities.count);
-            [self.collectionView reloadData];
+            if (reload) {
+                [self.collectionView reloadData];
+            }
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
         }];
@@ -171,7 +174,9 @@
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    if (!isExpertView) {
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 

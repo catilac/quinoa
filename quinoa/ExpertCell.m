@@ -38,7 +38,7 @@
     // Profile card element styling
     self.profileButton.layer.cornerRadius = 3;
     self.cardBackground.layer.cornerRadius = 6;
-    self.profileImage.layer.cornerRadius = 53;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
 }
 
 /*

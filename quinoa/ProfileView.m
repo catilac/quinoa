@@ -42,7 +42,7 @@
     self.secondaryLabel.textColor = [Utils getVibrantBlue];
 
     // Styling
-    self.imageView.layer.cornerRadius = 53;
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     [self.subviews[0] setBackgroundColor:[Utils getDarkBlue]];
 }
 

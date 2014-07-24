@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -25,19 +25,19 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Minutes of activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZP-Ac-wCc">
-                    <rect key="frame" x="70" y="12" width="220" height="17"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="Minutes of activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZP-Ac-wCc">
+                    <rect key="frame" x="70" y="12" width="220" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="value blurb" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfh-t8-mCS">
-                    <rect key="frame" x="70" y="29" width="220" height="28"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="value blurb" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfh-t8-mCS">
+                    <rect key="frame" x="70" y="27" width="220" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9v-MG-ekO" userLabel="Divider">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O9v-MG-ekO" userLabel="Divider">
                     <rect key="frame" x="10" y="64" width="280" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -46,8 +46,8 @@
                         <constraint firstAttribute="width" constant="280" id="pIU-h6-aZJ"/>
                     </constraints>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="JMV-Eq-VtI">
-                    <rect key="frame" x="10" y="72" width="280" height="17"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Optional description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="JMV-Eq-VtI">
+                    <rect key="frame" x="10" y="65" width="280" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                 <constraint firstItem="JMV-Eq-VtI" firstAttribute="top" secondItem="O9v-MG-ekO" secondAttribute="bottom" constant="7" id="12O-wR-BGM"/>
                 <constraint firstItem="O9v-MG-ekO" firstAttribute="leading" secondItem="bAH-hE-TFC" secondAttribute="leading" constant="10" id="5VD-pB-vfr"/>
                 <constraint firstItem="Xfh-t8-mCS" firstAttribute="leading" secondItem="5VE-Bq-FiR" secondAttribute="trailing" constant="10" id="8LN-oH-arn"/>
-                <constraint firstItem="O9v-MG-ekO" firstAttribute="top" secondItem="Xfh-t8-mCS" secondAttribute="bottom" constant="7" id="8tT-7m-wes"/>
+                <constraint firstItem="O9v-MG-ekO" firstAttribute="top" secondItem="Xfh-t8-mCS" secondAttribute="bottom" constant="20" id="8tT-7m-wes"/>
                 <constraint firstAttribute="trailing" secondItem="UZP-Ac-wCc" secondAttribute="trailing" constant="10" id="BDN-Bb-tU2"/>
                 <constraint firstItem="JMV-Eq-VtI" firstAttribute="leading" secondItem="bAH-hE-TFC" secondAttribute="leading" constant="10" id="EOr-RN-IQx"/>
                 <constraint firstItem="Xfh-t8-mCS" firstAttribute="top" secondItem="UZP-Ac-wCc" secondAttribute="bottom" id="HxA-OP-ibR"/>

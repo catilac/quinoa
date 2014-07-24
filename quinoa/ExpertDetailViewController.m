@@ -94,7 +94,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     [self fetchData];
     
     // Style elements on profile
-    self.profileImage.layer.cornerRadius= 53;
+    self.profileImage.layer.cornerRadius= self.profileImage.frame.size.width/2;
     self.chatButton.layer.cornerRadius= 3;
     self.selectExpertButton.layer.cornerRadius= 3;
     self.navigationController.navigationBar.translucent = NO;
@@ -148,7 +148,12 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
 - (void)fetchData {
     [self.expert fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        self.nameLabel.text = self.expert.email;
+        self.nameLabel.text = [self.expert getDisplayName];
+        if (self.expert.image) {
+            [Utils loadImageFile:self.expert.image inImageView:self.profileImage withAnimation:NO];
+        } else {
+            [self.profileImage setImage:[self.expert getPlaceholderImage]];
+        }
     }];
 }
 

@@ -20,11 +20,28 @@
 @dynamic user;
 @dynamic updatedAt;
 
+- (NSString *)mealName {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate: self.createdAt];
+    NSInteger hour = [components hour];
+
+    NSString *meal = @"Snack";
+    if (6 <= hour && hour < 12) {
+        meal = @"Breakfast";
+    } else if (10 <= hour && hour < 12) {
+        meal = @"Brunch";
+    } else if (12 <= hour && hour < 14) {
+        meal = @"Lunch";
+    } else if (17 <= hour && hour < 21) {
+        meal = @"Dinner";
+    }
+    return meal;
+}
+
 + (NSString *)parseClassName {
     return @"Activity";
 }
 
-//+ (Activity *)trackEating:(PFFile *)image description:(NSString *)description{
 + (Activity *)trackEating:(PFFile *)image
               description:(NSString *)description
                  callback:(void (^)(BOOL, NSError *))callback {

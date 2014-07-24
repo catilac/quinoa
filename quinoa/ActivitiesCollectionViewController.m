@@ -5,6 +5,13 @@
 //  Created by Amie Kweon on 7/12/14.
 //  Copyright (c) 2014 3eesho. All rights reserved.
 //
+//  This is used for three different flows:
+//  - Seeker / Profile: Show header  "Profile"
+//  - Expert / Profile: Show header  "Profile"  initWithUser
+//  - Expert / Activities: No header  "Activities"
+//
+//  `isProfile` indicates this is a Profile view
+//  `isExpert` indicates the current user is an expert
 
 #import "ActivitiesCollectionViewController.h"
 #import "ProfileViewController.h"
@@ -15,13 +22,15 @@
 #import "UILabel+QuinoaLabel.h"
 #import "MBProgressHUD.h"
 #import "Utils.h"
+#import "ChatViewController.h"
 
 @interface ActivitiesCollectionViewController ()
 {
 
     User *user;
-    BOOL isExpertView;
-   
+    BOOL isExpert;
+    BOOL isProfile;
+    BOOL showChat;
 }
 
 
@@ -37,14 +46,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        if (user == nil) {
-            user = [User currentUser];
-            isExpertView = [user isExpert];
-            self.stubCell = [[ActivityCell alloc] init];
-        }
-        self.title = user.firstName;
+        isProfile = NO;
+        user = [User currentUser];
+        isExpert = [user isExpert];
+        self.stubCell = [[ActivityCell alloc] init];
+        self.title = @"Activities";
         self.likes = [[NSMutableArray alloc] init];
-
+        showChat = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
@@ -53,19 +61,20 @@
     return self;
 }
 
-- (id)initWithUser:(User *)usr {
+- (id)initWithUser:(User *)profileUser {
     if ( self = [super init] ) {
-        isExpertView = NO;
-        user = usr;
+        isProfile = YES;
+        isExpert = [user isExpert];
+        user = profileUser;
+
         self.stubCell = [[ActivityCell alloc] init];
         self.title = user.firstName;
         self.likes = [[NSMutableArray alloc] init];
-        
+        showChat = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
                                                    object:nil];
-
         
     }
     return self;
@@ -102,8 +111,6 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
-    self.title = @"Activity";
-
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
@@ -133,14 +140,14 @@
                                                                  forIndexPath:indexPath];
     Activity *activity = self.activities[indexPath.row];
     cell.liked = [self liked:activity];
-    [cell setActivity:activity showHeader:YES showLike:isExpertView];
+    [cell setActivity:activity showHeader:YES showLike:isExpert];
 
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:YES showLike:isExpertView];
+    [self.stubCell setActivity:self.activities[indexPath.row] showHeader:YES showLike:isExpert];
     CGSize size = [self.stubCell cellSize];
 
     return size;
@@ -148,14 +155,32 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableView = nil;
-    if (!isExpertView && kind == UICollectionElementKindSectionHeader) {
+    if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
-
-        headerView.user = user;
+        
+       headerView.user = user;
+        if(isExpert){
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [button addTarget:self
+                   action:@selector(chatClick:)
+            forControlEvents:UIControlEventTouchUpInside];
+            [button setTitle:@"Chat" forState:UIControlStateNormal];
+            button.frame = CGRectMake(20, 150, 280.0, 50.0);
+            button.backgroundColor = [Utils getVibrantBlue];
+            [button setTintColor:[UIColor whiteColor]];
+            button.layer.cornerRadius = 3.0f;
+            [headerView addSubview:button];
+        }
         reusableView = headerView;
     }
     return reusableView;
 }
+
+- (void)chatClick:(id)sender {
+    ChatViewController *chatView = [[ChatViewController alloc] initWithUser:user];
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
 
 - (void)onActivityLiked:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"activityLiked"]) {
@@ -177,16 +202,16 @@
 - (void)fetchData {
     // TODO: Add paging here
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if (isExpertView) {
+    if (isExpert && !isProfile) {
         [self fetchActivityLikes];
         [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
             self.activities = objects;
             NSLog(@"client activities count: %d", self.activities.count);
             [self.collectionView reloadData];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     } else {
         [Activity getActivitiesByUser:user success:^(NSArray *objects) {
@@ -196,10 +221,10 @@
             if (reload) {
                 [self.collectionView reloadData];
             }
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection my activities] error: %@", error.description);
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     }
 }
@@ -222,18 +247,21 @@
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    if (!isExpertView) {
-        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+    if (isProfile) {
+        float height = isExpert ? 220 : 200;
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, height)];
     }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];
 
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"Edit Profile"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(showProfile:)];
-    self.navigationItem.rightBarButtonItem = profileButton;
+    if (isProfile && !isExpert) {
+        UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
+                                          initWithTitle:@"Edit Profile"
+                                          style:UIBarButtonItemStylePlain
+                                          target:self
+                                          action:@selector(showProfile:)];
+        self.navigationItem.rightBarButtonItem = profileButton;
+    }
 }
 
 - (void)showProfile:(id)sender {

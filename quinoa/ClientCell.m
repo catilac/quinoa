@@ -42,9 +42,14 @@
     self.clientName.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:[self.clientName.font pointSize]];
     
     self.clientBasicInfo.text = [client getSexAndAge];
-    [self.clientBasicInfo setTextColor:[Utils getGray]];
+    [self.clientBasicInfo setTextColor:[Utils getDarkerGray]];
     self.clientBasicInfo.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:[self.clientBasicInfo.font pointSize]];
-
+    
+    if (client.image) {
+        [Utils loadImageFile:client.image inImageView:self.profileImage withAnimation:NO];
+    } else {
+        [self.profileImage setImage:[client getPlaceholderImage]];
+    }
     
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
 }

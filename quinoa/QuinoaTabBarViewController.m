@@ -14,7 +14,6 @@
 @interface QuinoaTabBarViewController ()
 
 @property (strong, nonatomic) TrackButton *trackButton;
-@property (assign) NSInteger lastIndex;
 
 @end
 

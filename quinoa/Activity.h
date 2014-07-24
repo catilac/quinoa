@@ -26,6 +26,8 @@ typedef enum {
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) NSDate *updatedAt;
 
+- (NSString *)mealName;
+
 + (NSString *)parseClassName;
 
 + (Activity *)trackEating:(PFFile *)image

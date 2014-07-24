@@ -36,14 +36,17 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *weightView;
 @property (weak, nonatomic) IBOutlet UIImageView *weightImage;
 @property (weak, nonatomic) IBOutlet UILabel *weightValue;
 @property (weak, nonatomic) IBOutlet UILabel *weightLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *activityView;
 @property (weak, nonatomic) IBOutlet UIImageView *activityImage;
 @property (weak, nonatomic) IBOutlet UILabel *activityValue;
 @property (weak, nonatomic) IBOutlet UILabel *activityLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *kudosView;
 @property (weak, nonatomic) IBOutlet UIImageView *kudosImage;
 @property (weak, nonatomic) IBOutlet UILabel *kudosValue;
 @property (weak, nonatomic) IBOutlet UILabel *kudosLabel;
@@ -111,7 +114,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     UILabel *physicalChartLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
     [physicalChartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
-    physicalChartLabel.textColor = [Utils getGray];
+    physicalChartLabel.textColor = [Utils getDarkerGray];
     physicalChartLabel.text = @"Activity duration in minutes";
     [physicalChartView addSubview:physicalChartLabel];
     [physicalChartView addSubview:self.physicalChart];
@@ -126,7 +129,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
 
     UILabel *chartLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 20)];
     [chartLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
-    chartLabel.textColor = [Utils getGray];
+    chartLabel.textColor = [Utils getDarkerGray];
     chartLabel.text = @"Weight over Last 7 Weeks";
 
     [weightChartView addSubview:self.barChart];
@@ -158,8 +161,35 @@ static NSString *LikeCellIdent = @"likeCellIdent";
     }
     
     self.activityValue.text = [self.user hhmmFormatAvgActivityDuration];
-
+    
     [self.view addSubview:self.dashboardHeader];
+    
+    
+    // =============== Dashboard Footer Stuff ==================
+    [self.weightValue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0f]];
+    self.weightView.backgroundColor = [Utils getLightGray];
+    self.weightView.layer.borderWidth = 1;
+    self.weightView.layer.borderColor = [Utils getGray].CGColor;
+    self.weightView.layer.cornerRadius = 6;
+    self.weightValue.textColor = [Utils getDarkBlue];
+    self.weightLabel.textColor = [Utils getDarkerGray];
+    
+    [self.activityValue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0f]];
+    self.activityView.backgroundColor = [Utils getLightGray];
+    self.activityView.layer.borderWidth = 1;
+    self.activityView.layer.borderColor = [Utils getGray].CGColor;
+    self.activityView.layer.cornerRadius = 6;
+    self.activityValue.textColor = [Utils getDarkBlue];
+    self.activityLabel.textColor = [Utils getDarkerGray];
+    
+    [self.kudosValue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0f]];
+    self.kudosView.backgroundColor = [Utils getLightGray];
+    self.kudosView.layer.borderWidth = 1;
+    self.kudosView.layer.borderColor = [Utils getGray].CGColor;
+    self.kudosView.layer.cornerRadius = 6;
+    self.kudosValue.textColor = [Utils getDarkBlue];
+    self.kudosLabel.textColor = [Utils getDarkerGray];
+    
 }
 
 - (void)fetchWeightStats {

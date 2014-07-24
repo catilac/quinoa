@@ -28,11 +28,12 @@
 - (void)setUser:(User *)user {
     _user = user;
 
-    //ProfileView *profileView = [[ProfileView alloc] initWithFrame:CGRectMake(0, 0, 320, 230)];
-    ProfileView *profileView = [[ProfileView alloc] init];
+    ProfileView *profileView = [[ProfileView alloc] initWithFrame:self.frame];
        profileView.user = self.user;
     [self addSubview:profileView];
+    [profileView layoutSubviews];
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

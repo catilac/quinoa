@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondaryLabel;
-
+@property (strong, nonatomic) UIView *contentView;
 @end
 
 @implementation ProfileView
@@ -24,7 +24,9 @@
     if (self) {
         UINib *nib = [UINib nibWithNibName:@"ProfileView" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
-        [self addSubview:objects[0]];
+        self.contentView = objects[0];
+        [self.contentView setFrame:frame];
+        [self addSubview:self.contentView];
     }
     return self;
 }
@@ -43,7 +45,12 @@
 
     // Styling
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
-    [self.subviews[0] setBackgroundColor:[Utils getDarkBlue]];
+    [self.contentView setBackgroundColor:[Utils getDarkBlue]];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.contentView setFrame:self.frame];
 }
 
 @end

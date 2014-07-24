@@ -160,17 +160,16 @@
         
        headerView.user = user;
         if(isExpert){
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button addTarget:self
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [button addTarget:self
                    action:@selector(chatClick:)
-         forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:@"Chat" forState:UIControlStateNormal];
-        button.frame = CGRectMake(20, 150, 280.0, 50.0);
-        button.backgroundColor = [Utils getVibrantBlue];
-        [button setTintColor:[UIColor whiteColor]];
-        button.layer.cornerRadius = 3.0f;
-       [headerView addSubview:button];
+            forControlEvents:UIControlEventTouchUpInside];
+            [button setTitle:@"Chat" forState:UIControlStateNormal];
+            button.frame = CGRectMake(20, 150, 280.0, 50.0);
+            button.backgroundColor = [Utils getVibrantBlue];
+            [button setTintColor:[UIColor whiteColor]];
+            button.layer.cornerRadius = 3.0f;
+            [headerView addSubview:button];
         }
         reusableView = headerView;
     }
@@ -249,7 +248,8 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (isProfile) {
-        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, 200)];
+        float height = isExpert ? 220 : 200;
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, height)];
     }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];

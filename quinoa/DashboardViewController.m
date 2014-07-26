@@ -62,7 +62,7 @@ static NSString *LikeCellIdent = @"likeCellIdent";
         // Custom initialization
         _user = [User currentUser];
         _expert = _user.currentTrainer;
-        [_expert fetch];
+        [_expert fetchIfNeededInBackgroundWithBlock:nil];
     }
     return self;
 }

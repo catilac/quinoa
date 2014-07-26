@@ -20,6 +20,7 @@
 
 @property BOOL liked;
 
-@property BOOL showLike;
+// Enable liked action
+@property BOOL enableLike;
 
 @end

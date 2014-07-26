@@ -202,8 +202,8 @@
 - (void)fetchData {
     // TODO: Add paging here
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self fetchActivityLikes];
     if (isExpert && !isProfile) {
-        [self fetchActivityLikes];
         [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
             self.activities = objects;
             NSLog(@"client activities count: %d", self.activities.count);
@@ -230,7 +230,9 @@
 }
 
 - (void)fetchActivityLikes {
-    [ActivityLike getActivityLikesByExpert:user success:^(NSArray *activityLikes) {
+    User *expert = (isExpert) ? user : user.currentTrainer;
+    // This query won't work if expert changed, but we're not worrying about that now.
+    [ActivityLike getActivityLikesByExpert:expert success:^(NSArray *activityLikes) {
         for (ActivityLike *activityLike in activityLikes) {
             [self.likes addObject:activityLike.activity.objectId];
         }

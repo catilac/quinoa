@@ -72,11 +72,14 @@
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
     [self.metaLabel setTextColor:[Utils getDarkerGray]];
 
-    self.likeButton.hidden = !self.showLike;
+    self.likeButton.hidden = NO;
     [self.likeButton setSelected:self.liked];
 }
 
 - (void)onLike:(id)sender {
+    if (!self.enableLike) {
+        return;
+    }
     NSDictionary *likedActivity;
     if (self.liked) {
         likedActivity = @{@"liked": @NO,

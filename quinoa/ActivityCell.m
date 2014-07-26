@@ -117,7 +117,7 @@ static const CGFloat ContainerWidth = 300;
     if (showHeader) {
         UserHeader *userHeader = [[UserHeader alloc] initWithFrame:CGRectMake(0, 0, ContainerWidth, UserHeaderHeight)];
         self.userView.backgroundColor = [Utils getLightGray];
-        userHeader.showLike = showLike;
+        userHeader.enableLike = showLike;
         userHeader.liked = self.liked;
         userHeader.activity = activity;
         userHeader.user = activity.user;

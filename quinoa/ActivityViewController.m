@@ -17,15 +17,13 @@
 // This is an arbitrary number that is going to be used only when
 // current user doesn't have weight set.
 static const float DEFAULT_WEIGHT = 150.0f;
-static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 @interface ActivityViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
+
 @property (strong, nonatomic) NSString *activityType;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 
 @property (nonatomic, strong) UIView *upArrowView;
@@ -34,13 +32,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 @property (nonatomic, strong) UIImageView *downArrowImageView;
 
 @property (nonatomic) float activityValue;
-@property (nonatomic) float startPosition;
-@property (nonatomic) float currentPosition;
-@property (nonatomic) float delta;
 @property (nonatomic) float incrementQuantity;
+
 @property (strong, nonatomic) User *user;
 
-@property (weak, nonatomic) IBOutlet UIView *dividerLine;
 @property (nonatomic, assign) BOOL didPan;
 @property (nonatomic, assign) BOOL didTouch;
 
@@ -95,16 +90,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
                 self.activityValue = DEFAULT_WEIGHT;
             }
 
-            self.startPosition = self.activityValue + WEIGHT_MAX_MIN_RANGE;
-            self.currentPosition = self.startPosition; //
-            self.delta = 0.00f;
             self.incrementQuantity = 0.1f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
             self.incrementQuantity = 1;
             self.activityValue = 0;
-            self.startPosition = 400.00f;
-            self.currentPosition = 400.00f;
-            self.delta = 0.00f;
         }
     }
     return self;
@@ -117,14 +106,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
-        //self.title = @"Track Weight";
-        //self.activityUnitLabel.text = @"lbs";
         self.hintLabel.text = @"Drag to adjust weight";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.title = @"Track Activity";
-        self.slideBarHeightConstraint.constant = 430;
-        //self.activityUnitLabel.text = @"min";
         self.hintLabel.text = @"Drag to adjust activity length";
         self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
     }
@@ -216,14 +201,11 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 - (void)viewDidLayoutSubviews {
     if ([self.activityType isEqualToString: @"trackWeight"]) {
         NSLog(@"trackWeight");
-
-        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 240, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         NSLog(@"trackActivity");
 
         self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
-        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 476, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
     }
     [self showHint];
     [self showArrow];

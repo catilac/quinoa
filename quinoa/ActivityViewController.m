@@ -17,6 +17,7 @@
 // This is an arbitrary number that is going to be used only when
 // current user doesn't have weight set.
 static const float DEFAULT_WEIGHT = 150.0f;
+static const float ONE_MINUTE = 60.0f;
 
 @interface ActivityViewController () <UIGestureRecognizerDelegate>
 
@@ -32,6 +33,8 @@ static const float DEFAULT_WEIGHT = 150.0f;
 @property (nonatomic, strong) UIImageView *downArrowImageView;
 
 @property (nonatomic) float activityValue;
+@property (nonatomic) float activityValueMax;
+@property (nonatomic) float activityValueMin;
 @property (nonatomic) float incrementQuantity;
 
 @property (strong, nonatomic) User *user;
@@ -89,11 +92,14 @@ static const float DEFAULT_WEIGHT = 150.0f;
             } else {
                 self.activityValue = DEFAULT_WEIGHT;
             }
-
             self.incrementQuantity = 0.1f;
+            self.activityValueMax = -1.0f;
+            self.activityValueMin = -1.0f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
-            self.incrementQuantity = 1;
-            self.activityValue = 0;
+            self.incrementQuantity = ONE_MINUTE;
+            self.activityValue = 0.f;
+            self.activityValueMin = 0.f;
+            self.activityValueMax = 60 * ONE_MINUTE;
         }
     }
     return self;
@@ -111,7 +117,7 @@ static const float DEFAULT_WEIGHT = 150.0f;
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.title = @"Track Activity";
         self.hintLabel.text = @"Drag to adjust activity length";
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
     }
     
 
@@ -223,11 +229,17 @@ static const float DEFAULT_WEIGHT = 150.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateActivityValues {
+- (void)updateActivityValuesWithVelocity:(CGPoint)v {
+    if (v.y > 0) {
+        self.activityValue -= self.incrementQuantity;
+    } else {
+        self.activityValue += self.incrementQuantity;
+    }
+    
     if ([self.activityType isEqualToString: @"trackWeight"]) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
     } else if ([self.activityType isEqualToString: @"trackActivity"]) {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
     }
 }
 
@@ -247,15 +259,9 @@ static const float DEFAULT_WEIGHT = 150.0f;
         if (yTranslation >= 100.0f && yTranslation <= screenBounds.size.height) {
             recognizer.view.center = CGPointMake(recognizer.view.center.x, yTranslation);
             
-            CGPoint v = [recognizer velocityInView:self.view];
-            
             if (abs(translation.y - startingPosition.y) >= 10.0f) {
-                if (v.y > 0) {
-                    self.activityValue -= self.incrementQuantity;
-                } else {
-                    self.activityValue += self.incrementQuantity;
-                }
-                [self updateActivityValues];
+                CGPoint v = [recognizer velocityInView:self.view];
+                [self updateActivityValuesWithVelocity:v];
             }
             
         }

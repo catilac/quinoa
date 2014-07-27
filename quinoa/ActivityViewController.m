@@ -35,7 +35,6 @@ static const float ONE_MINUTE = 60.0f;
 @property (nonatomic, assign) CGFloat activityValue;
 @property (nonatomic, assign) CGFloat activityValueMax;
 @property (nonatomic, assign) CGFloat activityValueMin;
-@property (nonatomic, assign) CGFloat updateDistance;
 @property (nonatomic, assign) CGFloat incrementQuantity;
 
 @property (nonatomic, assign) CGFloat scaleTopHeight;
@@ -110,18 +109,8 @@ static const float ONE_MINUTE = 60.0f;
         
         self.scaleTopHeight = 100.0f;
         self.scaleBottomHeight = self.view.bounds.size.height - 125.0f;
-        [self calculateUpdateDistance];
     }
     return self;
-}
-
-// Distance between 'tick' marks on our scale
-- (void)calculateUpdateDistance {
-    if ([self.activityType isEqualToString: @"trackActivity"]) {
-        self.updateDistance = (self.scaleBottomHeight - self.scaleTopHeight)/self.incrementQuantity;
-    } else {
-        self.updateDistance = 10.0f;
-    }
 }
 
 - (void)viewDidLoad

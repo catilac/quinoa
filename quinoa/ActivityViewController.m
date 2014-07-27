@@ -86,10 +86,9 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 - (id)initWithType:(NSString *)activityType {
     self = [super init];
+    self.activityType = activityType;
     if (self) {
         if([activityType isEqualToString: @"trackWeight"]) {
-
-            self.activityType = @"trackWeight";
             if (self.user && self.user.currentWeight > 0) {
                 self.activityValue = [self.user.currentWeight floatValue];
             } else {
@@ -99,11 +98,8 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
             self.startPosition = self.activityValue + WEIGHT_MAX_MIN_RANGE;
             self.currentPosition = self.startPosition; //
             self.delta = 0.00f;
-            self.incrementQuantity = 0.5f;
-
+            self.incrementQuantity = 0.1f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
-
-            self.activityType = @"trackActivity";
             self.incrementQuantity = 1;
             self.activityValue = 0;
             self.startPosition = 400.00f;
@@ -245,93 +241,70 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender {
-    
-//    NSLog(@"on pan.....");
+- (void)updateActivityValues {
+    if ([self.activityType isEqualToString: @"trackWeight"]) {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+    } else if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
+    }
+}
+
+- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)recognizer {
     self.didPan = 1;
-
-    CGPoint translation = [sender translationInView:self.view];
-    //NSLog(@"position %f", sender.view.center.y + translation.y);
-        
-        if (sender.state == UIGestureRecognizerStateChanged)  {
-                
-            if(sender.view.center.y + translation.y >= 100 && sender.view.center.y + translation.y <= 480)
-                {
-                
-                //NSLog(@"position %f", sender.view.center.y + translation.y);
-                sender.view.center = CGPointMake(sender.view.center.x,sender.view.center.y + translation.y);
-                self.currentPosition += translation.y;
-                //NSLog(@"start position %f", self.startPosition);
-                //NSLog(@"current position %f", self.currentPosition);
-                
-                
-                if(abs(self.startPosition - self.currentPosition) >= 10.00f){
-                    if((self.startPosition - self.currentPosition) > 0)
-                        self.activityValue += self.incrementQuantity;
-                    else
-                        self.activityValue -= self.incrementQuantity;
-                    
-                    // decimals for weight
-                    if ([self.activityType isEqualToString: @"trackWeight"]) {
-                        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
-                    }
-                    // no decimals for time
-                    else if ([self.activityType isEqualToString: @"trackActivity"]) {
-                        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
-                    }
-                    
-                    self.startPosition = self.currentPosition;
-                }
-                
-                [sender setTranslation:CGPointZero inView:self.view];
-            }
-        }
-        
-        else if (sender.state == UIGestureRecognizerStateEnded) {
-            //NSLog(@"ended...");
-            //self.startPosition = self.currentPosition;
-            
-            if (self.isActivityValueLabelBig) {
-                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    
-                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
-                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
-                    self.isActivityValueLabelBig = NO;
-                    
-                } completion:^(BOOL finished) {
-                    [self showHint];
-                    [self showArrow];
-                }];
-            }
-            
-            self.didPan = 0;
-        }
-        else if (sender.state == UIGestureRecognizerStateFailed) {
-            NSLog(@"cancelled...");
-            //self.startPosition = self.currentPosition;
-            
-            
-            if (self.isActivityValueLabelBig) {
-                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    
-                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
-                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
-                    self.isActivityValueLabelBig = NO;
-                    
-                } completion:^(BOOL finished) {
-                    [self showHint];
-                    [self showArrow];
-                }];
-            }
-            
-            self.didPan = 0;
-        }
+    static CGPoint startingPosition;
     
-
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        startingPosition = [recognizer locationInView:self.view];
+    } else if (recognizer.state == UIGestureRecognizerStateChanged)  {
+        // Get translation relative to the primary view
+        CGPoint translation = [recognizer translationInView:self.view];
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        CGFloat yTranslation = startingPosition.y + translation.y;
+        
+        // Update position if within valid bounds
+        if (yTranslation >= 100.0f && yTranslation <= screenBounds.size.height) {
+            recognizer.view.center = CGPointMake(recognizer.view.center.x, yTranslation);
+            
+            CGPoint v = [recognizer velocityInView:self.view];
+            
+            if (abs(translation.y - startingPosition.y) >= 10.0f) {
+                if (v.y > 0) {
+                    self.activityValue -= self.incrementQuantity;
+                } else {
+                    self.activityValue += self.incrementQuantity;
+                }
+                [self updateActivityValues];
+            }
+            
+        }
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (self.isActivityValueLabelBig) {
+            [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
+                    self.isActivityValueLabelBig = NO;
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                    [self showArrow];
+                }];
+        }
+        
+        self.didPan = 0;
+    } else if (recognizer.state == UIGestureRecognizerStateFailed) {
+        if (self.isActivityValueLabelBig) {
+            [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
+                    self.isActivityValueLabelBig = NO;
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                    [self showArrow];
+                }];
+        }
+        self.didPan = 0;
+    }
 }
 
 

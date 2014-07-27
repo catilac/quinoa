@@ -32,10 +32,14 @@ static const float ONE_MINUTE = 60.0f;
 @property (nonatomic, strong) UIImageView *upArrowImageView;
 @property (nonatomic, strong) UIImageView *downArrowImageView;
 
-@property (nonatomic) float activityValue;
-@property (nonatomic) float activityValueMax;
-@property (nonatomic) float activityValueMin;
-@property (nonatomic) float incrementQuantity;
+@property (nonatomic, assign) CGFloat activityValue;
+@property (nonatomic, assign) CGFloat activityValueMax;
+@property (nonatomic, assign) CGFloat activityValueMin;
+@property (nonatomic, assign) CGFloat updateDistance;
+@property (nonatomic, assign) CGFloat incrementQuantity;
+
+@property (nonatomic, assign) CGFloat scaleTopHeight;
+@property (nonatomic, assign) CGFloat scaleBottomHeight;
 
 @property (strong, nonatomic) User *user;
 
@@ -93,16 +97,31 @@ static const float ONE_MINUTE = 60.0f;
                 self.activityValue = DEFAULT_WEIGHT;
             }
             self.incrementQuantity = 0.1f;
-            self.activityValueMax = -1.0f;
-            self.activityValueMin = -1.0f;
+            // Can only log between -5 and +5 lbs of weight change
+            // TODO is this a reasonable idea?
+            self.activityValueMax = self.activityValue + 5.0f;
+            self.activityValueMin = self.activityValue - 5.0f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
             self.incrementQuantity = ONE_MINUTE;
-            self.activityValue = 0.f;
-            self.activityValueMin = 0.f;
+            self.activityValue = 0.0f;
+            self.activityValueMin = 0.0f;
             self.activityValueMax = 60 * ONE_MINUTE;
         }
+        
+        self.scaleTopHeight = 100.0f;
+        self.scaleBottomHeight = self.view.bounds.size.height - 125.0f;
+        [self calculateUpdateDistance];
     }
     return self;
+}
+
+// Distance between 'tick' marks on our scale
+- (void)calculateUpdateDistance {
+    if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.updateDistance = (self.scaleBottomHeight - self.scaleTopHeight)/self.incrementQuantity;
+    } else {
+        self.updateDistance = 10.0f;
+    }
 }
 
 - (void)viewDidLoad
@@ -119,7 +138,6 @@ static const float ONE_MINUTE = 60.0f;
         self.hintLabel.text = @"Drag to adjust activity length";
         self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
     }
-    
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                              style:UIBarButtonItemStyleBordered
@@ -172,10 +190,6 @@ static const float ONE_MINUTE = 60.0f;
     [self.view addSubview:self.upArrowView];
     [self.view addSubview:self.downArrowView];
     [self hideArrow];
-    
-    
-    NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
-    NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,13 +219,10 @@ static const float ONE_MINUTE = 60.0f;
 }
 
 - (void)viewDidLayoutSubviews {
-    if ([self.activityType isEqualToString: @"trackWeight"]) {
-        NSLog(@"trackWeight");
-    }
-    else if ([self.activityType isEqualToString: @"trackActivity"]) {
-        NSLog(@"trackActivity");
-
-        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
+    if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, self.scaleBottomHeight);
+    } else {
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, [self positionFromValue:self.activityValue]);
     }
     [self showHint];
     [self showArrow];
@@ -229,12 +240,27 @@ static const float ONE_MINUTE = 60.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateActivityValuesWithVelocity:(CGPoint)v {
-    if (v.y > 0) {
-        self.activityValue -= self.incrementQuantity;
-    } else {
-        self.activityValue += self.incrementQuantity;
-    }
+// LERP
+- (CGFloat)valueAtPosition {
+    CGFloat scaleHeight = self.scaleBottomHeight - self.scaleTopHeight;
+    CGFloat yPos = self.slideBarView.center.y - self.scaleTopHeight;
+    
+    CGFloat result = self.activityValueMin + (1 - yPos/scaleHeight) * (self.activityValueMax - self.activityValueMin);
+
+    return result;
+}
+
+// Un-LERP
+- (CGFloat)positionFromValue:(CGFloat)val {
+    CGFloat scaleHeight = self.scaleBottomHeight - self.scaleTopHeight;
+    
+    CGFloat yPos = scaleHeight * (- ((val - self.activityValueMin)/self.activityValueMax) + 1);
+    
+    return yPos;
+}
+
+- (void)updateActivityValues {
+    self.activityValue = [self valueAtPosition];
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
@@ -252,18 +278,12 @@ static const float ONE_MINUTE = 60.0f;
     } else if (recognizer.state == UIGestureRecognizerStateChanged)  {
         // Get translation relative to the primary view
         CGPoint translation = [recognizer translationInView:self.view];
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
         CGFloat yTranslation = startingPosition.y + translation.y;
         
         // Update position if within valid bounds
-        if (yTranslation >= 100.0f && yTranslation <= screenBounds.size.height) {
+        if (yTranslation >= self.scaleTopHeight && yTranslation <= self.scaleBottomHeight) {
             recognizer.view.center = CGPointMake(recognizer.view.center.x, yTranslation);
-            
-            if (abs(translation.y - startingPosition.y) >= 10.0f) {
-                CGPoint v = [recognizer velocityInView:self.view];
-                [self updateActivityValuesWithVelocity:v];
-            }
-            
+            [self updateActivityValues];
         }
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         if (self.isActivityValueLabelBig) {

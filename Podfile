@@ -7,6 +7,8 @@ target "quinoa" do
   pod 'Facebook-iOS-SDK', :inhibit_warnings => true
   pod 'PNChart', '~> 0.3.3'
   pod 'MBProgressHUD', '~> 0.5'
+  pod 'DateTools'
+  pod 'BTBadgeView'
 end
 
 target "quinoaTests" do

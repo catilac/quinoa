@@ -21,6 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.0)
+  - BTBadgeView (1.2)
+  - DateTools (1.3.0)
   - Facebook-iOS-SDK (3.15.1):
     - Bolts
   - MBProgressHUD (0.8)
@@ -32,6 +34,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - BTBadgeView
+  - DateTools
   - Facebook-iOS-SDK
   - MBProgressHUD (~> 0.5)
   - Parse
@@ -40,6 +44,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
+  BTBadgeView: aa392d7b71c0248b0d766ffc0a1dc7103b72f3ec
+  DateTools: aa3131160337433a152c0228a2a1be2ff4ed3e05
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04

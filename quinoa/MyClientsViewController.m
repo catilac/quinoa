@@ -7,7 +7,7 @@
 //
 
 #import "MyClientsViewController.h"
-#import "ClientCell.h"
+#import "ClientRowCell.h"
 #import <Parse/Parse.h>
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
@@ -22,14 +22,14 @@
 
 @implementation MyClientsViewController
 
-static NSString *CellIdentifier = @"clientCellIdent";
+static NSString *CellIdentifier = @"ClientRowCell";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Clients";
+        self.title = @"My Clients";
     }
     return self;
 }
@@ -38,14 +38,13 @@ static NSString *CellIdentifier = @"clientCellIdent";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.myClientsCollection registerNib:[UINib nibWithNibName:@"ClientCell" bundle:nil]
-               forCellWithReuseIdentifier:CellIdentifier];
-    
+    [self.myClientsCollection registerClass:[ClientRowCell class] forCellWithReuseIdentifier:CellIdentifier];
+
     self.myClientsCollection.dataSource = self;
     self.myClientsCollection.delegate = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(146, 182)];
+    [flowLayout setItemSize:CGSizeMake(300, 85)];
     
     // Spacing for flowlayout
     [flowLayout setMinimumLineSpacing:8];
@@ -91,9 +90,9 @@ static NSString *CellIdentifier = @"clientCellIdent";
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ClientCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
+    ClientRowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
-    [cell setValuesWithClient:self.clients[indexPath.row]];
+    cell.client = self.clients[indexPath.row];
     return cell;
 }
 
@@ -101,17 +100,8 @@ static NSString *CellIdentifier = @"clientCellIdent";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     User *client = self.clients[indexPath.row];
-    // TODO: Put this back in once activitiescollectionview is ready
-//    ActivitiesCollectionViewController *activitiesCollectionView = [[ActivitiesCollectionViewController alloc] init];
-//    [activitiesCollectionView setUser:client];
-//    [self.navigationController pushViewController:activitiesCollectionView animated:YES];
     ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] initWithUser:client];
-    //activitiesController.user = client;
-    //activitiesController.isExpertView = NO;
     [self.navigationController pushViewController:activitiesController animated:YES];
-    //ChatViewController *chatViewController = [[ChatViewController alloc] initWithUser:client];
-    //[self.navigationController pushViewController:chatViewController animated:YES];
-    
 }
 
 

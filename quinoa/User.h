@@ -27,6 +27,11 @@
 @property (nonatomic, strong) User *currentTrainer;
 @property (nonatomic, strong) PFFile *image;
 
+// Stats
+@property (nonatomic, strong) NSNumber *newMessageCount;
+@property (nonatomic, strong) NSNumber *newActivityCount;
+@property (nonatomic, strong) NSDate *lastActiveAt;
+
 - (BOOL)isExpert;
 
 - (NSString *)getDisplayName;
@@ -47,6 +52,12 @@
 - (void)updateAverageActivityDuration;
 
 - (void)selectExpert:(User *)expert;
+
+- (void)updateLastActiveAt;
+
+- (void)updateNewMessageCount;
+
+- (void)resetNewMessageCount;
 
 + (User *)currentUser;
 @end

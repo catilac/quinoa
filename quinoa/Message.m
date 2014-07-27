@@ -8,6 +8,7 @@
 
 #import "Message.h"
 #import <Parse/PFObject+Subclass.h>
+#import "User.h"
 
 @implementation Message
 
@@ -35,13 +36,14 @@
     self.threadId = [Message calcThreadIdWithSender:self.sender recipient:self.recipient];
 }
 
-+ (Message *)sendMessageToUser:(PFUser *)recipient fromUser:(PFUser *)sender message:(NSString *)message {
++ (Message *)sendMessageToUser:(User *)recipient fromUser:(User *)sender message:(NSString *)message {
     Message *newMessage = [Message object];
     newMessage.text = message;
     newMessage.sender = sender;
     newMessage.recipient = recipient;
     [newMessage setThreadId];
     [newMessage saveInBackground];
+    [sender updateNewMessageCount];
     return newMessage;
 }
 

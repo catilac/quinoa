@@ -127,6 +127,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (void)fetchMessages {
+    // reset the other user's message count since i'm reading it here
+    [self.recipient resetNewMessageCount];
     NSString *threadId = [Message calcThreadIdWithSender:[User currentUser] recipient:self.recipient];
     [Message getMessagesByThreadId:threadId
                               skip:[self.messages count]

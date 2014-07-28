@@ -56,11 +56,16 @@
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
 
     self.nameLabel.text = [self.client getDisplayName];
-    self.lastActiveValueLabel.text = [[self.client lastActiveAt] timeAgoSinceNow];
+    self.lastActiveValueLabel.text = [[[self.client lastActiveAt] timeAgoSinceNow] lowercaseString];
+    NSDate *today = [NSDate date];
+    if ([today daysFrom:self.client.lastActiveAt] > 21) {
+        [self.lastActiveValueLabel setTextColor:[UIColor redColor]];
+    } else {
+        [self.lastActiveValueLabel setTextColor:[Utils getDarkerGray]];
+    }
 
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
     [self.lastActiveLabel setTextColor:[Utils getDarkerGray]];
-    [self.lastActiveValueLabel setTextColor:[Utils getDarkerGray]];
 
     // There's a weird bug here. After scrolling for a while, "BAD ACCESS" error
     // occurs with accessing `newMessageCount`

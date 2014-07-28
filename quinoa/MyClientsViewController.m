@@ -12,7 +12,7 @@
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
-#import "ChatViewController.h"
+//#import "ChatViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -53,13 +53,17 @@ static NSString *CellIdentifier = @"ClientRowCell";
     
     [self.myClientsCollection setCollectionViewLayout:flowLayout];
     [self.myClientsCollection setBackgroundColor:[UIColor whiteColor]];
-    
-    [self fetchClients];
-    
+
+    // Prevent the last cell from being displayed behind tab bar
+    [self.myClientsCollection setContentInset:UIEdgeInsetsMake(0, 0, 55, 0)];
+
+    self.myClientsCollection.allowsMultipleSelection = YES;
+
     // I can only make the navigation bar opaque by setting it on each page
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
+    [self fetchClients];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +86,13 @@ static NSString *CellIdentifier = @"ClientRowCell";
     }];
 }
 
+- (void)showProfile:(id)sender {
+    int currentRow = [(UIButton *)sender tag];
+    User *client = self.clients[currentRow];
+    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] initWithUser:client];
+    [self.navigationController pushViewController:activitiesController animated:YES];
+}
+
 #pragma mark - UICollectionViewDataSource methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.clients count];
@@ -93,16 +104,9 @@ static NSString *CellIdentifier = @"ClientRowCell";
     ClientRowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
     cell.client = self.clients[indexPath.row];
+    [cell.detailButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
+    cell.detailButton.tag = indexPath.row;
     return cell;
 }
-
-#pragma mark - UICollectionViewDelegate methods
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    User *client = self.clients[indexPath.row];
-    ActivitiesCollectionViewController *activitiesController = [[ActivitiesCollectionViewController alloc] initWithUser:client];
-    [self.navigationController pushViewController:activitiesController animated:YES];
-}
-
 
 @end

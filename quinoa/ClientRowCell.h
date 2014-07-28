@@ -12,5 +12,6 @@
 @interface ClientRowCell : UICollectionViewCell
 
 @property (strong, nonatomic) User *client;
+@property (weak, nonatomic) IBOutlet UIButton *detailButton;
 
 @end

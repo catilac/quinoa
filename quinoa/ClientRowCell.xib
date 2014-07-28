@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientRowCell">
             <connections>
+                <outlet property="detailButton" destination="6YC-0I-8gI" id="OJl-h0-Gcf"/>
                 <outlet property="imageView" destination="KZO-z6-wlU" id="o4D-EE-qqm"/>
                 <outlet property="lastActiveLabel" destination="Qxh-yj-bS4" id="O4N-hz-mgq"/>
                 <outlet property="lastActiveValueLabel" destination="HSH-xb-ZD7" id="qJx-WR-fAl"/>
@@ -49,6 +50,13 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YC-0I-8gI">
+                        <rect key="frame" x="265" y="28" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="arrow_right">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -68,4 +76,7 @@
             <size key="customSize" width="310" height="75"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="arrow_right" width="50" height="50"/>
+    </resources>
 </document>

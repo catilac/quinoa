@@ -48,6 +48,11 @@
     return [UIColor colorWithRed:0.890 green:0.302 blue:0.380 alpha:1];
 }
 
++ (UIColor *)getOrange {
+    return [UIColor colorWithRed:1.000 green:0.580 blue:0.259 alpha:1];
+}
+
+
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation {
     __weak UIImageView *iv = imageView;
 

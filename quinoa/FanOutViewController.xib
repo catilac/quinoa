@@ -6,9 +6,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FanOutViewController">
             <connections>
-                <outlet property="trackActivityButton" destination="2xq-LV-S4I" id="g41-rx-57y"/>
-                <outlet property="trackFoodButton" destination="Lcu-dm-cGy" id="x8y-yH-7a2"/>
-                <outlet property="trackWeightButton" destination="AWH-4I-cgs" id="srD-Ji-cj7"/>
+                <outlet property="trackActivityButton" destination="Fas-Cp-L06" id="yR3-Pj-gnc"/>
+                <outlet property="trackActivityDescription" destination="b8a-fV-f1e" id="RrA-qa-4er"/>
+                <outlet property="trackActivityLabel" destination="R8a-NQ-mG6" id="ZXF-zo-DbJ"/>
+                <outlet property="trackFoodButton" destination="gCr-k6-ypY" id="Ff3-xC-7mn"/>
+                <outlet property="trackFoodDescription" destination="dl6-db-u9e" id="IHQ-ib-lag"/>
+                <outlet property="trackFoodLabel" destination="xJz-W3-guI" id="SjO-PF-fEQ"/>
+                <outlet property="trackWeightButton" destination="ff1-Tn-wH2" id="SQ4-3E-Q75"/>
+                <outlet property="trackWeightDescription" destination="M1R-di-gLE" id="Uua-jD-BZf"/>
+                <outlet property="trackWeightLabel" destination="S7a-zM-wtJ" id="tf2-Pp-ikH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,43 +23,110 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lcu-dm-cGy" userLabel="TrackFoodButton">
-                    <rect key="frame" x="215" y="568" width="60" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="composeDiet">
-                        <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onTrackFood:" destination="-1" eventType="touchUpInside" id="PKc-9T-rPD"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2xq-LV-S4I" userLabel="TrackActivityButton">
-                    <rect key="frame" x="130" y="568" width="60" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="composeActivity">
-                        <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onTrackActivity:" destination="-1" eventType="touchUpInside" id="bhX-au-YgL"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AWH-4I-cgs" userLabel="TrackWeightButton">
-                    <rect key="frame" x="45" y="568" width="60" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="composeWeight">
-                        <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onTrackWeight:" destination="-1" eventType="touchUpInside" id="CLt-SN-npM"/>
-                    </connections>
-                </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="avatar" id="ewV-Wj-GY5">
                     <rect key="frame" x="130" y="537" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
+                <view contentMode="scaleToFill" id="gCr-k6-ypY" userLabel="trackFoodButton">
+                    <rect key="frame" x="20" y="203" width="280" height="84"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Lcu-dm-cGy" userLabel="button">
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="84"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="composeDiet">
+                                <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onTrackFood:" destination="-1" eventType="touchUpInside" id="PKc-9T-rPD"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Diet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xJz-W3-guI">
+                            <rect key="frame" x="81" y="18" width="180" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track 2 more meals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dl6-db-u9e">
+                            <rect key="frame" x="81" y="44" width="180" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="Fas-Cp-L06" userLabel="trackActivityButton">
+                    <rect key="frame" x="20" y="306" width="280" height="84"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R8a-NQ-mG6">
+                            <rect key="frame" x="81" y="18" width="180" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30mins away from goal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b8a-fV-f1e">
+                            <rect key="frame" x="81" y="44" width="180" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="2xq-LV-S4I" userLabel="button">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="84"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="composeActivity">
+                                <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onTrackActivity:" destination="-1" eventType="touchUpInside" id="bhX-au-YgL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="ff1-Tn-wH2" userLabel="trackWeightButton">
+                    <rect key="frame" x="20" y="409" width="280" height="84"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S7a-zM-wtJ">
+                            <rect key="frame" x="81" y="18" width="180" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8lbs away from goal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M1R-di-gLE">
+                            <rect key="frame" x="81" y="44" width="180" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="AWH-4I-cgs" userLabel="button">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="84"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="composeWeight">
+                                <color key="titleColor" red="0.960160236" green="0.960160236" blue="0.960160236" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onTrackWeight:" destination="-1" eventType="touchUpInside" id="CLt-SN-npM"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
@@ -70,9 +143,9 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="avatar" width="109" height="105"/>
-        <image name="composeActivity" width="120" height="120"/>
-        <image name="composeDiet" width="120" height="120"/>
-        <image name="composeWeight" width="120" height="120"/>
+        <image name="avatar" width="100" height="100"/>
+        <image name="composeActivity" width="60" height="60"/>
+        <image name="composeDiet" width="60" height="60"/>
+        <image name="composeWeight" width="60" height="60"/>
     </resources>
 </document>

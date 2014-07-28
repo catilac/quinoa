@@ -17,15 +17,14 @@
 // This is an arbitrary number that is going to be used only when
 // current user doesn't have weight set.
 static const float DEFAULT_WEIGHT = 150.0f;
-static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
+static const float ONE_MINUTE = 60.0f;
 
 @interface ActivityViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *slideBarView;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *activityUnitLabel;
+
 @property (strong, nonatomic) NSString *activityType;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *slideBarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 
 @property (nonatomic, strong) UIView *upArrowView;
@@ -33,14 +32,16 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 @property (nonatomic, strong) UIImageView *upArrowImageView;
 @property (nonatomic, strong) UIImageView *downArrowImageView;
 
-@property (nonatomic) float activityValue;
-@property (nonatomic) float startPosition;
-@property (nonatomic) float currentPosition;
-@property (nonatomic) float delta;
-@property (nonatomic) float incrementQuantity;
+@property (nonatomic, assign) CGFloat activityValue;
+@property (nonatomic, assign) CGFloat activityValueMax;
+@property (nonatomic, assign) CGFloat activityValueMin;
+@property (nonatomic, assign) CGFloat incrementQuantity;
+
+@property (nonatomic, assign) CGFloat scaleTopHeight;
+@property (nonatomic, assign) CGFloat scaleBottomHeight;
+
 @property (strong, nonatomic) User *user;
 
-@property (weak, nonatomic) IBOutlet UIView *dividerLine;
 @property (nonatomic, assign) BOOL didPan;
 @property (nonatomic, assign) BOOL didTouch;
 
@@ -86,30 +87,28 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 
 - (id)initWithType:(NSString *)activityType {
     self = [super init];
+    self.activityType = activityType;
     if (self) {
         if([activityType isEqualToString: @"trackWeight"]) {
-
-            self.activityType = @"trackWeight";
             if (self.user && self.user.currentWeight > 0) {
                 self.activityValue = [self.user.currentWeight floatValue];
             } else {
                 self.activityValue = DEFAULT_WEIGHT;
             }
-
-            self.startPosition = self.activityValue + WEIGHT_MAX_MIN_RANGE;
-            self.currentPosition = self.startPosition; //
-            self.delta = 0.00f;
-            self.incrementQuantity = 0.5f;
-
+            self.incrementQuantity = 0.1f;
+            // Can only log between -5 and +5 lbs of weight change
+            // TODO is this a reasonable idea?
+            self.activityValueMax = self.activityValue + 5.0f;
+            self.activityValueMin = self.activityValue - 5.0f;
         } else if ([activityType isEqualToString: @"trackActivity"]) {
-
-            self.activityType = @"trackActivity";
-            self.incrementQuantity = 1;
-            self.activityValue = 0;
-            self.startPosition = 400.00f;
-            self.currentPosition = 400.00f;
-            self.delta = 0.00f;
+            self.incrementQuantity = ONE_MINUTE;
+            self.activityValue = 0.0f;
+            self.activityValueMin = 0.0f;
+            self.activityValueMax = 60 * ONE_MINUTE;
         }
+        
+        self.scaleTopHeight = 100.0f;
+        self.scaleBottomHeight = self.view.bounds.size.height - 125.0f;
     }
     return self;
 }
@@ -121,18 +120,13 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
-        //self.title = @"Track Weight";
-        //self.activityUnitLabel.text = @"lbs";
         self.hintLabel.text = @"Drag to adjust weight";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.title = @"Track Activity";
-        self.slideBarHeightConstraint.constant = 430;
-        //self.activityUnitLabel.text = @"min";
         self.hintLabel.text = @"Drag to adjust activity length";
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
     }
-    
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                              style:UIBarButtonItemStyleBordered
@@ -185,10 +179,6 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     [self.view addSubview:self.upArrowView];
     [self.view addSubview:self.downArrowView];
     [self hideArrow];
-    
-    
-    NSLog(@"bounds %f %f",self.activityValueLabel.bounds.size.width,self.activityValueLabel.bounds.size.height);
-    NSLog(@"frame offset: %f %f", self.activityValueLabel.frame.origin.x, self.activityValueLabel.frame.origin.y);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -218,16 +208,10 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
 }
 
 - (void)viewDidLayoutSubviews {
-    if ([self.activityType isEqualToString: @"trackWeight"]) {
-        NSLog(@"trackWeight");
-
-        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 240, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
-    }
-    else if ([self.activityType isEqualToString: @"trackActivity"]) {
-        NSLog(@"trackActivity");
-
-        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, 400);
-        self.dividerLine.frame = CGRectMake(self.dividerLine.frame.origin.x, 476, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+    if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, self.scaleBottomHeight);
+    } else {
+        self.slideBarView.center = CGPointMake(self.slideBarView.center.x, [self positionFromValue:self.activityValue]);
     }
     [self showHint];
     [self showArrow];
@@ -245,93 +229,79 @@ static const float WEIGHT_MAX_MIN_RANGE = 70.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)sender {
+// LERP
+- (CGFloat)valueAtPosition {
+    CGFloat scaleHeight = self.scaleBottomHeight - self.scaleTopHeight;
+    CGFloat yPos = self.slideBarView.center.y - self.scaleTopHeight;
     
-//    NSLog(@"on pan.....");
+    CGFloat result = self.activityValueMin + (1 - yPos/scaleHeight) * (self.activityValueMax - self.activityValueMin);
+
+    return result;
+}
+
+// Un-LERP
+- (CGFloat)positionFromValue:(CGFloat)val {
+    CGFloat scaleHeight = self.scaleBottomHeight - self.scaleTopHeight;
+    
+    CGFloat yPos = scaleHeight * (- ((val - self.activityValueMin)/self.activityValueMax) + 1);
+    
+    return yPos;
+}
+
+- (void)updateActivityValues {
+    self.activityValue = [self valueAtPosition];
+    
+    if ([self.activityType isEqualToString: @"trackWeight"]) {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+    } else if ([self.activityType isEqualToString: @"trackActivity"]) {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
+    }
+}
+
+- (IBAction)onSlideBarPan:(UIPanGestureRecognizer *)recognizer {
     self.didPan = 1;
-
-    CGPoint translation = [sender translationInView:self.view];
-    //NSLog(@"position %f", sender.view.center.y + translation.y);
-        
-        if (sender.state == UIGestureRecognizerStateChanged)  {
-                
-            if(sender.view.center.y + translation.y >= 100 && sender.view.center.y + translation.y <= 480)
-                {
-                
-                //NSLog(@"position %f", sender.view.center.y + translation.y);
-                sender.view.center = CGPointMake(sender.view.center.x,sender.view.center.y + translation.y);
-                self.currentPosition += translation.y;
-                //NSLog(@"start position %f", self.startPosition);
-                //NSLog(@"current position %f", self.currentPosition);
-                
-                
-                if(abs(self.startPosition - self.currentPosition) >= 10.00f){
-                    if((self.startPosition - self.currentPosition) > 0)
-                        self.activityValue += self.incrementQuantity;
-                    else
-                        self.activityValue -= self.incrementQuantity;
-                    
-                    // decimals for weight
-                    if ([self.activityType isEqualToString: @"trackWeight"]) {
-                        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
-                    }
-                    // no decimals for time
-                    else if ([self.activityType isEqualToString: @"trackActivity"]) {
-                        self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue];
-                    }
-                    
-                    self.startPosition = self.currentPosition;
-                }
-                
-                [sender setTranslation:CGPointZero inView:self.view];
-            }
-        }
-        
-        else if (sender.state == UIGestureRecognizerStateEnded) {
-            //NSLog(@"ended...");
-            //self.startPosition = self.currentPosition;
-            
-            if (self.isActivityValueLabelBig) {
-                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    
-                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
-                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
-                    self.isActivityValueLabelBig = NO;
-                    
-                } completion:^(BOOL finished) {
-                    [self showHint];
-                    [self showArrow];
-                }];
-            }
-            
-            self.didPan = 0;
-        }
-        else if (sender.state == UIGestureRecognizerStateFailed) {
-            NSLog(@"cancelled...");
-            //self.startPosition = self.currentPosition;
-            
-            
-            if (self.isActivityValueLabelBig) {
-                [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    
-                    //self.activityValueLabel.transform = CGAffineTransformMakeScale(0.5, 0.5);
-                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
-                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
-                    self.isActivityValueLabelBig = NO;
-                    
-                } completion:^(BOOL finished) {
-                    [self showHint];
-                    [self showArrow];
-                }];
-            }
-            
-            self.didPan = 0;
-        }
+    static CGPoint startingPosition;
     
-
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        startingPosition = [recognizer locationInView:self.view];
+    } else if (recognizer.state == UIGestureRecognizerStateChanged)  {
+        // Get translation relative to the primary view
+        CGPoint translation = [recognizer translationInView:self.view];
+        CGFloat yTranslation = startingPosition.y + translation.y;
+        
+        // Update position if within valid bounds
+        if (yTranslation >= self.scaleTopHeight && yTranslation <= self.scaleBottomHeight) {
+            recognizer.view.center = CGPointMake(recognizer.view.center.x, yTranslation);
+            [self updateActivityValues];
+        }
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (self.isActivityValueLabelBig) {
+            [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
+                    self.isActivityValueLabelBig = NO;
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                    [self showArrow];
+                }];
+        }
+        
+        self.didPan = 0;
+    } else if (recognizer.state == UIGestureRecognizerStateFailed) {
+        if (self.isActivityValueLabelBig) {
+            [UIView animateWithDuration:.3 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    self.activityValueLabel.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                    self.activityValueLabel.layer.transform = CATransform3DTranslate(self.activityValueLabel.layer.transform, 47.0, 1, 1);
+                    self.activityValueLabel.layer.transform = CATransform3DScale(self.activityValueLabel.layer.transform, .66, .66, 1);
+                    self.isActivityValueLabelBig = NO;
+                } completion:^(BOOL finished) {
+                    [self showHint];
+                    [self showArrow];
+                }];
+        }
+        self.didPan = 0;
+    }
 }
 
 

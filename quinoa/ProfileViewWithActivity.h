@@ -12,5 +12,7 @@
 @interface ProfileViewWithActivity : UIView
 
 @property (strong,nonatomic) User *user;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
+@property BOOL isExpertView;
 
 @end

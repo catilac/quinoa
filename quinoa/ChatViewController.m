@@ -127,8 +127,9 @@ static NSString *CellIdentifier = @"chatCellIdent";
 }
 
 - (void)fetchMessages {
-    // reset the other user's message count since i'm reading it here
-    [self.recipient resetNewMessageCount];
+    // Reset the other user's message count since i'm reading it here;
+    // this is causing an issue because it's trying to save unlogged in user.
+    //[self.recipient resetNewMessageCount];
     NSString *threadId = [Message calcThreadIdWithSender:[User currentUser] recipient:self.recipient];
     [Message getMessagesByThreadId:threadId
                               skip:[self.messages count]

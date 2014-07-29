@@ -157,8 +157,9 @@
     UICollectionReusableView *reusableView = nil;
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
-        
+        headerView.isExpertView = isExpert;
         headerView.user = user;
+        [headerView.profileView.chatButton addTarget:self action:@selector(chatClick:) forControlEvents:UIControlEventTouchUpInside];
         reusableView = headerView;
     }
     return reusableView;

@@ -62,7 +62,7 @@
             </view>
             <constraints>
                 <constraint firstItem="HSH-xb-ZD7" firstAttribute="leading" secondItem="Qxh-yj-bS4" secondAttribute="trailing" constant="3" id="1ja-1r-lAj"/>
-                <constraint firstItem="HSH-xb-ZD7" firstAttribute="top" secondItem="SuF-kS-wrq" secondAttribute="bottom" constant="3" id="6sK-Ai-eVg"/>
+                <constraint firstItem="HSH-xb-ZD7" firstAttribute="top" secondItem="SuF-kS-wrq" secondAttribute="bottom" id="6sK-Ai-eVg"/>
                 <constraint firstItem="Qxh-yj-bS4" firstAttribute="leading" secondItem="KZO-z6-wlU" secondAttribute="trailing" constant="15" id="7gT-LF-ZfT"/>
                 <constraint firstItem="SuF-kS-wrq" firstAttribute="leading" secondItem="KZO-z6-wlU" secondAttribute="trailing" constant="15" id="Cil-mC-251"/>
                 <constraint firstAttribute="bottom" secondItem="KZO-z6-wlU" secondAttribute="bottom" constant="12" id="DJ4-Ko-zjU"/>

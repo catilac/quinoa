@@ -72,7 +72,12 @@
     if ([self.client class] == [User class] && [self.client objectForKey:@"newMessageCount"] != nil) {
         NSNumber *count = [self.client newMessageCount];
         if (count != nil) {
-            self.badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+            self.badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(50, 5, 40, 40)];
+            self.badgeView.shadow = NO;
+            self.badgeView.shine = NO;
+            self.badgeView.fillColor = [Utils getRed];
+            self.badgeView.strokeWidth = 0;
+            self.badgeView.font = [UIFont fontWithName:@"Helvetica" size:14];
             self.badgeView.value = [NSString stringWithFormat:@"%@", count];
             [self.containerCell addSubview:self.badgeView];
         }

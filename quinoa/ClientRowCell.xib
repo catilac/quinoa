@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -29,22 +29,22 @@
                             <constraint firstAttribute="height" constant="60" id="uBu-Xn-YD2"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuF-kS-wrq">
-                        <rect key="frame" x="88" y="20" width="78" height="23"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuF-kS-wrq">
+                        <rect key="frame" x="88" y="20" width="78" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Last active" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-yj-bS4">
-                        <rect key="frame" x="88" y="46" width="66" height="16"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Last active" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-yj-bS4">
+                        <rect key="frame" x="88" y="45" width="66" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSH-xb-ZD7">
-                        <rect key="frame" x="157" y="46" width="34" height="16"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSH-xb-ZD7">
+                        <rect key="frame" x="157" y="45" width="34" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,11 +66,11 @@
                 <constraint firstItem="Qxh-yj-bS4" firstAttribute="leading" secondItem="KZO-z6-wlU" secondAttribute="trailing" constant="15" id="7gT-LF-ZfT"/>
                 <constraint firstItem="SuF-kS-wrq" firstAttribute="leading" secondItem="KZO-z6-wlU" secondAttribute="trailing" constant="15" id="Cil-mC-251"/>
                 <constraint firstAttribute="bottom" secondItem="KZO-z6-wlU" secondAttribute="bottom" constant="12" id="DJ4-Ko-zjU"/>
-                <constraint firstItem="Qxh-yj-bS4" firstAttribute="top" secondItem="SuF-kS-wrq" secondAttribute="bottom" constant="3" id="VFm-PT-ZN1"/>
+                <constraint firstItem="Qxh-yj-bS4" firstAttribute="top" secondItem="SuF-kS-wrq" secondAttribute="bottom" id="VFm-PT-ZN1"/>
                 <constraint firstItem="KZO-z6-wlU" firstAttribute="leading" secondItem="1qe-Cb-dzH" secondAttribute="leading" constant="13" id="YVC-0n-n28"/>
-                <constraint firstAttribute="bottom" secondItem="Qxh-yj-bS4" secondAttribute="bottom" constant="23" id="i3U-46-y93"/>
+                <constraint firstAttribute="bottom" secondItem="Qxh-yj-bS4" secondAttribute="bottom" constant="20" id="i3U-46-y93"/>
                 <constraint firstItem="KZO-z6-wlU" firstAttribute="top" secondItem="1qe-Cb-dzH" secondAttribute="top" constant="13" id="iQn-CF-yc8"/>
-                <constraint firstAttribute="bottom" secondItem="HSH-xb-ZD7" secondAttribute="bottom" constant="23" id="w3P-vn-e2V"/>
+                <constraint firstAttribute="bottom" secondItem="HSH-xb-ZD7" secondAttribute="bottom" constant="20" id="w3P-vn-e2V"/>
                 <constraint firstItem="SuF-kS-wrq" firstAttribute="top" secondItem="1qe-Cb-dzH" secondAttribute="top" constant="20" id="wmC-uk-MuM"/>
             </constraints>
             <size key="customSize" width="310" height="75"/>

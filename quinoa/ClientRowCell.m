@@ -46,6 +46,13 @@
 }
 
 - (void)setClient:(User *)client {
+    
+    // set styles
+    self.nameLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:20];
+    self.lastActiveLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+    self.lastActiveValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+    
+    // set values
     _client = client;
 
     if (self.client.image) {

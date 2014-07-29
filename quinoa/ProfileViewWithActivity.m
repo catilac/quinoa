@@ -8,13 +8,13 @@
 
 #import "ProfileViewWithActivity.h"
 #import "Utils.h"
+#import "BTBadgeView.h"
 
 @interface ProfileViewWithActivity ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *metaLabel;
-@property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property (weak, nonatomic) IBOutlet UIView *divider;
 @property (weak, nonatomic) IBOutlet UILabel *physicalActivityLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editGoalButton;
@@ -57,8 +57,19 @@
     self.metaLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
     self.metaLabel.textColor = [Utils getDarkerGray];
 
-    self.chatButton.backgroundColor = [Utils getGreen];
-    self.chatButton.tintColor = [UIColor whiteColor];
+    self.chatButton.hidden = !self.isExpertView;
+    self.editGoalButton.hidden = !self.isExpertView;
+
+    if (self.isExpertView) {
+        self.chatButton.backgroundColor = [Utils getGreen];
+        self.chatButton.tintColor = [UIColor whiteColor];
+
+        if (user.newMessageCount) {
+            BTBadgeView *badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(240, 0, 40, 40)];
+            badgeView.value = [NSString stringWithFormat:@"%@", user.newMessageCount];
+            [self addSubview:badgeView];
+        }
+    }
 
     self.physicalActivityLabel.textColor = [UIColor whiteColor];
     self.physicalActivityLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 16.0 ];
@@ -66,11 +77,30 @@
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     [self.contentView setBackgroundColor:[Utils getDarkBlue]];
 
-    // Chart
+    // This is eventually going to be a custom view chart.
+    // == chart starts
+    CGFloat percentage = 0.6;
     UIView *chartContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 130, 280, 10)];
-    chartContainer.backgroundColor = [Utils getVibrantBlue];
+    chartContainer.backgroundColor = [Utils getDarkBlue];
     [self addSubview:chartContainer];
 
+    UIView *chartBar = [[UIView alloc] initWithFrame:CGRectMake(20, 130, 280 * percentage, 10)];
+    chartBar.backgroundColor = [Utils getVibrantBlue];
+    [self addSubview:chartBar];
+
+    UILabel *leftStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 100, 15)];
+    leftStatusLabel.text = @"80/240 mins";
+    leftStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
+    leftStatusLabel.textColor = [Utils getDarkerGray];
+    [self addSubview:leftStatusLabel];
+
+    // Need to right align label here
+    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 150, 100, 15)];
+    rightStatusLabel.text = @"4 days left";
+    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
+    rightStatusLabel.textColor = [Utils getDarkerGray];
+    [self addSubview:rightStatusLabel];
+    // == chart ends
 }
 /*
 // Only override drawRect: if you perform custom drawing.

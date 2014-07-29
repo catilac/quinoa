@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileViewWithActivity.h"
 #import "User.h"
 
 @interface ProfileCell : UICollectionViewCell
 
 @property (nonatomic, strong) User *user;
+@property (strong, nonatomic) ProfileViewWithActivity *profileView;
+@property BOOL isExpertView;
 
 @end

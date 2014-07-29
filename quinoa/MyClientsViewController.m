@@ -12,7 +12,6 @@
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
-//#import "ChatViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;

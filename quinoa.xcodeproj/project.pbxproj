@@ -61,6 +61,8 @@
 		532904D4197CFD79005A2E26 /* QuinoaSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532904D3197CFD79005A2E26 /* QuinoaSignUpViewController.m */; };
 		532905181984E18C005A2E26 /* ClientRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 532905171984E18C005A2E26 /* ClientRowCell.m */; };
 		5329051A1984E1BD005A2E26 /* ClientRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532905191984E1BD005A2E26 /* ClientRowCell.xib */; };
+		5329052019860C81005A2E26 /* ProfileViewWithActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5329051F19860C81005A2E26 /* ProfileViewWithActivity.xib */; };
+		5329052219861003005A2E26 /* ProfileViewWithActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5329052119861003005A2E26 /* ProfileViewWithActivity.m */; };
 		5348EC31196940D800E99C4A /* NSDate+dateWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 5348EC30196940D800E99C4A /* NSDate+dateWith.m */; };
 		5354D0751971D76700612FFE /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354D0741971D76700612FFE /* Activity.m */; };
 		5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5354D0791971DC6000612FFE /* ActivitiesCollectionViewController.xib */; };
@@ -187,6 +189,9 @@
 		532905161984E18C005A2E26 /* ClientRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientRowCell.h; sourceTree = "<group>"; };
 		532905171984E18C005A2E26 /* ClientRowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientRowCell.m; sourceTree = "<group>"; };
 		532905191984E1BD005A2E26 /* ClientRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientRowCell.xib; sourceTree = "<group>"; };
+		5329051C19860C69005A2E26 /* ProfileViewWithActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewWithActivity.h; sourceTree = "<group>"; };
+		5329051F19860C81005A2E26 /* ProfileViewWithActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewWithActivity.xib; sourceTree = "<group>"; };
+		5329052119861003005A2E26 /* ProfileViewWithActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewWithActivity.m; sourceTree = "<group>"; };
 		5348EC2F196940D800E99C4A /* NSDate+dateWith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+dateWith.h"; sourceTree = "<group>"; };
 		5348EC30196940D800E99C4A /* NSDate+dateWith.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+dateWith.m"; sourceTree = "<group>"; };
 		5354D0731971D76700612FFE /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
@@ -379,6 +384,7 @@
 				46BDC0B01974EEDC0004387D /* Track Button */,
 				53B1EC75197367EA00101B39 /* Profile Cell */,
 				53B1EC6C1973449E00101B39 /* Profile View */,
+				5329051B19860C39005A2E26 /* Profile View with Activity */,
 				46F73FAC1973156D00E33932 /* Client Cell */,
 				532905151984E153005A2E26 /* Client Row Cell */,
 				5354D07E1971EBD800612FFE /* Activity Cell */,
@@ -585,6 +591,16 @@
 				532905191984E1BD005A2E26 /* ClientRowCell.xib */,
 			);
 			name = "Client Row Cell";
+			sourceTree = "<group>";
+		};
+		5329051B19860C39005A2E26 /* Profile View with Activity */ = {
+			isa = PBXGroup;
+			children = (
+				5329051C19860C69005A2E26 /* ProfileViewWithActivity.h */,
+				5329052119861003005A2E26 /* ProfileViewWithActivity.m */,
+				5329051F19860C81005A2E26 /* ProfileViewWithActivity.xib */,
+			);
+			name = "Profile View with Activity";
 			sourceTree = "<group>";
 		};
 		5348EC261968FCEB00E99C4A /* Login */ = {
@@ -816,6 +832,7 @@
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
 				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
 				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
+				5329052019860C81005A2E26 /* ProfileViewWithActivity.xib in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */,
@@ -903,6 +920,7 @@
 				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
+				5329052219861003005A2E26 /* ProfileViewWithActivity.m in Sources */,
 				532904AF1974FDCF005A2E26 /* PhysicalActivity.m in Sources */,
 				5354D0811971EC8800612FFE /* ActivityCell.m in Sources */,
 				462769DB197636770049482F /* DashboardViewController.m in Sources */,

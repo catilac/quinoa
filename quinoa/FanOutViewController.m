@@ -110,12 +110,6 @@
         self.trackFoodButton.frame = CGRectMake(self.trackFoodButton.frame.origin.x, 203, self.trackFoodButton.frame.size.width, self.trackFoodButton.frame.size.height);
     } completion:^(BOOL finished) {
     }];
-
-
-    
-    
-    
-//    } completion:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kOpenMenu object:nil];
     [super viewWillAppear:animated];

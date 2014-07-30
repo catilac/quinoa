@@ -15,6 +15,8 @@
 @dynamic gender, birthday;
 @dynamic height, weight, currentWeight, averageActivityDuration;
 @dynamic currentTrainer, image;
+@dynamic newMessageCount, newActivityCount;
+@dynamic lastActiveAt;
 
 - (BOOL)isExpert {
     return [self.role isEqualToString:@"expert"];
@@ -111,6 +113,25 @@
     } error:^(NSError *error) {
         NSLog(@"User.updateAverageActivityDuration error: %@", error.description);
     }];
+}
+
+- (void)updateLastActiveAt {
+    self.lastActiveAt = [NSDate date];
+    [self saveInBackground];
+}
+
+- (void)updateNewMessageCount {
+//    if (self.newMessageCount == nil) {
+//        self.newMessageCount = 0;
+//    }
+    double plusOne = [self.newMessageCount doubleValue] + 1;
+    self.newMessageCount = [NSNumber numberWithDouble:plusOne];
+    [self saveInBackground];
+}
+
+- (void)resetNewMessageCount {
+    self.newMessageCount = 0;
+    [self saveInBackground];
 }
 
 - (void)selectExpert:(User *)expert {

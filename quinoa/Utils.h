@@ -14,6 +14,7 @@
 + (NSString *)getSimpleStringFromDate:(NSDate *)date;
 
 + (UIColor *)getDarkBlue;
++ (UIColor *)getDarkerBlue;
 + (UIColor *)getVibrantBlue;
 + (UIColor *)getGreen;
 + (UIColor *)getGray;

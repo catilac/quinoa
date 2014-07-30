@@ -7,10 +7,8 @@
 //
 
 #import "ProfileCell.h"
-#import "ProfileView.h"
 
 @interface ProfileCell ()
-@property (strong, nonatomic) IBOutlet ProfileView *profileView;
 
 @end
 
@@ -28,10 +26,11 @@
 - (void)setUser:(User *)user {
     _user = user;
 
-    ProfileView *profileView = [[ProfileView alloc] initWithFrame:self.frame];
-       profileView.user = self.user;
-    [self addSubview:profileView];
-    [profileView layoutSubviews];
+    self.profileView = [[ProfileViewWithActivity alloc] initWithFrame:self.frame];
+    self.profileView.isExpertView = self.isExpertView;
+    self.profileView.user = self.user;
+    [self addSubview:self.profileView];
+    [self.profileView layoutSubviews];
 }
 
 /*

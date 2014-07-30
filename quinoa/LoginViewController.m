@@ -119,6 +119,7 @@
 
 - (void)setupNavigation {
     User *currentUser = [User currentUser];
+    [currentUser updateLastActiveAt];
     if ([currentUser[@"role"] isEqualToString:@"expert"]) {
         [self setupNavigationForExpert];
     } else {

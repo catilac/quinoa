@@ -24,6 +24,12 @@
     return [UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1];
 }
 
+// FIXME: needs to be the divider/bar chart shade in
+// https://files.slack.com/files-pri/T02BRGK5C-F02EDHBH5/trainer-user-profile.png
++ (UIColor *)getDarkerBlue {
+    return [UIColor colorWithRed:0.267 green:0.337 blue:0.404 alpha:1];
+}
+
 + (UIColor *)getVibrantBlue {
     return [UIColor colorWithRed:0.278 green:0.651 blue:0.839 alpha:1];
 }
@@ -161,4 +167,5 @@
 
     return [difference day];
 }
+
 @end

@@ -50,7 +50,7 @@
         user = [User currentUser];
         isExpert = [user isExpert];
         self.stubCell = [[ActivityCell alloc] init];
-        self.title = @"Activities";
+        self.title = @"Activity";
         self.likes = [[NSMutableArray alloc] init];
         showChat = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -68,7 +68,7 @@
         user = profileUser;
 
         self.stubCell = [[ActivityCell alloc] init];
-        self.title = user.firstName;
+        self.title = isExpert ? @"Activity": user.firstName;
         self.likes = [[NSMutableArray alloc] init];
         showChat = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -157,20 +157,9 @@
     UICollectionReusableView *reusableView = nil;
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
-        
-       headerView.user = user;
-        if(isExpert){
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button addTarget:self
-                   action:@selector(chatClick:)
-            forControlEvents:UIControlEventTouchUpInside];
-            [button setTitle:@"Chat" forState:UIControlStateNormal];
-            button.frame = CGRectMake(20, 150, 280.0, 50.0);
-            button.backgroundColor = [Utils getVibrantBlue];
-            [button setTintColor:[UIColor whiteColor]];
-            button.layer.cornerRadius = 3.0f;
-            [headerView addSubview:button];
-        }
+        headerView.isExpertView = isExpert;
+        headerView.user = user;
+        [headerView.profileView.chatButton addTarget:self action:@selector(chatClick:) forControlEvents:UIControlEventTouchUpInside];
         reusableView = headerView;
     }
     return reusableView;
@@ -250,8 +239,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (isProfile) {
-        float height = isExpert ? 220 : 200;
-        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width, height)];
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width-20, 200)];
     }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];

@@ -1108,7 +1108,7 @@
 					Social,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1130,7 +1130,7 @@
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

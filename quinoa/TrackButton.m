@@ -12,7 +12,6 @@
 @interface TrackButton ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
-@property (assign) Boolean menuOpen;
 @property (nonatomic, strong) UIImageView * trackImage;
 
 @end
@@ -43,18 +42,16 @@
                                                  selector:@selector(openMenu)
                                                      name:kOpenMenu
                                                    object:nil];
-//        // Handle notification for closing menu
+        // Handle notification for closing menu
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onClose)
                                                      name:kCloseMenu
                                                    object:nil];
-
     }
     return self;
 }
 
-- (void)openMenu {
-    
+- (void)openMenu {    
     // Animate Rotation of + icon
     [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.5 initialSpringVelocity:20 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.trackImage.transform = CGAffineTransformMakeRotation(M_PI/4);
@@ -82,7 +79,6 @@
 }
 
 - (void)onClose {
-    
     [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.5 initialSpringVelocity:20 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.trackImage.transform = CGAffineTransformMakeRotation(0);
     } completion:^(BOOL finished) {
@@ -94,7 +90,10 @@
     } completion:nil];
     
     [self setUserInteractionEnabled:NO];
+}
 
+- (void)removeFromSuperview {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

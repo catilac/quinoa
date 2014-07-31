@@ -20,7 +20,7 @@
 #import "MyClientsViewController.h"
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
-#import "DashboardViewController.h"
+#import "NewDashboardViewController.h"
 #import "QuinoaTabBarViewController.h"
 #import "Utils.h"
 
@@ -166,7 +166,7 @@
         expertViewController = [[ExpertBrowserViewController alloc] init];        
     }
     
-    DashboardViewController *dashboardViewController = [[DashboardViewController alloc] init];
+    NewDashboardViewController *dashboardViewController = [[NewDashboardViewController alloc] init];
     UINavigationController *dashboardNavController = [[UINavigationController alloc] initWithRootViewController:dashboardViewController];
     dashboardNavController.tabBarItem.title = @"Dashboard";
     dashboardNavController.tabBarItem.image = [[UIImage imageNamed:@"dashboard"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];

@@ -41,6 +41,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self = [super init];
     if (self) {
         self.recipient = recipient;
+        [self.recipient fetchInBackgroundWithBlock:nil];
     }
     return self;
 }

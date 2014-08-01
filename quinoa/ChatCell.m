@@ -8,6 +8,7 @@
 
 #import "ChatCell.h"
 #import "Utils.h"
+#import "User.h"
 
 static const CGFloat ContainerWidth = 300;
 static const CGFloat MessageWidth = 237;
@@ -31,13 +32,13 @@ static const CGFloat MessageWidth = 237;
 
 - (void)updateChatCellWithMessage:(Message *)message {
     self.message = message;
-    PFUser *currentUser = [PFUser currentUser];
+    User *currentUser = [User currentUser];
     
     self.messageLabel.text = message.text;
     self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.messageLabel.numberOfLines = 0;
     
-    PFUser *sender = (PFUser *)message.sender;
+    User *sender = (User *)message.sender;
     self.usernameLabel.text = sender.username;
     
     UIFont *usernameFont = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 12.0 ];
@@ -53,13 +54,16 @@ static const CGFloat MessageWidth = 237;
         self.backgroundColor = [Utils getLightGray];
         self.messageLabel.textColor = [Utils getDarkBlue];
         self.usernameLabel.textColor = [Utils getDarkBlue];
-        self.userImage.image = [UIImage imageNamed: @"cat.png"];
-        
     } else {
         self.backgroundColor = [Utils getGray];
         self.messageLabel.textColor = [UIColor whiteColor];
         self.usernameLabel.textColor = [Utils getVibrantBlue];
-        self.userImage.image = [UIImage imageNamed: @"dog.png"];
+    }
+    
+    if (sender.image) {
+        [Utils loadImageFile:sender.image inImageView:self.userImage withAnimation:NO];
+    } else {
+        [self.userImage setImage:[sender getPlaceholderImage]];
     }
 }
 

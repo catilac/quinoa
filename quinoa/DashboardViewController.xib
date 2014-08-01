@@ -108,8 +108,8 @@
         </view>
     </objects>
     <resources>
-        <image name="composeActivity" width="120" height="120"/>
-        <image name="composeWeight" width="120" height="120"/>
+        <image name="composeActivity" width="60" height="60"/>
+        <image name="composeWeight" width="60" height="60"/>
         <image name="kudos-selected" width="35" height="34"/>
     </resources>
 </document>

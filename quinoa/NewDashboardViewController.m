@@ -17,10 +17,32 @@
 @property (strong, nonatomic) User *user;
 
 @property (weak, nonatomic) IBOutlet UILabel *goalDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goalLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *dailyMealLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dailyPhysicalActivityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dailyWeightLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *mealsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *poundsLabel;
+
+
+@property (weak, nonatomic) IBOutlet UIView *goalDaysBar;
+@property (weak, nonatomic) IBOutlet UIView *currentDaysBar;
+@property (weak, nonatomic) IBOutlet UIView *activityView;
+@property (weak, nonatomic) IBOutlet UIView *weightview;
+@property (weak, nonatomic) IBOutlet UILabel *weightValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *weightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *metricsHeaderView;
+@property (weak, nonatomic) IBOutlet UIView *metricsView;
+@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *leftDividerView;
+@property (weak, nonatomic) IBOutlet UIView *rightDividerView;
 
 @property int mealTotal;
 @property double physicalActivityTotal;
@@ -44,6 +66,60 @@
     [super viewDidLoad];
 
     [self fetchData];
+    
+    self.title = @"Dashboard";
+    
+    // I can only make the navigation bar opaque by setting it on each page
+    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.translucent = NO;
+    
+    // current, goal days bar
+    self.currentDaysBar.backgroundColor = [Utils getGreen];
+    self.goalDaysBar.backgroundColor = [Utils getDarkerGray];
+    
+    // progress view
+    /*self.progressView.backgroundColor = [Utils getDarkestBlue];
+    self.goalDayLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+    self.goalDayLabel.textColor = [UIColor whiteColor];
+    self.goalLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:14.0f];
+    self.goalLabel.textColor = [Utils getGray];
+    self.progressView.layer.masksToBounds = NO;
+    self.progressView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.progressView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.progressView.layer.shadowRadius = 1.0;*/
+    
+    // weight view
+    self.weightview.backgroundColor = [Utils getDarkestBlue];
+    self.weightValueLabel.textColor = [Utils getVibrantBlue];
+    self.weightLabel.textColor = [Utils getGray];
+    
+    // activity view
+    self.activityView.backgroundColor = [Utils getDarkestBlue];
+    self.activityValueLabel.textColor = [Utils getGreen];
+    self.activityLabel.textColor = [Utils getGray];
+    
+    // metrics header
+    self.metricsHeaderView.backgroundColor = [Utils getGray];
+    self.todayLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+    self.todayLabel.textColor = [Utils getDarkBlue];
+    
+    // metrics
+    self.metricsView.backgroundColor = [Utils getLightGray];
+    self.dailyMealLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
+    self.dailyMealLabel.textColor = [Utils getGray];
+    self.mealsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    self.mealsLabel.textColor = [Utils getGray];
+    self.dailyPhysicalActivityLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
+    self.dailyPhysicalActivityLabel.textColor = [Utils getGray];
+    self.minutesLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    self.minutesLabel.textColor = [Utils getGray];
+    self.dailyWeightLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
+    self.dailyWeightLabel.textColor = [Utils getGray];
+    self.poundsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    self.poundsLabel.textColor = [Utils getGray];
+    
+    //self.leftDividerView.backgroundColor = [Utils getLightGray];
+    //self.rightDividerView.backgroundColor = [Utils getGray];
 }
 
 - (void)didReceiveMemoryWarning

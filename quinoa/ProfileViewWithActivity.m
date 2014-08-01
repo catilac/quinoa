@@ -57,8 +57,6 @@
     self.metaLabel.text = [user getSexAndAge];
     self.metaLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     self.metaLabel.textColor = [Utils getDarkerGray];
-
-    self.progressView.backgroundColor = [Utils getDarkestBlue];
     
     self.chatButton.hidden = !self.isExpertView;
     self.editGoalButton.hidden = !self.isExpertView;
@@ -89,7 +87,9 @@
     self.editGoalButton.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 12.0 ];
     
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
-    [self.contentView setBackgroundColor:[Utils getDarkBlue]];
+    [self.contentView setBackgroundColor:[Utils getDarkestBlue]];
+    
+    self.progressView.backgroundColor = [Utils getDarkestBlue];
 
     // This is eventually going to be a custom view chart.
     // == chart starts

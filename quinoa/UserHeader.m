@@ -54,6 +54,7 @@
     }
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     self.nameLabel.text = [self.user getDisplayName];
+    self.nameLabel.font = [UIFont fontWithName: @"SourceSansPro-Semibold" size: 14.0];
     if (self.activity != nil) {
         NSDate *now = [NSDate date];
         NSDate *sevenDaysAgo = [now dateByAddingTimeInterval:-7*24*60*60];
@@ -68,12 +69,26 @@
         self.metaLabel.text = [self.user getMetaInfo];
     }
     self.bottomBorder.backgroundColor = [Utils getGray];
+    self.bottomBorder.alpha = 0.15;
 
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
     [self.metaLabel setTextColor:[Utils getDarkerGray]];
+    self.metaLabel.font = [UIFont fontWithName: @"SourceSansPro-Regular" size: 12.0];
 
     self.likeButton.hidden = NO;
     [self.likeButton setSelected:self.liked];
+    
+    // top corner radius
+    /*UIBezierPath *maskPath;
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:_backgroundImageView.bounds
+                                     byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
+                                           cornerRadii:CGSizeMake(3.0, 3.0)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    _backgroundImageView.layer.mask = maskLayer;
+    [maskLayer release];*/
 }
 
 - (void)onLike:(id)sender {

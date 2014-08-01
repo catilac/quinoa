@@ -53,6 +53,11 @@
     return [UIColor colorWithRed:0.780 green:0.816 blue:0.851 alpha:1];
 }
 
++ (UIColor *)getGrayBorder {
+    return [UIColor colorWithRed:0.780 green:0.816 blue:0.851 alpha:.36];
+}
+
+
 + (UIColor *)getDarkerGray {
     return [UIColor colorWithRed:0.580 green:0.639 blue:0.651 alpha:1];
 }

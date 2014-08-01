@@ -13,7 +13,7 @@
 #import "WeightActivity.h"
 #import "UserHeader.h"
 
-static const CGFloat UserHeaderHeight = 65;
+static const CGFloat UserHeaderHeight = 50;
 static const CGFloat ActivitySectionHeight = 65;
 static const CGFloat DividerHeight = 20;
 static const CGFloat ImageDimension = 290;
@@ -45,7 +45,7 @@ static const CGFloat ContainerWidth = 300;
         CALayer* layer = self.layer;
         [layer setCornerRadius:3.0f];
         [layer setBorderWidth:1.0f];
-        [layer setBorderColor:[Utils getGray].CGColor];
+        [layer setBorderColor:[Utils getGrayBorder].CGColor];
 
         UINib *nib = [UINib nibWithNibName:@"ActivityCell" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];

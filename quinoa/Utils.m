@@ -22,6 +22,7 @@
 //
 + (UIColor *)getDarkBlue {
     return [UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1];
+    
 }
 
 // FIXME: needs to be the divider/bar chart shade in
@@ -33,7 +34,11 @@
 
 
 + (UIColor *)getDarkerBlue {
-    return [UIColor colorWithRed:0.267 green:0.337 blue:0.404 alpha:1];
+    return [UIColor colorWithRed:67/255.0f green:81/255.0f blue:94/255.0f alpha:1.0f]; /*#43515e*/
+}
+
++ (UIColor *)getDarkestBlue {
+    return [UIColor colorWithRed:60/255.0f green:71/255.0f blue:82/255.0f alpha:1.0f]; /*#3c4752*/
 }
 
 + (UIColor *)getVibrantBlue {

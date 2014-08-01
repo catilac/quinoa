@@ -16,6 +16,7 @@
 #import "Activity.h"
 #import "ActivityLike.h"
 #import "User.h"
+#import "Goal.h"
 #import "Utils.h"
 
 @implementation AppDelegate
@@ -59,6 +60,7 @@
     [Activity registerSubclass];
     [User registerSubclass];
     [ActivityLike registerSubclass];
+    [Goal registerSubclass];
 
     //Parse App Keys
     [Parse setApplicationId:@"Fp5eIufAJJDLCrvaC7ZPBqJmYj5lIQsS2xjLHWQm"

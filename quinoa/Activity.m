@@ -164,6 +164,26 @@
     }];
 }
 
++ (void)getActivityByUser:(User *)user
+                startDate:(NSDate *)startDate
+                  endDate:(NSDate *)endDate
+                  success:(void (^)(NSArray *objects))success
+                    error:(void (^)(NSError *error))error {
+    PFQuery *query = [Activity query];
+    [query whereKey:@"user" equalTo:user];
+    [query whereKey:@"createdAt" greaterThanOrEqualTo:startDate];
+    [query whereKey:@"createdAt" lessThanOrEqualTo:endDate];
+    [query orderByAscending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *errorFromParse) {
+        if (success) {
+            success(objects);
+        }
+        if (errorFromParse) {
+            error(errorFromParse);
+        }
+    }];
+}
+
 + (void)getAverageByUser:(User *)user
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success

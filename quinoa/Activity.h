@@ -63,6 +63,12 @@ typedef enum {
                         success:(void (^)(NSArray *objects))success
                           error:(void (^)(NSError *error))error;
 
++ (void)getActivityByUser:(User *)user
+              startDate:(NSDate *)startDate
+                endDate:(NSDate *)endDate
+                success:(void (^)(NSArray *objects))success
+                  error:(void (^)(NSError *error))error;
+
 + (void)getAverageByUser:(User *)user
               byActivity:(ActivityType)activityType
                  success:(void (^) (NSNumber *average))success

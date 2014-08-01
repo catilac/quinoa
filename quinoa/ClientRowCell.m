@@ -34,7 +34,7 @@
         CALayer* layer = self.layer;
         [layer setCornerRadius:3.0f];
         [layer setBorderWidth:1.0f];
-        [layer setBorderColor:[Utils getGray].CGColor];
+        [layer setBorderColor:[Utils getGrayBorder].CGColor];
         [layer setBackgroundColor:[Utils getLightGray].CGColor];
 
         UINib *nib = [UINib nibWithNibName:@"ClientRowCell" bundle:nil];

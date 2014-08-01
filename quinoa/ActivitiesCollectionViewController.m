@@ -239,7 +239,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (isProfile) {
-        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width-20, 200)];
+        [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width-20, 180)];
     }
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setCollectionViewLayout:flowLayout];

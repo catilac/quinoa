@@ -12,7 +12,7 @@
 #import "DateTools.h"
 #import "BTBadgeView.h"
 
-@interface ClientRowCell ()
+@interface ClientRowCell () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastActiveValueLabel;
 @property (strong, nonatomic) UICollectionViewCell *containerCell;
 @property (strong, nonatomic) BTBadgeView *badgeView;
+@property (weak, nonatomic) IBOutlet UILabel *nudgeLabel;
+@property (weak, nonatomic) IBOutlet UIView *nudgeContainer;
 
 @end
 
@@ -37,10 +39,17 @@
 
         UINib *nib = [UINib nibWithNibName:@"ClientRowCell" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
-
+        
         self.containerCell = objects[0];
         [self.contentView addSubview:self.containerCell];
         [self.containerCell setFrame:self.contentView.frame];
+        
+        // Add gesture user cell
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onUserPan:)];
+        [self addGestureRecognizer: panGestureRecognizer];
+        panGestureRecognizer.delegate = self;
+
+        
     }
     return self;
 }
@@ -51,9 +60,13 @@
     self.nameLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:18];
     self.lastActiveLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
     self.lastActiveValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+    self.nudgeLabel.textColor = [Utils getOrange];
     
     // set values
     _client = client;
+    
+    
+
 
     if (self.client.image) {
         [Utils loadImageFile:self.client.image inImageView:self.imageView withAnimation:YES];
@@ -87,6 +100,7 @@
             self.badgeView.font = [UIFont fontWithName:@"Helvetica" size:16];
             self.badgeView.value = [NSString stringWithFormat:@"%@", count];
             [self.containerCell addSubview:self.badgeView];
+            self.nudgeContainer.layer.opacity = 0;
         }
     }
 }
@@ -103,5 +117,52 @@
     // Drawing code
 }
 */
+
+- (IBAction)onUserPan:(UIPanGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan){
+        NSLog(@"Gesture began");
+        
+    } else if (sender.state == UIGestureRecognizerStateChanged){
+    
+        CGPoint translation = [sender translationInView:self.contentView];
+        
+        
+        if (sender.view.center.x > 159 ){
+            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
+            [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
+            
+            CGFloat shiftValue;
+            shiftValue = (sender.view.center.x - 140)*0.01;
+            
+            self.nudgeContainer.layer.opacity = shiftValue;
+            
+        } else {
+            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.1, sender.view.center.y);
+            [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
+        }
+    
+    } else if (sender.state == UIGestureRecognizerStateEnded){
+        
+        [UIView animateWithDuration:.8 delay:0 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+            sender.view.center = CGPointMake(160, sender.view.center.y);
+            
+        } completion:^(BOOL finished) {
+            NSLog(@"Animation Ended");
+        }];
+    }
+    
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    
+    UIPanGestureRecognizer *recognizer = (UIPanGestureRecognizer *)gestureRecognizer;
+    CGPoint velocity =[recognizer velocityInView:self];
+    if(abs(velocity.y)>=(abs(velocity.x))){
+        return NO;
+    }else return YES;
+    
+}
+
 
 @end

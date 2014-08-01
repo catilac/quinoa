@@ -161,8 +161,10 @@
                         }];
     [Goal getCurrentGoalByUser:self.user
                        success:^(Goal *goal) {
-                           NSInteger day = [Utils daysBetweenDate:goal.startAt andDate:today];
-                           self.goalDayLabel.text = [NSString stringWithFormat:@"%d day progress", day];
+                           if (goal != nil) {
+                               NSInteger day = [Utils daysBetweenDate:goal.startAt andDate:today];
+                               self.goalDayLabel.text = [NSString stringWithFormat:@"%d day progress", day];
+                           }
                        }
                          error:^(NSError *error) {
 

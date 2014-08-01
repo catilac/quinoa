@@ -47,24 +47,24 @@ static const CGFloat MessageWidth = 237;
     self.userImage.layer.cornerRadius = 20.0;
     self.userImage.layer.masksToBounds = YES;
     
-    UIFont *msgFont = [ UIFont fontWithName: @"SourceSansPro-Light" size: 16.0 ];
+    UIFont *msgFont = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     self.messageLabel.font = msgFont;
     
     if ([message.sender.username isEqualToString:currentUser.username]) {
+        self.backgroundColor = [Utils getVibrantBlue];
+        self.messageLabel.textColor = [UIColor whiteColor];
+        self.usernameLabel.textColor = [Utils getLightGray];
+    } else {
         self.backgroundColor = [Utils getLightGray];
         self.messageLabel.textColor = [Utils getDarkBlue];
-        self.usernameLabel.textColor = [Utils getDarkBlue];
-    } else {
-        self.backgroundColor = [Utils getGray];
-        self.messageLabel.textColor = [UIColor whiteColor];
         self.usernameLabel.textColor = [Utils getVibrantBlue];
     }
     
-    if (sender.image) {
+    /*if (sender.image) {
         [Utils loadImageFile:sender.image inImageView:self.userImage withAnimation:NO];
     } else {
         [self.userImage setImage:[sender getPlaceholderImage]];
-    }
+    }*/
 }
 
 - (CGSize)cellSize {

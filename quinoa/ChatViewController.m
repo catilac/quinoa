@@ -11,8 +11,9 @@
 #import "ChatCell.h"
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
+#import "ProfileViewSimple.h"
 
-@interface ChatViewController ()
+@interface ChatViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *chatView;
 @property (weak, nonatomic) IBOutlet UITextField *chatInput;
@@ -23,9 +24,11 @@
 @property (strong, nonatomic) NSTimer *queryTimer;
 
 @property (strong, nonatomic) ChatCell *stubCell;
+@property (strong, nonatomic) ProfileViewSimple *profileHeader;
 
 @property (assign) Boolean keyboardOut;
 @property (assign) CGSize kbSize;
+@property (assign) Boolean headerOut;
 
 - (void)willShowKeyboard:(NSNotification *)notification;
 - (void)willHideKeyboard:(NSNotification *)notification;
@@ -76,6 +79,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(5, 5, 10, 10)];
     
     [self.chatView setCollectionViewLayout:flowLayout];
     
@@ -84,6 +88,12 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                    selector:@selector(fetchMessages)
                                    userInfo:nil
                                     repeats:YES];
+    
+    self.profileHeader = [[ProfileViewSimple alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    self.profileHeader.backgroundColor = [Utils getDarkBlue];
+    self.profileHeader.alpha = 0.95;
+    [self.profileHeader setUser:self.recipient];
+    [self.view addSubview:self.profileHeader];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -101,6 +111,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                          self.inputContainer.frame.size.width,
                                          self.inputContainer.frame.size.height);
     }
+    
+    [self scrollToBottom];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -117,6 +129,27 @@ static NSString *CellIdentifier = @"chatCellIdent";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGPoint scrollVelocity = [self.chatView.panGestureRecognizer velocityInView:self.chatView.superview];
+    
+    //NSLog(@"%f", scrollVelocity.y);
+    if (scrollVelocity.y > 1000.0f) {
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            self.profileHeader.alpha = 0.95;
+            [self.profileHeader setTransform:CGAffineTransformMakeTranslation(0.0, 0.0)];
+        } completion:nil];
+    }
+    else if (scrollVelocity.y < -1000.0f) {
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            self.profileHeader.alpha = 0.0;
+            [self.profileHeader setTransform:CGAffineTransformMakeTranslation(0.0, -20.0)];
+        } completion:nil];
+    }
+    
+}
+
 
 - (IBAction)onSend:(id)sender {
     
@@ -146,7 +179,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
                                    
                                    [self.chatView insertItemsAtIndexPaths:arrayWithIndexPaths];
                                } completion:^(BOOL finished) {
-                                   [self scrollToBottom];
+                                   //[self scrollToBottom];
                                }];
                            } error:^(NSError *error) {
                                NSLog(@"ERROR");

@@ -17,12 +17,15 @@
 #import "ProfileViewController.h"
 #import "Activity.h"
 #import "ActivityLike.h"
+#import "Goal.h"
+
 #import "ActivityCell.h"
 #import "ProfileCell.h"
 #import "UILabel+QuinoaLabel.h"
 #import "MBProgressHUD.h"
 #import "Utils.h"
 #import "ChatViewController.h"
+#import "GoalEditView.h"
 
 @interface ActivitiesCollectionViewController ()
 {
@@ -31,13 +34,16 @@
     BOOL isExpert;
     BOOL isProfile;
     BOOL showChat;
+    BOOL goalDisplayed;
 }
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) ActivityCell *stubCell;
+@property (strong, nonatomic) GoalEditView *goalEditView;
 @property (strong, nonatomic) NSArray *activities; // may have to change to NSMutableArray later on
 @property (strong, nonatomic) NSMutableArray *likes;
+@property (strong, nonatomic) Goal *goal;
 @end
 
 @implementation ActivitiesCollectionViewController
@@ -53,6 +59,7 @@
         self.title = @"Activity";
         self.likes = [[NSMutableArray alloc] init];
         showChat = NO;
+        goalDisplayed = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onActivityLiked:)
                                                      name:@"activityLiked"
@@ -159,6 +166,7 @@
     if (isProfile && kind == UICollectionElementKindSectionHeader) {
         ProfileCell *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCell" forIndexPath:indexPath];
         headerView.isExpertView = isExpert;
+        headerView.goalDelegate = self;
         headerView.user = user;
         [headerView.profileView.chatButton addTarget:self action:@selector(chatClick:) forControlEvents:UIControlEventTouchUpInside];
         reusableView = headerView;
@@ -217,6 +225,12 @@
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     }
+    [Goal getCurrentGoalByUser:user success:^(Goal *goal) {
+        NSLog(@"[ActivitiesCollection my goal]: %@", goal);
+        self.goal = goal;
+    } error:^(NSError *error) {
+        NSLog(@"[ActivitiesCollection my goal] error: %@", error.description);
+    }];
 }
 
 - (void)fetchActivityLikes {
@@ -265,4 +279,22 @@
     return [self.likes indexOfObject:activity.objectId] != NSNotFound;
 }
 
+- (void)showGoalUIClicked {
+    if (goalDisplayed) {
+        // SAVE HERE
+
+        [self.goalEditView removeFromSuperview];
+        self.goalEditView = nil;
+    } else {
+        self.goalEditView = [[GoalEditView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
+        self.goalEditView.user = user;
+        if (self.goal) {
+            self.goalEditView.goal = self.goal;
+        } else {
+            self.goalEditView.goal = [[Goal alloc] init];
+        }
+        [self.view addSubview:self.goalEditView];
+    }
+    goalDisplayed = !goalDisplayed;
+}
 @end

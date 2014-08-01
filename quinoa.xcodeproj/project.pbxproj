@@ -80,6 +80,8 @@
 		53D0DA26198A1DC700CFAABA /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA25198A1DC700CFAABA /* Goal.m */; };
 		53D0DA2D198A20BD00CFAABA /* NewDashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D0DA2B198A20BD00CFAABA /* NewDashboardViewController.xib */; };
 		53D0DA2F198A21C500CFAABA /* NewDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA2E198A21C500CFAABA /* NewDashboardViewController.m */; };
+		53D0DA3C198B4E0D00CFAABA /* GoalEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA3A198B4E0D00CFAABA /* GoalEditView.m */; };
+		53D0DA3D198B4E0D00CFAABA /* GoalEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D0DA3B198B4E0D00CFAABA /* GoalEditView.xib */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		7A44F3C2198B5E4300408A69 /* ProfileViewSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */; };
 		7A44F3C4198B5E6A00408A69 /* ProfileViewSimple.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */; };
@@ -227,6 +229,9 @@
 		7A44F3C0198B5E4300408A69 /* ProfileViewSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewSimple.h; sourceTree = "<group>"; };
 		7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewSimple.m; sourceTree = "<group>"; };
 		7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewSimple.xib; sourceTree = "<group>"; };
+		53D0DA39198B4E0D00CFAABA /* GoalEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalEditView.h; sourceTree = "<group>"; };
+		53D0DA3A198B4E0D00CFAABA /* GoalEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalEditView.m; sourceTree = "<group>"; };
+		53D0DA3B198B4E0D00CFAABA /* GoalEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalEditView.xib; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -394,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				7A44F3BF198B5DB900408A69 /* Profile View Simple */,
+				53D0DA38198B4DE000CFAABA /* Goal Edit View */,
 				460992C11977C69300F03200 /* Activity Like Cell */,
 				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
 				46BDC0B01974EEDC0004387D /* Track Button */,
@@ -725,6 +731,14 @@
 				7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */,
 			);
 			name = "Profile View Simple";
+		53D0DA38198B4DE000CFAABA /* Goal Edit View */ = {
+			isa = PBXGroup;
+			children = (
+				53D0DA39198B4E0D00CFAABA /* GoalEditView.h */,
+				53D0DA3A198B4E0D00CFAABA /* GoalEditView.m */,
+				53D0DA3B198B4E0D00CFAABA /* GoalEditView.xib */,
+			);
+			name = "Goal Edit View";
 			sourceTree = "<group>";
 		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
@@ -874,6 +888,7 @@
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
 				532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */,
+				53D0DA3D198B4E0D00CFAABA /* GoalEditView.xib in Resources */,
 				9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
 				532904B11974FDF3005A2E26 /* PhysicalActivity.xib in Resources */,
@@ -954,6 +969,7 @@
 				46F73FAF1973159B00E33932 /* ClientCell.m in Sources */,
 				9FD3344A196BA6DC003E1727 /* ArticlesViewController.m in Sources */,
 				53B1EC6919730C6800101B39 /* UILabel+QuinoaLabel.m in Sources */,
+				53D0DA3C198B4E0D00CFAABA /* GoalEditView.m in Sources */,
 				465C1FF71969540F008BFD30 /* ChatViewController.m in Sources */,
 				532905181984E18C005A2E26 /* ClientRowCell.m in Sources */,
 				53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */,

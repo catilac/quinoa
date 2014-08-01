@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
+@protocol GoalUIDelegate <NSObject>
+
+-(void) showGoalUIClicked;
+
+@end
+
+
 @interface ProfileViewWithActivity : UIView
 
 @property (strong,nonatomic) User *user;
 @property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property BOOL isExpertView;
+
+@property (nonatomic, assign) id<GoalUIDelegate> myDelegate;
 
 @end

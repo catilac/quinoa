@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 
 @property (strong, nonatomic) UIView *contentView;
+@property BOOL isGoalEdit;
 
 @end
 
@@ -44,6 +45,7 @@
 
 - (void)setUser:(User *)user {
     _user = user;
+    self.isGoalEdit = NO;
 
     self.nameLabel.text = [user getDisplayName];
     self.nameLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 18.0 ];
@@ -78,6 +80,7 @@
             badgeView.value = [NSString stringWithFormat:@"%@", user.newMessageCount];
             [self addSubview:badgeView];
         }
+        [self.editGoalButton addTarget:self action:@selector(showGoalEdit:) forControlEvents:UIControlEventTouchUpInside];
     }
 
     self.physicalActivityLabel.textColor = [Utils getDarkerGray];
@@ -116,6 +119,19 @@
     rightStatusLabel.textColor = [Utils getDarkerGray];
     [self addSubview:rightStatusLabel];
     // == chart ends
+}
+
+-(void)showGoalEdit:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    self.isGoalEdit = !self.isGoalEdit;
+    if (self.isGoalEdit) {
+        [button setTitle:@"Save" forState:UIControlStateNormal];
+    } else {
+        [button setTitle:@"Edit Goal" forState:UIControlStateNormal];
+    }
+    if ([self.myDelegate respondsToSelector:@selector(showGoalUIClicked)]) {
+        [self.myDelegate showGoalUIClicked];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

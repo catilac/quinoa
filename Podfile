@@ -9,6 +9,7 @@ target "quinoa" do
   pod 'MBProgressHUD', '~> 0.5'
   pod 'DateTools'
   pod 'BTBadgeView'
+  pod 'ASValueTrackingSlider'
 end
 
 target "quinoaTests" do

@@ -43,7 +43,7 @@ static NSString *CellIdentifier = @"ClientRowCell";
     self.myClientsCollection.delegate = self;
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(300, 60)];
+    [flowLayout setItemSize:CGSizeMake(300, 80)];
     
     // Spacing for flowlayout
     [flowLayout setMinimumLineSpacing:8];

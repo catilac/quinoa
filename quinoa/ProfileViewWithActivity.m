@@ -36,7 +36,7 @@
         [self addSubview:self.contentView];
 
         // FIXME
-        [self.divider setBackgroundColor:[Utils getDarkerGray]];
+        [self.divider setBackgroundColor:[Utils getShadowBlue]];
     }
     return self;
 }
@@ -45,7 +45,7 @@
     _user = user;
 
     self.nameLabel.text = [user getDisplayName];
-    self.nameLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 16.0 ];
+    self.nameLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 18.0 ];
     self.nameLabel.textColor = [UIColor whiteColor];
 
     if (user.image) {
@@ -54,7 +54,7 @@
         [self.imageView setImage:[user getPlaceholderImage]];
     }
     self.metaLabel.text = [user getSexAndAge];
-    self.metaLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
+    self.metaLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     self.metaLabel.textColor = [Utils getDarkerGray];
 
     self.chatButton.hidden = !self.isExpertView;
@@ -62,42 +62,54 @@
 
     if (self.isExpertView) {
         self.chatButton.backgroundColor = [Utils getGreen];
+        self.chatButton.layer.cornerRadius = 4.0;
+        self.chatButton.layer.borderWidth = 2.0;
+        self.chatButton.layer.borderColor = [Utils getShadowBlue].CGColor;
         self.chatButton.tintColor = [UIColor whiteColor];
 
         if (user.newMessageCount) {
-            BTBadgeView *badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(240, 0, 40, 40)];
+            BTBadgeView *badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(276, -6, 40, 40)];
+            badgeView.shadow = NO;
+            badgeView.shine = NO;
+            badgeView.fillColor = [Utils getRed];
+            badgeView.strokeColor = [Utils getRed];
+            badgeView.font = [UIFont fontWithName:@"Helvetica" size:16];
             badgeView.value = [NSString stringWithFormat:@"%@", user.newMessageCount];
             [self addSubview:badgeView];
         }
     }
 
     self.physicalActivityLabel.textColor = [UIColor whiteColor];
-    self.physicalActivityLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 16.0 ];
+    self.physicalActivityLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 18.0 ];
+    
     self.editGoalButton.tintColor = [Utils getGreen];
+    self.editGoalButton.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
+    
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     [self.contentView setBackgroundColor:[Utils getDarkBlue]];
 
     // This is eventually going to be a custom view chart.
     // == chart starts
     CGFloat percentage = 0.6;
-    UIView *chartContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 130, 280, 10)];
-    chartContainer.backgroundColor = [Utils getDarkBlue];
+    UIView *chartContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 132, 280, 10)];
+    chartContainer.backgroundColor = [Utils getShadowBlue];
     [self addSubview:chartContainer];
 
-    UIView *chartBar = [[UIView alloc] initWithFrame:CGRectMake(20, 130, 280 * percentage, 10)];
+    UIView *chartBar = [[UIView alloc] initWithFrame:CGRectMake(20, 132, 280 * percentage, 10)];
     chartBar.backgroundColor = [Utils getVibrantBlue];
     [self addSubview:chartBar];
 
-    UILabel *leftStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 100, 15)];
+    UILabel *leftStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 154, 100, 18)];
     leftStatusLabel.text = @"80/240 mins";
-    leftStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
+    leftStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     leftStatusLabel.textColor = [Utils getDarkerGray];
     [self addSubview:leftStatusLabel];
 
     // Need to right align label here
-    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 150, 100, 15)];
+    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(198, 154, 100, 18)];
     rightStatusLabel.text = @"4 days left";
-    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 13.0 ];
+    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
+    rightStatusLabel.textAlignment = UITextAlignmentRight;
     rightStatusLabel.textColor = [Utils getDarkerGray];
     [self addSubview:rightStatusLabel];
     // == chart ends

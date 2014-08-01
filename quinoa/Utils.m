@@ -27,6 +27,12 @@
 
 // FIXME: needs to be the divider/bar chart shade in
 // https://files.slack.com/files-pri/T02BRGK5C-F02EDHBH5/trainer-user-profile.png
+
++ (UIColor *)getShadowBlue {
+    return [UIColor colorWithRed:0.227 green:0.306 blue:0.380 alpha:1];
+}
+
+
 + (UIColor *)getDarkerBlue {
     return [UIColor colorWithRed:67/255.0f green:81/255.0f blue:94/255.0f alpha:1.0f]; /*#43515e*/
 }

@@ -48,9 +48,9 @@
 - (void)setClient:(User *)client {
     
     // set styles
-    self.nameLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16];
-    self.lastActiveLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:12];
-    self.lastActiveValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:12];
+    self.nameLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:18];
+    self.lastActiveLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+    self.lastActiveValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
     
     // set values
     _client = client;
@@ -79,12 +79,12 @@
     if ([self.client class] == [User class] && [self.client objectForKey:@"newMessageCount"] != nil) {
         NSNumber *count = [self.client newMessageCount];
         if (count != nil) {
-            self.badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(30, 0, 40, 40)];
+            self.badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(40, 0, 40, 40)];
             self.badgeView.shadow = NO;
             self.badgeView.shine = NO;
             self.badgeView.fillColor = [Utils getRed];
-            self.badgeView.strokeWidth = 0;
-            self.badgeView.font = [UIFont fontWithName:@"Helvetica" size:14];
+            self.badgeView.strokeColor = [Utils getRed];
+            self.badgeView.font = [UIFont fontWithName:@"Helvetica" size:16];
             self.badgeView.value = [NSString stringWithFormat:@"%@", count];
             [self.containerCell addSubview:self.badgeView];
         }

@@ -15,6 +15,7 @@
 
 + (UIColor *)getDarkBlue;
 + (UIColor *)getDarkerBlue;
++ (UIColor *)getShadowBlue;
 + (UIColor *)getDarkestBlue;
 + (UIColor *)getVibrantBlue;
 + (UIColor *)getGreen;

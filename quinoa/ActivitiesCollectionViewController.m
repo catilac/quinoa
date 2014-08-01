@@ -68,7 +68,8 @@
         user = profileUser;
 
         self.stubCell = [[ActivityCell alloc] init];
-        self.title = isExpert ? @"Activity": user.firstName;
+        //self.title = isExpert ? @"Activity": user.firstName;
+        self.title = isExpert ? user.firstName : @"Activity";
         self.likes = [[NSMutableArray alloc] init];
         showChat = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -246,7 +247,7 @@
 
     if (isProfile && !isExpert) {
         UIBarButtonItem *profileButton = [[UIBarButtonItem alloc]
-                                          initWithTitle:@"Edit Profile"
+                                          initWithTitle:@"Edit"
                                           style:UIBarButtonItemStylePlain
                                           target:self
                                           action:@selector(showProfile:)];

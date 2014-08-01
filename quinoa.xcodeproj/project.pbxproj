@@ -81,6 +81,8 @@
 		53D0DA2D198A20BD00CFAABA /* NewDashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D0DA2B198A20BD00CFAABA /* NewDashboardViewController.xib */; };
 		53D0DA2F198A21C500CFAABA /* NewDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA2E198A21C500CFAABA /* NewDashboardViewController.m */; };
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
+		7A44F3C2198B5E4300408A69 /* ProfileViewSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */; };
+		7A44F3C4198B5E6A00408A69 /* ProfileViewSimple.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
 		9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD3343E196BA6DC003E1727 /* ProfileViewController.xib */; };
@@ -222,6 +224,9 @@
 		53D0DA29198A20BD00CFAABA /* NewDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDashboardViewController.h; sourceTree = "<group>"; };
 		53D0DA2B198A20BD00CFAABA /* NewDashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewDashboardViewController.xib; sourceTree = "<group>"; };
 		53D0DA2E198A21C500CFAABA /* NewDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDashboardViewController.m; sourceTree = "<group>"; };
+		7A44F3C0198B5E4300408A69 /* ProfileViewSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewSimple.h; sourceTree = "<group>"; };
+		7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewSimple.m; sourceTree = "<group>"; };
+		7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewSimple.xib; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -388,6 +393,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7A44F3BF198B5DB900408A69 /* Profile View Simple */,
 				460992C11977C69300F03200 /* Activity Like Cell */,
 				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
 				46BDC0B01974EEDC0004387D /* Track Button */,
@@ -711,6 +717,16 @@
 			name = "New Dashboard";
 			sourceTree = "<group>";
 		};
+		7A44F3BF198B5DB900408A69 /* Profile View Simple */ = {
+			isa = PBXGroup;
+			children = (
+				7A44F3C0198B5E4300408A69 /* ProfileViewSimple.h */,
+				7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */,
+				7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */,
+			);
+			name = "Profile View Simple";
+			sourceTree = "<group>";
+		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,6 +881,7 @@
 				5354D07B1971DC6000612FFE /* ActivitiesCollectionViewController.xib in Resources */,
 				9FD3344B196BA6DC003E1727 /* ArticlesViewController.xib in Resources */,
 				460447B51964ECC600DDE6C6 /* Images.xcassets in Resources */,
+				7A44F3C4198B5E6A00408A69 /* ProfileViewSimple.xib in Resources */,
 				462769DC197636770049482F /* DashboardViewController.xib in Resources */,
 				465DFE44196947C800817222 /* ExpertDetailViewController.xib in Resources */,
 				46437E151971E1D700A70338 /* TrackEatingViewController.xib in Resources */,
@@ -968,6 +985,7 @@
 				532904D4197CFD79005A2E26 /* QuinoaSignUpViewController.m in Sources */,
 				532904D1197CFC5E005A2E26 /* QuinoaLoginViewController.m in Sources */,
 				465DFE43196947C800817222 /* ExpertDetailViewController.m in Sources */,
+				7A44F3C2198B5E4300408A69 /* ProfileViewSimple.m in Sources */,
 				9FD33448196BA6DC003E1727 /* ArticleCell.m in Sources */,
 				46907788197276FB00CF9DBC /* FanOutViewController.m in Sources */,
 				460992C51977C6B400F03200 /* ActivityLikeCell.m in Sources */,

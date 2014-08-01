@@ -49,7 +49,6 @@
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
 
-
     // See here for customizing slider:
     // https://github.com/alskipp/ASValueTrackingSlider/blob/master/README.md
 
@@ -77,14 +76,17 @@
 
 - (void)weightChanged:(ASValueTrackingSlider *)slider {
     self.weightLabel.text = [NSString stringWithFormat:@"%.0f lbs", slider.value];
+    self.targetWeight = [NSNumber numberWithInt:(int)slider.value];
 }
 
 - (void)dateChanged:(ASValueTrackingSlider *)slider {
     self.targetDateLabel.text = [NSString stringWithFormat:@"%.0f days", slider.value];
+    self.targetDate = [NSNumber numberWithInt:(int)slider.value];
 }
 
 - (void)physicalActivityDurationChanged:(ASValueTrackingSlider *)slider {
     self.physicalActivityDurationLabel.text = [Utils getFriendlyTime:[NSNumber numberWithFloat:slider.value]];
+    self.targetDailyDuration = [NSNumber numberWithInt:(int)slider.value];
 }
 
 - (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value {

@@ -54,7 +54,7 @@
     }
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
     self.nameLabel.text = [self.user getDisplayName];
-    self.nameLabel.font = [UIFont fontWithName: @"SourceSansPro-Semibold" size: 14.0];
+    self.nameLabel.font = [UIFont fontWithName: @"SourceSansPro-Semibold" size: 15.0];
     if (self.activity != nil) {
         NSDate *now = [NSDate date];
         NSDate *sevenDaysAgo = [now dateByAddingTimeInterval:-7*24*60*60];
@@ -69,11 +69,11 @@
         self.metaLabel.text = [self.user getMetaInfo];
     }
     self.bottomBorder.backgroundColor = [Utils getGray];
-    self.bottomBorder.alpha = 0.15;
+    self.bottomBorder.layer.backgroundColor = [Utils getGrayBorder].CGColor;
 
     [self.nameLabel setTextColor:[Utils getDarkBlue]];
     [self.metaLabel setTextColor:[Utils getDarkerGray]];
-    self.metaLabel.font = [UIFont fontWithName: @"SourceSansPro-Regular" size: 12.0];
+    self.metaLabel.font = [UIFont fontWithName: @"SourceSansPro-Regular" size: 14.0];
 
     self.likeButton.hidden = NO;
     [self.likeButton setSelected:self.liked];

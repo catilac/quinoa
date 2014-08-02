@@ -91,7 +91,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     
     self.profileHeader = [[ProfileViewSimple alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     self.profileHeader.backgroundColor = [Utils getDarkBlue];
-    self.profileHeader.alpha = 0.95;
+    self.profileHeader.alpha = 1;
     [self.profileHeader setUser:self.recipient];
     [self.view addSubview:self.profileHeader];
 }
@@ -137,7 +137,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     //NSLog(@"%f", scrollVelocity.y);
     if (scrollVelocity.y > 1000.0f) {
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.profileHeader.alpha = 0.95;
+            self.profileHeader.alpha = 1;
             [self.profileHeader setTransform:CGAffineTransformMakeTranslation(0.0, 0.0)];
         } completion:nil];
     }

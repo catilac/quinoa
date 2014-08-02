@@ -89,12 +89,12 @@
     self.progressView.layer.shadowRadius = 1.0;*/
     
     // weight view
-    self.weightview.backgroundColor = [Utils getDarkestBlue];
+    self.weightview.backgroundColor = [Utils getDarkBlue];
     self.weightValueLabel.textColor = [Utils getVibrantBlue];
     self.weightLabel.textColor = [Utils getGray];
     
     // activity view
-    self.activityView.backgroundColor = [Utils getDarkestBlue];
+    self.activityView.backgroundColor = [Utils getDarkBlue];
     self.activityValueLabel.textColor = [Utils getGreen];
     self.activityLabel.textColor = [Utils getGray];
     

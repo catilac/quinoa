@@ -79,7 +79,7 @@
     self.lastActiveValueLabel.text = [[[self.client lastActiveAt] timeAgoSinceNow] lowercaseString];
     NSDate *today = [NSDate date];
     if ([today daysFrom:self.client.lastActiveAt] > 21) {
-        [self.lastActiveValueLabel setTextColor:[UIColor redColor]];
+        [self.lastActiveValueLabel setTextColor:[Utils getRed]];
     } else {
         [self.lastActiveValueLabel setTextColor:[Utils getDarkerGray]];
     }

@@ -22,7 +22,6 @@
 //
 + (UIColor *)getDarkBlue {
     return [UIColor colorWithRed:0.267 green:0.341 blue:0.412 alpha:1];
-    
 }
 
 // FIXME: needs to be the divider/bar chart shade in
@@ -31,7 +30,6 @@
 + (UIColor *)getShadowBlue {
     return [UIColor colorWithRed:0.227 green:0.306 blue:0.380 alpha:1];
 }
-
 
 + (UIColor *)getDarkerBlue {
     return [UIColor colorWithRed:67/255.0f green:81/255.0f blue:94/255.0f alpha:1.0f]; /*#43515e*/
@@ -47,6 +45,10 @@
 
 + (UIColor *)getGreen {
     return [UIColor colorWithRed:0.263 green:0.800 blue:0.522 alpha:1];
+}
+
++ (UIColor *)getGreenClear {
+    return [UIColor colorWithRed:0.263 green:0.800 blue:0.522 alpha:0.85];
 }
 
 + (UIColor *)getGray {
@@ -152,14 +154,14 @@
     float minutes = [seconds floatValue] / 60;
     if (minutes >= 60) {
         int hours = floor(minutes / 60);
-        result = [NSString stringWithFormat:@"%d %@", hours, ((hours < 2) ? @"Hour" : @"Hours")];
+        result = [NSString stringWithFormat:@"%d %@", hours, ((hours < 2) ? @"h" : @"h")];
         float remainingMinutes = floorf((minutes - (hours * 60)) * 100) / 100;
         if (remainingMinutes > 0) {
-            NSString *minutesInString = [NSString stringWithFormat:@" %0.0f %@", remainingMinutes, ((remainingMinutes < 2) ? @"minute" : @"minutes")];
+            NSString *minutesInString = [NSString stringWithFormat:@" %0.0f %@", remainingMinutes, ((remainingMinutes < 2) ? @"m" : @"m")];
             result = [result stringByAppendingString:minutesInString];
         }
     } else {
-        result = [NSString stringWithFormat:@"%0.0f %@", minutes, ((minutes < 2) ? @"Minute" : @"Minutes")];
+        result = [NSString stringWithFormat:@"%0.0f %@", minutes, ((minutes < 2) ? @"m" : @"m")];
     }
     return result;
 }

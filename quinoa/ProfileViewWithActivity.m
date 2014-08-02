@@ -71,7 +71,7 @@
         self.chatButton.tintColor = [UIColor whiteColor];
 
         if (user.newMessageCount) {
-            BTBadgeView *badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(276, -6, 40, 40)];
+            BTBadgeView *badgeView = [[BTBadgeView alloc] initWithFrame:CGRectMake(276, -2, 40, 40)];
             badgeView.shadow = NO;
             badgeView.shine = NO;
             badgeView.fillColor = [Utils getRed];

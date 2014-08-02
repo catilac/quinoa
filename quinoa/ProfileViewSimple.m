@@ -28,7 +28,7 @@
         UINib *nib = [UINib nibWithNibName:@"ProfileViewSimple" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
         self.contentView = objects[0];
-        self.contentView.backgroundColor = [Utils getDarkestBlue];
+        self.contentView.backgroundColor = [Utils getDarkBlue];
         [self.contentView setFrame:frame];
         [self addSubview:self.contentView];
 

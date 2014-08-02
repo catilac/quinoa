@@ -60,6 +60,7 @@
     }
     [self.valueLabel setTextColor:[Utils getVibrantBlue]];
     [self.unitLabel setTextColor:[Utils getVibrantBlue]];
+    self.unitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:15];
     [self.blurbLabel setTextColor:[Utils getDarkerGray]];
     [self.descriptionLabel setTextColor:[Utils getDarkBlue]];
 }

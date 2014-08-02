@@ -295,7 +295,7 @@
         [self.goalEditView removeFromSuperview];
         self.goalEditView = nil;
     } else {
-        self.goalEditView = [[GoalEditView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
+        self.goalEditView = [[GoalEditView alloc] initWithFrame:CGRectMake(0, 180, self.view.frame.size.width, 300)];
         self.goalEditView.user = user;
         if (self.goal) {
             self.goalEditView.goal = self.goal;

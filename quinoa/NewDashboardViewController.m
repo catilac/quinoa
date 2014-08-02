@@ -149,11 +149,14 @@
     NSDate *weekAgo = [today dateByAddingTimeInterval:-60*60*24*7];
 
     [Goal getCurrentGoalByUser:self.user success:^(Goal *goal) {
-        self.goal = goal;
-        [self fetchActivitiesFrom:goal.startAt to:goal.endAt];
+        if (goal) {
+            self.goal = goal;
+            [self fetchActivitiesFrom:goal.startAt to:goal.endAt];
+        } else {
+            [self fetchActivitiesFrom:weekAgo to:today];
+        }
     } error:^(NSError *error) {
         NSLog(@"NewDashboardViewController goal: %@", error.description);
-        [self fetchActivitiesFrom:weekAgo to:today];
     }];
 }
 

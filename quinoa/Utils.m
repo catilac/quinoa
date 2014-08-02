@@ -144,12 +144,20 @@
     }
 }
 
+// I'm messy, but I work!
+// Based on # of seconds, return friendly time string such as
+// "x Minutes" or "x Hours y minutes"
 + (NSString *)getFriendlyTime:(NSNumber *)seconds {
     NSString *result = @"";
     float minutes = [seconds floatValue] / 60;
     if (minutes >= 60) {
-        float hours = (minutes / 60);
-        result = [NSString stringWithFormat:@"%0.0f %@", hours, ((hours < 2) ? @"Hour" : @"Hours")];
+        int hours = floor(minutes / 60);
+        result = [NSString stringWithFormat:@"%d %@", hours, ((hours < 2) ? @"Hour" : @"Hours")];
+        float remainingMinutes = floorf((minutes - (hours * 60)) * 100) / 100;
+        if (remainingMinutes > 0) {
+            NSString *minutesInString = [NSString stringWithFormat:@" %0.0f %@", remainingMinutes, ((remainingMinutes < 2) ? @"minute" : @"minutes")];
+            result = [result stringByAppendingString:minutesInString];
+        }
     } else {
         result = [NSString stringWithFormat:@"%0.0f %@", minutes, ((minutes < 2) ? @"Minute" : @"Minutes")];
     }
@@ -188,4 +196,24 @@
     return [difference day];
 }
 
++ (NSArray *)getDateRange:(NSDate *)date {
+    NSMutableArray *range = [NSMutableArray arrayWithCapacity:2];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *start = [calendar components:unitFlags fromDate:date];
+    start.hour   = 0;
+    start.minute = 0;
+    start.second = 0;
+    NSDate *startDate = [calendar dateFromComponents:start];
+
+    NSDateComponents *end = [calendar components:unitFlags fromDate:date];
+    end.hour   = 23;
+    end.minute = 59;
+    end.second = 59;
+    NSDate *endDate = [calendar dateFromComponents:end];
+
+    range[0] = startDate;
+    range[1] = endDate;
+    return range;
+}
 @end

@@ -59,5 +59,7 @@
 
 - (void)resetNewMessageCount;
 
+- (NSNumber *)getUserWeight;
+
 + (User *)currentUser;
 @end

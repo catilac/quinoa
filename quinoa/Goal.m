@@ -8,11 +8,12 @@
 
 #import "Goal.h"
 #import <Parse/PFObject+Subclass.h>
+#import "Utils.h"
 
 @implementation Goal
 
 @dynamic user, expert;
-@dynamic dailyActivityDuration, targetWeight;
+@dynamic targetDailyDuration, targetWeight;
 @dynamic startAt, endAt;
 
 + (NSString *)parseClassName {
@@ -35,5 +36,14 @@
             error(errorFromParse);
         }
     }];
+}
+
++ (void)updateGoal:(Goal *)goal
+           success:(void (^) (Goal *goal))success
+             error:(void (^) (NSError *error))error {
+    if (!goal.objectId) {
+        goal = [Goal object];
+    }
+    [goal saveInBackground];
 }
 @end

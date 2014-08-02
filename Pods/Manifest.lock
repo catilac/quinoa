@@ -20,7 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.0)
+  - ASValueTrackingSlider (0.9.4)
+  - Bolts (1.1.1)
   - BTBadgeView (1.2)
   - DateTools (1.3.0)
   - Facebook-iOS-SDK (3.15.1):
@@ -34,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - ASValueTrackingSlider
   - BTBadgeView
   - DateTools
   - Facebook-iOS-SDK
@@ -43,7 +45,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
+  ASValueTrackingSlider: 74a4bbf70c8cf43d29b701ff4c7659fc5d0afd99
+  Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
   BTBadgeView: aa392d7b71c0248b0d766ffc0a1dc7103b72f3ec
   DateTools: aa3131160337433a152c0228a2a1be2ff4ed3e05
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8

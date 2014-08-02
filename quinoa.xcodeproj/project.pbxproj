@@ -77,6 +77,8 @@
 		53B1EC711973450200101B39 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC701973450200101B39 /* ProfileView.xib */; };
 		53B1EC74197349BE00101B39 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC73197349BE00101B39 /* User.m */; };
 		53B1EC781973683400101B39 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1EC771973683400101B39 /* ProfileCell.m */; };
+		53B8191D198D017600016BF9 /* GoalEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B8191B198D017600016BF9 /* GoalEditView.m */; };
+		53B8191E198D017600016BF9 /* GoalEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53B8191C198D017600016BF9 /* GoalEditView.xib */; };
 		53D0DA26198A1DC700CFAABA /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA25198A1DC700CFAABA /* Goal.m */; };
 		53D0DA2D198A20BD00CFAABA /* NewDashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D0DA2B198A20BD00CFAABA /* NewDashboardViewController.xib */; };
 		53D0DA2F198A21C500CFAABA /* NewDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D0DA2E198A21C500CFAABA /* NewDashboardViewController.m */; };
@@ -219,6 +221,9 @@
 		53B1EC73197349BE00101B39 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		53B1EC761973683400101B39 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		53B1EC771973683400101B39 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		53B8191A198D017600016BF9 /* GoalEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalEditView.h; sourceTree = "<group>"; };
+		53B8191B198D017600016BF9 /* GoalEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalEditView.m; sourceTree = "<group>"; };
+		53B8191C198D017600016BF9 /* GoalEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalEditView.xib; sourceTree = "<group>"; };
 		53D0DA24198A1DC700CFAABA /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
 		53D0DA25198A1DC700CFAABA /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		53D0DA29198A20BD00CFAABA /* NewDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDashboardViewController.h; sourceTree = "<group>"; };
@@ -393,6 +398,7 @@
 		4611A6041968B1B100202318 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53B81919198D016100016BF9 /* Edit Goal */,
 				7A44F3BF198B5DB900408A69 /* Profile View Simple */,
 				460992C11977C69300F03200 /* Activity Like Cell */,
 				46CDF23D19765DD700B43FBB /* Dashboard Feed Cell */,
@@ -707,6 +713,16 @@
 			name = "Profile Cell";
 			sourceTree = "<group>";
 		};
+		53B81919198D016100016BF9 /* Edit Goal */ = {
+			isa = PBXGroup;
+			children = (
+				53B8191A198D017600016BF9 /* GoalEditView.h */,
+				53B8191B198D017600016BF9 /* GoalEditView.m */,
+				53B8191C198D017600016BF9 /* GoalEditView.xib */,
+			);
+			name = "Edit Goal";
+			sourceTree = "<group>";
+		};
 		53D0DA28198A209C00CFAABA /* New Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,6 +878,7 @@
 				53D0DA2D198A20BD00CFAABA /* NewDashboardViewController.xib in Resources */,
 				46FF800E1968A9C50091A7B2 /* ExpertBrowserViewController.xib in Resources */,
 				46F73FB1197316B900E33932 /* ClientCell.xib in Resources */,
+				53B8191E198D017600016BF9 /* GoalEditView.xib in Resources */,
 				5329049F1974C16F005A2E26 /* UserHeader.xib in Resources */,
 				46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */,
 				460992C61977C6B400F03200 /* ActivityLikeCell.xib in Resources */,
@@ -978,6 +995,7 @@
 				532904C219750555005A2E26 /* UserHeader.m in Sources */,
 				53D0DA26198A1DC700CFAABA /* Goal.m in Sources */,
 				532904B61974FFE5005A2E26 /* DietActivity.m in Sources */,
+				53B8191D198D017600016BF9 /* GoalEditView.m in Sources */,
 				46FF800D1968A9C50091A7B2 /* ExpertBrowserViewController.m in Sources */,
 				46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */,
 				466C3CE0196950C0007FF30D /* LoginViewController.m in Sources */,

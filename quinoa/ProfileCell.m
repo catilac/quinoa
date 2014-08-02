@@ -29,6 +29,7 @@
     self.profileView = [[ProfileViewWithActivity alloc] initWithFrame:self.frame];
     self.profileView.isExpertView = self.isExpertView;
     self.profileView.user = self.user;
+    self.profileView.myDelegate = self.goalDelegate;
     [self addSubview:self.profileView];
     [self.profileView layoutSubviews];
 }

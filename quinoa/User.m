@@ -139,6 +139,18 @@
     [self saveInBackground];
 }
 
+- (NSNumber *)getUserWeight {
+    NSNumber *weight;
+    if (self.currentWeight) {
+        weight = self.currentWeight;
+    } else if (self.weight) {
+        weight = self.weight;
+    } else {
+        weight = [NSNumber numberWithInt:150]; // Prevent showing 0 weight
+    }
+    return weight;
+}
+
 + (User *)currentUser {
     return (User *)[PFUser currentUser];
 }

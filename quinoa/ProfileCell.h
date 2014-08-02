@@ -15,5 +15,5 @@
 @property (nonatomic, strong) User *user;
 @property (strong, nonatomic) ProfileViewWithActivity *profileView;
 @property BOOL isExpertView;
-
+@property id goalDelegate;
 @end

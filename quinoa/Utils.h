@@ -25,6 +25,7 @@
 + (UIColor *)getLightGray;
 + (UIColor *)getRed;
 + (UIColor *)getOrange;
++ (UIColor *)getWhite;
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 

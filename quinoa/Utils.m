@@ -54,12 +54,12 @@
 }
 
 + (UIColor *)getGrayBorder {
-    return [UIColor colorWithRed:0.780 green:0.816 blue:0.851 alpha:.36];
+    return [UIColor colorWithRed:0.835 green:0.871 blue:0.890 alpha:1];
 }
 
 
 + (UIColor *)getDarkerGray {
-    return [UIColor colorWithRed:0.580 green:0.639 blue:0.651 alpha:1];
+    return [UIColor colorWithRed:0.576 green:0.663 blue:0.741 alpha:1];
 }
 
 + (UIColor *)getLightGray {
@@ -72,6 +72,10 @@
 
 + (UIColor *)getOrange {
     return [UIColor colorWithRed:1.000 green:0.580 blue:0.259 alpha:1];
+}
+
++ (UIColor *)getWhite {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
 }
 
 

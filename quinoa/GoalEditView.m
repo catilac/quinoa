@@ -54,10 +54,12 @@
 
     self.weightLabel.text = [NSString stringWithFormat:@"%.0f lbs", [self.user.currentWeight floatValue]];
 
-    self.targetWeightSlider.maximumValue = [self.user.currentWeight floatValue] + 10;
-    self.targetWeightSlider.minimumValue = [self.user.currentWeight floatValue] - 10;
-    [self.targetWeightSlider setValue:(int)[self.user.currentWeight floatValue]];
+    NSNumber *weight = [self.user getUserWeight];
+    self.targetWeightSlider.maximumValue = [weight floatValue] + 10;
+    self.targetWeightSlider.minimumValue = [weight floatValue] - 10;
+    [self.targetWeightSlider setValue:(int)[weight floatValue]];
     self.targetWeightSlider.dataSource = self;
+    self.targetWeight = weight;
 
     int defaultDuration = 14;
     self.targetDateLabel.text = [NSString stringWithFormat:@"%d days", defaultDuration];
@@ -65,6 +67,7 @@
     self.targetDateSlider.minimumValue = 0;
     [self.targetDateSlider setValue:defaultDuration];
     self.targetDateSlider.dataSource = self;
+    self.targetDate = [NSNumber numberWithInt:defaultDuration];
 
     int defaultPhysicalDuration = 60 * 60;
     self.physicalActivityDurationLabel.text = [Utils getFriendlyTime:[NSNumber numberWithInt:defaultPhysicalDuration]];
@@ -72,6 +75,7 @@
     self.physicalActivityDurationSlider.minimumValue = 0;
     [self.physicalActivityDurationSlider setValue:defaultPhysicalDuration];
     self.physicalActivityDurationSlider.dataSource = self;
+    self.targetDailyDuration = [NSNumber numberWithInt:defaultPhysicalDuration];
 }
 
 - (void)weightChanged:(ASValueTrackingSlider *)slider {

@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) User *expert;
-@property (strong, nonatomic) NSNumber *dailyActivityDuration;
+@property (strong, nonatomic) NSNumber *targetDailyDuration;
 @property (strong, nonatomic) NSNumber *targetWeight;
 @property (strong, nonatomic) NSDate *startAt;
 @property (strong, nonatomic) NSDate *endAt;
@@ -24,4 +24,8 @@
 + (void)getCurrentGoalByUser:(User *)user
                     success:(void (^) (Goal *goal))success
                       error:(void (^) (NSError *error))error;
+
++ (void)updateGoal:(Goal *)goal
+           success:(void (^) (Goal *goal))success
+             error:(void (^) (NSError *error))error;
 @end

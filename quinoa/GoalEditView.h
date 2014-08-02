@@ -16,8 +16,8 @@
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, strong) User *user;
 
-@property (nonatomic, strong) NSNumber *targetWeight;
-@property (nonatomic, strong) NSNumber *targetDate;
-@property (nonatomic, strong) NSNumber *targetDailyDuration;
+@property (nonatomic, strong) NSNumber *targetWeight; // pounds
+@property (nonatomic, strong) NSNumber *targetDate; // # of days
+@property (nonatomic, strong) NSNumber *targetDailyDuration; // seconds
 
 @end

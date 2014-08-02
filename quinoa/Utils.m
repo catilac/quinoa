@@ -192,4 +192,24 @@
     return [difference day];
 }
 
++ (NSArray *)getDateRange:(NSDate *)date {
+    NSMutableArray *range = [NSMutableArray arrayWithCapacity:2];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *start = [calendar components:unitFlags fromDate:date];
+    start.hour   = 0;
+    start.minute = 0;
+    start.second = 0;
+    NSDate *startDate = [calendar dateFromComponents:start];
+
+    NSDateComponents *end = [calendar components:unitFlags fromDate:date];
+    end.hour   = 23;
+    end.minute = 59;
+    end.second = 59;
+    NSDate *endDate = [calendar dateFromComponents:end];
+
+    range[0] = startDate;
+    range[1] = endDate;
+    return range;
+}
 @end

@@ -281,7 +281,16 @@
 
 - (void)showGoalUIClicked {
     if (goalDisplayed) {
-        // SAVE HERE
+        if (!self.goal) {
+            self.goal = [Goal object];
+            self.goal.user = user;
+            self.goal.expert = [user currentTrainer];
+            self.goal.startAt = [NSDate date];
+        }
+        self.goal.endAt = [self.goal.startAt dateByAddingTimeInterval:60*60*24*[self.goalEditView.targetDate intValue]];
+        self.goal.targetDailyDuration = self.goalEditView.targetDailyDuration;
+        self.goal.targetWeight = self.goalEditView.targetWeight;
+        [self.goal saveInBackground];
 
         [self.goalEditView removeFromSuperview];
         self.goalEditView = nil;

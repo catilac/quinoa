@@ -38,6 +38,7 @@
 
     self.valueLabel.text = [NSString stringWithFormat:@"%i", [self.activity.activityValue intValue]];
     self.unitLabel.text = @"Pounds";
+    self.unitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:15];
     self.blurbLabel.text = [self getBlurbCopy];
 
     [self.valueLabel setTextColor:[Utils getGreen]];

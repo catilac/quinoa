@@ -81,24 +81,24 @@
     }
 
     self.physicalActivityLabel.textColor = [Utils getDarkerGray];
-    self.physicalActivityLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 14.0 ];
+    self.physicalActivityLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     
     self.editGoalButton.tintColor = [Utils getGreen];
-    self.editGoalButton.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 12.0 ];
+    self.editGoalButton.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
-    [self.contentView setBackgroundColor:[Utils getDarkestBlue]];
+    [self.contentView setBackgroundColor:[Utils getDarkBlue]];
     
-    self.progressView.backgroundColor = [Utils getDarkestBlue];
+    self.progressView.backgroundColor = [Utils getDarkBlue];
 
     // This is eventually going to be a custom view chart.
     // == chart starts
     CGFloat percentage = 0.6;
-    UIView *chartContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 144, 280, 10)];
+    UIView *chartContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 148, 280, 10)];
     chartContainer.backgroundColor = [Utils getShadowBlue];
     [self addSubview:chartContainer];
 
-    UIView *chartBar = [[UIView alloc] initWithFrame:CGRectMake(20, 144, 280 * percentage, 10)];
+    UIView *chartBar = [[UIView alloc] initWithFrame:CGRectMake(20, 148, 280 * percentage, 10)];
     chartBar.backgroundColor = [Utils getVibrantBlue];
     [self addSubview:chartBar];
 
@@ -109,9 +109,9 @@
     [self addSubview:leftStatusLabel];
 
     // Need to right align label here
-    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(198, 126, 100, 18)];
-    rightStatusLabel.text = @"240";
-    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Semibold" size: 12.0 ];
+    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(198, 120, 100, 18)];
+    rightStatusLabel.text = @"/ 240";
+    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
     rightStatusLabel.textAlignment = NSTextAlignmentRight;
     rightStatusLabel.textColor = [Utils getDarkerGray];
     [self addSubview:rightStatusLabel];

@@ -44,8 +44,22 @@
 @property (weak, nonatomic) IBOutlet UIView *leftDividerView;
 @property (weak, nonatomic) IBOutlet UIView *rightDividerView;
 
-@property int mealTotal;
+@property (strong, nonatomic) Goal *goal;
+
+// Date range used is either current goal range or past 7 days
+
+// Array of dates in the date range
+@property (strong, nonatomic) NSMutableArray *dates;
+
+// Map of date to activities
+@property (strong, nonatomic) NSMutableDictionary *activitiesByDate;
+
+// A list of weights in the date range
+@property (strong, nonatomic) NSMutableArray *weightActivities;
+
+//@property int mealTotal;
 @property double physicalActivityTotal;
+
 @end
 
 @implementation NewDashboardViewController
@@ -55,8 +69,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.user = [User currentUser];
-        self.mealTotal = 0;
+        //self.mealTotal = 0;
         self.physicalActivityTotal = 0;
+        self.dates = [NSMutableArray array];
+        self.activitiesByDate = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -87,7 +103,7 @@
     self.progressView.layer.shadowOffset = CGSizeMake(0, 1);
     self.progressView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.progressView.layer.shadowRadius = 1.0;*/
-    
+
     // weight view
     self.weightview.backgroundColor = [Utils getDarkestBlue];
     self.weightValueLabel.textColor = [Utils getVibrantBlue];
@@ -109,12 +125,12 @@
     self.dailyMealLabel.textColor = [Utils getGray];
     self.mealsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
     self.mealsLabel.textColor = [Utils getGray];
-    self.dailyPhysicalActivityLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-    self.dailyPhysicalActivityLabel.textColor = [Utils getGray];
+//    self.dailyPhysicalActivityLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
+//    self.dailyPhysicalActivityLabel.textColor = [Utils getGray];
     self.minutesLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
     self.minutesLabel.textColor = [Utils getGray];
-    self.dailyWeightLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-    self.dailyWeightLabel.textColor = [Utils getGray];
+//    self.dailyWeightLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
+//    self.dailyWeightLabel.textColor = [Utils getGray];
     self.poundsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
     self.poundsLabel.textColor = [Utils getGray];
     
@@ -130,49 +146,76 @@
 
 - (void)fetchData {
     NSDate *today = [NSDate date];
-    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *start = [calendar components:unitFlags fromDate:today];
-    start.hour   = 0;
-    start.minute = 0;
-    start.second = 0;
-    NSDate *startDate = [calendar dateFromComponents:start];
+    NSDate *weekAgo = [today dateByAddingTimeInterval:-60*60*24*7];
 
-    NSDateComponents *end = [calendar components:unitFlags fromDate:today];
-    end.hour   = 23;
-    end.minute = 59;
-    end.second = 59;
-    NSDate *endDate = [calendar dateFromComponents:end];
+    [Goal getCurrentGoalByUser:self.user success:^(Goal *goal) {
+        self.goal = goal;
+        [self fetchActivitiesFrom:goal.startAt to:goal.endAt];
+    } error:^(NSError *error) {
+        NSLog(@"NewDashboardViewController goal: %@", error.description);
+        [self fetchActivitiesFrom:weekAgo to:today];
+    }];
+}
+
+- (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
+    NSArray *range = [Utils getDateRangeFrom:startDate to:endDate];
+
+    // Populate self.dates array
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:1];
+
+    [self.dates addObject:range[0]];
+    NSDate *currentDate = range[0];
+    NSDate *toDate = range[1];
+    currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    while ([toDate compare: currentDate] != NSOrderedAscending) {
+        [self.dates addObject: currentDate];
+        currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    }
+
     [Activity getActivityByUser:self.user
-                      startDate:startDate
-                        endDate:endDate
+                      startDate:range[0]
+                        endDate:range[1]
                         success:^(NSArray *objects) {
                             NSLog(@"NewDashboardViewController count: %d", objects.count);
                             for (Activity *activity in objects) {
+                                NSString *dateKey = [Utils getSimpleStringFromDate:activity.createdAt];
+                                NSMutableDictionary *daily = [self.activitiesByDate objectForKey:dateKey];
+                                if (!daily) {
+                                    daily = [NSMutableDictionary dictionary];
+                                    [daily setObject:@(0) forKey:@(ActivityTypeEating)];
+                                    [daily setObject:@(0) forKey:@(ActivityTypePhysical)];
+                                    [daily setObject:@(0) forKey:@(ActivityTypeWeight)];
+                                }
                                 if (activity.activityType == ActivityTypePhysical) {
+                                    double currentValue = [[daily objectForKey:@(ActivityTypePhysical)] doubleValue] + [activity.activityValue doubleValue];
+                                    [daily setObject:@(currentValue) forKey:@(ActivityTypePhysical)];
                                     self.physicalActivityTotal += [activity.activityValue doubleValue];
                                 } else if (activity.activityType == ActivityTypeEating) {
-                                    self.mealTotal += 1;
+                                    double currentValue = [[daily objectForKey:@(ActivityTypeEating)] doubleValue] + 1;
+                                    [daily setObject:@(currentValue) forKey:@(ActivityTypeEating)];
+                                    //self.mealTotal += 1;
+                                } else if (activity.activityType == ActivityTypeWeight) {
+                                    [daily setObject:activity.activityValue forKey:@(ActivityTypeWeight)];
                                 }
+                                [self.activitiesByDate setObject:daily forKey:dateKey];
                             }
                             [self updateUI];
                         } error:^(NSError *error) {
                             NSLog(@"NewDashboardViewController: %@", error.description);
                         }];
-    [Goal getCurrentGoalByUser:self.user
-                       success:^(Goal *goal) {
-                           if (goal != nil) {
-                               NSInteger day = [Utils daysBetweenDate:goal.startAt andDate:today];
-                               self.goalDayLabel.text = [NSString stringWithFormat:@"%d day progress", day];
-                           }
-                       }
-                         error:^(NSError *error) {
-
-                         }];
 }
 
 - (void)updateUI {
-    self.dailyMealLabel.text = [NSString stringWithFormat:@"%d", self.mealTotal];
-    self.dailyPhysicalActivityLabel.text = [NSString stringWithFormat:@"%g", self.physicalActivityTotal];
+    self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [self.user.currentWeight floatValue]];
+    double hours = floor(self.physicalActivityTotal / 60);
+    if (hours > 1) {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+        self.activityLabel.text = @"hr";
+    } else {
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", self.physicalActivityTotal];
+        self.activityLabel.text = @"min";
+    }
 }
 @end

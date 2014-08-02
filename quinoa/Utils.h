@@ -43,4 +43,6 @@
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 
 + (NSArray *)getDateRange:(NSDate *)date;
+
++ (NSArray *)getDateRangeFrom:(NSDate *)startDate to:(NSDate *)endDate;
 @end

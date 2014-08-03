@@ -291,18 +291,44 @@
         self.goal.targetDailyDuration = self.goalEditView.targetDailyDuration;
         self.goal.targetWeight = self.goalEditView.targetWeight;
         [self.goal saveInBackground];
-
-        [self.goalEditView removeFromSuperview];
-        self.goalEditView = nil;
+        
+        /*[UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.goalEditView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self.goalEditView removeFromSuperview];
+            self.goalEditView = nil;
+        }];*/
+        
+        [UIView animateWithDuration:.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.goalEditView.frame = CGRectMake(0, 160, self.view.frame.size.width, 300);
+            self.goalEditView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self.goalEditView removeFromSuperview];
+            self.goalEditView = nil;
+        }];
+        
     } else {
-        self.goalEditView = [[GoalEditView alloc] initWithFrame:CGRectMake(0, 180, self.view.frame.size.width, 300)];
+        self.goalEditView = [[GoalEditView alloc] initWithFrame:CGRectMake(0, 160, self.view.frame.size.width, 300)];
         self.goalEditView.user = user;
         if (self.goal) {
             self.goalEditView.goal = self.goal;
         } else {
             self.goalEditView.goal = [[Goal alloc] init];
         }
+        self.goalEditView.alpha = 0;
         [self.view addSubview:self.goalEditView];
+        
+        /*[UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.goalEditView.frame = CGRectMake(0, 180, self.view.frame.size.width, 300);
+            self.goalEditView.alpha = 1;
+        } completion:nil];*/
+        
+        [UIView animateWithDuration:.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.goalEditView.frame = CGRectMake(0, 180, self.view.frame.size.width, 300);
+            self.goalEditView.alpha = 1;
+        } completion:^(BOOL finished) {
+            
+        }];
     }
     goalDisplayed = !goalDisplayed;
 }

@@ -12,10 +12,12 @@
 
 -(UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
     UICollectionViewLayoutAttributes* attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
-    attributes.alpha = 0.0;
+    
+    attributes.alpha = 0.0f;
     
     CGSize cellSize = attributes.frame.size;
-    attributes.center = CGPointMake(attributes.center.x -  (itemIndexPath.row + 0.15) * cellSize.width, attributes.center.y);
+    float multiplier = (itemIndexPath.row + 0.15f);
+    attributes.center = CGPointMake(attributes.center.x -  multiplier * cellSize.width, attributes.center.y);
     return attributes;
 }
 

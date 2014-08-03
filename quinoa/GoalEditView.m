@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *targetDateSlider;
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *physicalActivityDurationSlider;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *weightTitle;
+@property (weak, nonatomic) IBOutlet UILabel *targetDateTitle;
+@property (weak, nonatomic) IBOutlet UILabel *activityDurationTitle;
+
 @property (weak, nonatomic) IBOutlet UILabel *weightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *targetDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *physicalActivityDurationLabel;
@@ -42,6 +47,28 @@
         self.targetWeightSlider.tag = 0;
         self.targetDateSlider.tag = 1;
         self.physicalActivityDurationSlider.tag = 2;
+        
+        // styling
+        self.contentView.backgroundColor = [Utils getDarkestBlue];
+        
+        self.weightTitle.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+        self.weightTitle.textColor = [Utils getGray];
+
+        self.weightLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:24.0f];
+        self.weightLabel.textColor = [Utils getGreen];
+        
+        self.targetDateTitle.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+        self.targetDateTitle.textColor = [Utils getGray];
+        
+        self.targetDateLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:24.0f];
+        self.targetDateLabel.textColor = [Utils getGreen];
+        
+        self.activityDurationTitle.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+        self.activityDurationTitle.textColor = [Utils getGray];
+        
+        self.physicalActivityDurationLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:24.0f];
+        self.physicalActivityDurationLabel.textColor = [Utils getGreen];
+        
     }
     return self;
 }
@@ -51,6 +78,14 @@
 
     // See here for customizing slider:
     // https://github.com/alskipp/ASValueTrackingSlider/blob/master/README.md
+    self.targetWeightSlider.font = [UIFont fontWithName:@"Helvetica-Bold" size:24];
+    self.targetWeightSlider.popUpViewColor = [Utils getGreenClear];
+    self.targetDateSlider.font = [UIFont fontWithName:@"Helvetica-Bold" size:24];
+    self.targetDateSlider.popUpViewColor = [Utils getGreenClear];
+    self.physicalActivityDurationSlider.font = [UIFont fontWithName:@"Helvetica-Bold" size:24];
+    self.physicalActivityDurationSlider.popUpViewColor = [Utils getGreenClear];
+
+    
 
     self.weightLabel.text = [NSString stringWithFormat:@"%.0f lbs", [self.user.currentWeight floatValue]];
 

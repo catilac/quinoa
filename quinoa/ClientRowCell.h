@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
+
+@protocol ClientRowCellDelegate <NSObject>
+
+- (void)loadChatView:(User *)user;
+
+@end
+
 @interface ClientRowCell : UICollectionViewCell
 
 @property (strong, nonatomic) User *client;
 @property (weak, nonatomic) IBOutlet UIButton *detailButton;
+@property (weak, nonatomic) id<ClientRowCellDelegate> delegate;
 
 @end

@@ -53,7 +53,7 @@ static const CGFloat MessageWidth = 237;
     if ([message.sender.username isEqualToString:currentUser.username]) {
         self.backgroundColor = [Utils getVibrantBlue];
         self.messageLabel.textColor = [UIColor whiteColor];
-        self.usernameLabel.textColor = [Utils getLightGray];
+        self.usernameLabel.textColor = [UIColor whiteColor];
     } else {
         self.backgroundColor = [Utils getLightGray];
         self.messageLabel.textColor = [Utils getDarkBlue];
@@ -71,7 +71,7 @@ static const CGFloat MessageWidth = 237;
     CGSize size = CGSizeMake(ContainerWidth, 0);
 
     // Distance from top to MessageLabel
-    size.height = 22;
+    size.height = 32;
     
     // add height of message label
     NSDictionary *dict = @{NSFontAttributeName: [UIFont fontWithName: @"SourceSansPro-Light" size: 16.0]};

@@ -314,18 +314,13 @@
 - (void)updatePhysicalChart {
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
-
-    float achieved = (self.physicalActivityTotal/targetDurationInSeconds) * 100;
-    /*float remainder = 100 - achieved;
     
-    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:achieved color:[Utils getGreen]],
-                       [PNPieChartDataItem dataItemWithValue:remainder color:[Utils getDarkestBlue]]
-                       ];
+    NSLog(@"goal: %f",[self.goal.targetDailyDuration floatValue]);
+    NSLog(@"seconds: %f",targetDurationInSeconds);
 
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(30, 10, 70, 70) items:items];
-    pieChart.descriptionTextColor = [UIColor whiteColor];
-    pieChart.descriptionTextFont  = [UIFont fontWithName:@"SourceSansPro-Regular" size:12.0];
-    [pieChart strokeChart];*/
+    float achieved = self.physicalActivityTotal/targetDurationInSeconds;
+    NSLog(@"achieved: %f",achieved);
+
     
     /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
     

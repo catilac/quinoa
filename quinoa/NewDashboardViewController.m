@@ -8,6 +8,7 @@
 
 #import "NewDashboardViewController.h"
 #import "DashboardMetricsView.h"
+#import "ChartViewController.h"
 #import "Activity.h"
 #import "Goal.h"
 #import "Utils.h"
@@ -135,6 +136,9 @@
     UIView *whiteView = [UIView new];
     whiteView.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundView = whiteView;
+
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewChartDetail:)];
+    [self.weightview addGestureRecognizer:tapGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -353,5 +357,48 @@
     cell.activity = self.todayMeals[indexPath.row];
     return cell;
 }
+
+- (void)viewChartDetail:(id)sender {
+    ChartViewController *chartViewController = [[ChartViewController alloc] init];
+
+    chartViewController.modalPresentationStyle = UIModalPresentationCustom;
+    chartViewController.transitioningDelegate = self;
+
+    [self presentViewController:chartViewController animated:YES completion:nil];
+}
+
+#pragma mark UIViewControllerTransitioningDelegate methods
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self;
+}
+
+#pragma mark UIViewControllerAnimatedTransitioning methods
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+    return 2.0;
+}
+
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIView *containerView = [transitionContext containerView];
+    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+
+    toViewController.view.frame = containerView.frame;
+    [containerView addSubview:toViewController.view];
+
+    toViewController.view.alpha = 0;
+    toViewController.view.transform = CGAffineTransformMakeScale(0, 0);
+    [UIView animateWithDuration:2 animations:^{
+        toViewController.view.alpha = 1;
+        toViewController.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:YES];
+    }];
+}
+
+
 
 @end

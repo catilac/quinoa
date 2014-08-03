@@ -72,6 +72,8 @@
 		537745C6198E065600C3AF2A /* DashboardMetricsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537745C4198E065600C3AF2A /* DashboardMetricsView.xib */; };
 		537745CB198E066C00C3AF2A /* MealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537745C8198E066C00C3AF2A /* MealCell.m */; };
 		537745CC198E066C00C3AF2A /* MealCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537745C9198E066C00C3AF2A /* MealCell.xib */; };
+		5391324B198E2B5B00C944B6 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53913249198E2B5B00C944B6 /* ChartViewController.m */; };
+		5391324C198E2B5B00C944B6 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5391324A198E2B5B00C944B6 /* ChartViewController.xib */; };
 		53B1EC5F1973068D00101B39 /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */; };
 		53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */; };
 		53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */; };
@@ -218,6 +220,9 @@
 		537745C8198E066C00C3AF2A /* MealCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealCell.m; sourceTree = "<group>"; };
 		537745C9198E066C00C3AF2A /* MealCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MealCell.xib; sourceTree = "<group>"; };
 		537745CA198E066C00C3AF2A /* MealCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealCell.h; sourceTree = "<group>"; };
+		53913248198E2B5B00C944B6 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		53913249198E2B5B00C944B6 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		5391324A198E2B5B00C944B6 /* ChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartViewController.xib; sourceTree = "<group>"; };
 		53B1EC591973068D00101B39 /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
 		53B1EC5B1973068D00101B39 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		53B1EC5D1973068D00101B39 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
@@ -388,6 +393,7 @@
 				46C25F54197A6AF400B49CDC /* QuinoaTabBarController */,
 				462769D7197636630049482F /* Dashboard */,
 				53D0DA28198A209C00CFAABA /* New Dashboard */,
+				53913247198E1D4100C944B6 /* New Dashboard Chart */,
 				9FD3348F19735B23003E1727 /* Track Activity */,
 				46AA118619730C2B001C7F02 /* My Clients */,
 				46907784197276E100CF9DBC /* FanOut Controller */,
@@ -715,6 +721,16 @@
 			name = "Meal Cell";
 			sourceTree = "<group>";
 		};
+		53913247198E1D4100C944B6 /* New Dashboard Chart */ = {
+			isa = PBXGroup;
+			children = (
+				53913248198E2B5B00C944B6 /* ChartViewController.h */,
+				53913249198E2B5B00C944B6 /* ChartViewController.m */,
+				5391324A198E2B5B00C944B6 /* ChartViewController.xib */,
+			);
+			name = "New Dashboard Chart";
+			sourceTree = "<group>";
+		};
 		53B1EC571973068D00101B39 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +934,7 @@
 				532904C41975062A005A2E26 /* ActivityCell.xib in Resources */,
 				53B1EC711973450200101B39 /* ProfileView.xib in Resources */,
 				53B1EC611973068D00101B39 /* SourceSansPro-Regular.otf in Resources */,
+				5391324C198E2B5B00C944B6 /* ChartViewController.xib in Resources */,
 				53B1EC631973068D00101B39 /* SourceSansPro-Semibold.otf in Resources */,
 				5329052019860C81005A2E26 /* ProfileViewWithActivity.xib in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
@@ -1009,6 +1026,7 @@
 				532905181984E18C005A2E26 /* ClientRowCell.m in Sources */,
 				53B1EC6F197344BF00101B39 /* ProfileView.m in Sources */,
 				5354D07D1971EAAE00612FFE /* ActivitiesCollectionViewController.m in Sources */,
+				5391324B198E2B5B00C944B6 /* ChartViewController.m in Sources */,
 				A3B4A88B196A5FB400135230 /* Utils.m in Sources */,
 				460447B31964ECC600DDE6C6 /* AppDelegate.m in Sources */,
 				5329052219861003005A2E26 /* ProfileViewWithActivity.m in Sources */,
@@ -1204,7 +1222,7 @@
 					Social,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1226,7 +1244,7 @@
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

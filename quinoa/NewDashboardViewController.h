@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewDashboardViewController : UIViewController <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface NewDashboardViewController : UIViewController <UIScrollViewDelegate, UICollectionViewDataSource,
+    UICollectionViewDelegate,
+    UIViewControllerTransitioningDelegate,
+    UIViewControllerAnimatedTransitioning>
 
 @end

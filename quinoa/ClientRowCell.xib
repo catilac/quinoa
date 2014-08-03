@@ -11,8 +11,10 @@
                 <outlet property="lastActiveLabel" destination="Qxh-yj-bS4" id="O4N-hz-mgq"/>
                 <outlet property="lastActiveValueLabel" destination="HSH-xb-ZD7" id="qJx-WR-fAl"/>
                 <outlet property="nameLabel" destination="SuF-kS-wrq" id="v13-dg-Of0"/>
-                <outlet property="nudgeContainer" destination="0xz-fX-lev" id="99t-U5-k2b"/>
+                <outlet property="nudgeContainer" destination="lBd-aW-NPk" id="DRY-DM-nGc"/>
                 <outlet property="nudgeLabel" destination="DDR-JR-wOM" id="K4n-3e-gBr"/>
+                <outlet property="nudgeOutline" destination="yIP-5E-TFR" id="M81-DX-g4s"/>
+                <outlet property="nudgeParentContainer" destination="Sfz-WT-yXH" id="h7O-Sq-8Px"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -59,23 +61,52 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0xz-fX-lev">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfz-WT-yXH" userLabel="nudgeParentContainer">
                         <rect key="frame" x="-80" y="0.0" width="80" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nudge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-JR-wOM">
-                                <rect key="frame" x="20" y="50" width="52" height="21"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0xz-fX-lev" userLabel="nudge-active">
+                                <rect key="frame" x="8" y="20" width="66" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nudge-active" translatesAutoresizingMaskIntoConstraints="NO" id="Yau-mP-UsI">
-                                <rect key="frame" x="25" y="20" width="41" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nudged!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-JR-wOM" userLabel="nudgeLabel-active">
+                                        <rect key="frame" x="0.0" y="30" width="66" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99215686274509807" green="0.58039215686274503" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nudge-active" translatesAutoresizingMaskIntoConstraints="NO" id="Yau-mP-UsI" userLabel="nudge-active">
+                                        <rect key="frame" x="17" y="0.0" width="41" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBd-aW-NPk" userLabel="nudge-inactive">
+                                <rect key="frame" x="8" y="20" width="64" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nudge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9O-E0-NDs" userLabel="nudgeLabel-inactive">
+                                        <rect key="frame" x="12" y="30" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.7803921568627451" green="0.81568627450980391" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nudge-inactive" translatesAutoresizingMaskIntoConstraints="NO" id="tEp-oK-PwC" userLabel="nudge-inactive">
+                                        <rect key="frame" x="17" y="0.0" width="41" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nudge-outline" translatesAutoresizingMaskIntoConstraints="NO" id="yIP-5E-TFR" userLabel="nudge-outline">
+                                        <rect key="frame" x="17" y="0.0" width="41" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -94,15 +125,24 @@
                 <constraint firstAttribute="bottom" secondItem="HSH-xb-ZD7" secondAttribute="bottom" constant="16" id="w3P-vn-e2V"/>
                 <constraint firstItem="SuF-kS-wrq" firstAttribute="top" secondItem="1qe-Cb-dzH" secondAttribute="top" constant="16" id="wmC-uk-MuM"/>
             </constraints>
-            <size key="customSize" width="310" height="230"/>
+            <size key="customSize" width="310" height="206"/>
         </collectionViewCell>
         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="STZ-Dl-n2A">
             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
         </imageView>
+        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="07g-Ro-FgC">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <nil key="highlightedColor"/>
+        </label>
     </objects>
     <resources>
         <image name="arrow_right" width="11" height="16"/>
         <image name="nudge-active" width="41" height="24"/>
+        <image name="nudge-inactive" width="41" height="24"/>
+        <image name="nudge-outline" width="41" height="24"/>
     </resources>
 </document>

@@ -22,6 +22,8 @@
 @property (strong, nonatomic) BTBadgeView *badgeView;
 @property (weak, nonatomic) IBOutlet UILabel *nudgeLabel;
 @property (weak, nonatomic) IBOutlet UIView *nudgeContainer;
+@property (weak, nonatomic) IBOutlet UIView *nudgeParentContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *nudgeOutline;
 
 @end
 
@@ -48,7 +50,6 @@
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onUserPan:)];
         [self addGestureRecognizer: panGestureRecognizer];
         panGestureRecognizer.delegate = self;
-
         
     }
     return self;
@@ -60,7 +61,6 @@
     self.nameLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:18];
     self.lastActiveLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
     self.lastActiveValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
-    self.nudgeLabel.textColor = [Utils getOrange];
     
     // set values
     _client = client;
@@ -127,16 +127,18 @@
     
         CGPoint translation = [sender translationInView:self.contentView];
         
+        // Fade out nudgeOutline icon
+        float dragOffest = sender.view.center.x - 160;
+        
+        NSLog(@"%f", dragOffest);
+        
+        self.nudgeOutline.layer.opacity = 1 - dragOffest/72;
+        
         
         if (sender.view.center.x > 159 ){
             sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
             [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
-            
-            CGFloat shiftValue;
-            shiftValue = (sender.view.center.x - 140)*0.01;
-            
-            self.nudgeContainer.layer.opacity = shiftValue;
-            
+                        
         } else {
             sender.view.center = CGPointMake(sender.view.center.x + translation.x*.1, sender.view.center.y);
             [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
@@ -144,12 +146,52 @@
     
     } else if (sender.state == UIGestureRecognizerStateEnded){
         
-        [UIView animateWithDuration:.8 delay:0 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
-            sender.view.center = CGPointMake(160, sender.view.center.y);
+        if (sender.view.center.x > 232) {
             
-        } completion:^(BOOL finished) {
-            NSLog(@"Animation Ended");
-        }];
+            // Fade fade out inactive nudge state
+            [UIView animateWithDuration:.2 animations:^{
+                self.nudgeContainer.layer.opacity = 0;
+            }];
+
+            //Animate Nudge Icon
+            [UIView animateWithDuration:.2 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:15 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                self.nudgeParentContainer.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                self.nudgeParentContainer.layer.transform = CATransform3DScale(self.nudgeParentContainer.layer.transform, 1.25, 1.25, 1);
+                
+            } completion:^(BOOL finished) {
+                
+                [UIView animateWithDuration:.2 animations:^{
+                    self.nudgeParentContainer.layer.transform = CATransform3DScale(self.nudgeParentContainer.layer.transform, .8, .8, 1);
+                }];
+                
+            }];
+            
+            
+            // Animate Cell back after delay
+            [UIView animateWithDuration:.8 delay:.4 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+                sender.view.center = CGPointMake(160, sender.view.center.y);
+                
+            } completion:^(BOOL finished) {
+                
+                // Bring back nudge icon to full opacity
+                self.nudgeContainer.layer.opacity = 1;
+                
+            }];
+            
+            
+            
+        } else {
+            
+            [UIView animateWithDuration:.8 delay:0 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+                sender.view.center = CGPointMake(160, sender.view.center.y);
+                
+            } completion:^(BOOL finished) {
+                NSLog(@"Animation Ended");
+            }];
+        
+        }
+        
+        
     }
     
 }

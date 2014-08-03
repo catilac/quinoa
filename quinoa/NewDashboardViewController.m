@@ -104,11 +104,13 @@
     // weight view
     self.weightview.backgroundColor = [Utils getDarkBlue];
     self.weightValueLabel.textColor = [Utils getVibrantBlue];
+    self.weightValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:36.0];
     self.weightLabel.textColor = [Utils getGray];
     
     // activity view
     self.activityView.backgroundColor = [Utils getDarkBlue];
-    self.activityValueLabel.textColor = [Utils getGreen];
+    self.activityValueLabel.textColor = [Utils getOrange];
+    self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:36.0];
     self.activityLabel.textColor = [Utils getGray];
 
     self.verticalSeparator.backgroundColor = [Utils getDarkestBlue];
@@ -281,7 +283,7 @@
 }
 
 - (void)updateWeightChart:(NSArray *)activities {
-    UIView *chartView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 70)];
+    UIView *chartView = [[UIView alloc] initWithFrame:CGRectMake(30, 20, 90, 60)];
     PNLineChart *chart = [[PNLineChart alloc]
                                   initWithFrame:CGRectMake(0, 0, chartView.frame.size.width, chartView.frame.size.height)];
     chart.backgroundColor = [Utils getDarkBlue];
@@ -314,7 +316,8 @@
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
 
     float achieved = (self.physicalActivityTotal/targetDurationInSeconds) * 100;
-    float remainder = 100 - achieved;
+    /*float remainder = 100 - achieved;
+    
     NSArray *items = @[[PNPieChartDataItem dataItemWithValue:achieved color:[Utils getGreen]],
                        [PNPieChartDataItem dataItemWithValue:remainder color:[Utils getDarkestBlue]]
                        ];
@@ -322,9 +325,18 @@
     PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(30, 10, 70, 70) items:items];
     pieChart.descriptionTextColor = [UIColor whiteColor];
     pieChart.descriptionTextFont  = [UIFont fontWithName:@"SourceSansPro-Regular" size:12.0];
-    [pieChart strokeChart];
+    [pieChart strokeChart];*/
+    
+    /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
+    
+    PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:60] andClockwise:NO andShadow:YES];
+    circleChart.backgroundColor = [UIColor clearColor];
+    [circleChart setStrokeColor:[Utils getOrange]];
+    circleChart.lineWidth = @4.0f;
+    [circleChart strokeChart];
+    
 
-    [self.activityView addSubview:pieChart];
+    [self.activityView addSubview:circleChart];
 }
 
 - (void)updateTodaysMeals {

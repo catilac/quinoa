@@ -77,10 +77,17 @@ static NSString *CellIdentifier = @"ClientRowCell";
     User *currentUser = [User currentUser];
     PFQuery *query = [User query];
     [query whereKey:@"currentTrainer" equalTo:currentUser];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *clients, NSError *error) {
         if (!error) {
-            self.clients = objects;
-            [self.myClientsCollection reloadData];
+            [self.myClientsCollection performBatchUpdates:^{
+                self.clients = clients;
+                NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                for (NSInteger i = 0; i < self.clients.count; i++) {
+                    [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                [self.myClientsCollection insertItemsAtIndexPaths:arrayWithIndexPaths];
+            } completion:nil];
+
         } else {
             NSLog(@"Error Fetching Clients: %@", error);
         }

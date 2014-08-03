@@ -12,6 +12,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
 #import "ProfileViewSimple.h"
+#import "QuinoaFlowLayout.h"
 
 @interface ChatViewController () <UIScrollViewDelegate>
 
@@ -77,7 +78,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self.chatView.dataSource = self;
     self.chatView.delegate = self;
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [flowLayout setSectionInset:UIEdgeInsetsMake(5, 5, 10, 10)];
     

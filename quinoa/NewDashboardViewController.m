@@ -248,12 +248,12 @@
     [self updatePhysicalChart];
 
     self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [self.user.currentWeight floatValue]];
-    double hours = floor(self.physicalActivityTotal / 60);
+    double hours = floor(self.physicalActivityTotal / 3600);
     if (hours > 1) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
         self.activityLabel.text = @"hr";
     } else {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", self.physicalActivityTotal];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", (self.physicalActivityTotal / 60)];
         self.activityLabel.text = @"min";
     }
 
@@ -297,7 +297,6 @@
     PNLineChartData *dataPoints = [PNLineChartData new];
     dataPoints.color = [Utils getVibrantBlue];
     dataPoints.itemCount = [activities count];
-    NSLog(@"count: %d", dataPoints.itemCount);
     dataPoints.getData = ^(NSUInteger index) {
         Activity *activity = activities[index];
         CGFloat yValue = [activity.activityValue floatValue];

@@ -91,6 +91,19 @@
     }];
 }
 
++ (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView callback:(void (^)())callback {
+    __weak UIImageView *iv = imageView;
+
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            iv.image = [UIImage imageWithData:data];
+            if (callback) {
+                callback();
+            }
+        }
+    }];
+}
+
 + (void)removeSubviewsFrom:(UIView *)view {
     NSArray *subviews = [view subviews];
     for (UIView *subview in subviews) {
@@ -216,6 +229,27 @@
 
     range[0] = startDate;
     range[1] = endDate;
+    return range;
+}
+
++ (NSArray *)getDateRangeFrom:(NSDate *)startDate to:(NSDate *)endDate {
+    NSMutableArray *range = [NSMutableArray arrayWithCapacity:2];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *start = [calendar components:unitFlags fromDate:startDate];
+    start.hour   = 0;
+    start.minute = 0;
+    start.second = 0;
+    NSDate *rangeStart = [calendar dateFromComponents:start];
+
+    NSDateComponents *end = [calendar components:unitFlags fromDate:endDate];
+    end.hour   = 23;
+    end.minute = 59;
+    end.second = 59;
+    NSDate *rangeEnd = [calendar dateFromComponents:end];
+
+    range[0] = rangeStart;
+    range[1] = rangeEnd;
     return range;
 }
 @end

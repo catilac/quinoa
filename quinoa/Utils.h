@@ -30,6 +30,8 @@
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 
++ (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView callback:(void (^)())callback;
+
 + (void)removeSubviewsFrom:(UIView *)view;
 
 + (UIImage *)screenshot;
@@ -45,4 +47,6 @@
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 
 + (NSArray *)getDateRange:(NSDate *)date;
+
++ (NSArray *)getDateRangeFrom:(NSDate *)startDate to:(NSDate *)endDate;
 @end

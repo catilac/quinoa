@@ -12,6 +12,7 @@
 #import "User.h"
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
+#import "ChatViewController.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -103,9 +104,18 @@ static NSString *CellIdentifier = @"ClientRowCell";
     ClientRowCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                                  forIndexPath:indexPath];
     cell.client = self.clients[indexPath.row];
+    cell.delegate = self;
     [cell.detailButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
     cell.detailButton.tag = indexPath.row;
     return cell;
 }
+
+#pragma mark - ClientRowCellDelegate methods
+- (void)loadChatView:(User *)user {
+    NSLog(@"Debug: %@", user);
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithUser:user];
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
+
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewDashboardViewController : UIViewController
+@interface NewDashboardViewController : UIViewController <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

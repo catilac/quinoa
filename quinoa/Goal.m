@@ -28,6 +28,7 @@
     [query whereKey:@"user" equalTo:user];
     [query whereKey:@"startAt" lessThanOrEqualTo:today];
     [query whereKey:@"endAt" greaterThanOrEqualTo:today];
+    [query orderByDescending:@"createdAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *errorFromParse) {
         if (success) {
             success((Goal *)object);

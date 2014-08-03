@@ -28,4 +28,5 @@
 + (void)updateGoal:(Goal *)goal
            success:(void (^) (Goal *goal))success
              error:(void (^) (NSError *error))error;
+
 @end

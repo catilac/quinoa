@@ -11,6 +11,7 @@
 #import "Activity.h"
 #import "Goal.h"
 #import "Utils.h"
+#import "PNChart.h"
 #import "UILabel+QuinoaLabel.h"
 
 @interface NewDashboardViewController ()
@@ -19,15 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *goalDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *goalLabel;
-
-//@property (weak, nonatomic) IBOutlet UILabel *dailyMealLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *dailyPhysicalActivityLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *dailyWeightLabel;
-//
-//@property (weak, nonatomic) IBOutlet UILabel *mealsLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *poundsLabel;
-
 
 @property (weak, nonatomic) IBOutlet UIView *goalDaysBar;
 @property (weak, nonatomic) IBOutlet UIView *currentDaysBar;
@@ -39,13 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityLabel;
 @property (weak, nonatomic) IBOutlet UIView *verticalSeparator;
 
-//@property (weak, nonatomic) IBOutlet UIView *metricsHeaderView;
-//@property (weak, nonatomic) IBOutlet UIView *metricsView;
-//@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
 @property (weak, nonatomic) IBOutlet UIView *metricsContainerView;
-
-//@property (weak, nonatomic) IBOutlet UIView *leftDividerView;
-//@property (weak, nonatomic) IBOutlet UIView *rightDividerView;
 
 @property (strong, nonatomic) Goal *goal;
 
@@ -164,6 +150,7 @@
         currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     }
 
+
     [Activity getActivityByUser:self.user
                       startDate:range[0]
                         endDate:range[1]
@@ -196,9 +183,23 @@
                         } error:^(NSError *error) {
                             NSLog(@"NewDashboardViewController: %@", error.description);
                         }];
+
+    [Activity getLatestActivityByUser:self.user
+                           byActivity:ActivityTypeWeight
+                             quantity:10 success:^(NSArray *objects) {
+                                 [self updateWeightChart:objects];
+                             } error:^(NSError *error) {
+
+                             }];
 }
 
 - (void)updateUI {
+    //
+    // Weekly history
+    //
+
+    [self updatePhysicalChart];
+
     self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [self.user.currentWeight floatValue]];
     double hours = floor(self.physicalActivityTotal / 60);
     if (hours > 1) {
@@ -208,8 +209,11 @@
         self.activityValueLabel.text = [NSString stringWithFormat:@"%g", self.physicalActivityTotal];
         self.activityLabel.text = @"min";
     }
-    CGFloat containerWidth = self.view.frame.size.width;
 
+    //
+    // Daily history
+    //
+    CGFloat containerWidth = self.view.frame.size.width;
     [Utils removeSubviewsFrom:self.metricsContainerView];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,containerWidth, self.metricsContainerView.frame.size.height)];
     scrollView.pagingEnabled = YES;
@@ -229,11 +233,51 @@
     [self.metricsContainerView addSubview:scrollView];
 }
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    NSInteger cellIndex = floor(targetContentOffset->x / 320);
-//    if ((targetContentOffset->x - (floor(targetContentOffset->x / 320) * 320)) > 320) {
-//        cellIndex++;
-//    }
-//    targetContentOffset->y = cellIndex * 320;
-//}
+- (void)updateWeightChart:(NSArray *)activities {
+    UIView *chartView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 70)];
+    PNLineChart *chart = [[PNLineChart alloc]
+                                  initWithFrame:CGRectMake(0, 0, chartView.frame.size.width, chartView.frame.size.height)];
+    chart.backgroundColor = [Utils getDarkBlue];
+    chart.showLabel = NO;
+    NSMutableArray *labels = [NSMutableArray array];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/d"];
+    for (Activity *activity in activities) {
+        [labels addObject:[dateFormatter stringFromDate:activity.createdAt]];
+    }
+    [chart setXLabels:labels];
+
+    PNLineChartData *dataPoints = [PNLineChartData new];
+    dataPoints.color = [Utils getVibrantBlue];
+    dataPoints.itemCount = [activities count];
+    NSLog(@"count: %d", dataPoints.itemCount);
+    dataPoints.getData = ^(NSUInteger index) {
+        Activity *activity = activities[index];
+        CGFloat yValue = [activity.activityValue floatValue];
+        return [PNLineChartDataItem dataItemWithY:yValue];
+    };
+    chart.chartData = @[dataPoints];
+    [chart strokeChart];
+
+    [chartView addSubview:chart];
+    [self.weightview addSubview:chartView];
+}
+
+- (void)updatePhysicalChart {
+    NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
+    float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
+
+    float achieved = (self.physicalActivityTotal/targetDurationInSeconds) * 100;
+    float remainder = 100 - achieved;
+    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:achieved color:[Utils getGreen]],
+                       [PNPieChartDataItem dataItemWithValue:remainder color:[Utils getDarkestBlue]]
+                       ];
+
+    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(30, 10, 70, 70) items:items];
+    pieChart.descriptionTextColor = [UIColor whiteColor];
+    pieChart.descriptionTextFont  = [UIFont fontWithName:@"SourceSansPro-Regular" size:12.0];
+    [pieChart strokeChart];
+
+    [self.activityView addSubview:pieChart];
+}
 @end

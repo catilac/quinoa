@@ -29,6 +29,8 @@
 
 + (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView withAnimation:(BOOL)enableAnimation;
 
++ (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView callback:(void (^)())callback;
+
 + (void)removeSubviewsFrom:(UIView *)view;
 
 + (UIImage *)screenshot;

@@ -56,15 +56,24 @@
 
         self.mealCountLabel.text = [NSString stringWithFormat:@"%@", mealCount];
 
-        double hours = floor([physicalDuration doubleValue] / 60);
-        if (hours > 1) {
-            self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", hours];
-            self.physicalUnitLabel.text = @"hr";
+        if ([physicalDuration doubleValue] > 0) {
+            double hours = floor([physicalDuration doubleValue] / 60);
+            if (hours > 1) {
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+                self.physicalUnitLabel.text = @"hr";
+            } else {
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", [physicalDuration doubleValue]];
+                self.physicalUnitLabel.text = @"min";
+            }
         } else {
-            self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", [physicalDuration doubleValue]];
-            self.physicalUnitLabel.text = @"min";
+            self.physicalValueLabel.text = @"-";
         }
-        self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [weight floatValue]];
+        if ([weight doubleValue] > 0) {
+            self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [weight floatValue]];
+        } else {
+            self.weightValueLabel.text = @"-";
+        }
+
     } else {
        self.mealCountLabel.text = @"-";
         self.physicalValueLabel.text = @"-";
@@ -92,7 +101,6 @@
     self.physicalValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
     self.physicalUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
     self.physicalUnitLabel.textColor = [Utils getGray];
-
 
     self.weightValueLabel.textColor = [Utils getGray];
     self.weightValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];

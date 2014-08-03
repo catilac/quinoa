@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "PNChart.h"
 #import "UILabel+QuinoaLabel.h"
+#import "MealCell.h"
 
 @interface NewDashboardViewController ()
 
@@ -33,7 +34,16 @@
 
 @property (weak, nonatomic) IBOutlet UIView *metricsContainerView;
 
+@property (weak, nonatomic) IBOutlet UIView *mealsView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView; // meals
+
+@property (weak, nonatomic) IBOutlet UIView *emptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *emptyStateHeader;
+@property (weak, nonatomic) IBOutlet UILabel *emptyStateDescription;
+
+@property (weak, nonatomic) IBOutlet UILabel *nutritionLabel;
 @property (strong, nonatomic) Goal *goal;
+@property (strong, nonatomic) NSArray *todayMeals;
 
 // Date range used is either current goal range or past 7 days
 
@@ -44,9 +54,8 @@
 @property (strong, nonatomic) NSMutableDictionary *activitiesByDate;
 
 // A list of weights in the date range
-@property (strong, nonatomic) NSMutableArray *weightActivities;
+//@property (strong, nonatomic) NSMutableArray *weightActivities;
 
-//@property int mealTotal;
 @property double physicalActivityTotal;
 
 @end
@@ -103,6 +112,29 @@
     self.activityLabel.textColor = [Utils getGray];
 
     self.verticalSeparator.backgroundColor = [Utils getDarkestBlue];
+
+    self.emptyStateHeader.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:18.0f];
+    self.emptyStateHeader.textColor = [Utils getDarkerBlue];
+    self.emptyStateDescription.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
+    self.emptyStateDescription.textColor = [Utils getDarkerGray];
+
+    self.nutritionLabel.textColor = [Utils getDarkBlue];
+    self.nutritionLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
+
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setItemSize:CGSizeMake(300, 65)];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+
+    [self.collectionView registerNib:[UINib nibWithNibName:@"MealCell" bundle:nil]
+    forCellWithReuseIdentifier:@"MealCell"];
+
+    UIView *whiteView = [UIView new];
+    whiteView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundView = whiteView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -133,6 +165,7 @@
 
 - (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
     NSArray *range = [Utils getDateRangeFrom:startDate to:endDate];
+    NSDate *today = [NSDate date];
 
     // Populate self.dates array
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -142,14 +175,17 @@
     [self.dates addObject:range[0]];
     NSDate *currentDate = range[0];
     NSDate *toDate = range[1];
-    NSDate *today = [NSDate date];
     currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     while ([toDate compare: currentDate] != NSOrderedAscending &&
            [today compare: currentDate] != NSOrderedAscending) {
         [self.dates addObject: currentDate];
         currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     }
+    double totalDays = (double)[Utils daysBetweenDate:range[0] andDate:range[1]];
 
+    CGRect currentDayFrame = self.currentDaysBar.frame;
+    currentDayFrame.size.width = self.goalDaysBar.frame.size.width * ([self.dates count]/totalDays);
+    self.currentDaysBar.frame = currentDayFrame;
 
     [Activity getActivityByUser:self.user
                       startDate:range[0]
@@ -172,7 +208,6 @@
                                 } else if (activity.activityType == ActivityTypeEating) {
                                     double currentValue = [[daily objectForKey:@(ActivityTypeEating)] doubleValue] + 1;
                                     [daily setObject:@(currentValue) forKey:@(ActivityTypeEating)];
-                                    //self.mealTotal += 1;
                                 } else if (activity.activityType == ActivityTypeWeight) {
                                     [daily setObject:activity.activityValue forKey:@(ActivityTypeWeight)];
                                 }
@@ -181,7 +216,7 @@
                             }
                             [self updateUI];
                         } error:^(NSError *error) {
-                            NSLog(@"NewDashboardViewController: %@", error.description);
+                            NSLog(@"NewDashboardViewController: activities %@", error.description);
                         }];
 
     [Activity getLatestActivityByUser:self.user
@@ -191,6 +226,18 @@
                              } error:^(NSError *error) {
 
                              }];
+
+    NSArray *todayRange = [Utils getDateRangeFrom:today to:today];
+    [Activity getLatestActivityByUser:self.user
+                           byActivity:ActivityTypeEating
+                            startDate:todayRange[0] endDate:todayRange[1]
+                              success:^(NSArray *objects) {
+                                  NSLog(@"NewDashboardViewController meals count: %d", objects.count);
+                                  self.todayMeals = objects;
+                                  [self updateTodaysMeals];
+                              } error:^(NSError *error) {
+                                  NSLog(@"NewDashboardViewController: eating %@", error.description);
+                              }];
 }
 
 - (void)updateUI {
@@ -280,4 +327,32 @@
 
     [self.activityView addSubview:pieChart];
 }
+
+- (void)updateTodaysMeals {
+    if ([self.todayMeals count] == 0) {
+        self.emptyStateView.hidden = NO;
+        self.mealsView.hidden = YES;
+    } else {
+        self.emptyStateView.hidden = YES;
+        self.mealsView.hidden = NO;
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        [self.collectionView reloadData];
+    }
+}
+
+#pragma mark UICollectionViewDataSource methods
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.todayMeals.count;
+}
+
+#pragma mark UICollectionViewDelegate methods
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MealCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MealCell" forIndexPath:indexPath];
+    cell.activity = self.todayMeals[indexPath.row];
+    return cell;
+}
+
 @end

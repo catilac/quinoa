@@ -89,6 +89,19 @@
     }];
 }
 
++ (void)loadImageFile:(PFFile *)file inImageView:(UIImageView *)imageView callback:(void (^)())callback {
+    __weak UIImageView *iv = imageView;
+
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            iv.image = [UIImage imageWithData:data];
+            if (callback) {
+                callback();
+            }
+        }
+    }];
+}
+
 + (void)removeSubviewsFrom:(UIView *)view {
     NSArray *subviews = [view subviews];
     for (UIView *subview in subviews) {

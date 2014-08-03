@@ -13,6 +13,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
 #import "ChatViewController.h"
+#import "QuinoaFlowLayout.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -43,7 +44,7 @@ static NSString *CellIdentifier = @"ClientRowCell";
     self.myClientsCollection.dataSource = self;
     self.myClientsCollection.delegate = self;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(300, 80)];
     
     // Spacing for flowlayout

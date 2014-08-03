@@ -27,6 +27,8 @@
 #import "ChatViewController.h"
 #import "GoalEditView.h"
 
+#import "QuinoaFlowLayout.h"
+
 @interface ActivitiesCollectionViewController ()
 {
 
@@ -251,7 +253,7 @@
     view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundView = view;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (isProfile) {
         [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width-20, 180)];

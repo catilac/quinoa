@@ -26,6 +26,12 @@
 
 @implementation UserHeader
 
+CGFloat DegreesToRadians(CGFloat degrees)
+{
+    return degrees * M_PI / 180;
+};
+
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -101,12 +107,45 @@
                           @"activity": self.activity,
                           @"expert": [User currentUser]};
         
+        NSLog(@"Not Liked");
+        
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            self.likeButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            self.likeButton.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+            
+        } completion:^(BOOL finished) {
+            
+            
+        }];
+        
         
         
     } else {
+        
+        //Animate Like Icon
+        
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            self.likeButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            self.likeButton.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+            self.likeButton.layer.transform = CATransform3DMakeScale(1.25, 1.25, 20);
+            
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:.9 delay:0 usingSpringWithDamping:.4 initialSpringVelocity:15 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                self.likeButton.layer.transform = CATransform3DMakeScale(1, 1, 1);
+            } completion:^(BOOL finished) {
+                NSLog(@"Animation Complete");
+            }];
+            
+        }];
+
+        
         likedActivity = @{@"liked": @YES,
                           @"activity": self.activity,
                           @"expert": [User currentUser]};
+        
     }
     self.liked = !self.liked;
     [self.likeButton setSelected:self.liked];

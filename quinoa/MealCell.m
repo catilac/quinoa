@@ -31,11 +31,7 @@
 - (void)setActivity:(Activity *)activity {
     _activity = activity;
 
-    [Utils loadImageFile:activity.image inImageView:self.imageView callback:^{
-        UIImage *image = self.imageView.image;
-        UIColor *tintColor = [UIColor colorWithWhite:0.1 alpha:0.5];
-        self.imageView.image = [image applyBlurWithRadius:20 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
-    }];
+    [Utils loadImageFile:activity.image inImageView:self.imageView callback:nil];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"ha"];

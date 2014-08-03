@@ -12,6 +12,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
 #import "ProfileViewSimple.h"
+#import "ExpertBrowserViewController.h"
 
 @interface ChatViewController () <UIScrollViewDelegate>
 
@@ -43,6 +44,15 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (id)initWithUser:(User *)recipient {
     self = [super init];
     if (self) {
+        
+        
+            UIBarButtonItem *browse = [[UIBarButtonItem alloc] initWithTitle:@"Browse"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(showExpertsBrowser)];
+            self.navigationItem.rightBarButtonItem = browse;
+      
+
         self.recipient = recipient;
         [self.recipient fetchInBackgroundWithBlock:nil];
     }
@@ -65,6 +75,16 @@ static NSString *CellIdentifier = @"chatCellIdent";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
+}
+
+- (void)showExpertsBrowser {
+
+        ExpertBrowserViewController *expertBrowser = [[ExpertBrowserViewController alloc] initIsModal:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:expertBrowser];
+        [self presentViewController:nc animated:YES completion:^{
+            NSLog(@"Presenting Expert Browser");
+        }];
+    
 }
 
 - (void)viewDidLoad
@@ -93,6 +113,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self.profileHeader.backgroundColor = [Utils getDarkBlue];
     self.profileHeader.alpha = 1;
     [self.profileHeader setUser:self.recipient];
+    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.translucent = NO;
     [self.view addSubview:self.profileHeader];
 }
 

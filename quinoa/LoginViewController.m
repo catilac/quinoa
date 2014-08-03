@@ -23,6 +23,7 @@
 #import "NewDashboardViewController.h"
 #import "QuinoaTabBarViewController.h"
 #import "Utils.h"
+#import "ChatViewController.h"
 
 @interface LoginViewController ()
 
@@ -161,7 +162,12 @@
     User *trainer = [[User currentUser] objectForKey:@"currentTrainer"];
     UIViewController *expertViewController;
     if (trainer) {
-        expertViewController = [[ExpertDetailViewController alloc] initWithExpert:trainer];
+        //expertViewController = [[ExpertDetailViewController alloc] initWithExpert:trainer];
+        expertViewController = [[ChatViewController alloc] initWithUser:trainer];
+        
+        //ChatViewController *chatView = [[ChatViewController alloc] initWithUser:self.expert];
+        //[self.navigationController pushViewController:chatView animated:YES];
+
     } else {
         expertViewController = [[ExpertBrowserViewController alloc] init];        
     }

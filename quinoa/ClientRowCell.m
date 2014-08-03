@@ -125,8 +125,13 @@
 
 - (IBAction)onUserPan:(UIPanGestureRecognizer *)sender {
     
+    
+    // Reset inactive container to full opacity
+    self.chatContainerInactive.layer.opacity = 1;
+    self.nudgeContainer.layer.opacity = 1;
+
+    
     if (sender.state == UIGestureRecognizerStateBegan){
-        NSLog(@"Gesture began");
         
     } else if (sender.state == UIGestureRecognizerStateChanged){
     
@@ -140,17 +145,10 @@
         float chatDragOffest = (sender.view.center.x - 160) *-1;
         self.chatIconOutline.layer.opacity = 1 - chatDragOffest/62;
 
-        
-        
-        if (sender.view.center.x > 159 ){
-            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
-            [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
-                        
-        } else {
-            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
-            [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
-        }
-    
+        // Create friction on pan
+        sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
+        [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
+
     } else if (sender.state == UIGestureRecognizerStateEnded){
         
         if (sender.view.center.x > 232) {
@@ -212,10 +210,6 @@
                 sender.view.center = CGPointMake(160, sender.view.center.y);
                 
             } completion:^(BOOL finished) {
-                
-                // Bring back chat icon to full opacity
-                self.chatContainerInactive.layer.opacity = 1;
-                
             }];
 
         
@@ -227,13 +221,8 @@
             } completion:^(BOOL finished) {
                 NSLog(@"Animation Ended");
             }];
-            
-            
         }
-        
-        
     }
-    
 }
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{

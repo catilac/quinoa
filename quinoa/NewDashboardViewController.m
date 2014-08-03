@@ -88,7 +88,7 @@
     
     // current, goal days bar
     self.currentDaysBar.backgroundColor = [Utils getGreen];
-    self.goalDaysBar.backgroundColor = [Utils getDarkerGray];
+    self.goalDaysBar.backgroundColor = [Utils getGray];
     
     // progress view
     /*self.progressView.backgroundColor = [Utils getDarkestBlue];

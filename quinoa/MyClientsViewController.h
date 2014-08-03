@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClientRowCell.h"
 
-@interface MyClientsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MyClientsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ClientRowCellDelegate>
 
 @end

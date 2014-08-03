@@ -25,6 +25,11 @@
 @property (weak, nonatomic) IBOutlet UIView *nudgeParentContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *nudgeOutline;
 
+@property (weak, nonatomic) IBOutlet UIView *chatParentContainer;
+@property (weak, nonatomic) IBOutlet UIView *chatContainerInactive;
+@property (weak, nonatomic) IBOutlet UIImageView *chatIconOutline;
+
+
 @end
 
 @implementation ClientRowCell
@@ -128,11 +133,13 @@
         CGPoint translation = [sender translationInView:self.contentView];
         
         // Fade out nudgeOutline icon
-        float dragOffest = sender.view.center.x - 160;
+        float nudgeDragOffest = sender.view.center.x - 160;
+        self.nudgeOutline.layer.opacity = 1 - nudgeDragOffest/72;
         
-        NSLog(@"%f", dragOffest);
-        
-        self.nudgeOutline.layer.opacity = 1 - dragOffest/72;
+        // Fade out chatOutline icon
+        float chatDragOffest = (sender.view.center.x - 160) *-1;
+        self.chatIconOutline.layer.opacity = 1 - chatDragOffest/62;
+
         
         
         if (sender.view.center.x > 159 ){
@@ -140,7 +147,7 @@
             [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
                         
         } else {
-            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.1, sender.view.center.y);
+            sender.view.center = CGPointMake(sender.view.center.x + translation.x*.35, sender.view.center.y);
             [sender setTranslation:CGPointMake(0, 0) inView:self.contentView];
         }
     
@@ -168,7 +175,7 @@
             
             
             // Animate Cell back after delay
-            [UIView animateWithDuration:.8 delay:.4 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+            [UIView animateWithDuration:.4 delay:.4 usingSpringWithDamping:.7 initialSpringVelocity:10 options: UIViewAnimationOptionAllowUserInteraction animations:^{
                 sender.view.center = CGPointMake(160, sender.view.center.y);
                 
             } completion:^(BOOL finished) {
@@ -178,17 +185,50 @@
                 
             }];
             
+        } else if (sender.view.center.x < 98 ) {
             
+            // Fade fade out inactive nudge state
+            [UIView animateWithDuration:.2 animations:^{
+                self.chatContainerInactive.layer.opacity = 0;
+            }];
             
+            //Animate Nudge Icon
+            [UIView animateWithDuration:.2 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:15 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                self.chatParentContainer.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                self.chatParentContainer.layer.transform = CATransform3DScale(self.chatParentContainer.layer.transform, 1.25, 1.25, 1);
+                
+            } completion:^(BOOL finished) {
+                
+                [UIView animateWithDuration:.2 animations:^{
+                    self.chatParentContainer.layer.transform = CATransform3DScale(self.chatParentContainer.layer.transform, .8, .8, 1);
+                }];
+                
+                [self.delegate loadChatView:self.client];
+                
+            }];
+            
+            // Animate Cell back after delay
+            [UIView animateWithDuration:.4 delay:.4 usingSpringWithDamping:.7 initialSpringVelocity:10 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+                sender.view.center = CGPointMake(160, sender.view.center.y);
+                
+            } completion:^(BOOL finished) {
+                
+                // Bring back chat icon to full opacity
+                self.chatContainerInactive.layer.opacity = 1;
+                
+            }];
+
+        
         } else {
             
-            [UIView animateWithDuration:.8 delay:0 usingSpringWithDamping:.7 initialSpringVelocity:18 options: UIViewAnimationOptionAllowUserInteraction animations:^{
+            [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options: UIViewAnimationOptionAllowUserInteraction animations:^{
                 sender.view.center = CGPointMake(160, sender.view.center.y);
                 
             } completion:^(BOOL finished) {
                 NSLog(@"Animation Ended");
             }];
-        
+            
+            
         }
         
         

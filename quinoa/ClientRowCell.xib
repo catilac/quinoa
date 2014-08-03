@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientRowCell">
             <connections>
+                <outlet property="chatContainerInactive" destination="GX8-t0-xQm" id="OHo-Qi-HVz"/>
+                <outlet property="chatIconOutline" destination="ZYc-XB-kXr" id="fTt-BG-NAj"/>
+                <outlet property="chatParentContainer" destination="cgg-wJ-b0G" id="c7e-Bf-D8I"/>
                 <outlet property="detailButton" destination="6YC-0I-8gI" id="OJl-h0-Gcf"/>
                 <outlet property="imageView" destination="KZO-z6-wlU" id="o4D-EE-qqm"/>
                 <outlet property="lastActiveLabel" destination="Qxh-yj-bS4" id="O4N-hz-mgq"/>
@@ -108,6 +111,53 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgg-wJ-b0G" userLabel="chatParentContainer">
+                        <rect key="frame" x="314" y="19" width="37" height="51"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uk6-kG-0pA" userLabel="chat-active">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NjT-1p-lIU" userLabel="nudgeLabel-inactive">
+                                        <rect key="frame" x="0.0" y="30" width="37" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.26274511220000002" green="0.80000007149999997" blue="0.52156865600000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat-green" translatesAutoresizingMaskIntoConstraints="NO" id="Ji1-4H-1Li" userLabel="chat-outline">
+                                        <rect key="frame" x="5" y="0.0" width="26" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GX8-t0-xQm" userLabel="chat-inactive">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJ5-EU-WAN" userLabel="nudgeLabel-inactive">
+                                        <rect key="frame" x="0.0" y="30" width="37" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.78039215689999997" green="0.81568627449999997" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat-fill" translatesAutoresizingMaskIntoConstraints="NO" id="FWx-WE-ARX" userLabel="chat-inactive">
+                                        <rect key="frame" x="5" y="0.0" width="26" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chat-outline" translatesAutoresizingMaskIntoConstraints="NO" id="ZYc-XB-kXr" userLabel="chat-outline">
+                                        <rect key="frame" x="5" y="0.0" width="26" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -141,6 +191,9 @@
     </objects>
     <resources>
         <image name="arrow_right" width="11" height="16"/>
+        <image name="chat-fill" width="26" height="26"/>
+        <image name="chat-green" width="26" height="26"/>
+        <image name="chat-outline" width="26" height="26"/>
         <image name="nudge-active" width="41" height="24"/>
         <image name="nudge-inactive" width="41" height="24"/>
         <image name="nudge-outline" width="41" height="24"/>

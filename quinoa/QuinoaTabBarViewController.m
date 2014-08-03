@@ -10,6 +10,7 @@
 #import "TrackButton.h"
 #import "FanOutViewController.h"
 #import "ExpertDetailViewController.h"
+#import "ChatViewController.h"
 
 @interface QuinoaTabBarViewController ()
 
@@ -64,7 +65,8 @@
 - (void)updateNavigation:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"hasExpert"]) {
         // Refresh tabbar navigation with Expert Detail
-        ExpertDetailViewController *expertViewController = [[ExpertDetailViewController alloc] initWithExpert:[User currentUser].currentTrainer];
+        //ExpertDetailViewController *expertViewController = [[ExpertDetailViewController alloc] initWithExpert:[User currentUser].currentTrainer];
+        ChatViewController *expertViewController = [[ChatViewController alloc] initWithUser:[User currentUser].currentTrainer];
         UINavigationController *expertNavController = [[UINavigationController alloc] initWithRootViewController:expertViewController];
         expertNavController.tabBarItem.image = [[UIImage imageNamed:@"myClients"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
         expertNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myClients-selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

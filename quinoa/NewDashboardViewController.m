@@ -7,6 +7,7 @@
 //
 
 #import "NewDashboardViewController.h"
+#import "DashboardMetricsView.h"
 #import "Activity.h"
 #import "Goal.h"
 #import "Utils.h"
@@ -19,13 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *goalDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *goalLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *dailyMealLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dailyPhysicalActivityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dailyWeightLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *mealsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *poundsLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *dailyMealLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *dailyPhysicalActivityLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *dailyWeightLabel;
+//
+//@property (weak, nonatomic) IBOutlet UILabel *mealsLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *poundsLabel;
 
 
 @property (weak, nonatomic) IBOutlet UIView *goalDaysBar;
@@ -36,13 +37,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *weightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityLabel;
+@property (weak, nonatomic) IBOutlet UIView *verticalSeparator;
 
-@property (weak, nonatomic) IBOutlet UIView *metricsHeaderView;
-@property (weak, nonatomic) IBOutlet UIView *metricsView;
-@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
+//@property (weak, nonatomic) IBOutlet UIView *metricsHeaderView;
+//@property (weak, nonatomic) IBOutlet UIView *metricsView;
+//@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
+@property (weak, nonatomic) IBOutlet UIView *metricsContainerView;
 
-@property (weak, nonatomic) IBOutlet UIView *leftDividerView;
-@property (weak, nonatomic) IBOutlet UIView *rightDividerView;
+//@property (weak, nonatomic) IBOutlet UIView *leftDividerView;
+//@property (weak, nonatomic) IBOutlet UIView *rightDividerView;
 
 @property (strong, nonatomic) Goal *goal;
 
@@ -81,7 +84,6 @@
 {
     [super viewDidLoad];
 
-    [self fetchData];
     
     self.title = @"Dashboard";
     
@@ -113,29 +115,12 @@
     self.activityView.backgroundColor = [Utils getDarkBlue];
     self.activityValueLabel.textColor = [Utils getGreen];
     self.activityLabel.textColor = [Utils getGray];
-    
-    // metrics header
-    self.metricsHeaderView.backgroundColor = [Utils getGray];
-    self.todayLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
-    self.todayLabel.textColor = [Utils getDarkBlue];
-    
-    // metrics
-    self.metricsView.backgroundColor = [Utils getLightGray];
-    self.dailyMealLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-    self.dailyMealLabel.textColor = [Utils getGray];
-    self.mealsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.mealsLabel.textColor = [Utils getGray];
-//    self.dailyPhysicalActivityLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-//    self.dailyPhysicalActivityLabel.textColor = [Utils getGray];
-    self.minutesLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.minutesLabel.textColor = [Utils getGray];
-//    self.dailyWeightLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-//    self.dailyWeightLabel.textColor = [Utils getGray];
-    self.poundsLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.poundsLabel.textColor = [Utils getGray];
-    
-    //self.leftDividerView.backgroundColor = [Utils getLightGray];
-    //self.rightDividerView.backgroundColor = [Utils getGray];
+
+    self.verticalSeparator.backgroundColor = [Utils getDarkestBlue];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -171,8 +156,10 @@
     [self.dates addObject:range[0]];
     NSDate *currentDate = range[0];
     NSDate *toDate = range[1];
+    NSDate *today = [NSDate date];
     currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-    while ([toDate compare: currentDate] != NSOrderedAscending) {
+    while ([toDate compare: currentDate] != NSOrderedAscending &&
+           [today compare: currentDate] != NSOrderedAscending) {
         [self.dates addObject: currentDate];
         currentDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     }
@@ -202,6 +189,7 @@
                                 } else if (activity.activityType == ActivityTypeWeight) {
                                     [daily setObject:activity.activityValue forKey:@(ActivityTypeWeight)];
                                 }
+                                daily[@"date"] = activity.createdAt;
                                 [self.activitiesByDate setObject:daily forKey:dateKey];
                             }
                             [self updateUI];
@@ -220,5 +208,32 @@
         self.activityValueLabel.text = [NSString stringWithFormat:@"%g", self.physicalActivityTotal];
         self.activityLabel.text = @"min";
     }
+    CGFloat containerWidth = self.view.frame.size.width;
+
+    [Utils removeSubviewsFrom:self.metricsContainerView];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,containerWidth, self.metricsContainerView.frame.size.height)];
+    scrollView.pagingEnabled = YES;
+    int index = 0;
+    for (NSDate *date in self.dates) {
+        CGFloat xOffset = index * (int)containerWidth;
+        DashboardMetricsView *metricsView = [[DashboardMetricsView alloc]
+                                             initWithFrame:CGRectMake(xOffset, 0, containerWidth, self.metricsContainerView.frame.size.height)];
+        NSString *dateKey = [Utils getSimpleStringFromDate:date];
+        metricsView.date = date;
+        metricsView.data = self.activitiesByDate[dateKey];
+        [scrollView addSubview:metricsView];
+        index++;
+    }
+    [scrollView setContentSize:CGSizeMake(containerWidth * [self.dates count], self.metricsContainerView.frame.size.height)];
+    [scrollView setContentOffset:CGPointMake(containerWidth * ([self.dates count] - 1), 0)];
+    [self.metricsContainerView addSubview:scrollView];
 }
+
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+//    NSInteger cellIndex = floor(targetContentOffset->x / 320);
+//    if ((targetContentOffset->x - (floor(targetContentOffset->x / 320) * 320)) > 320) {
+//        cellIndex++;
+//    }
+//    targetContentOffset->y = cellIndex * 320;
+//}
 @end

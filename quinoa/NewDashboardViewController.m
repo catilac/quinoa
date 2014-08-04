@@ -14,6 +14,7 @@
 #import "PNChart.h"
 #import "UILabel+QuinoaLabel.h"
 #import "MealCell.h"
+#import "Loading.h"
 
 @interface NewDashboardViewController ()
 
@@ -78,7 +79,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    Loading *loadingView = [[Loading alloc] initWithFrame:CGRectMake(0, 0, 320, 259)];
+    loadingView.tag = 63;
+    
+    [loadingView startAnimation];
+    [self.view addSubview:loadingView];
     
     self.title = @"Dashboard";
     
@@ -140,7 +146,21 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"Fetch data");
     [self fetchData];
+    
+    [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        Loading *viewToRemove = (Loading *)[self.view viewWithTag:63];
+        [viewToRemove hideIcons];
+        viewToRemove.frame = CGRectMake(0, 259, 320, 1);
+        
+    } completion:^(BOOL finished) {
+        Loading *viewToRemove = (Loading *)[self.view viewWithTag:63];
+        [viewToRemove stopActive];
+        [viewToRemove.layer removeAllAnimations];
+        [viewToRemove removeFromSuperview];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,6 +183,7 @@
     } error:^(NSError *error) {
         NSLog(@"NewDashboardViewController goal: %@", error.description);
     }];
+    
 }
 
 - (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
@@ -251,6 +272,8 @@
 
     self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [self.user.currentWeight floatValue]];
     double hours = floor(self.physicalActivityTotal / 3600);
+    NSLog(@"hours %f", hours);
+    
     if (hours > 1) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
         self.activityLabel.text = @"hr";
@@ -315,12 +338,11 @@
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
     
-    NSLog(@"goal: %f",[self.goal.targetDailyDuration floatValue]);
-    NSLog(@"seconds: %f",targetDurationInSeconds);
+    //NSLog(@"goal: %f",[self.goal.targetDailyDuration floatValue]);
+    //NSLog(@"seconds: %f",targetDurationInSeconds);
 
     float achieved = self.physicalActivityTotal/targetDurationInSeconds;
-    NSLog(@"achieved: %f",achieved);
-
+    //NSLog(@"achieved: %f",achieved);
     
     /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
     

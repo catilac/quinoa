@@ -23,6 +23,7 @@
 
 - (IBAction)onSelect:(id)sender {
     [self.delegate selectExpert:self.expert];
+    
 }
 
 -(void)setValuesWithExpert:(User *)expert {

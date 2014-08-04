@@ -12,6 +12,8 @@
 #import "UILabel+QuinoaLabel.h"
 #import "Utils.h"
 #import "ProfileViewSimple.h"
+#import "QuinoaFlowLayout.h"
+#import "ExpertBrowserViewController.h"
 
 @interface ChatViewController () <UIScrollViewDelegate>
 
@@ -43,6 +45,15 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (id)initWithUser:(User *)recipient {
     self = [super init];
     if (self) {
+        
+        
+            UIBarButtonItem *browse = [[UIBarButtonItem alloc] initWithTitle:@"Browse"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(showExpertsBrowser)];
+            self.navigationItem.rightBarButtonItem = browse;
+      
+
         self.recipient = recipient;
         [self.recipient fetchInBackgroundWithBlock:nil];
     }
@@ -67,6 +78,16 @@ static NSString *CellIdentifier = @"chatCellIdent";
     return self;
 }
 
+- (void)showExpertsBrowser {
+
+        ExpertBrowserViewController *expertBrowser = [[ExpertBrowserViewController alloc] initIsModal:YES];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:expertBrowser];
+        [self presentViewController:nc animated:YES completion:^{
+            NSLog(@"Presenting Expert Browser");
+        }];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -77,7 +98,7 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self.chatView.dataSource = self;
     self.chatView.delegate = self;
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [flowLayout setSectionInset:UIEdgeInsetsMake(5, 5, 10, 10)];
     
@@ -93,6 +114,8 @@ static NSString *CellIdentifier = @"chatCellIdent";
     self.profileHeader.backgroundColor = [Utils getDarkBlue];
     self.profileHeader.alpha = 1;
     [self.profileHeader setUser:self.recipient];
+    self.navigationController.navigationBar.translucent = NO;
+    self.tabBarController.tabBar.translucent = NO;
     [self.view addSubview:self.profileHeader];
 }
 

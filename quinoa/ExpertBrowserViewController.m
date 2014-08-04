@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "ExpertDetailViewController.h"
 #import "UILabel+QuinoaLabel.h"
+#import "ChatViewController.h"
 
 @interface ExpertBrowserViewController ()
 
@@ -142,6 +143,10 @@ static NSString *CellIdentifier = @"ExpertCellIdent";
 
 - (void)selectExpert:(User *)expert {
     [self.currentUser selectExpert:expert];
+    
+    //UIViewController *chatViewController;
+    //chatViewController = [[ChatViewController alloc] initWithUser:expert];
+    //[self.navigationController pushViewController:chatViewController animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hasExpert" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

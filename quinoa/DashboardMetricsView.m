@@ -89,25 +89,27 @@
         self.dateLabel.text = [dateFormat stringFromDate:self.date];
     }
     self.dayNumberLabel.text = [NSString stringWithFormat:@"Day %d", self.dayNumber+1];
+    self.dayNumberLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:14.0f];
+    self.dayNumberLabel.textColor = [Utils getDarkBlue];
 
     self.headerView.backgroundColor = [Utils getGray];
     self.dateLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];
     self.dateLabel.textColor = [Utils getDarkBlue];
 
     self.mealCountLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-    self.mealCountLabel.textColor = [Utils getDarkerGray];
+    self.mealCountLabel.textColor = [Utils getDarkBlue];
     self.mealUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.mealUnitLabel.textColor = [Utils getDarkerGray];
+    self.mealUnitLabel.textColor = [Utils getDarkBlue];
 
-    self.physicalValueLabel.textColor = [Utils getDarkerGray];
+    self.physicalValueLabel.textColor = [Utils getDarkBlue];
     self.physicalValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
     self.physicalUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.physicalUnitLabel.textColor = [Utils getDarkerGray];
+    self.physicalUnitLabel.textColor = [Utils getDarkBlue];
 
-    self.weightValueLabel.textColor = [Utils getDarkerGray];
+    self.weightValueLabel.textColor = [Utils getDarkBlue];
     self.weightValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
     self.weightUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.weightUnitLabel.textColor = [Utils getDarkerGray];
+    self.weightUnitLabel.textColor = [Utils getDarkBlue];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

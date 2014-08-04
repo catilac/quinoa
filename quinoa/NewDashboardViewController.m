@@ -288,6 +288,7 @@
     CGFloat containerWidth = self.view.frame.size.width;
     [Utils removeSubviewsFrom:self.metricsContainerView];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,containerWidth, self.metricsContainerView.frame.size.height)];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
     scrollView.pagingEnabled = YES;
     int index = 0;
     for (NSDate *date in self.dates) {

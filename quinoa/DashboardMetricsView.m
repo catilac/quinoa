@@ -93,19 +93,19 @@
     self.dateLabel.textColor = [Utils getDarkBlue];
 
     self.mealCountLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
-    self.mealCountLabel.textColor = [Utils getGray];
+    self.mealCountLabel.textColor = [Utils getDarkerGray];
     self.mealUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.mealUnitLabel.textColor = [Utils getGray];
+    self.mealUnitLabel.textColor = [Utils getDarkerGray];
 
-    self.physicalValueLabel.textColor = [Utils getGray];
+    self.physicalValueLabel.textColor = [Utils getDarkerGray];
     self.physicalValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
     self.physicalUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.physicalUnitLabel.textColor = [Utils getGray];
+    self.physicalUnitLabel.textColor = [Utils getDarkerGray];
 
-    self.weightValueLabel.textColor = [Utils getGray];
+    self.weightValueLabel.textColor = [Utils getDarkerGray];
     self.weightValueLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:28.0f];
     self.weightUnitLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
-    self.weightUnitLabel.textColor = [Utils getGray];
+    self.weightUnitLabel.textColor = [Utils getDarkerGray];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

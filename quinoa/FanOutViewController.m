@@ -299,7 +299,7 @@
     UIImage *bgImage = [Utils screenshot];
 
     // Tweak these values Nathan!
-    UIColor *tintColor = [UIColor colorWithRed:0.157 green:0.204 blue:0.251 alpha:.5];
+    UIColor *tintColor = [UIColor colorWithRed:0.157 green:0.204 blue:0.251 alpha:.85];
     self.currentBackgroundImage = [bgImage applyBlurWithRadius:2 tintColor:tintColor saturationDeltaFactor:1 maskImage:nil];
     self.view.backgroundColor = [UIColor colorWithPatternImage:self.currentBackgroundImage];
 }

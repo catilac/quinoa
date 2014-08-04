@@ -121,6 +121,8 @@
 - (void)setupNavigation {
     User *currentUser = [User currentUser];
     [currentUser updateLastActiveAt];
+    [[PFInstallation currentInstallation] setObject:currentUser forKey:@"user"];
+    [[PFInstallation currentInstallation] saveEventually];
     if ([currentUser[@"role"] isEqualToString:@"expert"]) {
         [self setupNavigationForExpert];
     } else {

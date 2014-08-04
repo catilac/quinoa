@@ -149,7 +149,7 @@
     NSLog(@"Fetch data");
     [self fetchData];
     
-    [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:.55 delay:3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         Loading *viewToRemove = (Loading *)[self.view viewWithTag:63];
         [viewToRemove hideIcons];
         viewToRemove.frame = CGRectMake(0, 259, 320, 1);

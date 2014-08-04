@@ -339,6 +339,8 @@
 }
 
 - (void)updatePhysicalChart {
+    [Utils removeSubviewsFrom:self.activityView];
+
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
     

@@ -9,8 +9,12 @@
 #import "ProfileViewWithActivity.h"
 #import "Utils.h"
 #import "BTBadgeView.h"
+#import "Goal.h"
+#import "Activity.h"
 
-@interface ProfileViewWithActivity ()
+@interface ProfileViewWithActivity () {
+    float physicalActivityTotal;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -21,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 
 @property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) UILabel *leftStatusLabel;
+@property (strong, nonatomic) UILabel *rightStatusLabel;
 @property BOOL isGoalEdit;
 
 @end
@@ -105,20 +111,28 @@
     chartBar.backgroundColor = [Utils getVibrantBlue];
     [self addSubview:chartBar];
 
-    UILabel *leftStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 100, 18)];
-    leftStatusLabel.text = @"80 mins";
-    leftStatusLabel.font = [ UIFont fontWithName: @"Helvetica-Bold" size: 24.0 ];
-    leftStatusLabel.textColor = [Utils getVibrantBlue];
-    [self addSubview:leftStatusLabel];
+    if (self.leftStatusLabel != nil) {
+        [self.leftStatusLabel removeFromSuperview];
+    }
+    self.leftStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 100, 18)];
+    self.leftStatusLabel.text = @"";
+    self.leftStatusLabel.font = [ UIFont fontWithName: @"Helvetica-Bold" size: 24.0 ];
+    self.leftStatusLabel.textColor = [Utils getVibrantBlue];
+    [self addSubview:self.leftStatusLabel];
 
     // Need to right align label here
-    UILabel *rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(198, 120, 100, 18)];
-    rightStatusLabel.text = @"/ 240";
-    rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
-    rightStatusLabel.textAlignment = NSTextAlignmentRight;
-    rightStatusLabel.textColor = [Utils getDarkerGray];
-    [self addSubview:rightStatusLabel];
+    if (self.rightStatusLabel != nil) {
+        [self.rightStatusLabel removeFromSuperview];
+    }
+    self.rightStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(198, 120, 100, 18)];
+    self.rightStatusLabel.text = @"";
+    self.rightStatusLabel.font = [ UIFont fontWithName: @"SourceSansPro-Regular" size: 16.0 ];
+    self.rightStatusLabel.textAlignment = NSTextAlignmentRight;
+    self.rightStatusLabel.textColor = [Utils getDarkerGray];
+    [self addSubview:self.rightStatusLabel];
     // == chart ends
+
+    [self fetchGoal];
 }
 
 -(void)showGoalEdit:(id)sender {
@@ -133,6 +147,45 @@
         [self.myDelegate showGoalUIClicked];
     }
 }
+
+-(void)fetchGoal {
+    [Goal getCurrentGoalByUser:self.user success:^(Goal *goal) {
+        NSLog(@"[ProfileViewWithActivity goal]: %@", goal);
+        NSDate *today = [NSDate date];
+        NSDate *weekAgo = [today dateByAddingTimeInterval:-60*60*24*7];
+        if (goal != nil) {
+            [self fetchActivitiesFrom:goal.startAt to:goal.endAt];
+            double diff = (double)[Utils daysBetweenDate:goal.startAt andDate:goal.endAt];
+            double targetDuration = diff * [goal.targetDailyDuration doubleValue];
+            self.rightStatusLabel.text = [NSString stringWithFormat:@"/ %@", [Utils getFriendlyTime:[NSNumber numberWithDouble:targetDuration]]];
+        } else {
+            [self fetchActivitiesFrom:weekAgo to:today];
+        }
+    } error:^(NSError *error) {
+        NSLog(@"[ProfileViewWithActivity goal] error: %@", error.description);
+    }];
+}
+
+- (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
+    physicalActivityTotal = 0;
+
+    NSArray *range = [Utils getDateRangeFrom:startDate to:endDate];
+
+    [Activity getActivityByUser:self.user
+                      startDate:range[0]
+                        endDate:range[1]
+                        success:^(NSArray *objects) {
+                            for (Activity *activity in objects) {
+                                if (activity.activityType == ActivityTypePhysical) {
+                                    physicalActivityTotal += [activity.activityValue doubleValue];
+                                }
+                            }
+                            self.leftStatusLabel.text = [Utils getFriendlyTime:[NSNumber numberWithFloat:physicalActivityTotal]];
+                        } error:^(NSError *error) {
+                            NSLog(@"ProfileViewWithActivity: physical %@", error.description);
+                        }];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

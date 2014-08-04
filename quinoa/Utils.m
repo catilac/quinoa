@@ -164,9 +164,10 @@
 // "x Minutes" or "x Hours y minutes"
 + (NSString *)getFriendlyTime:(NSNumber *)seconds {
     NSString *result = @"";
-    float minutes = [seconds floatValue] / 60;
+    float secondsFloat = round([seconds doubleValue]);
+    float minutes = round(secondsFloat / 60);
     if (minutes >= 60) {
-        int hours = floor(minutes / 60);
+        int hours = round(minutes / 60);
         result = [NSString stringWithFormat:@"%d %@", hours, ((hours < 2) ? @"h" : @"h")];
         float remainingMinutes = floorf((minutes - (hours * 60)) * 100) / 100;
         if (remainingMinutes > 0) {

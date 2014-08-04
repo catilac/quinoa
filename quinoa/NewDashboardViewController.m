@@ -302,6 +302,7 @@
                                              initWithFrame:CGRectMake(xOffset, 0, containerWidth, self.metricsContainerView.frame.size.height)];
         NSString *dateKey = [Utils getSimpleStringFromDate:date];
         metricsView.date = date;
+        metricsView.dayNumber = index;
         metricsView.data = self.activitiesByDate[dateKey];
         [scrollView addSubview:metricsView];
         index++;

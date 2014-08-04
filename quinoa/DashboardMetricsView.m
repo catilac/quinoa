@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *mealCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mealUnitLabel;
@@ -87,6 +88,7 @@
     } else {
         self.dateLabel.text = [dateFormat stringFromDate:self.date];
     }
+    self.dayNumberLabel.text = [NSString stringWithFormat:@"Day %d", self.dayNumber+1];
 
     self.headerView.backgroundColor = [Utils getGray];
     self.dateLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];

@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong) NSMutableDictionary *data;
 @property (nonatomic, strong) NSDate *date;
-
+@property int dayNumber;
 @end

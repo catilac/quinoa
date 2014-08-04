@@ -59,10 +59,10 @@
         if ([physicalDuration doubleValue] > 0) {
             double hours = floor([physicalDuration doubleValue] / 3600);
             if (hours > 1) {
-                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%.0f", hours];
                 self.physicalUnitLabel.text = @"hr";
             } else {
-                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", ([physicalDuration doubleValue] / 60)];
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%.0f", ([physicalDuration doubleValue] / 60)];
                 self.physicalUnitLabel.text = @"min";
             }
         } else {

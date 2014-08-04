@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *targetDateSlider;
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *physicalActivityDurationSlider;
 
+@property (weak, nonatomic) IBOutlet UIView *weightSliderView;
+@property (weak, nonatomic) IBOutlet UIView *dateSliderView;
+@property (weak, nonatomic) IBOutlet UIView *activitySliderView;
 
 @property (weak, nonatomic) IBOutlet UILabel *weightTitle;
 @property (weak, nonatomic) IBOutlet UILabel *targetDateTitle;
@@ -40,9 +43,16 @@
         [self addSubview:self.contentView];
 
         [self.targetWeightSlider addTarget:self action:@selector(weightChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.targetWeightSlider addTarget:self action:@selector(weightSelected:) forControlEvents:UIControlEventTouchDown];
+        [self.targetWeightSlider addTarget:self action:@selector(weightDeselected:) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.targetDateSlider addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.targetDateSlider addTarget:self action:@selector(dateSelected:) forControlEvents:UIControlEventTouchDown];
+        [self.targetDateSlider addTarget:self action:@selector(dateDeselected:) forControlEvents:UIControlEventTouchUpInside];
 
         [self.physicalActivityDurationSlider addTarget:self action:@selector(physicalActivityDurationChanged:) forControlEvents:UIControlEventValueChanged];
+        [self.physicalActivityDurationSlider addTarget:self action:@selector(activitySelected:) forControlEvents:UIControlEventTouchDown];
+        [self.physicalActivityDurationSlider addTarget:self action:@selector(activityDeselected:) forControlEvents:UIControlEventTouchUpInside];
 
         self.targetWeightSlider.tag = 0;
         self.targetDateSlider.tag = 1;
@@ -118,14 +128,59 @@
     self.targetWeight = [NSNumber numberWithInt:(int)slider.value];
 }
 
+- (void)weightSelected:(ASValueTrackingSlider *)slider {
+    
+    self.dateSliderView.alpha = 0.24;
+    self.activitySliderView.alpha = 0.24;
+    self.weightLabel.alpha = 0.24;
+}
+
+- (void)weightDeselected:(ASValueTrackingSlider *)slider {
+    
+    self.dateSliderView.alpha = 1;
+    self.activitySliderView.alpha = 1;
+    self.weightLabel.alpha = 1;
+    
+}
+
 - (void)dateChanged:(ASValueTrackingSlider *)slider {
     self.targetDateLabel.text = [NSString stringWithFormat:@"%.0f days", slider.value];
     self.targetDate = [NSNumber numberWithInt:(int)slider.value];
 }
 
+- (void)dateSelected:(ASValueTrackingSlider *)slider {
+    self.weightSliderView.alpha = 0.24;
+    self.activitySliderView.alpha = 0.24;
+    
+    self.targetDateLabel.alpha = 0.24;
+}
+
+- (void)dateDeselected:(ASValueTrackingSlider *)slider {
+    self.weightSliderView.alpha = 1;
+    self.activitySliderView.alpha = 1;
+    
+    self.targetDateLabel.alpha = 1;
+}
+
 - (void)physicalActivityDurationChanged:(ASValueTrackingSlider *)slider {
     self.physicalActivityDurationLabel.text = [Utils getFriendlyTime:[NSNumber numberWithFloat:slider.value]];
     self.targetDailyDuration = [NSNumber numberWithInt:(int)slider.value];
+}
+
+- (void)activitySelected:(ASValueTrackingSlider *)slider {
+    
+    self.weightSliderView.alpha = 0.24;
+    self.dateSliderView.alpha = 0.24;
+    self.physicalActivityDurationLabel.alpha = 0.24;
+    
+}
+
+- (void)activityDeselected:(ASValueTrackingSlider *)slider {
+    
+    self.weightSliderView.alpha = 1;
+    self.dateSliderView.alpha = 1;
+    self.physicalActivityDurationLabel.alpha = 1;
+    
 }
 
 - (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value {

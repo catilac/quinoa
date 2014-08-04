@@ -46,6 +46,8 @@
 @property (strong, nonatomic) Goal *goal;
 @property (strong, nonatomic) NSArray *todayMeals;
 
+@property (strong, nonatomic) PNCircleChart * circleChart;
+
 // Date range used is either current goal range or past 7 days
 
 // Array of dates in the date range
@@ -339,6 +341,10 @@
 }
 
 - (void)updatePhysicalChart {
+    if (self.circleChart) {
+        [self.circleChart removeFromSuperview];
+    }
+
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
     
@@ -350,14 +356,14 @@
     
     /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
     
-    PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:achieved] andClockwise:NO andShadow:YES];
-    circleChart.backgroundColor = [UIColor clearColor];
-    [circleChart setStrokeColor:[Utils getOrange]];
-    circleChart.lineWidth = @4.0f;
-    [circleChart strokeChart];
-    
+    self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:(achieved * 100)] andClockwise:NO andShadow:YES];
+    self.circleChart.labelColor = [Utils getOrange];
+    self.circleChart.backgroundColor = [UIColor clearColor];
+    [self.circleChart setStrokeColor:[Utils getOrange]];
+    self.circleChart.lineWidth = @4.0f;
+    [self.circleChart strokeChart];
 
-    [self.activityView addSubview:circleChart];
+    [self.activityView addSubview:self.circleChart];
 }
 
 - (void)updateTodaysMeals {

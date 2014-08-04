@@ -119,7 +119,7 @@ static const float ONE_MINUTE = 60.0f;
     // Do any additional setup after loading the view from its nib.
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.1f lbs", self.activityValue];
         self.hintLabel.text = @"Drag to adjust weight";
     }
     else if ([self.activityType isEqualToString: @"trackActivity"]) {
@@ -247,7 +247,7 @@ static const float ONE_MINUTE = 60.0f;
     self.activityValue = [self valueAtPosition];
     
     if ([self.activityType isEqualToString: @"trackWeight"]) {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%.2f lbs", self.activityValue];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.1f lbs", self.activityValue];
     } else if ([self.activityType isEqualToString: @"trackActivity"]) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%0.0f min", self.activityValue/ONE_MINUTE];
     }

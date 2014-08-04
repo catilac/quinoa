@@ -60,7 +60,7 @@
     Activity *activity = [Activity object];
     activity.user = [User currentUser];
     activity.activityType = ActivityTypePhysical;
-    activity.activityValue = [NSNumber numberWithDouble:[duration doubleValue] * 60];
+    activity.activityValue = duration;
     activity.activityUnit = @"sec";
     activity.descriptionText = @"Physical Activity";
     [activity saveInBackgroundWithBlock:callback];

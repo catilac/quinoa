@@ -19,6 +19,7 @@
 @dynamic lastActiveAt;
 
 - (BOOL)isExpert {
+    
     return [self.role isEqualToString:@"expert"];
 }
 

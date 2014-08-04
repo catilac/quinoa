@@ -11,6 +11,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "TrackButton.h"
 #import "QuinoaTabBarViewController.h"
+#import "MBProgressHUD.h"
 
 @interface TrackEatingViewController ()
 
@@ -133,6 +134,7 @@
 //}
 
 - (void)uploadImage:(NSData *)imageData {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFFile *imageFile = [PFFile fileWithData:imageData];
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
@@ -143,6 +145,7 @@
             [Activity trackEating:imageFile
                       description:description
                          callback:^(BOOL succeeded, NSError *error) {
+                             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                              [self goToActivitiesScreen];
                              [self dismissModalAndCloseFanOutMenu];
                          }];
@@ -175,7 +178,12 @@
 
     // Dismiss the image picker
     [picker dismissViewControllerAnimated:YES completion:nil];
-    self.imageData = UIImageJPEGRepresentation(image, 0.05f);
+    UIGraphicsBeginImageContext(CGSizeMake(640, 960));
+    [image drawInRect: CGRectMake(0, 0, 640, 960)];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.imageData = UIImageJPEGRepresentation(smallImage, 0.05f);
     [self.imagePreview removeFromSuperview];
     self.imagePreview = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.imageData]];
     self.imagePreview.frame = self.imagePreviewContainer.frame;

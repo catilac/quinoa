@@ -46,6 +46,8 @@
 @property (strong, nonatomic) Goal *goal;
 @property (strong, nonatomic) NSArray *todayMeals;
 
+@property (strong, nonatomic) PNCircleChart * circleChart;
+
 // Date range used is either current goal range or past 7 days
 
 // Array of dates in the date range
@@ -68,7 +70,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.user = [User currentUser];
-        //self.mealTotal = 0;
         self.physicalActivityTotal = 0;
         self.dates = [NSMutableArray array];
         self.activitiesByDate = [NSMutableDictionary dictionary];
@@ -187,6 +188,11 @@
 }
 
 - (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
+    // reset data store
+    [self.dates removeAllObjects];
+    [self.activitiesByDate removeAllObjects];
+    self.physicalActivityTotal = 0;
+
     NSArray *range = [Utils getDateRangeFrom:startDate to:endDate];
     NSDate *today = [NSDate date];
 
@@ -275,10 +281,10 @@
     NSLog(@"hours %f", hours);
     
     if (hours > 1) {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.0f", hours];
         self.activityLabel.text = @"hr";
     } else {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", (self.physicalActivityTotal / 60)];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.0f", (self.physicalActivityTotal / 60)];
         self.activityLabel.text = @"min";
     }
 
@@ -297,6 +303,7 @@
                                              initWithFrame:CGRectMake(xOffset, 0, containerWidth, self.metricsContainerView.frame.size.height)];
         NSString *dateKey = [Utils getSimpleStringFromDate:date];
         metricsView.date = date;
+        metricsView.dayNumber = index;
         metricsView.data = self.activitiesByDate[dateKey];
         [scrollView addSubview:metricsView];
         index++;
@@ -336,6 +343,10 @@
 }
 
 - (void)updatePhysicalChart {
+    if (self.circleChart) {
+        [self.circleChart removeFromSuperview];
+    }
+
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
     
@@ -347,14 +358,14 @@
     
     /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
     
-    PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:achieved] andClockwise:NO andShadow:YES];
-    circleChart.backgroundColor = [UIColor clearColor];
-    [circleChart setStrokeColor:[Utils getOrange]];
-    circleChart.lineWidth = @4.0f;
-    [circleChart strokeChart];
-    
+    self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:(achieved * 100)] andClockwise:NO andShadow:YES];
+    self.circleChart.labelColor = [Utils getOrange];
+    self.circleChart.backgroundColor = [UIColor clearColor];
+    [self.circleChart setStrokeColor:[Utils getOrange]];
+    self.circleChart.lineWidth = @4.0f;
+    [self.circleChart strokeChart];
 
-    [self.activityView addSubview:circleChart];
+    [self.activityView addSubview:self.circleChart];
 }
 
 - (void)updateTodaysMeals {

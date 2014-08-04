@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *mealCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mealUnitLabel;
@@ -59,10 +60,10 @@
         if ([physicalDuration doubleValue] > 0) {
             double hours = floor([physicalDuration doubleValue] / 3600);
             if (hours > 1) {
-                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%.0f", hours];
                 self.physicalUnitLabel.text = @"hr";
             } else {
-                self.physicalValueLabel.text = [NSString stringWithFormat:@"%g", ([physicalDuration doubleValue] / 60)];
+                self.physicalValueLabel.text = [NSString stringWithFormat:@"%.0f", ([physicalDuration doubleValue] / 60)];
                 self.physicalUnitLabel.text = @"min";
             }
         } else {
@@ -87,6 +88,7 @@
     } else {
         self.dateLabel.text = [dateFormat stringFromDate:self.date];
     }
+    self.dayNumberLabel.text = [NSString stringWithFormat:@"Day %d", self.dayNumber+1];
 
     self.headerView.backgroundColor = [Utils getGray];
     self.dateLabel.font = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16.0f];

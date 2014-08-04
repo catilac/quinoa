@@ -169,6 +169,20 @@
                     self.nudgeParentContainer.layer.transform = CATransform3DScale(self.nudgeParentContainer.layer.transform, .8, .8, 1);
                 }];
                 
+                // Build a query to match users with a birthday today
+                PFQuery *innerQuery = [User query];
+
+                // Use hasPrefix: to only match against the month/date
+                [innerQuery whereKey:@"objectId" equalTo:self.client.objectId];
+
+                // Build the actual push notification target query
+                PFQuery *query = [PFInstallation query];
+                [query whereKey:@"user" matchesQuery:innerQuery];
+
+               PFPush *push = [[PFPush alloc] init];
+                [push setQuery:query];
+                [push setMessage:[NSString stringWithFormat:@"YO! from %@", [[User currentUser] firstName]]];
+                [push sendPushInBackground];
             }];
             
             

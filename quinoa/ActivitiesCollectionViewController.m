@@ -27,6 +27,8 @@
 #import "ChatViewController.h"
 #import "GoalEditView.h"
 
+#import "QuinoaFlowLayout.h"
+
 @interface ActivitiesCollectionViewController ()
 {
 
@@ -202,22 +204,44 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchActivityLikes];
     if (isExpert && !isProfile) {
-        [Activity getClientActivitiesByExpert:user success:^(NSArray *objects) {
-            self.activities = objects;
-            NSLog(@"client activities count: %d", self.activities.count);
-            [self.collectionView reloadData];
+        [Activity getClientActivitiesByExpert:user success:^(NSArray *activities) {
+            BOOL reload = self.activities.count != activities.count;
+            if (reload) {
+                // clear out old activities
+                // TODO : This cannot be the best way...
+                self.activities = [[NSArray alloc] init];
+                [self.collectionView reloadData];
+                [self.collectionView performBatchUpdates:^{
+                    self.activities = activities;
+                    NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                    for (NSInteger i = 0; i < self.activities.count; i++) {
+                        [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                    }
+                    [self.collectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
+                } completion:nil];
+            }
+
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
             NSLog(@"[ActivitiesCollection clients] error: %@", error.description);
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     } else {
-        [Activity getActivitiesByUser:user success:^(NSArray *objects) {
-            BOOL reload = self.activities.count != objects.count;
-            self.activities = objects;
-            NSLog(@"my activities count: %d", self.activities.count);
+        [Activity getActivitiesByUser:user success:^(NSArray *activities) {
+            BOOL reload = self.activities.count != activities.count;
             if (reload) {
+                self.activities = [[NSArray alloc] init];
                 [self.collectionView reloadData];
+                
+                [self.collectionView performBatchUpdates:^{
+                    self.activities = activities;
+                    NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                    for (NSInteger i = 0; i < self.activities.count; i++) {
+                        [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                    }
+                    [self.collectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
+                } completion:nil];
+
             }
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         } error:^(NSError *error) {
@@ -240,7 +264,6 @@
         for (ActivityLike *activityLike in activityLikes) {
             [self.likes addObject:activityLike.activity.objectId];
         }
-        NSLog(@"activityLikes count: %d", self.likes.count);
     } error:^(NSError *error) {
         NSLog(@"[ActivitiesCollection activityLikes] error: %@", error.description);
     }];
@@ -251,7 +274,7 @@
     view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundView = view;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (isProfile) {
         [flowLayout setHeaderReferenceSize:CGSizeMake(self.view.frame.size.width-20, 180)];

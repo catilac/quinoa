@@ -13,6 +13,7 @@
 #import "UILabel+QuinoaLabel.h"
 #import "ActivitiesCollectionViewController.h"
 #import "ChatViewController.h"
+#import "QuinoaFlowLayout.h"
 
 @interface MyClientsViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *myClientsCollection;
@@ -43,7 +44,7 @@ static NSString *CellIdentifier = @"ClientRowCell";
     self.myClientsCollection.dataSource = self;
     self.myClientsCollection.delegate = self;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    QuinoaFlowLayout *flowLayout = [[QuinoaFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(300, 80)];
     
     // Spacing for flowlayout
@@ -76,10 +77,17 @@ static NSString *CellIdentifier = @"ClientRowCell";
     User *currentUser = [User currentUser];
     PFQuery *query = [User query];
     [query whereKey:@"currentTrainer" equalTo:currentUser];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *clients, NSError *error) {
         if (!error) {
-            self.clients = objects;
-            [self.myClientsCollection reloadData];
+            [self.myClientsCollection performBatchUpdates:^{
+                self.clients = clients;
+                NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                for (NSInteger i = 0; i < self.clients.count; i++) {
+                    [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                [self.myClientsCollection insertItemsAtIndexPaths:arrayWithIndexPaths];
+            } completion:nil];
+
         } else {
             NSLog(@"Error Fetching Clients: %@", error);
         }

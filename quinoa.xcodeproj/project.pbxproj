@@ -40,6 +40,7 @@
 		46AA118A19730C40001C7F02 /* MyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AA118819730C40001C7F02 /* MyClientsViewController.m */; };
 		46AA118B19730C40001C7F02 /* MyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46AA118919730C40001C7F02 /* MyClientsViewController.xib */; };
 		46BDC0B31974EEF90004387D /* TrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDC0B21974EEF90004387D /* TrackButton.m */; };
+		46BE3623198ED961000A22BC /* QuinoaFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BE3622198ED961000A22BC /* QuinoaFlowLayout.m */; };
 		46C25F57197A6B1F00B49CDC /* QuinoaTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C25F56197A6B1F00B49CDC /* QuinoaTabBarViewController.m */; };
 		46CDF24119765DE900B43FBB /* DashboardFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CDF23F19765DE900B43FBB /* DashboardFeedCell.m */; };
 		46CDF24219765DE900B43FBB /* DashboardFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CDF24019765DE900B43FBB /* DashboardFeedCell.xib */; };
@@ -166,6 +167,8 @@
 		46AA118919730C40001C7F02 /* MyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientsViewController.xib; sourceTree = "<group>"; };
 		46BDC0B11974EEF90004387D /* TrackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackButton.h; sourceTree = "<group>"; };
 		46BDC0B21974EEF90004387D /* TrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackButton.m; sourceTree = "<group>"; };
+		46BE3621198ED961000A22BC /* QuinoaFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuinoaFlowLayout.h; sourceTree = "<group>"; };
+		46BE3622198ED961000A22BC /* QuinoaFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuinoaFlowLayout.m; sourceTree = "<group>"; };
 		46C25F55197A6B1F00B49CDC /* QuinoaTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuinoaTabBarViewController.h; sourceTree = "<group>"; };
 		46C25F56197A6B1F00B49CDC /* QuinoaTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuinoaTabBarViewController.m; sourceTree = "<group>"; };
 		46CDF23E19765DE900B43FBB /* DashboardFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardFeedCell.h; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 		460447A81964ECC600DDE6C6 /* quinoa */ = {
 			isa = PBXGroup;
 			children = (
+				46BE3620198ED93D000A22BC /* Flow Layouts */,
 				53B1EC571973068D00101B39 /* Fonts */,
 				4611A6041968B1B100202318 /* Views */,
 				5348EC2B1969401700E99C4A /* Categories */,
@@ -515,6 +519,15 @@
 				46BDC0B21974EEF90004387D /* TrackButton.m */,
 			);
 			name = "Track Button";
+			sourceTree = "<group>";
+		};
+		46BE3620198ED93D000A22BC /* Flow Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				46BE3621198ED961000A22BC /* QuinoaFlowLayout.h */,
+				46BE3622198ED961000A22BC /* QuinoaFlowLayout.m */,
+			);
+			name = "Flow Layouts";
 			sourceTree = "<group>";
 		};
 		46C25F54197A6AF400B49CDC /* QuinoaTabBarController */ = {
@@ -996,6 +1009,7 @@
 			files = (
 				532904BC197500FD005A2E26 /* WeightActivity.m in Sources */,
 				4695108219691C0E00315FDC /* ExpertCell.m in Sources */,
+				46BE3623198ED961000A22BC /* QuinoaFlowLayout.m in Sources */,
 				461E5AB7196A101E000D120F /* ChatCell.m in Sources */,
 				46C25F57197A6B1F00B49CDC /* QuinoaTabBarViewController.m in Sources */,
 				53D0DA2F198A21C500CFAABA /* NewDashboardViewController.m in Sources */,

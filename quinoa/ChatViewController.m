@@ -45,13 +45,13 @@ static NSString *CellIdentifier = @"chatCellIdent";
 - (id)initWithUser:(User *)recipient {
     self = [super init];
     if (self) {
-        
-        
+        if (![[User currentUser] isExpert]) {
             UIBarButtonItem *browse = [[UIBarButtonItem alloc] initWithTitle:@"Browse"
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(showExpertsBrowser)];
             self.navigationItem.rightBarButtonItem = browse;
+        }
       
 
         self.recipient = recipient;

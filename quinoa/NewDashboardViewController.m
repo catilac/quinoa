@@ -68,7 +68,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.user = [User currentUser];
-        //self.mealTotal = 0;
         self.physicalActivityTotal = 0;
         self.dates = [NSMutableArray array];
         self.activitiesByDate = [NSMutableDictionary dictionary];
@@ -187,6 +186,11 @@
 }
 
 - (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
+    // reset data store
+    [self.dates removeAllObjects];
+    [self.activitiesByDate removeAllObjects];
+    self.physicalActivityTotal = 0;
+
     NSArray *range = [Utils getDateRangeFrom:startDate to:endDate];
     NSDate *today = [NSDate date];
 
@@ -275,10 +279,10 @@
     NSLog(@"hours %f", hours);
     
     if (hours > 1) {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.0f", hours];
         self.activityLabel.text = @"hr";
     } else {
-        self.activityValueLabel.text = [NSString stringWithFormat:@"%g", (self.physicalActivityTotal / 60)];
+        self.activityValueLabel.text = [NSString stringWithFormat:@"%.0f", (self.physicalActivityTotal / 60)];
         self.activityLabel.text = @"min";
     }
 

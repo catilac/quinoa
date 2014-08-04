@@ -14,6 +14,7 @@
 #import "PNChart.h"
 #import "UILabel+QuinoaLabel.h"
 #import "MealCell.h"
+#import "Loading.h"
 
 @interface NewDashboardViewController ()
 
@@ -78,7 +79,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    Loading *loadingView = [[Loading alloc] initWithFrame:CGRectMake(0, 0, 320, 259)];
+    loadingView.tag = 63;
+    
+    [loadingView startAnimation];
+    [self.view addSubview:loadingView];
     
     self.title = @"Dashboard";
     
@@ -88,7 +94,7 @@
     
     // current, goal days bar
     self.currentDaysBar.backgroundColor = [Utils getGreen];
-    self.goalDaysBar.backgroundColor = [Utils getDarkerGray];
+    self.goalDaysBar.backgroundColor = [Utils getGray];
     
     // progress view
     /*self.progressView.backgroundColor = [Utils getDarkestBlue];
@@ -104,11 +110,13 @@
     // weight view
     self.weightview.backgroundColor = [Utils getDarkBlue];
     self.weightValueLabel.textColor = [Utils getVibrantBlue];
+    self.weightValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:36.0];
     self.weightLabel.textColor = [Utils getGray];
     
     // activity view
     self.activityView.backgroundColor = [Utils getDarkBlue];
-    self.activityValueLabel.textColor = [Utils getGreen];
+    self.activityValueLabel.textColor = [Utils getOrange];
+    self.activityValueLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:36.0];
     self.activityLabel.textColor = [Utils getGray];
 
     self.verticalSeparator.backgroundColor = [Utils getDarkestBlue];
@@ -138,7 +146,21 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"Fetch data");
     [self fetchData];
+    
+    [UIView animateWithDuration:.55 delay:3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        Loading *viewToRemove = (Loading *)[self.view viewWithTag:63];
+        [viewToRemove hideIcons];
+        viewToRemove.frame = CGRectMake(0, 259, 320, 1);
+        
+    } completion:^(BOOL finished) {
+        Loading *viewToRemove = (Loading *)[self.view viewWithTag:63];
+        [viewToRemove stopActive];
+        [viewToRemove.layer removeAllAnimations];
+        [viewToRemove removeFromSuperview];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,6 +183,7 @@
     } error:^(NSError *error) {
         NSLog(@"NewDashboardViewController goal: %@", error.description);
     }];
+    
 }
 
 - (void)fetchActivitiesFrom:(NSDate *)startDate to:(NSDate *)endDate {
@@ -249,6 +272,8 @@
 
     self.weightValueLabel.text = [NSString stringWithFormat:@"%.0f", [self.user.currentWeight floatValue]];
     double hours = floor(self.physicalActivityTotal / 3600);
+    NSLog(@"hours %f", hours);
+    
     if (hours > 1) {
         self.activityValueLabel.text = [NSString stringWithFormat:@"%g", hours];
         self.activityLabel.text = @"hr";
@@ -281,7 +306,7 @@
 }
 
 - (void)updateWeightChart:(NSArray *)activities {
-    UIView *chartView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 70)];
+    UIView *chartView = [[UIView alloc] initWithFrame:CGRectMake(30, 20, 90, 60)];
     PNLineChart *chart = [[PNLineChart alloc]
                                   initWithFrame:CGRectMake(0, 0, chartView.frame.size.width, chartView.frame.size.height)];
     chart.backgroundColor = [Utils getDarkBlue];
@@ -312,19 +337,23 @@
 - (void)updatePhysicalChart {
     NSInteger numberOfDays = [Utils daysBetweenDate:self.goal.startAt andDate:self.goal.endAt];
     float targetDurationInSeconds = numberOfDays * [self.goal.targetDailyDuration floatValue];
+    
+    //NSLog(@"goal: %f",[self.goal.targetDailyDuration floatValue]);
+    //NSLog(@"seconds: %f",targetDurationInSeconds);
 
-    float achieved = (self.physicalActivityTotal/targetDurationInSeconds) * 100;
-    float remainder = 100 - achieved;
-    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:achieved color:[Utils getGreen]],
-                       [PNPieChartDataItem dataItemWithValue:remainder color:[Utils getDarkestBlue]]
-                       ];
+    float achieved = self.physicalActivityTotal/targetDurationInSeconds;
+    //NSLog(@"achieved: %f",achieved);
+    
+    /*- (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current andClockwise:(BOOL)clockwise andShadow:(BOOL)hasBackgroundShadow*/
+    
+    PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(25, 10, 60, 60) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:achieved] andClockwise:NO andShadow:YES];
+    circleChart.backgroundColor = [UIColor clearColor];
+    [circleChart setStrokeColor:[Utils getOrange]];
+    circleChart.lineWidth = @4.0f;
+    [circleChart strokeChart];
+    
 
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(30, 10, 70, 70) items:items];
-    pieChart.descriptionTextColor = [UIColor whiteColor];
-    pieChart.descriptionTextFont  = [UIFont fontWithName:@"SourceSansPro-Regular" size:12.0];
-    [pieChart strokeChart];
-
-    [self.activityView addSubview:pieChart];
+    [self.activityView addSubview:circleChart];
 }
 
 - (void)updateTodaysMeals {

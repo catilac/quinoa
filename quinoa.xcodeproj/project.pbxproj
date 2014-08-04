@@ -90,6 +90,8 @@
 		70D4923228BF4D3CBFDC6652 /* libPods-quinoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */; };
 		7A44F3C2198B5E4300408A69 /* ProfileViewSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */; };
 		7A44F3C4198B5E6A00408A69 /* ProfileViewSimple.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */; };
+		7AFDDDBC198EF1690056D892 /* Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFDDDBB198EF1690056D892 /* Loading.m */; };
+		7AFDDDBF198EF18B0056D892 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AFDDDBE198EF18B0056D892 /* Loading.xib */; };
 		9FD33445196BA6DC003E1727 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343B196BA6DC003E1727 /* Profile.m */; };
 		9FD33446196BA6DC003E1727 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3343D196BA6DC003E1727 /* ProfileViewController.m */; };
 		9FD33447196BA6DC003E1727 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD3343E196BA6DC003E1727 /* ProfileViewController.xib */; };
@@ -245,6 +247,9 @@
 		7A44F3C0198B5E4300408A69 /* ProfileViewSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewSimple.h; sourceTree = "<group>"; };
 		7A44F3C1198B5E4300408A69 /* ProfileViewSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewSimple.m; sourceTree = "<group>"; };
 		7A44F3C3198B5E6A00408A69 /* ProfileViewSimple.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewSimple.xib; sourceTree = "<group>"; };
+		7AFDDDBA198EF1690056D892 /* Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loading.h; sourceTree = "<group>"; };
+		7AFDDDBB198EF1690056D892 /* Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loading.m; sourceTree = "<group>"; };
+		7AFDDDBE198EF18B0056D892 /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		7DF42EDDF7534AF190FD067A /* libPods-quinoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quinoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD3343A196BA6DC003E1727 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		9FD3343B196BA6DC003E1727 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -428,6 +433,7 @@
 				9FD3344E196BA748003E1727 /* Article Cell */,
 				461E5AB4196A0DFC000D120F /* Chat Cell */,
 				4695108519691CB700315FDC /* Expert Cell */,
+				7AFDDDBD198EF16D0056D892 /* Loading */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -788,6 +794,16 @@
 			name = "Profile View Simple";
 			sourceTree = "<group>";
 		};
+		7AFDDDBD198EF16D0056D892 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				7AFDDDBA198EF1690056D892 /* Loading.h */,
+				7AFDDDBB198EF1690056D892 /* Loading.m */,
+				7AFDDDBE198EF18B0056D892 /* Loading.xib */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
 		9FD3344C196BA6F5003E1727 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +951,7 @@
 				5329052019860C81005A2E26 /* ProfileViewWithActivity.xib in Resources */,
 				9FD33449196BA6DC003E1727 /* ArticleCell.xib in Resources */,
 				4695108419691C5E00315FDC /* ExpertCell.xib in Resources */,
+				7AFDDDBF198EF18B0056D892 /* Loading.xib in Resources */,
 				532904B81974FFF2005A2E26 /* DietActivity.xib in Resources */,
 				9FD3349419735B43003E1727 /* ActivityViewController.xib in Resources */,
 				460447AD1964ECC600DDE6C6 /* InfoPlist.strings in Resources */,
@@ -1028,6 +1045,7 @@
 				5329052219861003005A2E26 /* ProfileViewWithActivity.m in Sources */,
 				532904AF1974FDCF005A2E26 /* PhysicalActivity.m in Sources */,
 				5354D0811971EC8800612FFE /* ActivityCell.m in Sources */,
+				7AFDDDBC198EF1690056D892 /* Loading.m in Sources */,
 				462769DB197636770049482F /* DashboardViewController.m in Sources */,
 				5354D0751971D76700612FFE /* Activity.m in Sources */,
 				46BDC0B31974EEF90004387D /* TrackButton.m in Sources */,
@@ -1218,7 +1236,7 @@
 					Social,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1240,7 +1258,7 @@
 				GCC_PREFIX_HEADER = "quinoa/quinoa-Prefix.pch";
 				INFOPLIST_FILE = "quinoa/quinoa-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8CFF8C4E-8FAB-43F9-ACBC-81CC30F7B5AE";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
